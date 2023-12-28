@@ -14,7 +14,7 @@ func _ready():
 	position_offset = $Sprite.texture.get_size().x / 2
 	add_ball_to_holder()
 
-func _process(delta):
+func _process(_delta):
 	position.x = clampf(
 		get_global_mouse_position().x,
 		position_min.position.x + position_offset,

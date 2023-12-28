@@ -1,6 +1,7 @@
 extends Node
 
 signal ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int)
+signal next_ball_changed
 
 const BALLS = [
 	{
@@ -70,3 +71,4 @@ func get_next_ball() -> Dictionary:
 func choose_next_ball() -> void:
 	current_ball = next_ball
 	next_ball = get_random_ball()
+	next_ball_changed.emit()

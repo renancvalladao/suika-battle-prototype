@@ -10,6 +10,7 @@ script = ExtResource("1_hmqhe")
 [node name="BallHolder" type="Marker2D" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
 texture = ExtResource("1_8elw8")
 flip_v = true
 

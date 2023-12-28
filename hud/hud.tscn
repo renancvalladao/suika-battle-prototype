@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://2wy62osvnpgg"]
+
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_5sxdd"]
+[ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_m48a0"]
+[ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_45k30"]
+[ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="2_j27b4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i7rev"]
+font = ExtResource("2_45k30")
+font_size = 72
+outline_size = 2
+outline_color = Color(0.317647, 0.317647, 0.317647, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+script = ExtResource("1_5sxdd")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -256.0
+offset_top = 86.0
+offset_right = -90.0
+offset_bottom = 159.0
+text = "NEXT"
+label_settings = SubResource("LabelSettings_i7rev")
+
+[node name="Sprite" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -260.0
+offset_top = 180.0
+offset_right = -100.0
+offset_bottom = 340.0
+grow_horizontal = 0
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("1_m48a0")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -244.0
+offset_top = 196.0
+offset_right = -116.0
+offset_bottom = 324.0
+grow_horizontal = 0
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2

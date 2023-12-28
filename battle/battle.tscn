@@ -1,12 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=6 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
 [ext_resource type="Texture2D" uid="uid://b8osu1ay3k4dl" path="res://assets/background/backgroundColorForest.png" id="1_vd50v"]
+[ext_resource type="PackedScene" uid="uid://2wy62osvnpgg" path="res://hud/hud.tscn" id="2_uwwfi"]
 [ext_resource type="PackedScene" uid="uid://7i4sjogibg3k" path="res://tile/tile.tscn" id="4_8rafd"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_fl8ju")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("2_uwwfi")]
 
 [node name="BackgroundColorForest" type="Sprite2D" parent="."]
 texture_repeat = 2
