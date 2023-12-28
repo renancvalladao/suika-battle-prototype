@@ -59,7 +59,7 @@ var current_ball = get_random_ball()
 var next_ball = get_random_ball()
 
 func get_random_ball() -> Dictionary:
-	var random_ball_index = rng.randi_range(0, BALLS.size() - 3)
+	var random_ball_index = rng.randi_range(0, BALLS.size() - 4)
 	return BALLS[random_ball_index]
 
 func get_current_ball() -> Dictionary:
