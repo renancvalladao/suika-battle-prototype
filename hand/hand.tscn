@@ -12,3 +12,8 @@ script = ExtResource("1_hmqhe")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_8elw8")
 flip_v = true
+
+[node name="DropTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]

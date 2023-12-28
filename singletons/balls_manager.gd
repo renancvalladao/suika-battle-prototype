@@ -41,5 +41,20 @@ const BALLS = [
 	}
 ]
 
+var rng = RandomNumberGenerator.new()
+var current_ball = get_random_ball()
+var next_ball = get_random_ball()
+
 func get_random_ball() -> Dictionary:
-	return BALLS.pick_random()
+	var random_ball_index = rng.randi_range(0, BALLS.size() - 3)
+	return BALLS[random_ball_index]
+
+func get_current_ball() -> Dictionary:
+	return current_ball
+
+func get_next_ball() -> Dictionary:
+	return next_ball
+
+func choose_next_ball() -> void:
+	current_ball = next_ball
+	next_ball = get_random_ball()
