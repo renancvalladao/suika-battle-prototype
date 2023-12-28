@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkad54i0bl7bp"]
+
+[ext_resource type="Texture2D" uid="uid://d3prjjgiujl5u" path="res://assets/icons/hand.png" id="1_8elw8"]
+[ext_resource type="Script" path="res://hand/hand.gd" id="1_hmqhe"]
+
+[node name="Hand" type="Node2D"]
+z_index = 1
+script = ExtResource("1_hmqhe")
+
+[node name="BallHolder" type="Marker2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_8elw8")
+flip_v = true
