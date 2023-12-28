@@ -29,7 +29,7 @@ grow_vertical = 2
 texture = ExtResource("1_vd50v")
 
 [node name="Hand" parent="." node_paths=PackedStringArray("position_min", "position_max") instance=ExtResource("1_h2fse")]
-position = Vector2(950, 140)
+position = Vector2(950, 76)
 position_min = NodePath("../PositionMin")
 position_max = NodePath("../PositionMax")
 

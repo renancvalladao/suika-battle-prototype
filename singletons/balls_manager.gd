@@ -19,25 +19,37 @@ const BALLS = [
 		"tier": 3,
 		"sprite": preload("res://assets/balls/green_body_circle.png"),
 		"icon": preload("res://assets/icons/flask.png"),
-		"size": 2
+		"size": 2.1
 	},
 	{
 		"tier": 4,
 		"sprite": preload("res://assets/balls/pink_body_circle.png"),
 		"icon": preload("res://assets/icons/heart.png"),
-		"size": 2.5
+		"size": 2.8
 	},
 	{
 		"tier": 5,
 		"sprite": preload("res://assets/balls/yellow_body_circle.png"),
 		"icon": preload("res://assets/icons/bow.png"),
-		"size": 3
+		"size": 3.6
 	},
 	{
 		"tier": 6,
 		"sprite": preload("res://assets/balls/red_body_circle.png"),
 		"icon": preload("res://assets/icons/fire.png"),
-		"size": 3.5
+		"size": 4.5
+	},
+	{
+		"tier": 7,
+		"sprite": preload("res://assets/balls/blue_body_circle.png"),
+		"icon": preload("res://assets/icons/book.png"),
+		"size": 5.5
+	},
+	{
+		"tier": 8,
+		"sprite": preload("res://assets/balls/purple_body_circle.png"),
+		"icon": preload("res://assets/icons/skull.png"),
+		"size": 6.6
 	}
 ]
 
