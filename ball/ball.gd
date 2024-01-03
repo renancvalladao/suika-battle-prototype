@@ -25,7 +25,7 @@ func explode():
 func _on_body_entered(body):
 	if config.tier == BallsManager.BALLS.size():
 		return
-	if body is Ball && body.config.size == config.size && !exploded:
+	if body is Ball && body.config.tier == config.tier && !exploded:
 		explode()
 		body.explode()
 		BallsManager.ball_exploded.emit(position, body.position, config.tier)

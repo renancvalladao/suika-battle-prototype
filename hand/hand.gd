@@ -15,6 +15,7 @@ func _ready():
 	add_ball_to_holder()
 	BallsManager.turn_finished.connect(turn_finished)
 	SignalManager.turn_started.connect(turn_started)
+	BallsManager.current_ball_changed.connect(current_ball_changed)
 
 func _process(_delta):
 	position.x = clampf(
@@ -48,6 +49,13 @@ func _on_drop_timer_timeout():
 
 func turn_finished() -> void:
 	can_drop = false
+	hide()
 
 func turn_started() -> void:
 	can_drop = true
+	show()
+
+func current_ball_changed() -> void:
+	var ball = ball_holder.get_child(0)
+	ball.queue_free()
+	add_ball_to_holder()

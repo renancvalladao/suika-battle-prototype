@@ -30,8 +30,8 @@ func ball_dropped():
 	moves_left -= 1
 	moves_left_label.text = "Moves Left: %s" % moves_left
 	if moves_left == 0:
-		await get_tree().create_timer(1.0).timeout
 		BallsManager.turn_finished.emit()
+		await get_tree().create_timer(1.0).timeout
 		await enemy.move()
 		SignalManager.turn_started.emit()
 
@@ -43,4 +43,4 @@ func spawn_random_ball() -> void:
 	var x = randf_range(position_min.position.x, position_max.position.x)
 	var y = randf_range(position_min.position.y, position_max.position.y)
 	var ball_tier = BallsManager.get_random_ball().tier
-	spawn_ball(Vector2(x, y), Vector2(x, y), ball_tier)
+	spawn_ball(Vector2(x, y), Vector2(x, y), ball_tier - 1)

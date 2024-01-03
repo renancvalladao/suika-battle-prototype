@@ -4,6 +4,7 @@ signal ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int)
 signal next_ball_changed
 signal ball_dropped
 signal turn_finished
+signal current_ball_changed
 
 const BALLS = [
 	{
@@ -69,6 +70,14 @@ func get_current_ball() -> Dictionary:
 
 func get_next_ball() -> Dictionary:
 	return next_ball
+
+func set_current_ball(ball: Dictionary) -> void:
+	current_ball = ball
+	current_ball_changed.emit()
+
+func set_next_ball(ball: Dictionary) -> void:
+	next_ball = ball
+	next_ball_changed.emit()
 
 func choose_next_ball() -> void:
 	current_ball = next_ball
