@@ -8,7 +8,7 @@ class_name Enemy
 @onready var timer = $Timer
 
 var my_turn: bool = false
-var attacks: Array = ["damage", "chaos", "rock"]
+var attacks: Array = ["damage", "chaos", "damage", "rock"]
 var rock_config: Dictionary = {
 		"tier": BallsManager.BALLS.size(),
 		"sprite": preload("res://assets/balls/grey_body_circle.png"),
@@ -21,13 +21,17 @@ func _ready():
 	SignalManager.enemy_damaged.connect(enemy_damaged)
 	progress_bar.value = hp
 
+func set_hp(amount: int) -> void:
+	hp = amount
+	progress_bar.value = amount
+
 func enemy_damaged(damage: int) -> void:
-	#if my_turn:
-		#return
-	hp -= damage
-	if hp <= 0:
+	var new_hp = hp - damage
+	if new_hp <= 0:
+		new_hp = 0
 		queue_free()
-	progress_bar.value = hp
+	set_hp(new_hp)
+	
 
 func move() -> void:
 	my_turn = true
@@ -37,11 +41,13 @@ func move() -> void:
 		"damage":
 			SignalManager.player_damaged.emit(40)
 		"chaos":
+			set_hp(hp + 20)
 			for i in range(10):
 				SignalManager.spawn_random_ball.emit()
 				timer.start()
 				await timer.timeout
 		"rock":
+			set_hp(hp + 20)
 			BallsManager.set_current_ball(rock_config)
 			BallsManager.set_next_ball(rock_config)
 	timer.start()

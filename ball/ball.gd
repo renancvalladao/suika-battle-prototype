@@ -34,6 +34,6 @@ func _on_body_entered(body):
 		if config.tier == 2:
 			SignalManager.shield_gained.emit(10)
 		elif config.tier == 4:
-			SignalManager.health_gained.emit(20)
+			SignalManager.health_gained.emit(15)
 		else:
 			SignalManager.enemy_damaged.emit(10)
