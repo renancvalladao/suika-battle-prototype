@@ -26,7 +26,7 @@ func _process(_delta):
 func add_ball_to_holder() -> void:
 	var ball_config = BallsManager.get_current_ball()
 	var ball = ball_scene.instantiate()
-	ball.freeze = true
+	ball.process_mode = Node.PROCESS_MODE_DISABLED
 	ball.set_configuration(ball_config)
 	ball_holder.add_child(ball)
 
@@ -34,8 +34,8 @@ func _unhandled_input(event):
 	if event.is_action("drop_ball") && event.is_pressed() && can_drop:
 		can_drop = false
 		var ball = ball_holder.get_child(0)
-		ball.freeze = false
 		ball.position = position
+		ball.process_mode = Node.PROCESS_MODE_INHERIT
 		ball_holder.remove_child(ball)
 		add_sibling(ball)
 		drop_timer.start()
