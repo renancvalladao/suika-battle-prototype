@@ -60,6 +60,11 @@ const BALLS = [
 var rng = RandomNumberGenerator.new()
 var current_ball = get_random_ball()
 var next_ball = get_random_ball()
+var turn = 0
+
+func _ready():
+	SignalManager.turn_started.connect(_turn_started)
+	BallsManager.turn_finished.connect(_turn_finished)
 
 func get_random_ball() -> Dictionary:
 	var random_ball_index = rng.randi_range(0, BALLS.size() - 4)
@@ -83,3 +88,10 @@ func choose_next_ball() -> void:
 	current_ball = next_ball
 	next_ball = get_random_ball()
 	next_ball_changed.emit()
+
+func _turn_started() -> void:
+	turn = 0
+
+func _turn_finished() -> void:
+	await get_tree().create_timer(1.0).timeout
+	turn = 1

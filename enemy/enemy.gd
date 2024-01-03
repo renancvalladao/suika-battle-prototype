@@ -18,14 +18,14 @@ var rock_config: Dictionary = {
 var attack_count = 0
 
 func _ready():
-	BallsManager.ball_exploded.connect(ball_exploded)
+	SignalManager.enemy_damaged.connect(enemy_damaged)
 	progress_bar.value = hp
 
-func ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int) -> void:
-	if my_turn:
-		return
-	hp -= 10
-	if hp < 0:
+func enemy_damaged(damage: int) -> void:
+	#if my_turn:
+		#return
+	hp -= damage
+	if hp <= 0:
 		queue_free()
 	progress_bar.value = hp
 

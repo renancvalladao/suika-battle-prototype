@@ -29,3 +29,9 @@ func _on_body_entered(body):
 		explode()
 		body.explode()
 		BallsManager.ball_exploded.emit(position, body.position, config.tier)
+		if BallsManager.turn == 1:
+			return
+		if config.tier == 4:
+			SignalManager.health_gained.emit(20)
+		else:
+			SignalManager.enemy_damaged.emit(10)
