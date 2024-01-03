@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=10 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
 [ext_resource type="Texture2D" uid="uid://b8osu1ay3k4dl" path="res://assets/background/backgroundColorForest.png" id="1_vd50v"]
 [ext_resource type="PackedScene" uid="uid://2wy62osvnpgg" path="res://hud/hud.tscn" id="2_uwwfi"]
+[ext_resource type="PackedScene" uid="uid://b8yom6hr615ry" path="res://game_over/game_over.tscn" id="3_k3w44"]
 [ext_resource type="PackedScene" uid="uid://7i4sjogibg3k" path="res://tile/tile.tscn" id="4_8rafd"]
 [ext_resource type="PackedScene" uid="uid://beei3ex2riwi8" path="res://enemy/enemy.tscn" id="6_t4nb7"]
 [ext_resource type="LabelSettings" uid="uid://d171akdbrrrry" path="res://resources/font_white.tres" id="7_gne4q"]
@@ -15,6 +16,9 @@ script = ExtResource("1_fl8ju")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="CanvasLayer" instance=ExtResource("2_uwwfi")]
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("3_k3w44")]
+visible = false
 
 [node name="BackgroundColorForest" type="Sprite2D" parent="."]
 texture_repeat = 2

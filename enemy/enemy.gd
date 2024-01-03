@@ -23,13 +23,16 @@ func _ready():
 
 func set_hp(amount: int) -> void:
 	hp = amount
+	if hp <= 0:
+		hp = 0
+		SignalManager.on_game_over.emit()
+		hide()
+	elif hp > 100:
+		hp = 100
 	progress_bar.value = amount
 
 func enemy_damaged(damage: int) -> void:
 	var new_hp = hp - damage
-	if new_hp <= 0:
-		new_hp = 0
-		queue_free()
 	set_hp(new_hp)
 	
 

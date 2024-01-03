@@ -6,6 +6,7 @@ extends Node2D
 @onready var enemy: Enemy = $Enemy
 @onready var position_min = $PositionMin
 @onready var position_max = $PositionMax
+@onready var game_over = $CanvasLayer/GameOver
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
 var moves_left: int = 3
@@ -15,6 +16,7 @@ func _ready():
 	BallsManager.ball_dropped.connect(ball_dropped)
 	SignalManager.turn_started.connect(turn_started)
 	SignalManager.spawn_random_ball.connect(spawn_random_ball)
+	SignalManager.on_game_over.connect(on_game_over)
 
 func spawn_ball(first_pos: Vector2, second_pos: Vector2, tier: int):
 	if tier == BallsManager.BALLS.size():
@@ -44,3 +46,6 @@ func spawn_random_ball() -> void:
 	var y = randf_range(position_min.position.y, position_max.position.y)
 	var ball_tier = BallsManager.get_random_ball().tier
 	spawn_ball(Vector2(x, y), Vector2(x, y), ball_tier - 1)
+
+func on_game_over() -> void:
+	game_over.show()

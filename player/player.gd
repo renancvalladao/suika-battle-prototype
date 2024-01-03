@@ -21,8 +21,9 @@ func player_damaged(damage: int) -> void:
 	else:
 		damage = 0
 	hp -= damage
-	if hp < 0:
+	if hp <= 0:
 		hp = 0
+		SignalManager.on_game_over.emit()
 	shield_label.text = str(shield)
 	progress_bar.value = hp
 
