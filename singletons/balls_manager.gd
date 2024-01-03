@@ -2,6 +2,8 @@ extends Node
 
 signal ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int)
 signal next_ball_changed
+signal ball_dropped
+signal turn_finished
 
 const BALLS = [
 	{

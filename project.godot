@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SignalManager="*res://singletons/signal_manager.gd"
 BallsManager="*res://singletons/balls_manager.gd"
 
 [display]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=9 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://2wy62osvnpgg" path="res://hud/hud.tscn" id="2_uwwfi"]
 [ext_resource type="PackedScene" uid="uid://7i4sjogibg3k" path="res://tile/tile.tscn" id="4_8rafd"]
 [ext_resource type="PackedScene" uid="uid://beei3ex2riwi8" path="res://enemy/enemy.tscn" id="6_t4nb7"]
+[ext_resource type="LabelSettings" uid="uid://d171akdbrrrry" path="res://resources/font_white.tres" id="7_gne4q"]
+[ext_resource type="PackedScene" uid="uid://bwrxmlqbt6fd" path="res://player/player.tscn" id="8_6rvjb"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_fl8ju")
@@ -49,3 +51,14 @@ position = Vector2(1360, 80)
 
 [node name="Enemy" parent="." instance=ExtResource("6_t4nb7")]
 position = Vector2(206, 138)
+
+[node name="MovesLeftLabel" type="Label" parent="."]
+offset_left = 1452.0
+offset_top = 92.0
+offset_right = 1909.0
+offset_bottom = 165.0
+text = "Moves Left: 3"
+label_settings = ExtResource("7_gne4q")
+
+[node name="Player" parent="." instance=ExtResource("8_6rvjb")]
+position = Vector2(58, 948)

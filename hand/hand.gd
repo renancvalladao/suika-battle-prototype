@@ -13,6 +13,8 @@ var can_drop: bool = true
 func _ready():
 	position_offset = $Sprite.texture.get_size().x / 2
 	add_ball_to_holder()
+	BallsManager.turn_finished.connect(turn_finished)
+	SignalManager.turn_started.connect(turn_started)
 
 func _process(_delta):
 	position.x = clampf(
@@ -36,9 +38,16 @@ func _unhandled_input(event):
 		ball.position = position
 		ball_holder.remove_child(ball)
 		add_sibling(ball)
-		BallsManager.choose_next_ball()
 		drop_timer.start()
 
 func _on_drop_timer_timeout():
 	can_drop = true
+	BallsManager.choose_next_ball()
 	add_ball_to_holder()
+	BallsManager.ball_dropped.emit()
+
+func turn_finished() -> void:
+	can_drop = false
+
+func turn_started() -> void:
+	can_drop = true
