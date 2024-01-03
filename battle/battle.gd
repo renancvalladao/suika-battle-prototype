@@ -31,7 +31,7 @@ func ball_dropped():
 	moves_left_label.text = "Moves Left: %s" % moves_left
 	if moves_left == 0:
 		BallsManager.turn_finished.emit()
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
 		await enemy.move()
 		SignalManager.turn_started.emit()
 

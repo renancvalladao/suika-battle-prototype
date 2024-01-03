@@ -31,7 +31,9 @@ func _on_body_entered(body):
 		BallsManager.ball_exploded.emit(position, body.position, config.tier)
 		if BallsManager.turn == 1:
 			return
-		if config.tier == 4:
+		if config.tier == 2:
+			SignalManager.shield_gained.emit(10)
+		elif config.tier == 4:
 			SignalManager.health_gained.emit(20)
 		else:
 			SignalManager.enemy_damaged.emit(10)

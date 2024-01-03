@@ -57,6 +57,8 @@ const BALLS = [
 	}
 ]
 
+const FINISH_TURN_DELAY: float = 2
+
 var rng = RandomNumberGenerator.new()
 var current_ball = get_random_ball()
 var next_ball = get_random_ball()
@@ -93,5 +95,5 @@ func _turn_started() -> void:
 	turn = 0
 
 func _turn_finished() -> void:
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(FINISH_TURN_DELAY).timeout
 	turn = 1
