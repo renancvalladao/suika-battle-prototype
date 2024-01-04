@@ -97,3 +97,9 @@ func _turn_started() -> void:
 func _turn_finished() -> void:
 	await get_tree().create_timer(FINISH_TURN_DELAY).timeout
 	turn = 1
+
+func _unhandled_input(event):
+	if event.is_action_pressed("change_next"):
+		var next = next_ball
+		set_next_ball(current_ball)
+		set_current_ball(next)
