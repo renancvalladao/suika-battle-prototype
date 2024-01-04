@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://beei3ex2riwi8"]
+[gd_scene load_steps=7 format=3 uid="uid://beei3ex2riwi8"]
 
 [ext_resource type="Texture2D" uid="uid://d1xf3sthijh8h" path="res://assets/enemies/zombie/character_zombie_cheer0.png" id="1_bpmbr"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ptgtw"]
+[ext_resource type="Texture2D" uid="uid://h8topllhst0a" path="res://assets/balls/red_body_circle.png" id="3_rltps"]
+[ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="4_sc4hj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vv5f2"]
 
@@ -26,3 +28,43 @@ show_percentage = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.7
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -15.0
+offset_top = 188.0
+offset_right = 25.0
+offset_bottom = 228.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_rltps")
+
+[node name="Icon" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -49.3333
+offset_right = 76.0
+offset_bottom = 78.6667
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_sc4hj")

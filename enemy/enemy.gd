@@ -6,6 +6,8 @@ class_name Enemy
 
 @onready var progress_bar = $ProgressBar
 @onready var timer = $Timer
+@onready var sprite = $Control/Sprite
+@onready var icon = $Control/Icon
 
 var my_turn: bool = false
 var attacks: Array = ["damage", "chaos", "damage", "rock"]
@@ -16,6 +18,20 @@ var rock_config: Dictionary = {
 		"size": 3
 	}
 var attack_count = 0
+var attacks_config: Dictionary = {
+	"damage": {
+		"sprite": preload("res://assets/balls/red_body_circle.png"),
+		"icon": preload("res://assets/icons/sword.png")
+	},
+	"chaos": {
+		"sprite": preload("res://assets/balls/purple_body_circle.png"),
+		"icon": preload("res://assets/icons/book.png")
+	},
+	"rock": {
+		"sprite": preload("res://assets/balls/grey_body_circle.png"),
+		"icon": preload("res://assets/icons/d8.png")
+	}
+}
 
 func _ready():
 	SignalManager.enemy_damaged.connect(enemy_damaged)
@@ -34,25 +50,30 @@ func set_hp(amount: int) -> void:
 func enemy_damaged(damage: int) -> void:
 	var new_hp = hp - damage
 	set_hp(new_hp)
-	
+
+func _process(_delta):
+	var attack = attacks[attack_count % attacks.size()]
+	var attack_config = attacks_config[attack]
+	sprite.texture = attack_config.sprite
+	icon.texture = attack_config.icon
 
 func move() -> void:
 	my_turn = true
 	var attack = attacks[attack_count % attacks.size()]
-	attack_count += 1
 	match attack:
 		"damage":
 			SignalManager.player_damaged.emit(40)
 		"chaos":
-			set_hp(hp + 20)
+			set_hp(hp + 15)
 			for i in range(10):
 				SignalManager.spawn_random_ball.emit()
 				timer.start()
 				await timer.timeout
 		"rock":
-			set_hp(hp + 20)
+			set_hp(hp + 15)
 			BallsManager.set_current_ball(rock_config)
 			BallsManager.set_next_ball(rock_config)
 	timer.start()
 	await timer.timeout
 	my_turn = false
+	attack_count += 1
