@@ -31,11 +31,14 @@ func _on_body_entered(body):
 		BallsManager.ball_exploded.emit(position, body.position, config.tier)
 		if BallsManager.turn == 1:
 			return
-		if config.tier == 2:
+		make_effect()
+
+func make_effect():
+	if config.tier == 2:
 			SignalManager.shield_gained.emit(10)
-		elif config.tier == 4:
-			SignalManager.health_gained.emit(15)
-		elif config.tier >= 6:
-			SignalManager.enemy_damaged.emit(15)
-		else:
-			SignalManager.enemy_damaged.emit(10)
+	elif config.tier == 4:
+		SignalManager.health_gained.emit(15)
+	elif config.tier >= 6:
+		SignalManager.enemy_damaged.emit(15)
+	else:
+		SignalManager.enemy_damaged.emit(10)
