@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://beei3ex2riwi8"]
+[gd_scene load_steps=9 format=3 uid="uid://beei3ex2riwi8"]
 
 [ext_resource type="Texture2D" uid="uid://d1xf3sthijh8h" path="res://assets/enemies/zombie/character_zombie_cheer0.png" id="1_bpmbr"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ptgtw"]
+[ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="3_ajk7e"]
 [ext_resource type="Texture2D" uid="uid://h8topllhst0a" path="res://assets/balls/red_body_circle.png" id="3_rltps"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="4_sc4hj"]
 
@@ -10,13 +11,21 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_103ab"]
 bg_color = Color(0.933333, 0, 0.243137, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_dg3ls"]
+font = ExtResource("3_ajk7e")
+font_size = 24
+outline_size = 2
+outline_color = Color(0.317647, 0.317647, 0.317647, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.392157)
+
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_ptgtw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_bpmbr")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -78.0
 offset_top = -105.0
 offset_right = 78.0
@@ -25,6 +34,22 @@ theme_override_styles/background = SubResource("StyleBoxFlat_vv5f2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_103ab")
 value = 50.0
 show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="HealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -8.5
+offset_right = 39.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "50/100"
+label_settings = SubResource("LabelSettings_dg3ls")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.7

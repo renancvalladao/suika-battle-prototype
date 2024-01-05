@@ -4,7 +4,8 @@ class_name Enemy
 
 @export var hp: int = 100
 
-@onready var progress_bar = $ProgressBar
+@onready var health_bar = $HealthBar
+@onready var health_label = $HealthBar/HealthLabel
 @onready var timer = $Timer
 @onready var sprite = $Control/Sprite
 @onready var icon = $Control/Icon
@@ -35,7 +36,7 @@ var attacks_config: Dictionary = {
 
 func _ready():
 	SignalManager.enemy_damaged.connect(enemy_damaged)
-	progress_bar.value = hp
+	set_hp(hp)
 
 func set_hp(amount: int) -> void:
 	hp = amount
@@ -45,7 +46,8 @@ func set_hp(amount: int) -> void:
 		hide()
 	elif hp > 100:
 		hp = 100
-	progress_bar.value = amount
+	health_bar.value = hp
+	health_label.text = str("%s/100" % hp)
 
 func enemy_damaged(damage: int) -> void:
 	var new_hp = hp - damage
