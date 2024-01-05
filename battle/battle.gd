@@ -17,6 +17,15 @@ func _ready():
 	SignalManager.turn_started.connect(turn_started)
 	SignalManager.spawn_random_ball.connect(spawn_random_ball)
 	SignalManager.on_game_over.connect(on_game_over)
+	#spawn_random_balls(50)
+
+func spawn_random_balls(amount: int) -> void:
+	BallsManager.turn_finished.emit()
+	for i in range(amount):
+		SignalManager.spawn_random_ball.emit()
+		await get_tree().create_timer(.5).timeout
+	await get_tree().create_timer(2).timeout
+	SignalManager.turn_started.emit()
 
 func spawn_ball(first_pos: Vector2, second_pos: Vector2, tier: int):
 	if tier == BallsManager.BALLS.size():
