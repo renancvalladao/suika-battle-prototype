@@ -1,8 +1,11 @@
 extends Node2D
 
 const ATTACK_MANA = 10
+const ATTACK_AMOUNT = 10
 const SHIELD_MANA = 15
+const SHIELD_AMOUNT = 15
 const HEAL_MANA = 20
+const HEAL_AMOUNT = 20
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
@@ -26,8 +29,11 @@ func _ready():
 	BallsManager.ball_exploded.connect(ball_exploded)
 	BallsManager.turn_finished.connect(turn_finished)
 	SignalManager.turn_started.connect(turn_started)
+	attack_button.text = "%s - Attack (%s)" % [ATTACK_MANA, ATTACK_AMOUNT]
 	attack_button.pressed.connect(on_attack_pressed)
+	shield_button.text = "%s - Shield (%s)" % [SHIELD_MANA, SHIELD_AMOUNT]
 	shield_button.pressed.connect(on_shield_pressed)
+	heal_button.text = "%s - Heal (%s)" % [HEAL_MANA, HEAL_AMOUNT]
 	heal_button.pressed.connect(on_health_pressed)
 	update_health_ui(hp)
 	update_mana_ui(mana)
