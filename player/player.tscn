@@ -97,3 +97,7 @@ text = "10"
 label_settings = ExtResource("3_8b4r0")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ChainExplosionTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ChainExplosionTimer" to="." method="_on_chain_explosion_timer_timeout"]

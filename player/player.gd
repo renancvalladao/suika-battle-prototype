@@ -5,10 +5,12 @@ extends Node2D
 @onready var mana_bar = $ManaBar
 @onready var mana_label = $ManaBar/ManaLabel
 @onready var shield_label = $TextureRect/ShieldLabel
+@onready var chain_explosion_timer = $ChainExplosionTimer
 
 var hp = 100
 var mana = 0
 var shield = 0
+var explosion_chain = false
 
 func _ready():
 	SignalManager.player_damaged.connect(player_damaged)
@@ -55,6 +57,13 @@ func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int):
 	if BallsManager.turn == 1:
 			return
 	mana += tier * 5
+	if explosion_chain:
+		mana += 5
 	if mana > 100:
 		mana = 100
+	explosion_chain = true
+	chain_explosion_timer.start()
 	update_mana_ui(mana)
+
+func _on_chain_explosion_timer_timeout():
+	explosion_chain = false
