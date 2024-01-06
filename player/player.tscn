@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwrxmlqbt6fd"]
+[gd_scene load_steps=12 format=3 uid="uid://bwrxmlqbt6fd"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_i37r2"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_besmk"]
@@ -20,6 +20,15 @@ shadow_color = Color(0, 0, 0, 0.392157)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxx7v"]
 bg_color = Color(0.457506, 0.442319, 0.846299, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uvlm"]
+bg_color = Color(0.823529, 0.0862745, 0.196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jagp"]
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40t4r"]
+bg_color = Color(0.835294, 0.329412, 0.552941, 1)
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_i37r2")
@@ -99,5 +108,34 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ChainExplosionTimer" type="Timer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_top = -333.0
+offset_right = 346.0
+offset_bottom = -202.0
+
+[node name="AttackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_besmk")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_7uvlm")
+text = "10 - Attack (10)"
+
+[node name="ShieldButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_besmk")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_6jagp")
+text = "15 - Shield (15)"
+
+[node name="HealButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_besmk")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_40t4r")
+text = "20 - Heal (20)"
 
 [connection signal="timeout" from="ChainExplosionTimer" to="." method="_on_chain_explosion_timer_timeout"]
