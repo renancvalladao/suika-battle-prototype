@@ -18,18 +18,14 @@ const GHOST_BALL_MANA = 50
 @onready var shield_button = $VBoxContainer/ShieldButton
 @onready var heal_button = $VBoxContainer/HealButton
 @onready var ghost_ball_button = $VBoxContainer/GhostBallButton
+@onready var selected_ball_sprite = $VBoxContainer/GhostBallButton/SelectedBall/Sprite
+@onready var selected_ball_icon = $VBoxContainer/GhostBallButton/SelectedBall/Icon
 
 var hp = 100
 var mana = 0
 var shield = 0
 var explosion_chain = false
-var ghost_ball_config: Dictionary = {
-		"tier": BallsManager.BALLS[0].tier,
-		"sprite": BallsManager.BALLS[0].sprite,
-		"icon": BallsManager.BALLS[0].icon,
-		"size": BallsManager.BALLS[0].size,
-		"type": "ghost"
-	}
+var selected_ball = 0
 
 func _ready():
 	SignalManager.player_damaged.connect(player_damaged)
@@ -49,6 +45,8 @@ func _ready():
 	update_health_ui(hp)
 	update_mana_ui(mana)
 	shield_label.text = str(shield)
+	selected_ball_sprite.texture = BallsManager.BALLS[selected_ball].sprite
+	selected_ball_icon.texture = BallsManager.BALLS[selected_ball].icon
 
 func turn_finished():
 	attack_button.disabled = true
@@ -139,4 +137,14 @@ func on_ghost_ball_pressed():
 		return
 	mana -= GHOST_BALL_MANA
 	update_mana_ui(mana)
+	var ghost_ball_config = Dictionary(BallsManager.BALLS[selected_ball].duplicate())
+	ghost_ball_config["type"] = "ghost"
 	BallsManager.set_current_ball(ghost_ball_config)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("change_selected_ball"):
+		selected_ball += 1
+		if selected_ball >= BallsManager.BALLS.size():
+			selected_ball = 0
+		selected_ball_sprite.texture = BallsManager.BALLS[selected_ball].sprite
+		selected_ball_icon.texture = BallsManager.BALLS[selected_ball].icon
