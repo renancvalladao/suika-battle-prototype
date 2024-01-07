@@ -7,6 +7,7 @@ const SHIELD_AMOUNT = 15
 const HEAL_MANA = 20
 const HEAL_AMOUNT = 20
 const GHOST_BALL_MANA = 50
+const EXPLODE_MANA = 50
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
@@ -18,8 +19,11 @@ const GHOST_BALL_MANA = 50
 @onready var shield_button = $VBoxContainer/ShieldButton
 @onready var heal_button = $VBoxContainer/HealButton
 @onready var ghost_ball_button = $VBoxContainer/GhostBallButton
-@onready var selected_ball_sprite = $VBoxContainer/GhostBallButton/SelectedBall/Sprite
-@onready var selected_ball_icon = $VBoxContainer/GhostBallButton/SelectedBall/Icon
+@onready var ghost_ball_sprite = $VBoxContainer/GhostBallButton/SelectedBall/Sprite
+@onready var ghost_ball_icon = $VBoxContainer/GhostBallButton/SelectedBall/Icon
+@onready var explode_button = $VBoxContainer/ExplodeButton
+@onready var explode_sprite = $VBoxContainer/ExplodeButton/SelectedBall/Sprite
+@onready var explode_icon = $VBoxContainer/ExplodeButton/SelectedBall/Icon
 
 var hp = 100
 var mana = 0
@@ -42,23 +46,29 @@ func _ready():
 	heal_button.pressed.connect(on_health_pressed)
 	ghost_ball_button.text = "%s - Ghost Ball" % GHOST_BALL_MANA
 	ghost_ball_button.pressed.connect(on_ghost_ball_pressed)
+	explode_button.text = "%s - Explode" % EXPLODE_MANA
+	explode_button.pressed.connect(on_explode_press)
 	update_health_ui(hp)
 	update_mana_ui(mana)
 	shield_label.text = str(shield)
-	selected_ball_sprite.texture = BallsManager.BALLS[selected_ball].sprite
-	selected_ball_icon.texture = BallsManager.BALLS[selected_ball].icon
+	ghost_ball_sprite.texture = BallsManager.BALLS[selected_ball].sprite
+	ghost_ball_icon.texture = BallsManager.BALLS[selected_ball].icon
+	explode_sprite.texture = BallsManager.BALLS[selected_ball].sprite
+	explode_icon.texture = BallsManager.BALLS[selected_ball].icon
 
 func turn_finished():
 	attack_button.disabled = true
 	shield_button.disabled = true
 	heal_button.disabled = true
 	ghost_ball_button.disabled = true
+	explode_button.disabled = true
 
 func turn_started():
 	attack_button.disabled = false || mana < ATTACK_MANA
 	shield_button.disabled = false || mana < SHIELD_MANA
 	heal_button.disabled = false || mana < HEAL_MANA
 	ghost_ball_button.disabled = false || mana < GHOST_BALL_MANA
+	explode_button.disabled = false || mana < EXPLODE_MANA
 
 func player_damaged(damage: int) -> void:
 	shield -= damage
@@ -93,6 +103,7 @@ func update_mana_ui(new_mana: int) -> void:
 	shield_button.disabled = mana < SHIELD_MANA
 	heal_button.disabled = mana < HEAL_MANA
 	ghost_ball_button.disabled = mana < GHOST_BALL_MANA
+	explode_button.disabled = mana < EXPLODE_MANA
 	mana_bar.value = mana
 	mana_label.text = str("%s/100" % mana)
 
@@ -141,10 +152,19 @@ func on_ghost_ball_pressed():
 	ghost_ball_config["type"] = "ghost"
 	BallsManager.set_current_ball(ghost_ball_config)
 
+func on_explode_press():
+	if mana < EXPLODE_MANA:
+		return
+	mana -= EXPLODE_MANA
+	update_mana_ui(mana)
+	SignalManager.explode_ball_tier.emit(BallsManager.BALLS[selected_ball].tier)
+
 func _unhandled_input(event):
 	if event.is_action_pressed("change_selected_ball"):
 		selected_ball += 1
 		if selected_ball >= BallsManager.BALLS.size():
 			selected_ball = 0
-		selected_ball_sprite.texture = BallsManager.BALLS[selected_ball].sprite
-		selected_ball_icon.texture = BallsManager.BALLS[selected_ball].icon
+		ghost_ball_sprite.texture = BallsManager.BALLS[selected_ball].sprite
+		ghost_ball_icon.texture = BallsManager.BALLS[selected_ball].icon
+		explode_sprite.texture = BallsManager.BALLS[selected_ball].sprite
+		explode_icon.texture = BallsManager.BALLS[selected_ball].icon

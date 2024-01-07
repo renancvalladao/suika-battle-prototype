@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwrxmlqbt6fd"]
+[gd_scene load_steps=16 format=3 uid="uid://bwrxmlqbt6fd"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_i37r2"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_besmk"]
@@ -34,6 +34,9 @@ bg_color = Color(0.835294, 0.329412, 0.552941, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ny285"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d58ns"]
+bg_color = Color(0.564706, 0.164706, 0.12549, 1)
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_i37r2")
@@ -117,9 +120,9 @@ vertical_alignment = 1
 [node name="ChainExplosionTimer" type="Timer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_top = -282.0
+offset_top = -313.0
 offset_right = 346.0
-offset_bottom = -151.0
+offset_bottom = -137.0
 
 [node name="AttackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -184,6 +187,61 @@ texture = ExtResource("5_hllbv")
 stretch_mode = 2
 
 [node name="Icon" type="TextureRect" parent="VBoxContainer/GhostBallButton/SelectedBall"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_o1r6n")
+stretch_mode = 2
+
+[node name="ExplodeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_besmk")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_d58ns")
+text = "50 - Explode"
+alignment = 0
+
+[node name="SelectedBall" type="Control" parent="VBoxContainer/ExplodeButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 16.0
+offset_right = 355.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/ExplodeButton/SelectedBall"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_hllbv")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/ExplodeButton/SelectedBall"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

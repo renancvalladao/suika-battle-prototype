@@ -14,6 +14,7 @@ func _ready():
 	$Sprite.texture = config.sprite
 	$Sprite.scale *= config.size
 	$CollisionShape2D.scale *= config.size
+	add_to_group("ball_%s" % config.tier)
 
 func set_configuration(new_config: Dictionary):
 	config = new_config

@@ -17,6 +17,7 @@ func _ready():
 	SignalManager.turn_started.connect(turn_started)
 	SignalManager.spawn_random_ball.connect(spawn_random_ball)
 	SignalManager.on_game_over.connect(on_game_over)
+	SignalManager.explode_ball_tier.connect(explode_ball_tier)
 	#spawn_random_balls(50)
 
 func spawn_random_balls(amount: int) -> void:
@@ -58,3 +59,8 @@ func spawn_random_ball() -> void:
 
 func on_game_over() -> void:
 	game_over.show()
+
+func explode_ball_tier(tier: int) -> void:
+	var balls = get_tree().get_nodes_in_group("ball_%s" % tier)
+	for ball in balls:
+		ball.queue_free()

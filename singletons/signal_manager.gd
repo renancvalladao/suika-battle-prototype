@@ -7,3 +7,4 @@ signal enemy_damaged(damage: int)
 signal health_gained(health: int)
 signal shield_gained(amount: int)
 signal on_game_over
+signal explode_ball_tier(tier: int)

@@ -8,6 +8,7 @@
 radius = 80.0
 
 [node name="Ball" type="RigidBody2D"]
+can_sleep = false
 max_contacts_reported = 8
 contact_monitor = true
 script = ExtResource("1_aaf3s")
