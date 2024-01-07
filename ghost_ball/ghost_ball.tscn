@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://w3dball7lnbj"]
+
+[ext_resource type="PackedScene" uid="uid://c5d3utm7alcgv" path="res://ball/ball.tscn" id="1_6dt8a"]
+[ext_resource type="Script" path="res://ghost_ball/ghost_ball.gd" id="2_8hidc"]
+[ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_jx02o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p53rq"]
+font = ExtResource("2_jx02o")
+font_size = 14
+outline_size = 2
+outline_color = Color(0.317647, 0.317647, 0.317647, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e2kl0"]
+radius = 80.0
+
+[node name="GhostBall" instance=ExtResource("1_6dt8a")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_8hidc")
+
+[node name="Label" type="Label" parent="." index="3"]
+offset_left = -22.0
+offset_top = 23.0
+offset_right = 20.0
+offset_bottom = 46.0
+text = "Ghost"
+label_settings = SubResource("LabelSettings_p53rq")
+
+[node name="Area2D" type="Area2D" parent="." index="4"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="0"]
+scale = Vector2(0.25, 0.25)
+shape = SubResource("CircleShape2D_e2kl0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="5"]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

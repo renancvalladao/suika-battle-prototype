@@ -6,6 +6,7 @@ const SHIELD_MANA = 15
 const SHIELD_AMOUNT = 15
 const HEAL_MANA = 20
 const HEAL_AMOUNT = 20
+const GHOST_BALL_MANA = 50
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
@@ -16,11 +17,19 @@ const HEAL_AMOUNT = 20
 @onready var attack_button = $VBoxContainer/AttackButton
 @onready var shield_button = $VBoxContainer/ShieldButton
 @onready var heal_button = $VBoxContainer/HealButton
+@onready var ghost_ball_button = $VBoxContainer/GhostBallButton
 
 var hp = 100
 var mana = 0
 var shield = 0
 var explosion_chain = false
+var ghost_ball_config: Dictionary = {
+		"tier": BallsManager.BALLS[0].tier,
+		"sprite": BallsManager.BALLS[0].sprite,
+		"icon": BallsManager.BALLS[0].icon,
+		"size": BallsManager.BALLS[0].size,
+		"type": "ghost"
+	}
 
 func _ready():
 	SignalManager.player_damaged.connect(player_damaged)
@@ -35,6 +44,8 @@ func _ready():
 	shield_button.pressed.connect(on_shield_pressed)
 	heal_button.text = "%s - Heal (%s)" % [HEAL_MANA, HEAL_AMOUNT]
 	heal_button.pressed.connect(on_health_pressed)
+	ghost_ball_button.text = "%s - Ghost Ball" % GHOST_BALL_MANA
+	ghost_ball_button.pressed.connect(on_ghost_ball_pressed)
 	update_health_ui(hp)
 	update_mana_ui(mana)
 	shield_label.text = str(shield)
@@ -43,11 +54,13 @@ func turn_finished():
 	attack_button.disabled = true
 	shield_button.disabled = true
 	heal_button.disabled = true
+	ghost_ball_button.disabled = true
 
 func turn_started():
 	attack_button.disabled = false || mana < ATTACK_MANA
 	shield_button.disabled = false || mana < SHIELD_MANA
 	heal_button.disabled = false || mana < HEAL_MANA
+	ghost_ball_button.disabled = false || mana < GHOST_BALL_MANA
 
 func player_damaged(damage: int) -> void:
 	shield -= damage
@@ -81,6 +94,7 @@ func update_mana_ui(new_mana: int) -> void:
 	attack_button.disabled = mana < ATTACK_MANA
 	shield_button.disabled = mana < SHIELD_MANA
 	heal_button.disabled = mana < HEAL_MANA
+	ghost_ball_button.disabled = mana < GHOST_BALL_MANA
 	mana_bar.value = mana
 	mana_label.text = str("%s/100" % mana)
 
@@ -119,3 +133,10 @@ func on_health_pressed():
 	mana -= HEAL_MANA
 	update_mana_ui(mana)
 	SignalManager.health_gained.emit(15)
+
+func on_ghost_ball_pressed():
+	if mana < GHOST_BALL_MANA:
+		return
+	mana -= GHOST_BALL_MANA
+	update_mana_ui(mana)
+	BallsManager.set_current_ball(ghost_ball_config)
