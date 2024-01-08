@@ -13,13 +13,13 @@ class_name Enemy
 var my_turn: bool = false
 var attacks: Array = ["damage", "chaos", "damage", "rock", "damage", "bomb"]
 var rock_config: Dictionary = {
-		"tier": BallsManager.BALLS.size(),
+		"tier": -2,
 		"sprite": preload("res://assets/balls/grey_body_circle.png"),
 		"icon": preload("res://assets/icons/d8.png"),
 		"size": 3
 	}
 var bomb_config: Dictionary = {
-		"tier": BallsManager.BALLS.size(),
+		"tier": -2,
 		"sprite": preload("res://assets/balls/grey_body_circle.png"),
 		"icon": preload("res://assets/icons/exploding.png"),
 		"size": 2,

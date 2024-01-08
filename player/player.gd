@@ -140,21 +140,21 @@ func on_attack_pressed():
 		return
 	mana -= ATTACK_MANA
 	update_mana_ui(mana)
-	SignalManager.enemy_damaged.emit(10)
+	SignalManager.enemy_damaged.emit(ATTACK_AMOUNT)
 
 func on_shield_pressed():
 	if mana < SHIELD_MANA:
 		return
 	mana -= SHIELD_MANA
 	update_mana_ui(mana)
-	SignalManager.shield_gained.emit(10)
+	SignalManager.shield_gained.emit(SHIELD_AMOUNT)
 
 func on_health_pressed():
 	if mana < HEAL_MANA:
 		return
 	mana -= HEAL_MANA
 	update_mana_ui(mana)
-	SignalManager.health_gained.emit(15)
+	SignalManager.health_gained.emit(HEAL_AMOUNT)
 
 func on_ghost_ball_pressed():
 	if mana < GHOST_BALL_MANA:

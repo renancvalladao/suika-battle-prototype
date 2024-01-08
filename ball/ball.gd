@@ -24,7 +24,7 @@ func explode():
 	queue_free()
 
 func _on_body_entered(body):
-	if config.tier == BallsManager.BALLS.size():
+	if config.tier == BallsManager.BALLS.size() || config.tier == -2:
 		return
 	if body is Ball && (body.config.tier == config.tier || body.config.tier == -1) && !exploded:
 		explode()
