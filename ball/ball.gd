@@ -7,6 +7,7 @@ class_name Ball
 
 var config: Dictionary = BallsManager.BALLS[0]
 var exploded: bool = false
+var should_add_group: bool = true
 
 func _ready():
 	$Icon.texture = config.icon
@@ -14,7 +15,17 @@ func _ready():
 	$Sprite.texture = config.sprite
 	$Sprite.scale *= config.size
 	$CollisionShape2D.scale *= config.size
+	if should_add_group:
+		add_to_group("ball_%s" % config.tier)
+
+func set_should_add_group(should: bool):
+	should_add_group = should
+
+func add_group():
 	add_to_group("ball_%s" % config.tier)
+
+func remove_group():
+	remove_from_group("ball_%s" % config.tier)
 
 func set_configuration(new_config: Dictionary):
 	config = new_config

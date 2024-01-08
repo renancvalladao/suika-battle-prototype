@@ -39,14 +39,16 @@ func add_ball_to_holder() -> void:
 	else:
 		ball = ball_scene.instantiate()
 	ball.process_mode = Node.PROCESS_MODE_DISABLED
+	ball.set_should_add_group(false)
 	ball.set_configuration(ball_config)
 	ball_holder.add_child(ball)
 
 func _unhandled_input(event):
 	if event.is_action("drop_ball") && event.is_pressed() && can_drop:
 		can_drop = false
-		var ball = ball_holder.get_child(0)
+		var ball: Ball = ball_holder.get_child(0)
 		ball.position = position
+		ball.add_group()
 		ball.process_mode = Node.PROCESS_MODE_INHERIT
 		ball_holder.remove_child(ball)
 		add_sibling(ball)
