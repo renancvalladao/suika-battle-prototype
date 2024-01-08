@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://beei3ex2riwi8"]
+[gd_scene load_steps=11 format=3 uid="uid://beei3ex2riwi8"]
 
 [ext_resource type="Texture2D" uid="uid://d1xf3sthijh8h" path="res://assets/enemies/zombie/character_zombie_cheer0.png" id="1_bpmbr"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ptgtw"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="3_ajk7e"]
 [ext_resource type="Texture2D" uid="uid://h8topllhst0a" path="res://assets/balls/red_body_circle.png" id="3_rltps"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="4_sc4hj"]
+[ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="6_o18b1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vv5f2"]
 
@@ -14,6 +15,14 @@ bg_color = Color(0.933333, 0, 0.243137, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_dg3ls"]
 font = ExtResource("3_ajk7e")
 font_size = 24
+outline_size = 2
+outline_color = Color(0.317647, 0.317647, 0.317647, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ptnb7"]
+font = ExtResource("3_ajk7e")
+font_size = 64
 outline_size = 2
 outline_color = Color(0.317647, 0.317647, 0.317647, 1)
 shadow_size = 6
@@ -93,3 +102,58 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_sc4hj")
+
+[node name="ColorDamage" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 170.0
+offset_top = 66.0
+offset_right = 210.0
+offset_bottom = 106.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="ColorDamage"]
+offset_left = -144.0
+offset_top = -162.0
+offset_right = 43.0
+offset_bottom = -113.0
+text = "Damage"
+label_settings = SubResource("LabelSettings_ptnb7")
+
+[node name="Sprite" type="TextureRect" parent="ColorDamage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -110.0
+offset_right = 30.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_o18b1")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="ColorDamage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -94.0
+offset_right = 14.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_sc4hj")
+stretch_mode = 2

@@ -9,9 +9,14 @@ class_name Enemy
 @onready var timer = $Timer
 @onready var sprite = $Control/Sprite
 @onready var icon = $Control/Icon
+@onready var color_damage_ui = $ColorDamage
+@onready var color_damage_sprite = $ColorDamage/Sprite
+@onready var color_damage_icon = $ColorDamage/Icon
 
+var should_color_damage: bool = false
+var color_damage: int = 0
 var my_turn: bool = false
-var attacks: Array = ["damage", "chaos", "damage", "rock", "damage", "bomb"]
+var attacks: Array = ["damage", "chaos", "damage", "rock", "damage", "bomb", "damage", "color_damage"]
 var rock_config: Dictionary = {
 		"tier": -2,
 		"sprite": preload("res://assets/balls/grey_body_circle.png"),
@@ -42,12 +47,27 @@ var attacks_config: Dictionary = {
 	"bomb": {
 		"sprite": preload("res://assets/balls/grey_body_circle.png"),
 		"icon": preload("res://assets/icons/exploding.png")
+	},
+	"color_damage": {
+		"sprite": preload("res://assets/balls/yellow_body_circle.png"),
+		"icon": preload("res://assets/icons/fire.png")
 	}
 }
 
 func _ready():
 	SignalManager.enemy_damaged.connect(enemy_damaged)
+	BallsManager.turn_finished.connect(turn_finished)
+	BallsManager.ball_exploded.connect(ball_exploded)
 	set_hp(hp)
+
+func turn_finished() -> void:
+	await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
+	should_color_damage = false
+	color_damage_ui.visible = false
+
+func ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int) -> void:
+	if should_color_damage && tier == color_damage:
+		SignalManager.player_damaged.emit(10)
 
 func set_hp(amount: int) -> void:
 	hp = amount
@@ -88,6 +108,15 @@ func move() -> void:
 			BallsManager.set_next_ball(rock_config)
 		"bomb":
 			BallsManager.set_current_ball(bomb_config)
+		"color_damage":
+			should_color_damage = true
+			var ball = BallsManager.BALLS.pick_random()
+			color_damage_icon.texture = ball.icon
+			color_damage_sprite.texture = ball.sprite
+			color_damage = ball.tier
+			color_damage_ui.visible = true
+	timer.start()
+	await timer.timeout
 	timer.start()
 	await timer.timeout
 	my_turn = false
