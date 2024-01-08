@@ -8,6 +8,7 @@ const HEAL_MANA = 20
 const HEAL_AMOUNT = 20
 const GHOST_BALL_MANA = 50
 const EXPLODE_MANA = 50
+const RAINBOW_MANA = 50
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
@@ -24,12 +25,19 @@ const EXPLODE_MANA = 50
 @onready var explode_button = $VBoxContainer/ExplodeButton
 @onready var explode_sprite = $VBoxContainer/ExplodeButton/SelectedBall/Sprite
 @onready var explode_icon = $VBoxContainer/ExplodeButton/SelectedBall/Icon
+@onready var rainbow_button = $VBoxContainer/RainbowButton
 
 var hp = 100
 var mana = 0
 var shield = 0
 var explosion_chain = false
 var selected_ball = 0
+var rainbown_config: Dictionary = {
+	"tier": -1,
+	"sprite": preload("res://assets/balls/black_body_circle.png"),
+	"icon": preload("res://assets/icons/crown.png"),
+	"size": 1
+}
 
 func _ready():
 	SignalManager.player_damaged.connect(player_damaged)
@@ -48,6 +56,8 @@ func _ready():
 	ghost_ball_button.pressed.connect(on_ghost_ball_pressed)
 	explode_button.text = "%s - Explode" % EXPLODE_MANA
 	explode_button.pressed.connect(on_explode_press)
+	rainbow_button.text = "%s - Rainbow" % RAINBOW_MANA
+	rainbow_button.pressed.connect(on_rainbow_press)
 	update_health_ui(hp)
 	update_mana_ui(mana)
 	shield_label.text = str(shield)
@@ -62,6 +72,7 @@ func turn_finished():
 	heal_button.disabled = true
 	ghost_ball_button.disabled = true
 	explode_button.disabled = true
+	rainbow_button.disabled = true
 
 func turn_started():
 	attack_button.disabled = false || mana < ATTACK_MANA
@@ -69,6 +80,7 @@ func turn_started():
 	heal_button.disabled = false || mana < HEAL_MANA
 	ghost_ball_button.disabled = false || mana < GHOST_BALL_MANA
 	explode_button.disabled = false || mana < EXPLODE_MANA
+	rainbow_button.disabled = false || mana < RAINBOW_MANA
 
 func player_damaged(damage: int) -> void:
 	shield -= damage
@@ -104,6 +116,7 @@ func update_mana_ui(new_mana: int) -> void:
 	heal_button.disabled = mana < HEAL_MANA
 	ghost_ball_button.disabled = mana < GHOST_BALL_MANA
 	explode_button.disabled = mana < EXPLODE_MANA
+	rainbow_button.disabled = mana < RAINBOW_MANA
 	mana_bar.value = mana
 	mana_label.text = str("%s/100" % mana)
 
@@ -158,6 +171,13 @@ func on_explode_press():
 	mana -= EXPLODE_MANA
 	update_mana_ui(mana)
 	SignalManager.explode_ball_tier.emit(BallsManager.BALLS[selected_ball].tier)
+
+func on_rainbow_press():
+	if mana < RAINBOW_MANA:
+		return
+	mana -= RAINBOW_MANA
+	update_mana_ui(mana)
+	BallsManager.set_current_ball(rainbown_config)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("change_selected_ball"):
