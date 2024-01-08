@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4te2xgf7yewj"]
+[gd_scene load_steps=4 format=3 uid="uid://b4te2xgf7yewj"]
 
 [ext_resource type="PackedScene" uid="uid://c5d3utm7alcgv" path="res://ball/ball.tscn" id="1_7yrpm"]
 [ext_resource type="Script" path="res://bomb/bomb.gd" id="2_q15pa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ektv"]
+radius = 90.0
 
 [node name="Bomb" instance=ExtResource("1_7yrpm")]
 script = ExtResource("2_q15pa")
 
 [node name="ExplosionTimer" type="Timer" parent="." index="3"]
 one_shot = true
+
+[node name="ExplosionArea" type="Area2D" parent="." index="4"]
+
+[node name="ExplosionShape" type="CollisionShape2D" parent="ExplosionArea" index="0"]
+scale = Vector2(0.25, 0.25)
+shape = SubResource("CircleShape2D_7ektv")
 
 [connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]
