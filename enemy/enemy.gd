@@ -11,12 +11,19 @@ class_name Enemy
 @onready var icon = $Control/Icon
 
 var my_turn: bool = false
-var attacks: Array = ["damage", "chaos", "damage", "rock"]
+var attacks: Array = ["damage", "chaos", "damage", "rock", "damage", "bomb"]
 var rock_config: Dictionary = {
 		"tier": BallsManager.BALLS.size(),
 		"sprite": preload("res://assets/balls/grey_body_circle.png"),
 		"icon": preload("res://assets/icons/d8.png"),
 		"size": 3
+	}
+var bomb_config: Dictionary = {
+		"tier": BallsManager.BALLS.size(),
+		"sprite": preload("res://assets/balls/grey_body_circle.png"),
+		"icon": preload("res://assets/icons/exploding.png"),
+		"size": 2,
+		"type": "bomb"
 	}
 var attack_count = 0
 var attacks_config: Dictionary = {
@@ -31,6 +38,10 @@ var attacks_config: Dictionary = {
 	"rock": {
 		"sprite": preload("res://assets/balls/grey_body_circle.png"),
 		"icon": preload("res://assets/icons/d8.png")
+	},
+	"bomb": {
+		"sprite": preload("res://assets/balls/grey_body_circle.png"),
+		"icon": preload("res://assets/icons/exploding.png")
 	}
 }
 
@@ -75,6 +86,8 @@ func move() -> void:
 			set_hp(hp + 15)
 			BallsManager.set_current_ball(rock_config)
 			BallsManager.set_next_ball(rock_config)
+		"bomb":
+			BallsManager.set_current_ball(bomb_config)
 	timer.start()
 	await timer.timeout
 	my_turn = false

@@ -100,6 +100,8 @@ func _turn_finished() -> void:
 
 func _unhandled_input(event):
 	if event.is_action_pressed("change_next"):
+		if current_ball.has("type") && current_ball.type == "bomb":
+			return
 		var next = next_ball
 		set_next_ball(current_ball)
 		set_current_ball(next)

@@ -7,7 +7,8 @@ extends Node2D
 @onready var drop_timer = $DropTimer
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
-var ghost_bal_scene: PackedScene = preload("res://ghost_ball/ghost_ball.tscn")
+var ghost_ball_scene: PackedScene = preload("res://ghost_ball/ghost_ball.tscn")
+var bomb_scene: PackedScene = preload("res://bomb/bomb.tscn")
 var position_offset: float = 0.0
 var can_drop: bool = true
 
@@ -29,8 +30,12 @@ func _process(_delta):
 func add_ball_to_holder() -> void:
 	var ball_config: Dictionary = BallsManager.get_current_ball()
 	var ball: Ball
-	if (ball_config.has("type") && ball_config.type == "ghost"):
-		ball = ghost_bal_scene.instantiate()
+	if ball_config.has("type"):
+		match ball_config.type:
+			"ghost":
+				ball = ghost_ball_scene.instantiate()
+			"bomb":
+				ball = bomb_scene.instantiate()
 	else:
 		ball = ball_scene.instantiate()
 	ball.process_mode = Node.PROCESS_MODE_DISABLED
