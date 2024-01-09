@@ -54,7 +54,7 @@ position = Vector2(560, 80)
 position = Vector2(1360, 80)
 
 [node name="Enemy" parent="." instance=ExtResource("6_t4nb7")]
-position = Vector2(206, 138)
+position = Vector2(180, 138)
 
 [node name="MovesLeftLabel" type="Label" parent="."]
 offset_left = 1452.0
@@ -80,5 +80,22 @@ offset_left = 1810.0
 offset_top = 18.0
 offset_right = 1854.0
 offset_bottom = 42.0
+scale = Vector2(2.32, 2.32)
+focus_mode = 0
+
+[node name="Auto" type="Label" parent="."]
+offset_left = 268.0
+offset_top = 6.0
+offset_right = 693.0
+offset_bottom = 79.0
+text = "Auto
+"
+label_settings = ExtResource("7_gne4q")
+
+[node name="AutoCheckButton" type="CheckButton" parent="."]
+offset_left = 448.0
+offset_top = 12.0
+offset_right = 492.0
+offset_bottom = 36.0
 scale = Vector2(2.32, 2.32)
 focus_mode = 0

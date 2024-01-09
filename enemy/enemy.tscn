@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://beei3ex2riwi8"]
+[gd_scene load_steps=20 format=3 uid="uid://beei3ex2riwi8"]
 
 [ext_resource type="Texture2D" uid="uid://d1xf3sthijh8h" path="res://assets/enemies/zombie/character_zombie_cheer0.png" id="1_bpmbr"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ptgtw"]
@@ -6,6 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://h8topllhst0a" path="res://assets/balls/red_body_circle.png" id="3_rltps"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="4_sc4hj"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="6_o18b1"]
+[ext_resource type="Texture2D" uid="uid://l82b1i3ipjsq" path="res://assets/balls/pink_body_circle.png" id="7_i3wy2"]
+[ext_resource type="Texture2D" uid="uid://b20sbp2n2vx55" path="res://assets/icons/heart.png" id="8_eho2p"]
+[ext_resource type="Texture2D" uid="uid://b7dpbitkqn0po" path="res://assets/balls/purple_body_circle.png" id="9_e50ip"]
+[ext_resource type="Texture2D" uid="uid://s7faelxx710m" path="res://assets/icons/book.png" id="10_y6ore"]
+[ext_resource type="Texture2D" uid="uid://cillblyq5cppy" path="res://assets/balls/grey_body_circle.png" id="11_lxka4"]
+[ext_resource type="Texture2D" uid="uid://bsirot3q40oyn" path="res://assets/icons/d8.png" id="12_m6d6y"]
+[ext_resource type="Texture2D" uid="uid://bqvp6ssx86tuk" path="res://assets/icons/exploding.png" id="13_087eb"]
+[ext_resource type="Texture2D" uid="uid://c1s8sy22qyutu" path="res://assets/balls/yellow_body_circle.png" id="14_n84ot"]
+[ext_resource type="Texture2D" uid="uid://bfq1hl73tl6qo" path="res://assets/icons/fire.png" id="15_vslj7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vv5f2"]
 
@@ -158,3 +167,160 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("4_sc4hj")
 stretch_mode = 2
+
+[node name="Actions" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -146.0
+offset_top = 147.0
+offset_right = -106.0
+offset_bottom = 187.0
+scale = Vector2(0.5, 0.5)
+
+[node name="AttackButton" type="TextureButton" parent="Actions"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 160.0
+texture_normal = ExtResource("3_rltps")
+
+[node name="TextureRect" type="TextureRect" parent="Actions/AttackButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -50.0
+offset_right = 76.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_sc4hj")
+
+[node name="HealButton" type="TextureButton" parent="Actions"]
+layout_mode = 0
+offset_left = 172.0
+offset_right = 332.0
+offset_bottom = 160.0
+texture_normal = ExtResource("7_i3wy2")
+
+[node name="TextureRect" type="TextureRect" parent="Actions/HealButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -50.0
+offset_right = 76.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_eho2p")
+
+[node name="ChaosButton" type="TextureButton" parent="Actions"]
+layout_mode = 0
+offset_left = 338.0
+offset_right = 498.0
+offset_bottom = 160.0
+texture_normal = ExtResource("9_e50ip")
+
+[node name="TextureRect" type="TextureRect" parent="Actions/ChaosButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -50.0
+offset_right = 76.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("10_y6ore")
+
+[node name="RockButton" type="TextureButton" parent="Actions"]
+layout_mode = 0
+offset_left = 516.0
+offset_right = 676.0
+offset_bottom = 160.0
+texture_normal = ExtResource("11_lxka4")
+
+[node name="TextureRect" type="TextureRect" parent="Actions/RockButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -50.0
+offset_right = 76.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("12_m6d6y")
+
+[node name="BombButton" type="TextureButton" parent="Actions"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 182.0
+offset_right = 158.0
+offset_bottom = 342.0
+texture_normal = ExtResource("11_lxka4")
+
+[node name="TextureRect" type="TextureRect" parent="Actions/BombButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -50.0
+offset_right = 76.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("13_087eb")
+
+[node name="ColorDamageButton" type="TextureButton" parent="Actions"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 182.0
+offset_right = 328.0
+offset_bottom = 342.0
+texture_normal = ExtResource("14_n84ot")
+
+[node name="TextureRect" type="TextureRect" parent="Actions/ColorDamageButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -50.0
+offset_right = 76.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("15_vslj7")
+
+[node name="FinishButton" type="Button" parent="Actions"]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 216.0
+offset_right = 446.0
+offset_bottom = 247.0
+scale = Vector2(3.83394, 3.83394)
+text = "Finish"

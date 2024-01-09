@@ -12,6 +12,14 @@ class_name Enemy
 @onready var color_damage_ui = $ColorDamage
 @onready var color_damage_sprite = $ColorDamage/Sprite
 @onready var color_damage_icon = $ColorDamage/Icon
+@onready var actions = $Actions
+@onready var attack_button = $Actions/AttackButton
+@onready var heal_button = $Actions/HealButton
+@onready var chaos_button = $Actions/ChaosButton
+@onready var rock_button = $Actions/RockButton
+@onready var bomb_button = $Actions/BombButton
+@onready var color_damage_button = $Actions/ColorDamageButton
+@onready var finish_button = $Actions/FinishButton
 
 var should_color_damage: bool = false
 var color_damage: int = 0
@@ -58,7 +66,32 @@ func _ready():
 	SignalManager.enemy_damaged.connect(enemy_damaged)
 	BallsManager.turn_finished.connect(turn_finished)
 	BallsManager.ball_exploded.connect(ball_exploded)
+	attack_button.pressed.connect(on_attack_button)
+	heal_button.pressed.connect(on_heal_button)
+	chaos_button.pressed.connect(on_chaos_button)
+	rock_button.pressed.connect(on_rock_button)
+	bomb_button.pressed.connect(on_bomb_button)
+	color_damage_button.pressed.connect(on_color_damage_button)
+	finish_button.pressed.connect(finish_enemy_turn)
 	set_hp(hp)
+
+func on_attack_button():
+	damage()
+
+func on_heal_button():
+	heal()
+
+func on_chaos_button():
+	chaos()
+
+func on_rock_button():
+	rock()
+
+func on_bomb_button():
+	bomb()
+
+func on_color_damage_button():
+	_color_damage()
 
 func turn_finished() -> void:
 	await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
@@ -85,40 +118,68 @@ func enemy_damaged(damage: int) -> void:
 	set_hp(new_hp)
 
 func _process(_delta):
+	sprite.visible = BallsManager.auto_enemy
+	icon.visible = BallsManager.auto_enemy
 	var attack = attacks[attack_count % attacks.size()]
 	var attack_config = attacks_config[attack]
 	sprite.texture = attack_config.sprite
 	icon.texture = attack_config.icon
+	actions.visible = !BallsManager.auto_enemy && my_turn
+
+func start_turn() -> void:
+	my_turn = true
 
 func move() -> void:
-	my_turn = true
 	var attack = attacks[attack_count % attacks.size()]
 	match attack:
 		"damage":
-			SignalManager.player_damaged.emit(40)
+			damage()
 		"chaos":
-			set_hp(hp + 15)
-			for i in range(10):
-				SignalManager.spawn_random_ball.emit()
-				timer.start()
-				await timer.timeout
+			heal()
+			chaos()
 		"rock":
-			set_hp(hp + 15)
-			BallsManager.set_current_ball(rock_config)
-			BallsManager.set_next_ball(rock_config)
+			heal()
+			rock()
 		"bomb":
-			BallsManager.set_current_ball(bomb_config)
+			heal()
+			bomb()
 		"color_damage":
-			should_color_damage = true
-			var ball = BallsManager.BALLS.pick_random()
-			color_damage_icon.texture = ball.icon
-			color_damage_sprite.texture = ball.sprite
-			color_damage = ball.tier
-			color_damage_ui.visible = true
+			heal()
+			_color_damage()
 	timer.start()
 	await timer.timeout
 	timer.start()
 	await timer.timeout
-	my_turn = false
 	attack_count += 1
+	finish_enemy_turn()
+
+func finish_enemy_turn():
+	my_turn = false
 	SignalManager.enemy_moved.emit()
+
+func damage():
+	SignalManager.player_damaged.emit(40)
+
+func heal():
+	set_hp(hp + 15)
+
+func chaos():
+	for i in range(10):
+		SignalManager.spawn_random_ball.emit()
+		timer.start()
+		await timer.timeout
+
+func rock():
+	BallsManager.set_current_ball(rock_config)
+	BallsManager.set_next_ball(rock_config)
+
+func bomb():
+	BallsManager.set_current_ball(bomb_config)
+
+func _color_damage():
+	should_color_damage = true
+	var ball = BallsManager.BALLS.pick_random()
+	color_damage_icon.texture = ball.icon
+	color_damage_sprite.texture = ball.sprite
+	color_damage = ball.tier
+	color_damage_ui.visible = true

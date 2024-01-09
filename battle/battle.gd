@@ -8,6 +8,7 @@ extends Node2D
 @onready var position_max = $PositionMax
 @onready var game_over = $CanvasLayer/GameOver
 @onready var check_button = $CheckButton
+@onready var auto_check_button = $AutoCheckButton
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
 var moves_left: int = 3
@@ -22,11 +23,17 @@ func _ready():
 	SignalManager.enemy_moved.connect(on_enemy_moved)
 	check_button.button_pressed = BallsManager.balls_effect
 	check_button.pressed.connect(toggle_ball_effect)
+	auto_check_button.button_pressed = BallsManager.auto_enemy
+	auto_check_button.pressed.connect(toggle_auto_enemy)
 	#spawn_random_balls(50)
 
 func toggle_ball_effect():
 	BallsManager.balls_effect = !BallsManager.balls_effect
 	check_button.button_pressed = BallsManager.balls_effect
+
+func toggle_auto_enemy():
+	BallsManager.auto_enemy = !BallsManager.auto_enemy
+	auto_check_button.button_pressed = BallsManager.auto_enemy
 
 func spawn_random_balls(amount: int) -> void:
 	BallsManager.turn_finished.emit()
@@ -52,6 +59,7 @@ func ball_dropped():
 	if moves_left == 0:
 		BallsManager.turn_finished.emit()
 		await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
+		enemy.start_turn()
 		if BallsManager.auto_enemy:
 			enemy.move()
 
