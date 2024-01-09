@@ -125,3 +125,7 @@ func _unhandled_input(event):
 		var next = next_ball
 		set_next_ball(current_ball)
 		set_current_ball(next)
+	if event.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
+		current_ball = get_random_ball()
+		next_ball = get_random_ball()
