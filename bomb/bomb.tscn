@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4te2xgf7yewj"]
+[gd_scene load_steps=5 format=3 uid="uid://b4te2xgf7yewj"]
 
 [ext_resource type="PackedScene" uid="uid://c5d3utm7alcgv" path="res://ball/ball.tscn" id="1_7yrpm"]
 [ext_resource type="Script" path="res://bomb/bomb.gd" id="2_q15pa"]
+[ext_resource type="Texture2D" uid="uid://h8topllhst0a" path="res://assets/balls/red_body_circle.png" id="3_p7kle"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ektv"]
 radius = 90.0
@@ -9,13 +10,18 @@ radius = 90.0
 [node name="Bomb" instance=ExtResource("1_7yrpm")]
 script = ExtResource("2_q15pa")
 
-[node name="ExplosionTimer" type="Timer" parent="." index="3"]
-one_shot = true
+[node name="ExplosionArea" type="Area2D" parent="." index="0"]
 
-[node name="ExplosionArea" type="Area2D" parent="." index="4"]
+[node name="Sprite2D" type="Sprite2D" parent="ExplosionArea" index="0"]
+modulate = Color(1, 1, 1, 0.356863)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("3_p7kle")
 
-[node name="ExplosionShape" type="CollisionShape2D" parent="ExplosionArea" index="0"]
+[node name="ExplosionShape" type="CollisionShape2D" parent="ExplosionArea" index="1"]
 scale = Vector2(0.25, 0.25)
 shape = SubResource("CircleShape2D_7ektv")
+
+[node name="ExplosionTimer" type="Timer" parent="." index="4"]
+one_shot = true
 
 [connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]

@@ -8,6 +8,7 @@ var will_explode = false
 func _ready():
 	super._ready()
 	$ExplosionArea/ExplosionShape.scale *= config.size
+	$ExplosionArea/Sprite2D.scale *= config.size
 
 func _on_body_entered(body):
 	super._on_body_entered(body)
