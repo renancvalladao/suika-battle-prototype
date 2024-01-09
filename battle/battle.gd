@@ -7,6 +7,7 @@ extends Node2D
 @onready var position_min = $PositionMin
 @onready var position_max = $PositionMax
 @onready var game_over = $CanvasLayer/GameOver
+@onready var check_button = $CheckButton
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
 var moves_left: int = 3
@@ -18,7 +19,13 @@ func _ready():
 	SignalManager.spawn_random_ball.connect(spawn_random_ball)
 	SignalManager.on_game_over.connect(on_game_over)
 	SignalManager.explode_ball_tier.connect(explode_ball_tier)
+	check_button.button_pressed = BallsManager.balls_effect
+	check_button.pressed.connect(toggle_ball_effect)
 	#spawn_random_balls(50)
+
+func toggle_ball_effect():
+	BallsManager.balls_effect = !BallsManager.balls_effect
+	check_button.button_pressed = BallsManager.balls_effect
 
 func spawn_random_balls(amount: int) -> void:
 	BallsManager.turn_finished.emit()

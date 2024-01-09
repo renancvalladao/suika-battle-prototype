@@ -43,7 +43,8 @@ func _on_body_entered(body):
 		BallsManager.ball_exploded.emit(position, body.position, config.tier)
 		if BallsManager.turn == 1:
 			return
-		#make_effect()
+		if BallsManager.balls_effect:
+			make_effect()
 
 func make_effect():
 	if config.tier == 2:
