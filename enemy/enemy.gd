@@ -121,3 +121,4 @@ func move() -> void:
 	await timer.timeout
 	my_turn = false
 	attack_count += 1
+	SignalManager.enemy_moved.emit()

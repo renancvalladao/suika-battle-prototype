@@ -19,6 +19,7 @@ func _ready():
 	SignalManager.spawn_random_ball.connect(spawn_random_ball)
 	SignalManager.on_game_over.connect(on_game_over)
 	SignalManager.explode_ball_tier.connect(explode_ball_tier)
+	SignalManager.enemy_moved.connect(on_enemy_moved)
 	check_button.button_pressed = BallsManager.balls_effect
 	check_button.pressed.connect(toggle_ball_effect)
 	#spawn_random_balls(50)
@@ -51,8 +52,11 @@ func ball_dropped():
 	if moves_left == 0:
 		BallsManager.turn_finished.emit()
 		await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
-		await enemy.move()
-		SignalManager.turn_started.emit()
+		if BallsManager.auto_enemy:
+			enemy.move()
+
+func on_enemy_moved():
+	SignalManager.turn_started.emit()
 
 func turn_started() -> void:
 	moves_left = max_moves

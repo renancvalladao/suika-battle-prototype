@@ -64,6 +64,7 @@ var current_ball = get_random_ball()
 var next_ball = get_random_ball()
 var turn = 0
 var balls_effect: bool = true
+var auto_enemy: bool = true
 
 func _ready():
 	SignalManager.turn_started.connect(_turn_started)
