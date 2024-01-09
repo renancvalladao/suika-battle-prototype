@@ -136,7 +136,7 @@ func move() -> void:
 			damage()
 		"chaos":
 			heal()
-			chaos()
+			await chaos()
 		"rock":
 			heal()
 			rock()
