@@ -54,6 +54,24 @@ const BALLS = [
 		"sprite": preload("res://assets/balls/purple_body_circle.png"),
 		"icon": preload("res://assets/icons/skull.png"),
 		"size": 6.6
+	},
+	{
+		"tier": 9,
+		"sprite": preload("res://assets/balls/green_body_circle.png"),
+		"icon": preload("res://assets/icons/dollar.png"),
+		"size": 7.8
+	},
+	{
+		"tier": 10,
+		"sprite": preload("res://assets/balls/pink_body_circle.png"),
+		"icon": preload("res://assets/icons/flag_square.png"),
+		"size": 9.1
+	},
+	{
+		"tier": 10,
+		"sprite": preload("res://assets/balls/yellow_body_circle.png"),
+		"icon": preload("res://assets/icons/award.png"),
+		"size": 10.5
 	}
 ]
 
@@ -71,7 +89,7 @@ func _ready():
 	BallsManager.turn_finished.connect(_turn_finished)
 
 func get_random_ball() -> Dictionary:
-	var random_ball_index = rng.randi_range(0, BALLS.size() - 4)
+	var random_ball_index = rng.randi_range(0, 4)
 	return BALLS[random_ball_index]
 
 func get_current_ball() -> Dictionary:

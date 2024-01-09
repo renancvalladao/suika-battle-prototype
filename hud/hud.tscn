@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://2wy62osvnpgg"]
+[gd_scene load_steps=21 format=3 uid="uid://2wy62osvnpgg"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_5sxdd"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_m48a0"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://s7faelxx710m" path="res://assets/icons/book.png" id="15_5xah1"]
 [ext_resource type="Texture2D" uid="uid://72n88tcrrjlv" path="res://assets/icons/skull.png" id="16_nyypn"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="17_7fs1n"]
+[ext_resource type="Texture2D" uid="uid://2l6mi187cdgk" path="res://assets/icons/dollar.png" id="17_m1ji4"]
+[ext_resource type="Texture2D" uid="uid://cop73adlf6jmk" path="res://assets/icons/flag_square.png" id="18_j3fwu"]
+[ext_resource type="Texture2D" uid="uid://bl4h5urleyt50" path="res://assets/icons/award.png" id="19_bairk"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -129,10 +132,10 @@ stretch_mode = 2
 [node name="Control3" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -176.0
-offset_top = 758.0
-offset_right = -136.0
-offset_bottom = 798.0
+offset_left = -178.0
+offset_top = 720.0
+offset_right = -138.0
+offset_bottom = 760.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="Control3"]
@@ -175,10 +178,10 @@ stretch_mode = 2
 [node name="Control4" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -110.0
-offset_top = 840.0
-offset_right = -70.0
-offset_bottom = 880.0
+offset_left = -104.0
+offset_top = 770.0
+offset_right = -64.0
+offset_bottom = 810.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="Control4"]
@@ -221,10 +224,10 @@ stretch_mode = 2
 [node name="Control5" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -178.0
-offset_top = 910.0
-offset_right = -138.0
-offset_bottom = 950.0
+offset_left = -92.0
+offset_top = 860.0
+offset_right = -52.0
+offset_bottom = 900.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="Control5"]
@@ -267,10 +270,10 @@ stretch_mode = 2
 [node name="Control6" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -260.0
-offset_top = 960.0
-offset_right = -220.0
-offset_bottom = 1000.0
+offset_left = -142.0
+offset_top = 944.0
+offset_right = -102.0
+offset_bottom = 984.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="Control6"]
@@ -313,10 +316,10 @@ stretch_mode = 2
 [node name="Control7" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -340.0
-offset_top = 904.0
-offset_right = -300.0
-offset_bottom = 944.0
+offset_left = -224.0
+offset_top = 998.0
+offset_right = -184.0
+offset_bottom = 1038.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="Control7"]
@@ -359,10 +362,10 @@ stretch_mode = 2
 [node name="Control8" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -410.0
-offset_top = 840.0
-offset_right = -370.0
-offset_bottom = 880.0
+offset_left = -326.0
+offset_top = 994.0
+offset_right = -286.0
+offset_bottom = 1034.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="Control8"]
@@ -405,10 +408,10 @@ stretch_mode = 2
 [node name="Control9" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -344.0
-offset_top = 756.0
-offset_right = -304.0
-offset_bottom = 796.0
+offset_left = -404.0
+offset_top = 936.0
+offset_right = -364.0
+offset_bottom = 976.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="Control9"]
@@ -446,6 +449,144 @@ pivot_offset = Vector2(64, 64)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("16_nyypn")
+stretch_mode = 2
+
+[node name="Control10" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -440.0
+offset_top = 848.0
+offset_right = -400.0
+offset_bottom = 888.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Control10"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("7_7yh38")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Control10"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("17_m1ji4")
+stretch_mode = 2
+
+[node name="Control11" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -416.0
+offset_top = 760.0
+offset_right = -376.0
+offset_bottom = 800.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Control11"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("9_x7aen")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Control11"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("18_j3fwu")
+stretch_mode = 2
+
+[node name="Control12" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -344.0
+offset_top = 714.0
+offset_right = -304.0
+offset_bottom = 754.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Control12"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("11_4u0ec")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Control12"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("19_bairk")
 stretch_mode = 2
 
 [node name="AddManaButton" type="Button" parent="."]
