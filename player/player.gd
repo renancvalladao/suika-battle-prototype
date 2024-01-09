@@ -65,6 +65,13 @@ func _ready():
 	ghost_ball_icon.texture = BallsManager.BALLS[selected_ball].icon
 	explode_sprite.texture = BallsManager.BALLS[selected_ball].sprite
 	explode_icon.texture = BallsManager.BALLS[selected_ball].icon
+	SignalManager.mana_gained.connect(mana_gained)
+
+func mana_gained(amount: int):
+	mana += amount
+	if mana > 100:
+		mana = 100
+	update_mana_ui(mana)
 
 func turn_finished():
 	attack_button.disabled = true

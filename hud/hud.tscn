@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://2wy62osvnpgg"]
+[gd_scene load_steps=18 format=3 uid="uid://2wy62osvnpgg"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_5sxdd"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_m48a0"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bfq1hl73tl6qo" path="res://assets/icons/fire.png" id="14_rrowf"]
 [ext_resource type="Texture2D" uid="uid://s7faelxx710m" path="res://assets/icons/book.png" id="15_5xah1"]
 [ext_resource type="Texture2D" uid="uid://72n88tcrrjlv" path="res://assets/icons/skull.png" id="16_nyypn"]
+[ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="17_7fs1n"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -446,3 +447,13 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("16_nyypn")
 stretch_mode = 2
+
+[node name="AddManaButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -320.0
+offset_top = 818.0
+offset_right = -161.0
+offset_bottom = 871.0
+theme_override_fonts/font = ExtResource("17_7fs1n")
+theme_override_font_sizes/font_size = 24
+text = "+100 Mana"

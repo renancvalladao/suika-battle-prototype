@@ -2,9 +2,11 @@ extends Control
 
 @onready var sprite = $NextBall/Sprite
 @onready var icon = $NextBall/Icon
+@onready var add_mana_button = $AddManaButton
 
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
+	add_mana_button.pressed.connect(on_add_mana)
 	set_next_ball()
 
 func set_next_ball() -> void:
@@ -14,3 +16,6 @@ func set_next_ball() -> void:
 
 func next_ball_changed() -> void:
 	set_next_ball()
+
+func on_add_mana():
+	SignalManager.mana_gained.emit(100)
