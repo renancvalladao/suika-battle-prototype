@@ -44,7 +44,7 @@ func _ready():
 	SignalManager.health_gained.connect(health_gained)
 	SignalManager.shield_gained.connect(shield_gained)
 	BallsManager.ball_exploded.connect(ball_exploded)
-	BallsManager.turn_finished.connect(turn_finished)
+	#BallsManager.turn_finished.connect(turn_finished)
 	SignalManager.turn_started.connect(turn_started)
 	attack_button.text = "%s - Attack (%s)" % [ATTACK_MANA, ATTACK_AMOUNT]
 	attack_button.pressed.connect(on_attack_pressed)
@@ -118,12 +118,12 @@ func update_health_ui(new_hp: int) -> void:
 	health_label.text = str("%s/100" % hp)
 
 func update_mana_ui(new_mana: int) -> void:
-	attack_button.disabled = attack_button.disabled || mana < ATTACK_MANA
-	shield_button.disabled = shield_button.disabled || mana < SHIELD_MANA
-	heal_button.disabled = heal_button.disabled || mana < HEAL_MANA
-	ghost_ball_button.disabled = ghost_ball_button.disabled || mana < GHOST_BALL_MANA
-	explode_button.disabled = explode_button.disabled || mana < EXPLODE_MANA
-	rainbow_button.disabled = rainbow_button.disabled || mana < RAINBOW_MANA
+	attack_button.disabled = mana < ATTACK_MANA
+	shield_button.disabled = mana < SHIELD_MANA
+	heal_button.disabled = mana < HEAL_MANA
+	ghost_ball_button.disabled = mana < GHOST_BALL_MANA
+	explode_button.disabled = mana < EXPLODE_MANA
+	rainbow_button.disabled = mana < RAINBOW_MANA
 	mana_bar.value = mana
 	mana_label.text = str("%s/100" % mana)
 
