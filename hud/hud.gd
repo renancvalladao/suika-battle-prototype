@@ -3,10 +3,16 @@ extends Control
 @onready var sprite = $NextBall/Sprite
 @onready var icon = $NextBall/Icon
 @onready var add_mana_button = $AddManaButton
+@onready var balls_options = $BallsOptions
 
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
 	add_mana_button.pressed.connect(on_add_mana)
+	var balls: Array = balls_options.get_children()
+	for index in balls.size():
+		var ball = balls[index]
+		ball.get_child(0).texture = BallsManager.BALLS[index].sprite
+		ball.get_child(1).texture = BallsManager.BALLS[index].icon
 	set_next_ball()
 
 func set_next_ball() -> void:

@@ -83,7 +83,22 @@ size_flags_vertical = 4
 texture = ExtResource("2_j27b4")
 stretch_mode = 2
 
-[node name="Control2" type="Control" parent="."]
+[node name="AddManaButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -320.0
+offset_top = 818.0
+offset_right = -161.0
+offset_bottom = 871.0
+theme_override_fonts/font = ExtResource("17_7fs1n")
+theme_override_font_sizes/font_size = 24
+text = "+100 Mana"
+
+[node name="BallsOptions" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ball1" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -260.0
@@ -92,7 +107,7 @@ offset_right = -220.0
 offset_bottom = 730.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite" type="TextureRect" parent="Control2"]
+[node name="Sprite" type="TextureRect" parent="BallsOptions/Ball1"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -109,7 +124,7 @@ pivot_offset = Vector2(80, 80)
 texture = ExtResource("1_m48a0")
 stretch_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control2"]
+[node name="Icon" type="TextureRect" parent="BallsOptions/Ball1"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -129,7 +144,7 @@ size_flags_vertical = 4
 texture = ExtResource("2_j27b4")
 stretch_mode = 2
 
-[node name="Control3" type="Control" parent="."]
+[node name="Ball2" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -178.0
@@ -138,7 +153,7 @@ offset_right = -138.0
 offset_bottom = 760.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite" type="TextureRect" parent="Control3"]
+[node name="Sprite" type="TextureRect" parent="BallsOptions/Ball2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -155,7 +170,7 @@ pivot_offset = Vector2(80, 80)
 texture = ExtResource("5_31c2e")
 stretch_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control3"]
+[node name="Icon" type="TextureRect" parent="BallsOptions/Ball2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -175,7 +190,7 @@ size_flags_vertical = 4
 texture = ExtResource("6_rjmn6")
 stretch_mode = 2
 
-[node name="Control4" type="Control" parent="."]
+[node name="Ball3" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -104.0
@@ -184,7 +199,7 @@ offset_right = -64.0
 offset_bottom = 810.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite" type="TextureRect" parent="Control4"]
+[node name="Sprite" type="TextureRect" parent="BallsOptions/Ball3"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -201,7 +216,7 @@ pivot_offset = Vector2(80, 80)
 texture = ExtResource("7_7yh38")
 stretch_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control4"]
+[node name="Icon" type="TextureRect" parent="BallsOptions/Ball3"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -221,7 +236,7 @@ size_flags_vertical = 4
 texture = ExtResource("8_1joxp")
 stretch_mode = 2
 
-[node name="Control5" type="Control" parent="."]
+[node name="Ball4" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -92.0
@@ -230,7 +245,7 @@ offset_right = -52.0
 offset_bottom = 900.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite" type="TextureRect" parent="Control5"]
+[node name="Sprite" type="TextureRect" parent="BallsOptions/Ball4"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -247,7 +262,7 @@ pivot_offset = Vector2(80, 80)
 texture = ExtResource("9_x7aen")
 stretch_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control5"]
+[node name="Icon" type="TextureRect" parent="BallsOptions/Ball4"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -267,7 +282,7 @@ size_flags_vertical = 4
 texture = ExtResource("10_h7fe7")
 stretch_mode = 2
 
-[node name="Control6" type="Control" parent="."]
+[node name="Ball5" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -142.0
@@ -276,7 +291,7 @@ offset_right = -102.0
 offset_bottom = 984.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite" type="TextureRect" parent="Control6"]
+[node name="Sprite" type="TextureRect" parent="BallsOptions/Ball5"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -293,7 +308,7 @@ pivot_offset = Vector2(80, 80)
 texture = ExtResource("11_4u0ec")
 stretch_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control6"]
+[node name="Icon" type="TextureRect" parent="BallsOptions/Ball5"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -313,7 +328,7 @@ size_flags_vertical = 4
 texture = ExtResource("12_stnqt")
 stretch_mode = 2
 
-[node name="Control7" type="Control" parent="."]
+[node name="Ball6" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -224.0
@@ -322,7 +337,7 @@ offset_right = -184.0
 offset_bottom = 1038.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite" type="TextureRect" parent="Control7"]
+[node name="Sprite" type="TextureRect" parent="BallsOptions/Ball6"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -339,7 +354,7 @@ pivot_offset = Vector2(80, 80)
 texture = ExtResource("13_23xpg")
 stretch_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control7"]
+[node name="Icon" type="TextureRect" parent="BallsOptions/Ball6"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -359,7 +374,7 @@ size_flags_vertical = 4
 texture = ExtResource("14_rrowf")
 stretch_mode = 2
 
-[node name="Control8" type="Control" parent="."]
+[node name="Ball7" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -326.0
@@ -368,7 +383,7 @@ offset_right = -286.0
 offset_bottom = 1034.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite" type="TextureRect" parent="Control8"]
+[node name="Sprite" type="TextureRect" parent="BallsOptions/Ball7"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -385,7 +400,7 @@ pivot_offset = Vector2(80, 80)
 texture = ExtResource("1_m48a0")
 stretch_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control8"]
+[node name="Icon" type="TextureRect" parent="BallsOptions/Ball7"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -405,7 +420,7 @@ size_flags_vertical = 4
 texture = ExtResource("15_5xah1")
 stretch_mode = 2
 
-[node name="Control9" type="Control" parent="."]
+[node name="Ball8" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -404.0
@@ -414,7 +429,7 @@ offset_right = -364.0
 offset_bottom = 976.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite" type="TextureRect" parent="Control9"]
+[node name="Sprite" type="TextureRect" parent="BallsOptions/Ball8"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -431,7 +446,7 @@ pivot_offset = Vector2(80, 80)
 texture = ExtResource("5_31c2e")
 stretch_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control9"]
+[node name="Icon" type="TextureRect" parent="BallsOptions/Ball8"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -451,7 +466,7 @@ size_flags_vertical = 4
 texture = ExtResource("16_nyypn")
 stretch_mode = 2
 
-[node name="Control10" type="Control" parent="."]
+[node name="Ball9" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -440.0
@@ -460,7 +475,7 @@ offset_right = -400.0
 offset_bottom = 888.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite" type="TextureRect" parent="Control10"]
+[node name="Sprite" type="TextureRect" parent="BallsOptions/Ball9"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -477,7 +492,7 @@ pivot_offset = Vector2(80, 80)
 texture = ExtResource("7_7yh38")
 stretch_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control10"]
+[node name="Icon" type="TextureRect" parent="BallsOptions/Ball9"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -497,7 +512,7 @@ size_flags_vertical = 4
 texture = ExtResource("17_m1ji4")
 stretch_mode = 2
 
-[node name="Control11" type="Control" parent="."]
+[node name="Ball10" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -416.0
@@ -506,7 +521,7 @@ offset_right = -376.0
 offset_bottom = 800.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite" type="TextureRect" parent="Control11"]
+[node name="Sprite" type="TextureRect" parent="BallsOptions/Ball10"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -523,7 +538,7 @@ pivot_offset = Vector2(80, 80)
 texture = ExtResource("9_x7aen")
 stretch_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control11"]
+[node name="Icon" type="TextureRect" parent="BallsOptions/Ball10"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -543,7 +558,7 @@ size_flags_vertical = 4
 texture = ExtResource("18_j3fwu")
 stretch_mode = 2
 
-[node name="Control12" type="Control" parent="."]
+[node name="Ball11" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -344.0
@@ -552,7 +567,7 @@ offset_right = -304.0
 offset_bottom = 754.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite" type="TextureRect" parent="Control12"]
+[node name="Sprite" type="TextureRect" parent="BallsOptions/Ball11"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -569,7 +584,7 @@ pivot_offset = Vector2(80, 80)
 texture = ExtResource("11_4u0ec")
 stretch_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Control12"]
+[node name="Icon" type="TextureRect" parent="BallsOptions/Ball11"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -588,13 +603,3 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("19_bairk")
 stretch_mode = 2
-
-[node name="AddManaButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = -320.0
-offset_top = 818.0
-offset_right = -161.0
-offset_bottom = 871.0
-theme_override_fonts/font = ExtResource("17_7fs1n")
-theme_override_font_sizes/font_size = 24
-text = "+100 Mana"
