@@ -26,6 +26,7 @@ const RAINBOW_MANA = 50
 @onready var explode_sprite = $VBoxContainer/ExplodeButton/SelectedBall/Sprite
 @onready var explode_icon = $VBoxContainer/ExplodeButton/SelectedBall/Icon
 @onready var rainbow_button = $VBoxContainer/RainbowButton
+@onready var lifesteal_button = $VBoxContainer/LifestealButton
 
 var hp = 100
 var mana = 0
@@ -58,6 +59,8 @@ func _ready():
 	explode_button.pressed.connect(on_explode_press)
 	rainbow_button.text = "%s - Rainbow" % RAINBOW_MANA
 	rainbow_button.pressed.connect(on_rainbow_press)
+	lifesteal_button.text = "Lifesteal 1"
+	lifesteal_button.pressed.connect(on_lifesteal_press)
 	update_health_ui(hp)
 	#update_mana_ui(mana)
 	shield_label.text = str(shield)
@@ -77,6 +80,22 @@ func _process(delta):
 	check_attack_enabled()
 	check_defense_enabled()
 	check_buff_enabled()
+	check_lifesteal_enabled()
+
+func check_lifesteal_enabled():
+	var first_tiers = [1, 3]
+	var tiers = [BallsManager.tier]
+	for tier in tiers:
+		lifesteal_button.text = "Lifesteal %s" % [tier]
+		var enabled: Array = []
+		for first_tier in first_tiers:
+			var ball_tier = first_tier + ((tier - 1) * 3)
+			var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+			enabled.append(balls.size() > 0)
+		lifesteal_button.disabled = !enabled.all(check_enabled)
+
+func check_enabled(enabled):
+	return enabled
 
 func check_attack_enabled():
 	var first_tier = 1
@@ -182,6 +201,29 @@ func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int):
 
 func _on_chain_explosion_timer_timeout():
 	explosion_chain = false
+
+func on_lifesteal_press():
+	var first_tiers = [1, 3]
+	var tiers = [BallsManager.tier]
+	for tier in tiers:
+		var att_amount: int = ATTACK_AMOUNT
+		var h_amount: int = HEAL_AMOUNT
+		if BallsManager.scale_with_tier:
+			att_amount *= tier
+			h_amount *= tier
+		var do: bool = false
+		var all_balls = []
+		for first_tier in first_tiers:
+			var ball_tier = first_tier + ((tier - 1) * 3)
+			var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+			all_balls.append_array(balls)
+			do = balls.size() > 0
+		if (do):
+			SignalManager.enemy_damaged.emit(att_amount)
+			SignalManager.health_gained.emit(h_amount)
+			for ball in all_balls:
+				ball.queue_free()
+			return
 
 func on_attack_pressed():
 	var first_tier = 1
