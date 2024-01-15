@@ -9,6 +9,7 @@ extends Node2D
 @onready var game_over = $CanvasLayer/GameOver
 @onready var check_button = $CheckButton
 @onready var auto_check_button = $AutoCheckButton
+@onready var scale_tier_button = $ScaleTierButton
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
 var moves_left: int = 3
@@ -25,7 +26,13 @@ func _ready():
 	check_button.pressed.connect(toggle_ball_effect)
 	auto_check_button.button_pressed = BallsManager.auto_enemy
 	auto_check_button.pressed.connect(toggle_auto_enemy)
+	scale_tier_button.button_pressed = BallsManager.scale_with_tier
+	scale_tier_button.pressed.connect(toggle_scale_tier)
 	#spawn_random_balls(50)
+
+func toggle_scale_tier():
+	BallsManager.scale_with_tier = !BallsManager.scale_with_tier
+	scale_tier_button.button_pressed = BallsManager.scale_with_tier
 
 func toggle_ball_effect():
 	BallsManager.balls_effect = !BallsManager.balls_effect

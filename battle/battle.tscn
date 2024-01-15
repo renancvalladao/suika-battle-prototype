@@ -68,6 +68,7 @@ label_settings = ExtResource("7_gne4q")
 position = Vector2(58, 948)
 
 [node name="BallEffects" type="Label" parent="."]
+visible = false
 offset_left = 1390.0
 offset_top = 12.0
 offset_right = 1815.0
@@ -76,6 +77,23 @@ text = "Ball Effects"
 label_settings = ExtResource("7_gne4q")
 
 [node name="CheckButton" type="CheckButton" parent="."]
+visible = false
+offset_left = 1810.0
+offset_top = 18.0
+offset_right = 1854.0
+offset_bottom = 42.0
+scale = Vector2(2.32, 2.32)
+focus_mode = 0
+
+[node name="ScaleTier" type="Label" parent="."]
+offset_left = 1390.0
+offset_top = 12.0
+offset_right = 1815.0
+offset_bottom = 85.0
+text = "Scale tier"
+label_settings = ExtResource("7_gne4q")
+
+[node name="ScaleTierButton" type="CheckButton" parent="."]
 offset_left = 1810.0
 offset_top = 18.0
 offset_right = 1854.0
