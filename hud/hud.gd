@@ -4,10 +4,12 @@ extends Control
 @onready var icon = $NextBall/Icon
 @onready var add_mana_button = $AddManaButton
 @onready var balls_options = $BallsOptions
+@onready var add_health_button = $AddHealthButton
 
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
 	add_mana_button.pressed.connect(on_add_mana)
+	add_health_button.pressed.connect(on_add_health)
 	var balls: Array = balls_options.get_children()
 	for index in balls.size():
 		var ball = balls[index]
@@ -25,3 +27,6 @@ func next_ball_changed() -> void:
 
 func on_add_mana():
 	SignalManager.mana_gained.emit(100)
+
+func on_add_health():
+	SignalManager.health_gained.emit(100)
