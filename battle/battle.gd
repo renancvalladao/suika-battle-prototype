@@ -10,6 +10,7 @@ extends Node2D
 @onready var check_button = $CheckButton
 @onready var auto_check_button = $AutoCheckButton
 @onready var scale_tier_button = $ScaleTierButton
+@onready var pick_random_button = $PickRandomButton
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
 var moves_left: int = 3
@@ -28,7 +29,12 @@ func _ready():
 	auto_check_button.pressed.connect(toggle_auto_enemy)
 	scale_tier_button.button_pressed = BallsManager.scale_with_tier
 	scale_tier_button.pressed.connect(toggle_scale_tier)
+	pick_random_button.pressed.connect(toggle_pick_random)
 	#spawn_random_balls(50)
+
+func toggle_pick_random():
+	BallsManager.pick_random = !BallsManager.pick_random
+	pick_random_button.button_pressed = BallsManager.pick_random
 
 func toggle_scale_tier():
 	BallsManager.scale_with_tier = !BallsManager.scale_with_tier

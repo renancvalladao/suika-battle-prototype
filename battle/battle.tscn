@@ -101,6 +101,22 @@ offset_bottom = 42.0
 scale = Vector2(2.32, 2.32)
 focus_mode = 0
 
+[node name="PickRandom" type="Label" parent="."]
+offset_left = 1466.0
+offset_top = 566.0
+offset_right = 1912.0
+offset_bottom = 639.0
+text = "Random"
+label_settings = ExtResource("7_gne4q")
+
+[node name="PickRandomButton" type="CheckButton" parent="."]
+offset_left = 1782.0
+offset_top = 572.0
+offset_right = 1826.0
+offset_bottom = 596.0
+scale = Vector2(2.32, 2.32)
+focus_mode = 0
+
 [node name="Auto" type="Label" parent="."]
 offset_left = 268.0
 offset_top = 6.0

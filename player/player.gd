@@ -216,7 +216,11 @@ func on_lifesteal_press():
 		for first_tier in first_tiers:
 			var ball_tier = first_tier + ((tier - 1) * 3)
 			var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
-			all_balls.append_array(balls)
+			if BallsManager.pick_random:
+				var ball = balls.pick_random()
+				all_balls.append(ball)
+			else:
+				all_balls.append_array(balls)
 			do = balls.size() > 0
 		if (do):
 			SignalManager.enemy_damaged.emit(att_amount)
@@ -236,8 +240,12 @@ func on_attack_pressed():
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			SignalManager.enemy_damaged.emit(amount)
-			for ball in balls:
+			if BallsManager.pick_random:
+				var ball = balls.pick_random()
 				ball.queue_free()
+			else:
+				for ball in balls:
+					ball.queue_free()
 			return
 
 #func on_attack_pressed():
@@ -258,8 +266,12 @@ func on_shield_pressed():
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			SignalManager.shield_gained.emit(amount)
-			for ball in balls:
+			if BallsManager.pick_random:
+				var ball = balls.pick_random()
 				ball.queue_free()
+			else:
+				for ball in balls:
+					ball.queue_free()
 			return
 
 #func on_shield_pressed():
@@ -280,8 +292,12 @@ func on_health_pressed():
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			SignalManager.health_gained.emit(amount)
-			for ball in balls:
+			if BallsManager.pick_random:
+				var ball = balls.pick_random()
 				ball.queue_free()
+			else:
+				for ball in balls:
+					ball.queue_free()
 			return
 
 #func on_health_pressed():
