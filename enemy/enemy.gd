@@ -25,7 +25,7 @@ var max_hp: int = 100
 var should_color_damage: bool = false
 var color_damage: int = 0
 var my_turn: bool = false
-var attacks: Array = ["damage", "chaos", "damage", "rock", "damage", "bomb", "damage", "color_damage"]
+var attacks: Array = ["damage", "rock", "damage", "bomb", "damage", "color_damage"]
 var rock_config: Dictionary = {
 		"tier": -2,
 		"sprite": preload("res://assets/balls/grey_body_circle.png"),
