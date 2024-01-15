@@ -45,12 +45,12 @@ func _ready():
 	SignalManager.shield_gained.connect(shield_gained)
 	BallsManager.ball_exploded.connect(ball_exploded)
 	#BallsManager.turn_finished.connect(turn_finished)
-	SignalManager.turn_started.connect(turn_started)
-	attack_button.text = "%s - Attack (%s)" % [ATTACK_MANA, ATTACK_AMOUNT]
+	#SignalManager.turn_started.connect(turn_started)
+	attack_button.text = "Attack 1 (%s)" % [ATTACK_AMOUNT]
 	attack_button.pressed.connect(on_attack_pressed)
-	shield_button.text = "%s - Shield (%s)" % [SHIELD_MANA, SHIELD_AMOUNT]
+	shield_button.text = "Defense 1 (%s)" % [SHIELD_AMOUNT]
 	shield_button.pressed.connect(on_shield_pressed)
-	heal_button.text = "%s - Heal (%s)" % [HEAL_MANA, HEAL_AMOUNT]
+	heal_button.text = "Buff 1 (%s)" % [HEAL_AMOUNT]
 	heal_button.pressed.connect(on_health_pressed)
 	ghost_ball_button.text = "%s - Ghost Ball" % GHOST_BALL_MANA
 	ghost_ball_button.pressed.connect(on_ghost_ball_pressed)
@@ -59,7 +59,7 @@ func _ready():
 	rainbow_button.text = "%s - Rainbow" % RAINBOW_MANA
 	rainbow_button.pressed.connect(on_rainbow_press)
 	update_health_ui(hp)
-	update_mana_ui(mana)
+	#update_mana_ui(mana)
 	shield_label.text = str(shield)
 	ghost_ball_sprite.texture = BallsManager.BALLS[selected_ball].sprite
 	ghost_ball_icon.texture = BallsManager.BALLS[selected_ball].icon
@@ -71,7 +71,48 @@ func mana_gained(amount: int):
 	mana += amount
 	if mana > 100:
 		mana = 100
-	update_mana_ui(mana)
+	#update_mana_ui(mana)
+
+func _process(delta):
+	check_attack_enabled()
+	check_defense_enabled()
+	check_buff_enabled()
+
+func check_attack_enabled():
+	var first_tier = 1
+	var tiers = [BallsManager.tier]
+	for tier in tiers:
+		var amount: int = ATTACK_AMOUNT
+		if (BallsManager.scale_with_tier):
+			amount *= tier
+		attack_button.text = "Attack %s (%s)" % [tier, amount]
+		var ball_tier = first_tier + ((tier - 1) * 3)
+		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+		attack_button.disabled = !balls.size() > 0
+
+func check_defense_enabled():
+	var first_tier = 2
+	var tiers = [BallsManager.tier]
+	for tier in tiers:
+		var amount: int = SHIELD_AMOUNT
+		if (BallsManager.scale_with_tier):
+			amount *= tier
+		shield_button.text = "Defense %s (%s)" % [tier, amount]
+		var ball_tier = first_tier + ((tier - 1) * 3)
+		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+		shield_button.disabled = !balls.size() > 0
+
+func check_buff_enabled():
+	var first_tier = 3
+	var tiers = [BallsManager.tier]
+	for tier in tiers:
+		var amount: int = HEAL_AMOUNT
+		if (BallsManager.scale_with_tier):
+			amount *= tier
+		heal_button.text = "Buff %s (%s)" % [tier, amount]
+		var ball_tier = first_tier + ((tier - 1) * 3)
+		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+		heal_button.disabled = !balls.size() > 0
 
 func turn_finished():
 	attack_button.disabled = true
@@ -82,9 +123,9 @@ func turn_finished():
 	rainbow_button.disabled = true
 
 func turn_started():
-	attack_button.disabled = false || mana < ATTACK_MANA
-	shield_button.disabled = false || mana < SHIELD_MANA
-	heal_button.disabled = false || mana < HEAL_MANA
+	attack_button.disabled = false
+	shield_button.disabled = false
+	heal_button.disabled = false 
 	ghost_ball_button.disabled = false || mana < GHOST_BALL_MANA
 	explode_button.disabled = false || mana < EXPLODE_MANA
 	rainbow_button.disabled = false || mana < RAINBOW_MANA
@@ -137,37 +178,82 @@ func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int):
 		mana = 100
 	explosion_chain = true
 	chain_explosion_timer.start()
-	update_mana_ui(mana)
+	#update_mana_ui(mana)
 
 func _on_chain_explosion_timer_timeout():
 	explosion_chain = false
 
 func on_attack_pressed():
-	if mana < ATTACK_MANA:
-		return
-	mana -= ATTACK_MANA
-	update_mana_ui(mana)
-	SignalManager.enemy_damaged.emit(ATTACK_AMOUNT)
+	var first_tier = 1
+	var tiers = [BallsManager.tier]
+	for tier in tiers:
+		var amount: int = ATTACK_AMOUNT
+		if BallsManager.scale_with_tier:
+			amount *= tier
+		var ball_tier = first_tier + ((tier - 1) * 3)
+		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+		if (balls.size() > 0):
+			SignalManager.enemy_damaged.emit(amount)
+			for ball in balls:
+				ball.queue_free()
+			return
+
+#func on_attack_pressed():
+	#if mana < ATTACK_MANA:
+		#return
+	#mana -= ATTACK_MANA
+	##update_mana_ui(mana)
+	#SignalManager.enemy_damaged.emit(ATTACK_AMOUNT)
 
 func on_shield_pressed():
-	if mana < SHIELD_MANA:
-		return
-	mana -= SHIELD_MANA
-	update_mana_ui(mana)
-	SignalManager.shield_gained.emit(SHIELD_AMOUNT)
+	var first_tier = 2
+	var tiers = [BallsManager.tier]
+	for tier in tiers:
+		var amount: int = SHIELD_AMOUNT
+		if BallsManager.scale_with_tier:
+			amount *= tier
+		var ball_tier = first_tier + ((tier - 1) * 3)
+		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+		if (balls.size() > 0):
+			SignalManager.shield_gained.emit(amount)
+			for ball in balls:
+				ball.queue_free()
+			return
+
+#func on_shield_pressed():
+	#if mana < SHIELD_MANA:
+		#return
+	#mana -= SHIELD_MANA
+	##update_mana_ui(mana)
+	#SignalManager.shield_gained.emit(SHIELD_AMOUNT)
 
 func on_health_pressed():
-	if mana < HEAL_MANA:
-		return
-	mana -= HEAL_MANA
-	update_mana_ui(mana)
-	SignalManager.health_gained.emit(HEAL_AMOUNT)
+	var first_tier = 3
+	var tiers = [BallsManager.tier]
+	for tier in tiers:
+		var amount: int = HEAL_AMOUNT
+		if BallsManager.scale_with_tier:
+			amount *= tier
+		var ball_tier = first_tier + ((tier - 1) * 3)
+		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+		if (balls.size() > 0):
+			SignalManager.health_gained.emit(amount)
+			for ball in balls:
+				ball.queue_free()
+			return
+
+#func on_health_pressed():
+	#if mana < HEAL_MANA:
+		#return
+	#mana -= HEAL_MANA
+	##update_mana_ui(mana)
+	#SignalManager.health_gained.emit(HEAL_AMOUNT)
 
 func on_ghost_ball_pressed():
 	if mana < GHOST_BALL_MANA:
 		return
 	mana -= GHOST_BALL_MANA
-	update_mana_ui(mana)
+	#update_mana_ui(mana)
 	var ghost_ball_config = Dictionary(BallsManager.BALLS[selected_ball].duplicate())
 	ghost_ball_config["type"] = "ghost"
 	BallsManager.set_current_ball(ghost_ball_config)
@@ -176,14 +262,14 @@ func on_explode_press():
 	if mana < EXPLODE_MANA:
 		return
 	mana -= EXPLODE_MANA
-	update_mana_ui(mana)
+	#update_mana_ui(mana)
 	SignalManager.explode_ball_tier.emit(BallsManager.BALLS[selected_ball].tier)
 
 func on_rainbow_press():
 	if mana < RAINBOW_MANA:
 		return
 	mana -= RAINBOW_MANA
-	update_mana_ui(mana)
+	#update_mana_ui(mana)
 	BallsManager.set_current_ball(rainbown_config)
 
 func _unhandled_input(event):
