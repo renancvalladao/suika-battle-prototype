@@ -2,6 +2,7 @@ extends Node2D
 
 class_name Enemy
 
+var max_hp: int = 100
 @export var hp: int = 100
 
 @onready var health_bar = $HealthBar
@@ -105,13 +106,15 @@ func ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int) -> void:
 func set_hp(amount: int) -> void:
 	hp = amount
 	if hp <= 0:
-		hp = 0
-		SignalManager.on_game_over.emit()
-		hide()
-	elif hp > 100:
-		hp = 100
+		max_hp *= 2
+		hp = max_hp
+		health_bar.max_value = max_hp
+		#SignalManager.on_game_over.emit()
+		#hide()
+	elif hp > max_hp:
+		hp = max_hp
 	health_bar.value = hp
-	health_label.text = str("%s/100" % hp)
+	health_label.text = str("%s/%s" % [hp, max_hp])
 
 func enemy_damaged(damage: int) -> void:
 	var new_hp = hp - damage

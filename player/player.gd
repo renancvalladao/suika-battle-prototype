@@ -1,6 +1,6 @@
 extends Node2D
 
-const ATTACK_MANA = 10
+const ATTACK_MANA = 20
 const ATTACK_AMOUNT = 10
 const SHIELD_MANA = 15
 const SHIELD_AMOUNT = 15
