@@ -3,9 +3,9 @@ extends Node2D
 const ATTACK_MANA = 20
 const ATTACK_AMOUNT = 10
 const SHIELD_MANA = 15
-const SHIELD_AMOUNT = 15
+const SHIELD_AMOUNT = 10
 const HEAL_MANA = 20
-const HEAL_AMOUNT = 20
+const HEAL_AMOUNT = 10
 const GHOST_BALL_MANA = 50
 const EXPLODE_MANA = 50
 const RAINBOW_MANA = 50
@@ -102,10 +102,10 @@ func check_attack_enabled():
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
 		var amount: int = ATTACK_AMOUNT
-		if (BallsManager.scale_with_tier):
-			amount *= tier
-		attack_button.text = "Attack %s (%s)" % [tier, amount]
 		var ball_tier = first_tier + ((tier - 1) * 3)
+		if (BallsManager.scale_with_tier):
+			amount *= ball_tier
+		attack_button.text = "Attack %s (%s)" % [tier, amount]
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		attack_button.disabled = !balls.size() > 0
 
@@ -114,10 +114,10 @@ func check_defense_enabled():
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
 		var amount: int = SHIELD_AMOUNT
-		if (BallsManager.scale_with_tier):
-			amount *= tier
-		shield_button.text = "Defense %s (%s)" % [tier, amount]
 		var ball_tier = first_tier + ((tier - 1) * 3)
+		if (BallsManager.scale_with_tier):
+			amount *= ball_tier
+		shield_button.text = "Defense %s (%s)" % [tier, amount]
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		shield_button.disabled = !balls.size() > 0
 
@@ -126,10 +126,10 @@ func check_buff_enabled():
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
 		var amount: int = HEAL_AMOUNT
-		if (BallsManager.scale_with_tier):
-			amount *= tier
-		heal_button.text = "Buff %s (%s)" % [tier, amount]
 		var ball_tier = first_tier + ((tier - 1) * 3)
+		if (BallsManager.scale_with_tier):
+			amount *= ball_tier
+		heal_button.text = "Buff %s (%s)" % [tier, amount]
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		heal_button.disabled = !balls.size() > 0
 
@@ -208,13 +208,12 @@ func on_lifesteal_press():
 	for tier in tiers:
 		var att_amount: int = ATTACK_AMOUNT
 		var h_amount: int = HEAL_AMOUNT
-		if BallsManager.scale_with_tier:
-			att_amount *= tier
-			h_amount *= tier
 		var do: bool = false
 		var all_balls = []
+		var ball_tiers = []
 		for first_tier in first_tiers:
 			var ball_tier = first_tier + ((tier - 1) * 3)
+			ball_tiers.append(ball_tier)
 			var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 			if BallsManager.pick_random:
 				var ball = balls.pick_random()
@@ -223,6 +222,9 @@ func on_lifesteal_press():
 				all_balls.append_array(balls)
 			do = balls.size() > 0
 		if (do):
+			if BallsManager.scale_with_tier:
+				att_amount *= ball_tiers[0]
+				h_amount *= ball_tiers[1]
 			SignalManager.enemy_damaged.emit(att_amount)
 			SignalManager.health_gained.emit(h_amount)
 			for ball in all_balls:
@@ -234,9 +236,9 @@ func on_attack_pressed():
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
 		var amount: int = ATTACK_AMOUNT
-		if BallsManager.scale_with_tier:
-			amount *= tier
 		var ball_tier = first_tier + ((tier - 1) * 3)
+		if BallsManager.scale_with_tier:
+			amount *= ball_tier
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			SignalManager.enemy_damaged.emit(amount)
@@ -260,9 +262,9 @@ func on_shield_pressed():
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
 		var amount: int = SHIELD_AMOUNT
-		if BallsManager.scale_with_tier:
-			amount *= tier
 		var ball_tier = first_tier + ((tier - 1) * 3)
+		if BallsManager.scale_with_tier:
+			amount *= ball_tier
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			SignalManager.shield_gained.emit(amount)
@@ -286,9 +288,9 @@ func on_health_pressed():
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
 		var amount: int = HEAL_AMOUNT
-		if BallsManager.scale_with_tier:
-			amount *= tier
 		var ball_tier = first_tier + ((tier - 1) * 3)
+		if BallsManager.scale_with_tier:
+			amount *= ball_tier
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			SignalManager.health_gained.emit(amount)
