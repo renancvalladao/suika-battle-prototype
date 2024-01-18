@@ -21,7 +21,9 @@ var max_hp: int = 100
 @onready var bomb_button = $Actions/BombButton
 @onready var color_damage_button = $Actions/ColorDamageButton
 @onready var finish_button = $Actions/FinishButton
+@onready var damage_label = $DamageLabel
 
+var enemy_damage: int = 40
 var should_color_damage: bool = false
 var color_damage: int = 0
 var my_turn: bool = false
@@ -74,6 +76,7 @@ func _ready():
 	bomb_button.pressed.connect(on_bomb_button)
 	color_damage_button.pressed.connect(on_color_damage_button)
 	finish_button.pressed.connect(finish_enemy_turn)
+	damage_label.text = str(enemy_damage)
 	set_hp(hp)
 
 func on_attack_button():
@@ -109,6 +112,8 @@ func set_hp(amount: int) -> void:
 		max_hp *= 2
 		hp = max_hp
 		health_bar.max_value = max_hp
+		enemy_damage += 20
+		damage_label.text = str(enemy_damage)
 		#SignalManager.on_game_over.emit()
 		#hide()
 	elif hp > max_hp:
@@ -161,7 +166,7 @@ func finish_enemy_turn():
 	SignalManager.enemy_moved.emit()
 
 func damage():
-	SignalManager.player_damaged.emit(40)
+	SignalManager.player_damaged.emit(enemy_damage)
 
 func heal():
 	set_hp(hp + 15)

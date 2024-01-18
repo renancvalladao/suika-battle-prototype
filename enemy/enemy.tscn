@@ -325,3 +325,28 @@ offset_bottom = 324.0
 theme_override_fonts/font = ExtResource("3_ajk7e")
 theme_override_font_sizes/font_size = 64
 text = "Finish"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.678431, 0.678431, 0.678431, 1)
+offset_left = -166.0
+offset_top = -14.0
+offset_right = -38.0
+offset_bottom = 114.0
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("4_sc4hj")
+
+[node name="DamageLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = 83.0
+offset_right = -84.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "40"
+label_settings = SubResource("LabelSettings_dg3ls")
+horizontal_alignment = 1
