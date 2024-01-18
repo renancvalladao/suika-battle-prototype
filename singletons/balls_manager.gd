@@ -84,8 +84,8 @@ var turn = 0
 var balls_effect: bool = false
 var auto_enemy: bool = true
 var tier: int = 1
-var scale_with_tier: bool = false
-var pick_random: bool = false
+var scale_with_tier: bool = true
+var pick_random: bool = true
 
 func _ready():
 	SignalManager.turn_started.connect(_turn_started)

@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var max_moves: int = 3
+@export var max_moves: int = 6
 
 @onready var moves_left_label = $MovesLeftLabel
 @onready var enemy: Enemy = $Enemy
@@ -13,7 +13,7 @@ extends Node2D
 @onready var pick_random_button = $PickRandomButton
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
-var moves_left: int = 3
+var moves_left: int = max_moves
 
 func _ready():
 	BallsManager.ball_exploded.connect(spawn_ball)
@@ -29,7 +29,9 @@ func _ready():
 	auto_check_button.pressed.connect(toggle_auto_enemy)
 	scale_tier_button.button_pressed = BallsManager.scale_with_tier
 	scale_tier_button.pressed.connect(toggle_scale_tier)
+	pick_random_button.button_pressed = BallsManager.pick_random
 	pick_random_button.pressed.connect(toggle_pick_random)
+	moves_left_label.text = "Moves Left: %s" % moves_left
 	#spawn_random_balls(50)
 
 func toggle_pick_random():
