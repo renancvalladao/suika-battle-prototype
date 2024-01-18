@@ -9,6 +9,7 @@ const HEAL_AMOUNT = 10
 const GHOST_BALL_MANA = 50
 const EXPLODE_MANA = 50
 const RAINBOW_MANA = 50
+const CHAOS_AMOUNT = 5
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
@@ -27,6 +28,7 @@ const RAINBOW_MANA = 50
 @onready var explode_icon = $VBoxContainer/ExplodeButton/SelectedBall/Icon
 @onready var rainbow_button = $VBoxContainer/RainbowButton
 @onready var lifesteal_button = $VBoxContainer/LifestealButton
+@onready var chaos_button = $VBoxContainer/ChaosButton
 
 var hp = 100
 var mana = 0
@@ -61,6 +63,8 @@ func _ready():
 	rainbow_button.pressed.connect(on_rainbow_press)
 	lifesteal_button.text = "Lifesteal 1"
 	lifesteal_button.pressed.connect(on_lifesteal_press)
+	chaos_button.text = "Chaos 1 (%s)" % CHAOS_AMOUNT
+	chaos_button.pressed.connect(on_chaos_press)
 	update_health_ui(hp)
 	#update_mana_ui(mana)
 	shield_label.text = str(shield)
@@ -81,6 +85,19 @@ func _process(delta):
 	check_defense_enabled()
 	check_buff_enabled()
 	check_lifesteal_enabled()
+	check_chaos_enabled()
+
+func check_chaos_enabled():
+	var first_tiers = [1, 2, 3]
+	var tiers = [BallsManager.tier]
+	for tier in tiers:
+		chaos_button.text = "Chaos %s (%s)" % [tier, CHAOS_AMOUNT * tier]
+		var enabled: Array = []
+		for first_tier in first_tiers:
+			var ball_tier = first_tier + ((tier - 1) * 3)
+			var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+			enabled.append(balls.size() > 0)
+		chaos_button.disabled = !enabled.all(check_enabled)
 
 func check_lifesteal_enabled():
 	var first_tiers = [1, 3]
@@ -201,6 +218,29 @@ func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int):
 
 func _on_chain_explosion_timer_timeout():
 	explosion_chain = false
+
+func on_chaos_press():
+	var first_tiers = [1, 2, 3]
+	var tiers = [BallsManager.tier]
+	for tier in tiers:
+		var do: bool = false
+		var all_balls = []
+		for first_tier in first_tiers:
+			var ball_tier = first_tier + ((tier - 1) * 3)
+			var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+			if BallsManager.pick_random:
+				var ball = balls.pick_random()
+				all_balls.append(ball)
+			else:
+				all_balls.append_array(balls)
+			do = balls.size() > 0
+		if (do):
+			for ball in all_balls:
+				ball.queue_free()
+			for i in range(CHAOS_AMOUNT * tier):
+				SignalManager.spawn_random_ball.emit()
+				await get_tree().create_timer(0.7).timeout
+			return
 
 func on_lifesteal_press():
 	var first_tiers = [1, 3]

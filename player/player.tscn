@@ -117,9 +117,9 @@ vertical_alignment = 1
 [node name="ChainExplosionTimer" type="Timer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_top = -303.0
+offset_top = -357.0
 offset_right = 346.0
-offset_bottom = -37.0
+offset_bottom = -91.0
 
 [node name="AttackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -267,6 +267,92 @@ offset_bottom = 56.0
 scale = Vector2(0.228919, 0.228919)
 
 [node name="Sprite" type="TextureRect" parent="VBoxContainer/LifestealButton/SelectedBall2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_hllbv")
+stretch_mode = 2
+
+[node name="ChaosButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_besmk")
+theme_override_font_sizes/font_size = 40
+text = "Chaos (5)"
+alignment = 0
+
+[node name="SelectedBall" type="Control" parent="VBoxContainer/ChaosButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 240.0
+offset_top = 16.0
+offset_right = 280.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/ChaosButton/SelectedBall"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.6306
+offset_top = -80.0
+offset_right = 61.3694
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_ochkj")
+stretch_mode = 2
+
+[node name="SelectedBall2" type="Control" parent="VBoxContainer/ChaosButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 276.0
+offset_top = 16.0
+offset_right = 316.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/ChaosButton/SelectedBall2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_uwl3p")
+stretch_mode = 2
+
+[node name="SelectedBall3" type="Control" parent="VBoxContainer/ChaosButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 16.0
+offset_right = 355.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/ChaosButton/SelectedBall3"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
