@@ -6,6 +6,8 @@ signal ball_dropped
 signal turn_finished
 signal current_ball_changed
 
+var character_selection: PackedScene = load("res://character_selection/character_selection.tscn")
+
 const BALLS = [
 	{
 		"tier": 1,
@@ -129,7 +131,8 @@ func _unhandled_input(event):
 		set_next_ball(current_ball)
 		set_current_ball(next)
 	if event.is_action_pressed("restart"):
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_packed(character_selection)
+		#get_tree().reload_current_scene()
 		current_ball = get_random_ball()
 		next_ball = get_random_ball()
 	if event.is_action_pressed("change_tier"):
