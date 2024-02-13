@@ -244,7 +244,6 @@ func _on_chain_explosion_timer_timeout():
 			#return
 
 func on_chaos_press():
-	var effect_scale := make_scale("chaos")
 	var first_tier = 3
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
@@ -252,15 +251,12 @@ func on_chaos_press():
 		var ball_tier = first_tier + ((tier - 1) * 3)
 		if BallsManager.scale_with_tier:
 			amount *= tier
-		amount *= effect_scale
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
-			if BallsManager.pick_random:
-				var ball = balls.pick_random()
-				ball.queue_free()
-			else:
-				for ball in balls:
-					ball.queue_free()
+			var ball: Ball = balls.pick_random()
+			var effect_scale := make_scale("chaos", ball)
+			amount *= effect_scale
+			ball.queue_free()
 			for i in range(amount):
 				SignalManager.spawn_random_ball.emit()
 				await get_tree().create_timer(0.7).timeout
@@ -296,7 +292,6 @@ func on_lifesteal_press():
 			return
 
 func on_attack_pressed():
-	var effect_scale := make_scale("attack")
 	var first_tier = 1
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
@@ -304,16 +299,13 @@ func on_attack_pressed():
 		var ball_tier = first_tier + ((tier - 1) * 3)
 		if BallsManager.scale_with_tier:
 			amount *= ball_tier
-		amount *= effect_scale
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
+			var ball = balls.pick_random()
+			var effect_scale := make_scale("attack", ball)
+			amount *= effect_scale
+			ball.queue_free()
 			SignalManager.enemy_damaged.emit(amount)
-			if BallsManager.pick_random:
-				var ball = balls.pick_random()
-				ball.queue_free()
-			else:
-				for ball in balls:
-					ball.queue_free()
 			return
 
 #func on_attack_pressed():
@@ -324,7 +316,6 @@ func on_attack_pressed():
 	#SignalManager.enemy_damaged.emit(ATTACK_AMOUNT)
 
 func on_shield_pressed():
-	var effect_scale := make_scale("shield")
 	var first_tier = 2
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
@@ -332,16 +323,13 @@ func on_shield_pressed():
 		var ball_tier = first_tier + ((tier - 1) * 3)
 		if BallsManager.scale_with_tier:
 			amount *= (ball_tier - 1)
-		amount *= effect_scale
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
+			var ball = balls.pick_random()
+			var effect_scale := make_scale("shield", ball)
+			amount *= effect_scale
+			ball.queue_free()
 			SignalManager.shield_gained.emit(amount)
-			if BallsManager.pick_random:
-				var ball = balls.pick_random()
-				ball.queue_free()
-			else:
-				for ball in balls:
-					ball.queue_free()
 			return
 
 #func on_shield_pressed():
@@ -410,7 +398,7 @@ func _unhandled_input(event):
 		explode_sprite.texture = BallsManager.BALLS[selected_ball].sprite
 		explode_icon.texture = BallsManager.BALLS[selected_ball].icon
 
-func make_scale(type: String) -> int:
+func make_scale(type: String, chosen_ball: Ball) -> int:
 	var tiers
 	if type == 'attack':
 		tiers = [1, 4, 7]
@@ -425,4 +413,6 @@ func make_scale(type: String) -> int:
 		total -= 1
 	if GameManager.character_chosen == GameManager.CHARACTER.FUSION:
 		total = GameManager.fusions
+	if GameManager.character_chosen == GameManager.CHARACTER.AREA:
+		total = chosen_ball.get_nearby_balls()
 	return total

@@ -4,6 +4,8 @@ class_name Ball
 
 @onready var sprite = $Sprite
 @onready var icon = $Icon
+@onready var near_balls = $NearBallsArea/NearBalls
+@onready var near_balls_area = $NearBallsArea
 
 var config: Dictionary = BallsManager.BALLS[0]
 var exploded: bool = false
@@ -15,6 +17,7 @@ func _ready():
 	$Sprite.texture = config.sprite
 	$Sprite.scale *= config.size
 	$CollisionShape2D.scale *= config.size
+	near_balls.scale *= config.size
 	if should_add_group:
 		add_to_group("ball_%s" % config.tier)
 
@@ -55,3 +58,10 @@ func make_effect():
 		SignalManager.enemy_damaged.emit(15)
 	else:
 		SignalManager.enemy_damaged.emit(10)
+
+func get_nearby_balls() -> int:
+	var total = 0
+	for body in near_balls_area.get_overlapping_bodies():
+		if body is Ball && body != self:
+			total += 1
+	return total
