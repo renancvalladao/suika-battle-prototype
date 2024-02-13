@@ -102,7 +102,7 @@ func turn_finished() -> void:
 	should_color_damage = false
 	color_damage_ui.visible = false
 
-func ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int) -> void:
+func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int) -> void:
 	if should_color_damage && tier == color_damage:
 		SignalManager.player_damaged.emit(10)
 
@@ -121,8 +121,8 @@ func set_hp(amount: int) -> void:
 	health_bar.value = hp
 	health_label.text = str("%s/%s" % [hp, max_hp])
 
-func enemy_damaged(damage: int) -> void:
-	var new_hp = hp - damage
+func enemy_damaged(damage_amount: int) -> void:
+	var new_hp = hp - damage_amount
 	set_hp(new_hp)
 
 func _process(_delta):
