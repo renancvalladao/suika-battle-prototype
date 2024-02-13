@@ -11,12 +11,13 @@ extends Node2D
 @onready var auto_check_button = $AutoCheckButton
 @onready var scale_tier_button = $ScaleTierButton
 @onready var pick_random_button = $PickRandomButton
+@onready var fusions_label = $FusionsLabel
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
 var moves_left: int = max_moves
 
 func _ready():
-	BallsManager.ball_exploded.connect(spawn_ball)
+	BallsManager.ball_exploded.connect(on_ball_exploded)
 	BallsManager.ball_dropped.connect(ball_dropped)
 	SignalManager.turn_started.connect(turn_started)
 	SignalManager.spawn_random_ball.connect(spawn_random_ball)
@@ -32,6 +33,7 @@ func _ready():
 	pick_random_button.button_pressed = BallsManager.pick_random
 	pick_random_button.pressed.connect(toggle_pick_random)
 	moves_left_label.text = "Moves Left: %s" % moves_left
+	fusions_label.text = "Fusions: 0"
 	#spawn_random_balls(50)
 
 func toggle_pick_random():
@@ -57,6 +59,11 @@ func spawn_random_balls(amount: int) -> void:
 		await get_tree().create_timer(.5).timeout
 	await get_tree().create_timer(2).timeout
 	SignalManager.turn_started.emit()
+
+func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int) -> void:
+	GameManager.fusions += 1
+	fusions_label.text = "Fusions: %s" % GameManager.fusions
+	spawn_ball(first_pos, second_pos, tier)
 
 func spawn_ball(first_pos: Vector2, second_pos: Vector2, tier: int):
 	if tier == BallsManager.BALLS.size():
@@ -84,6 +91,8 @@ func on_enemy_moved():
 func turn_started() -> void:
 	moves_left = max_moves
 	moves_left_label.text = "Moves Left: %s" % moves_left
+	GameManager.fusions = 0
+	fusions_label.text = "Fusions: %s" % GameManager.fusions
 
 func spawn_random_ball() -> void:
 	var x = randf_range(position_min.position.x, position_max.position.x)

@@ -56,6 +56,14 @@ position = Vector2(1360, 80)
 [node name="Enemy" parent="." instance=ExtResource("6_t4nb7")]
 position = Vector2(180, 138)
 
+[node name="FusionsLabel" type="Label" parent="."]
+offset_left = 1452.0
+offset_top = 18.0
+offset_right = 1909.0
+offset_bottom = 91.0
+text = "Fusions: 0"
+label_settings = ExtResource("7_gne4q")
+
 [node name="MovesLeftLabel" type="Label" parent="."]
 offset_left = 1452.0
 offset_top = 92.0
