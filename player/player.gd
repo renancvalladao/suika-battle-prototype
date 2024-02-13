@@ -9,7 +9,7 @@ const HEAL_AMOUNT = 10
 const GHOST_BALL_MANA = 50
 const EXPLODE_MANA = 50
 const RAINBOW_MANA = 50
-const CHAOS_AMOUNT = 5
+const CHAOS_AMOUNT = 2
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
@@ -88,7 +88,8 @@ func _process(delta):
 	check_chaos_enabled()
 
 func check_chaos_enabled():
-	var first_tiers = [1, 2, 3]
+	#var first_tiers = [1, 2, 3]
+	var first_tiers = [3]
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
 		chaos_button.text = "Chaos %s (%s)" % [tier, CHAOS_AMOUNT * tier]
@@ -133,7 +134,7 @@ func check_defense_enabled():
 		var amount: int = SHIELD_AMOUNT
 		var ball_tier = first_tier + ((tier - 1) * 3)
 		if (BallsManager.scale_with_tier):
-			amount *= ball_tier
+			amount *= (ball_tier - 1)
 		shield_button.text = "Defense %s (%s)" % [tier, amount]
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		shield_button.disabled = !balls.size() > 0
@@ -219,25 +220,48 @@ func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int):
 func _on_chain_explosion_timer_timeout():
 	explosion_chain = false
 
+#func on_chaos_press():
+	#var first_tiers = [1, 2, 3]
+	#var tiers = [BallsManager.tier]
+	#for tier in tiers:
+		#var do: bool = false
+		#var all_balls = []
+		#for first_tier in first_tiers:
+			#var ball_tier = first_tier + ((tier - 1) * 3)
+			#var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+			#if BallsManager.pick_random:
+				#var ball = balls.pick_random()
+				#all_balls.append(ball)
+			#else:
+				#all_balls.append_array(balls)
+			#do = balls.size() > 0
+		#if (do):
+			#for ball in all_balls:
+				#ball.queue_free()
+			#for i in range(CHAOS_AMOUNT * tier):
+				#SignalManager.spawn_random_ball.emit()
+				#await get_tree().create_timer(0.7).timeout
+			#return
+
 func on_chaos_press():
-	var first_tiers = [1, 2, 3]
+	var scale := make_scale("chaos")
+	var first_tier = 3
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
-		var do: bool = false
-		var all_balls = []
-		for first_tier in first_tiers:
-			var ball_tier = first_tier + ((tier - 1) * 3)
-			var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+		var amount: int = CHAOS_AMOUNT
+		var ball_tier = first_tier + ((tier - 1) * 3)
+		if BallsManager.scale_with_tier:
+			amount *= tier
+		amount *= scale
+		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
+		if (balls.size() > 0):
 			if BallsManager.pick_random:
 				var ball = balls.pick_random()
-				all_balls.append(ball)
-			else:
-				all_balls.append_array(balls)
-			do = balls.size() > 0
-		if (do):
-			for ball in all_balls:
 				ball.queue_free()
-			for i in range(CHAOS_AMOUNT * tier):
+			else:
+				for ball in balls:
+					ball.queue_free()
+			for i in range(amount):
 				SignalManager.spawn_random_ball.emit()
 				await get_tree().create_timer(0.7).timeout
 			return
@@ -272,6 +296,7 @@ func on_lifesteal_press():
 			return
 
 func on_attack_pressed():
+	var scale := make_scale("attack")
 	var first_tier = 1
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
@@ -279,6 +304,7 @@ func on_attack_pressed():
 		var ball_tier = first_tier + ((tier - 1) * 3)
 		if BallsManager.scale_with_tier:
 			amount *= ball_tier
+		amount *= scale
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			SignalManager.enemy_damaged.emit(amount)
@@ -298,13 +324,15 @@ func on_attack_pressed():
 	#SignalManager.enemy_damaged.emit(ATTACK_AMOUNT)
 
 func on_shield_pressed():
+	var scale := make_scale("shield")
 	var first_tier = 2
 	var tiers = [BallsManager.tier]
 	for tier in tiers:
 		var amount: int = SHIELD_AMOUNT
 		var ball_tier = first_tier + ((tier - 1) * 3)
 		if BallsManager.scale_with_tier:
-			amount *= ball_tier
+			amount *= (ball_tier - 1)
+		amount *= scale
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			SignalManager.shield_gained.emit(amount)
@@ -381,3 +409,18 @@ func _unhandled_input(event):
 		ghost_ball_icon.texture = BallsManager.BALLS[selected_ball].icon
 		explode_sprite.texture = BallsManager.BALLS[selected_ball].sprite
 		explode_icon.texture = BallsManager.BALLS[selected_ball].icon
+
+func make_scale(type: String) -> int:
+	var tiers
+	if type == 'attack':
+		tiers = [1, 4, 7]
+	elif type == 'shield':
+		tiers = [2, 5, 8]
+	else:
+		tiers = [3, 6, 9]
+	var total = 0
+	if GameManager.character_chosen == GameManager.CHARACTER.QUANTITY:
+		for tier in tiers:
+			total += get_tree().get_nodes_in_group("ball_%s" % tier).size()
+		total -= 1
+	return total
