@@ -7,7 +7,7 @@ var character_images = {
 	GameManager.CHARACTER.ALL: preload("res://assets/characters/all_scale.jpg")
 }
 
-@export var max_moves: int = 6
+@export var max_moves: int = GameManager.max_balls
 
 @onready var moves_left_label = $MovesLeftLabel
 @onready var enemy: Enemy = $Enemy
