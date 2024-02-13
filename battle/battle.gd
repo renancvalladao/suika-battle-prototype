@@ -1,5 +1,12 @@
 extends Node2D
 
+var character_images = {
+	GameManager.CHARACTER.QUANTITY: preload("res://assets/characters/quantity_scale.jpg"),
+	GameManager.CHARACTER.FUSION: preload("res://assets/characters/fusion_scale.jpg"),
+	GameManager.CHARACTER.AREA: preload("res://assets/characters/area_scale.png"),
+	GameManager.CHARACTER.ALL: preload("res://assets/characters/all_scale.jpg")
+}
+
 @export var max_moves: int = 6
 
 @onready var moves_left_label = $MovesLeftLabel
@@ -12,6 +19,7 @@ extends Node2D
 @onready var scale_tier_button = $ScaleTierButton
 @onready var pick_random_button = $PickRandomButton
 @onready var fusions_label = $FusionsLabel
+@onready var character = $Character
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
 var moves_left: int = max_moves
@@ -34,6 +42,8 @@ func _ready():
 	pick_random_button.pressed.connect(toggle_pick_random)
 	moves_left_label.text = "Moves Left: %s" % moves_left
 	fusions_label.text = "Fusions: 0"
+	character.texture = character_images[GameManager.character_chosen]
+	
 	#spawn_random_balls(50)
 
 func toggle_pick_random():

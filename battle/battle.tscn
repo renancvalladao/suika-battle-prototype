@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=11 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://beei3ex2riwi8" path="res://enemy/enemy.tscn" id="6_t4nb7"]
 [ext_resource type="LabelSettings" uid="uid://d171akdbrrrry" path="res://resources/font_white.tres" id="7_gne4q"]
 [ext_resource type="PackedScene" uid="uid://bwrxmlqbt6fd" path="res://player/player.tscn" id="8_6rvjb"]
+[ext_resource type="Texture2D" uid="uid://cqtexkon8cfub" path="res://assets/characters/all_scale.jpg" id="10_ten7u"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_fl8ju")
@@ -145,3 +146,11 @@ offset_right = 492.0
 offset_bottom = 36.0
 scale = Vector2(2.32, 2.32)
 focus_mode = 0
+
+[node name="Character" type="TextureRect" parent="."]
+offset_left = 1582.0
+offset_top = 496.0
+offset_right = 2758.0
+offset_bottom = 1453.0
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("10_ten7u")
