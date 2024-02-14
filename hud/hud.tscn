@@ -32,9 +32,9 @@ script = ExtResource("1_5sxdd")
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = -256.0
-offset_top = 194.0
+offset_top = 232.0
 offset_right = -90.0
-offset_bottom = 267.0
+offset_bottom = 305.0
 text = "NEXT"
 label_settings = ExtResource("2_at335")
 

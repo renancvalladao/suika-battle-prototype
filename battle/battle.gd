@@ -20,9 +20,11 @@ var character_images = {
 @onready var pick_random_button = $PickRandomButton
 @onready var fusions_label = $FusionsLabel
 @onready var character = $Character
+@onready var turn_counter_label = $TurnCounterLabel
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
 var moves_left: int = max_moves
+var turn: int = 0
 
 func _ready():
 	BallsManager.ball_exploded.connect(on_ball_exploded)
@@ -43,8 +45,10 @@ func _ready():
 	moves_left_label.text = "Balls Left: %s" % moves_left
 	fusions_label.text = "Fusions: 0"
 	character.texture = character_images[GameManager.character_chosen]
+	turn_counter_label.text = "Turn: 0"
 	
 	#spawn_random_balls(50)
+	SignalManager.turn_started.emit()
 
 func toggle_pick_random():
 	BallsManager.pick_random = !BallsManager.pick_random
@@ -68,7 +72,6 @@ func spawn_random_balls(amount: int) -> void:
 		SignalManager.spawn_random_ball.emit()
 		await get_tree().create_timer(.5).timeout
 	await get_tree().create_timer(2).timeout
-	SignalManager.turn_started.emit()
 
 func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int) -> void:
 	GameManager.fusions += 1
@@ -99,6 +102,8 @@ func on_enemy_moved():
 	SignalManager.turn_started.emit()
 
 func turn_started() -> void:
+	turn += 1
+	turn_counter_label.text = "Turn: %s" % turn
 	moves_left = max_moves
 	moves_left_label.text = "Balls Left: %s" % moves_left
 	GameManager.fusions = 0

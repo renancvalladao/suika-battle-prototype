@@ -73,6 +73,14 @@ offset_bottom = 165.0
 text = "Moves Left: 3"
 label_settings = ExtResource("7_gne4q")
 
+[node name="TurnCounterLabel" type="Label" parent="."]
+offset_left = 1448.0
+offset_top = 153.0
+offset_right = 1905.0
+offset_bottom = 226.0
+text = "Turn: 0"
+label_settings = ExtResource("7_gne4q")
+
 [node name="Player" parent="." instance=ExtResource("8_6rvjb")]
 position = Vector2(58, 948)
 
