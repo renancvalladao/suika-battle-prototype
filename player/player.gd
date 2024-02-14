@@ -30,6 +30,11 @@ const CHAOS_AMOUNT = 2
 @onready var lifesteal_button = $VBoxContainer/LifestealButton
 @onready var chaos_button = $VBoxContainer/ChaosButton
 
+var action_tiers = {
+	"attack": 1,
+	"shield": 1,
+	"chaos": 1
+}
 var hp = 100
 var mana = 0
 var shield = 0
@@ -90,7 +95,7 @@ func _process(_delta):
 func check_chaos_enabled():
 	#var first_tiers = [1, 2, 3]
 	var first_tiers = [3]
-	var tiers = [BallsManager.tier]
+	var tiers = [action_tiers.chaos]
 	for tier in tiers:
 		chaos_button.text = "Chaos %s (%s)" % [tier, CHAOS_AMOUNT * tier]
 		var enabled: Array = []
@@ -117,7 +122,7 @@ func check_enabled(enabled):
 
 func check_attack_enabled():
 	var first_tier = 1
-	var tiers = [BallsManager.tier]
+	var tiers = [action_tiers.attack]
 	for tier in tiers:
 		var amount: int = ATTACK_AMOUNT
 		var ball_tier = first_tier + ((tier - 1) * 3)
@@ -129,7 +134,7 @@ func check_attack_enabled():
 
 func check_defense_enabled():
 	var first_tier = 2
-	var tiers = [BallsManager.tier]
+	var tiers = [action_tiers.shield]
 	for tier in tiers:
 		var amount: int = SHIELD_AMOUNT
 		var ball_tier = first_tier + ((tier - 1) * 3)
@@ -245,7 +250,7 @@ func _on_chain_explosion_timer_timeout():
 
 func on_chaos_press():
 	var first_tier = 3
-	var tiers = [BallsManager.tier]
+	var tiers = [action_tiers.chaos]
 	for tier in tiers:
 		var amount: int = CHAOS_AMOUNT
 		var ball_tier = first_tier + ((tier - 1) * 3)
@@ -253,6 +258,7 @@ func on_chaos_press():
 			amount *= tier
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
+			increase_action_tier("chaos")
 			var ball: Ball = balls.pick_random()
 			var effect_scale := make_scale("chaos", ball)
 			amount *= effect_scale
@@ -293,7 +299,7 @@ func on_lifesteal_press():
 
 func on_attack_pressed():
 	var first_tier = 1
-	var tiers = [BallsManager.tier]
+	var tiers = [action_tiers.attack]
 	for tier in tiers:
 		var amount: int = ATTACK_AMOUNT
 		var ball_tier = first_tier + ((tier - 1) * 3)
@@ -301,6 +307,7 @@ func on_attack_pressed():
 			amount *= ball_tier
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
+			increase_action_tier("attack")
 			var ball = balls.pick_random()
 			var effect_scale := make_scale("attack", ball)
 			amount *= effect_scale
@@ -317,7 +324,7 @@ func on_attack_pressed():
 
 func on_shield_pressed():
 	var first_tier = 2
-	var tiers = [BallsManager.tier]
+	var tiers = [action_tiers.shield]
 	for tier in tiers:
 		var amount: int = SHIELD_AMOUNT
 		var ball_tier = first_tier + ((tier - 1) * 3)
@@ -325,6 +332,7 @@ func on_shield_pressed():
 			amount *= (ball_tier - 1)
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
+			increase_action_tier("shield")
 			var ball = balls.pick_random()
 			var effect_scale := make_scale("shield", ball)
 			amount *= effect_scale
@@ -416,3 +424,8 @@ func make_scale(type: String, chosen_ball: Ball) -> int:
 	if GameManager.character_chosen == GameManager.CHARACTER.AREA:
 		total = chosen_ball.get_nearby_balls()
 	return total
+
+func increase_action_tier(action: String) -> void:
+	action_tiers[action] += 1
+	if action_tiers[action] > 3:
+		action_tiers[action] = 1

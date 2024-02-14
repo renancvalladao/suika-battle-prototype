@@ -135,7 +135,7 @@ func _unhandled_input(event):
 		#get_tree().reload_current_scene()
 		current_ball = get_random_ball()
 		next_ball = get_random_ball()
-	if event.is_action_pressed("change_tier"):
-		tier += 1
-		if tier > 3:
-			tier = 1
+	#if event.is_action_pressed("change_tier"):
+		#tier += 1
+		#if tier > 3:
+			#tier = 1
