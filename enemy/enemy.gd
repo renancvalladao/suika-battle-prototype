@@ -22,6 +22,7 @@ var max_hp: int = 100
 @onready var color_damage_button = $Actions/ColorDamageButton
 @onready var finish_button = $Actions/FinishButton
 @onready var damage_label = $DamageLabel
+@onready var damage_icon = $TextureRect
 
 var enemy_damage: int = 40
 var should_color_damage: bool = false
@@ -133,6 +134,8 @@ func _process(_delta):
 	sprite.texture = attack_config.sprite
 	icon.texture = attack_config.icon
 	actions.visible = !BallsManager.auto_enemy && my_turn
+	damage_label.visible = attack == "damage"
+	damage_icon.visible = damage_label.visible
 
 func start_turn() -> void:
 	my_turn = true
