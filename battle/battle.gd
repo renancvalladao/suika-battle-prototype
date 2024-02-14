@@ -40,7 +40,7 @@ func _ready():
 	scale_tier_button.pressed.connect(toggle_scale_tier)
 	pick_random_button.button_pressed = BallsManager.pick_random
 	pick_random_button.pressed.connect(toggle_pick_random)
-	moves_left_label.text = "Moves Left: %s" % moves_left
+	moves_left_label.text = "Balls Left: %s" % moves_left
 	fusions_label.text = "Fusions: 0"
 	character.texture = character_images[GameManager.character_chosen]
 	
@@ -87,7 +87,7 @@ func spawn_ball(first_pos: Vector2, second_pos: Vector2, tier: int):
 
 func ball_dropped():
 	moves_left -= 1
-	moves_left_label.text = "Moves Left: %s" % moves_left
+	moves_left_label.text = "Balls Left: %s" % moves_left
 	if moves_left == 0:
 		BallsManager.turn_finished.emit()
 		await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
@@ -100,7 +100,7 @@ func on_enemy_moved():
 
 func turn_started() -> void:
 	moves_left = max_moves
-	moves_left_label.text = "Moves Left: %s" % moves_left
+	moves_left_label.text = "Balls Left: %s" % moves_left
 	GameManager.fusions = 0
 	fusions_label.text = "Fusions: %s" % GameManager.fusions
 
