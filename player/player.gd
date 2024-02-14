@@ -46,6 +46,7 @@ var rainbown_config: Dictionary = {
 	"icon": preload("res://assets/icons/crown.png"),
 	"size": 1
 }
+var first_turn = true
 
 func _ready():
 	SignalManager.player_damaged.connect(player_damaged)
@@ -54,6 +55,7 @@ func _ready():
 	BallsManager.ball_exploded.connect(ball_exploded)
 	#BallsManager.turn_finished.connect(turn_finished)
 	#SignalManager.turn_started.connect(turn_started)
+	SignalManager.turn_started.connect(pick_random_actions_tier)
 	attack_button.text = "Attack 1 (%s)" % [ATTACK_AMOUNT]
 	attack_button.pressed.connect(on_attack_pressed)
 	shield_button.text = "Defense 1 (%s)" % [SHIELD_AMOUNT]
@@ -78,6 +80,17 @@ func _ready():
 	explode_sprite.texture = BallsManager.BALLS[selected_ball].sprite
 	explode_icon.texture = BallsManager.BALLS[selected_ball].icon
 	SignalManager.mana_gained.connect(mana_gained)
+
+func pick_random_actions_tier():
+	if first_turn:
+		first_turn = false
+		return
+	for key in action_tiers.keys():
+		var current_tier = action_tiers[key]
+		var possible_tiers = [1, 2, 3]
+		possible_tiers.erase(current_tier)
+		var next_tier = possible_tiers.pick_random()
+		action_tiers[key] = next_tier
 
 func mana_gained(amount: int):
 	mana += amount
