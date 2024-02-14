@@ -5,6 +5,9 @@ extends Control
 @onready var add_mana_button = $AddManaButton
 @onready var balls_options = $BallsOptions
 @onready var add_health_button = $AddHealthButton
+@onready var red_label = $BallsCounter/RedBalls/Label
+@onready var green_label = $BallsCounter/GreenBalls/Label
+@onready var blue_label = $BallsCounter/BlueBalls/Label
 
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
@@ -16,6 +19,25 @@ func _ready():
 		ball.get_child(0).texture = BallsManager.BALLS[index].sprite
 		ball.get_child(1).texture = BallsManager.BALLS[index].icon
 	set_next_ball()
+
+func _process(_delta):
+	red_label.text = "%s" % get_balls_by_color("red")
+	green_label.text = "%s" % get_balls_by_color("green")
+	blue_label.text = "%s" % get_balls_by_color("blue")
+	
+
+func get_balls_by_color(color: String) -> int:
+	var tiers = []
+	if color == "red":
+		tiers = [1, 4, 7]
+	elif color == "green":
+		tiers = [2, 5, 8]
+	else:
+		tiers = [3, 6, 9]
+	var total = 0
+	for tier in tiers:
+		total += get_tree().get_nodes_in_group("ball_%s" % tier).size()
+	return total
 
 func set_next_ball() -> void:
 	var next_ball = BallsManager.get_next_ball()
