@@ -29,6 +29,7 @@ const CHAOS_AMOUNT = 2
 @onready var rainbow_button = $VBoxContainer/RainbowButton
 @onready var lifesteal_button = $VBoxContainer/LifestealButton
 @onready var chaos_button = $VBoxContainer/ChaosButton
+@onready var actions_left_label = $VBoxContainer/ActionsLeftLabel
 
 var action_tiers = {
 	"attack": 1,
@@ -47,6 +48,7 @@ var rainbown_config: Dictionary = {
 	"size": 1
 }
 var first_turn = true
+var actions_left = GameManager.max_actions
 
 func _ready():
 	SignalManager.player_damaged.connect(player_damaged)
@@ -80,8 +82,14 @@ func _ready():
 	explode_sprite.texture = BallsManager.BALLS[selected_ball].sprite
 	explode_icon.texture = BallsManager.BALLS[selected_ball].icon
 	SignalManager.mana_gained.connect(mana_gained)
+	actions_left_label.text = "Actions Left: %s" % actions_left
+
+func update_actions_left(value: int) -> void:
+	actions_left = value
+	actions_left_label.text = "Actions Left: %s" % actions_left
 
 func pick_random_actions_tier():
+	update_actions_left(GameManager.max_actions)
 	if first_turn:
 		first_turn = false
 		return
@@ -101,12 +109,15 @@ func mana_gained(amount: int):
 func _process(_delta):
 	check_attack_enabled()
 	check_defense_enabled()
-	check_buff_enabled()
-	check_lifesteal_enabled()
+	#check_buff_enabled()
+	#check_lifesteal_enabled()
 	check_chaos_enabled()
 
 func check_chaos_enabled():
 	#var first_tiers = [1, 2, 3]
+	if actions_left <= 0:
+		chaos_button.disabled = true
+		return
 	var first_tiers = [3]
 	var tiers = [action_tiers.chaos]
 	for tier in tiers:
@@ -134,6 +145,9 @@ func check_enabled(enabled):
 	return enabled
 
 func check_attack_enabled():
+	if actions_left <= 0:
+		attack_button.disabled = true
+		return
 	var first_tier = 1
 	var tiers = [action_tiers.attack]
 	for tier in tiers:
@@ -146,6 +160,9 @@ func check_attack_enabled():
 		attack_button.disabled = !balls.size() > 0
 
 func check_defense_enabled():
+	if actions_left <= 0:
+		shield_button.disabled = true
+		return
 	var first_tier = 2
 	var tiers = [action_tiers.shield]
 	for tier in tiers:
@@ -272,6 +289,7 @@ func on_chaos_press():
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			increase_action_tier("chaos")
+			update_actions_left(actions_left - 1)
 			var ball: Ball = balls.pick_random()
 			var effect_scale := make_scale("chaos", ball)
 			amount *= effect_scale
@@ -321,6 +339,7 @@ func on_attack_pressed():
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			increase_action_tier("attack")
+			update_actions_left(actions_left - 1)
 			var ball = balls.pick_random()
 			var effect_scale := make_scale("attack", ball)
 			amount *= effect_scale
@@ -346,6 +365,7 @@ func on_shield_pressed():
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			increase_action_tier("shield")
+			update_actions_left(actions_left - 1)
 			var ball = balls.pick_random()
 			var effect_scale := make_scale("shield", ball)
 			amount *= effect_scale
