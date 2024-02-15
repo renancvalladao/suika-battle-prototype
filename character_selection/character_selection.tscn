@@ -91,5 +91,45 @@ offset_bottom = 820.0
 theme_override_font_sizes/font_size = 80
 text = "Balls / turn"
 
+[node name="ActionMinus" type="Button" parent="."]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 835.0
+offset_right = 215.0
+offset_bottom = 1005.0
+theme_override_font_sizes/font_size = 60
+text = "-"
+
+[node name="ActionPlus" type="Button" parent="."]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 835.0
+offset_right = 501.0
+offset_bottom = 1005.0
+theme_override_font_sizes/font_size = 60
+text = "+"
+
+[node name="ActionsQuantity" type="Label" parent="."]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 829.0
+offset_right = 414.0
+offset_bottom = 994.0
+theme_override_font_sizes/font_size = 120
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 710.0
+offset_right = 574.0
+offset_bottom = 820.0
+theme_override_font_sizes/font_size = 80
+text = "Actions / turn"
+
 [connection signal="pressed" from="MinusButton" to="." method="_on_minus_button_pressed"]
 [connection signal="pressed" from="PlusButton" to="." method="_on_plus_button_pressed"]
+[connection signal="pressed" from="ActionMinus" to="." method="_on_action_minus_pressed"]
+[connection signal="pressed" from="ActionPlus" to="." method="_on_action_plus_pressed"]
