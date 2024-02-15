@@ -62,6 +62,6 @@ func make_effect():
 func get_nearby_balls() -> int:
 	var total = 0
 	for body in near_balls_area.get_overlapping_bodies():
-		if body is Ball && body != self:
+		if body is Ball && body != self && body.config.tier != -2:
 			total += 1
 	return total
