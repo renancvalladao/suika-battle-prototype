@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5d3utm7alcgv"]
+[gd_scene load_steps=7 format=3 uid="uid://c5d3utm7alcgv"]
 
 [ext_resource type="Script" path="res://ball/ball.gd" id="1_aaf3s"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_r3t8n"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="2_44oov"]
+[ext_resource type="Texture2D" uid="uid://c1s8sy22qyutu" path="res://assets/balls/yellow_body_circle.png" id="4_1g7ns"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e2kl0"]
 radius = 80.0
@@ -31,7 +32,16 @@ shape = SubResource("CircleShape2D_e2kl0")
 
 [node name="NearBallsArea" type="Area2D" parent="."]
 
+[node name="Range" type="Sprite2D" parent="NearBallsArea"]
+visible = false
+modulate = Color(1, 1, 1, 0.482353)
+z_index = 10
+scale = Vector2(0.335, 0.335)
+texture = ExtResource("4_1g7ns")
+
 [node name="NearBalls" type="CollisionShape2D" parent="NearBallsArea"]
 shape = SubResource("CircleShape2D_cb3tl")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="mouse_entered" from="NearBallsArea" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="NearBallsArea" to="." method="_on_mouse_exited"]
