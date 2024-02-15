@@ -26,7 +26,7 @@ var max_hp: int = 100
 
 var enemy_damage: int = 40
 var should_color_damage: bool = false
-var color_damage: int = 0
+var color_damage: Array[int] = []
 var my_turn: bool = false
 var attacks: Array = ["damage", "rock", "damage", "bomb", "damage", "color_damage"]
 var rock_config: Dictionary = {
@@ -99,12 +99,12 @@ func on_color_damage_button():
 	_color_damage()
 
 func turn_finished() -> void:
-	await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
+	#await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
 	should_color_damage = false
 	color_damage_ui.visible = false
 
 func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int) -> void:
-	if should_color_damage && tier == color_damage:
+	if should_color_damage && !my_turn && color_damage.has(tier):
 		SignalManager.player_damaged.emit(10)
 
 func set_hp(amount: int) -> void:
@@ -189,8 +189,10 @@ func bomb():
 
 func _color_damage():
 	should_color_damage = true
-	var ball = BallsManager.BALLS.pick_random()
-	color_damage_icon.texture = ball.icon
+	var possible_colors = [0, 1, 2]
+	var chosen_color = possible_colors.pick_random()
+	var ball = BallsManager.BALLS[chosen_color]
+	#color_damage_icon.texture = ball.icon
 	color_damage_sprite.texture = ball.sprite
-	color_damage = ball.tier
+	color_damage = [ball.tier, ball.tier + 3, ball.tier + 6]
 	color_damage_ui.visible = true

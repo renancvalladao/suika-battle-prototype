@@ -149,6 +149,7 @@ texture = ExtResource("6_o18b1")
 stretch_mode = 2
 
 [node name="Icon" type="TextureRect" parent="ColorDamage"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
