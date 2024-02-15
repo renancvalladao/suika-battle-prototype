@@ -69,7 +69,8 @@ func get_nearby_balls() -> int:
 	return total
 
 func _on_mouse_entered():
-	near_range.visible = true
+	if GameManager.character_chosen == GameManager.CHARACTER.AREA:
+		near_range.visible = true
 
 func _on_mouse_exited():
 	near_range.visible = false
