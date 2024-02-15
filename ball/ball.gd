@@ -7,6 +7,7 @@ class_name Ball
 @onready var near_balls = $NearBallsArea/NearBalls
 @onready var near_balls_area = $NearBallsArea
 @onready var near_range = $NearBallsArea/Range
+@onready var near_balls_label = $NearBallsLabel
 
 var config: Dictionary = BallsManager.BALLS[0]
 var exploded: bool = false
@@ -68,9 +69,15 @@ func get_nearby_balls() -> int:
 			total += 1
 	return total
 
+func _process(_delta):
+	if near_balls_label.visible:
+		near_balls_label.text = str(get_nearby_balls())
+
 func _on_mouse_entered():
 	if GameManager.character_chosen == GameManager.CHARACTER.AREA:
+		near_balls_label.visible = true
 		near_range.visible = true
 
 func _on_mouse_exited():
+	near_balls_label.visible = false
 	near_range.visible = false
