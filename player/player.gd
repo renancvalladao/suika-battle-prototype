@@ -30,6 +30,7 @@ const CHAOS_AMOUNT = 2
 @onready var lifesteal_button = $VBoxContainer/LifestealButton
 @onready var chaos_button = $VBoxContainer/ChaosButton
 @onready var actions_left_label = $VBoxContainer/ActionsLeftLabel
+@onready var end_turn_button = $VBoxContainer/EndTurnButton
 
 var action_tiers = {
 	"attack": 1,
@@ -49,6 +50,7 @@ var rainbown_config: Dictionary = {
 }
 var first_turn = true
 var actions_left = GameManager.max_actions
+var my_turn = false
 
 func _ready():
 	SignalManager.player_damaged.connect(player_damaged)
@@ -58,6 +60,7 @@ func _ready():
 	#BallsManager.turn_finished.connect(turn_finished)
 	#SignalManager.turn_started.connect(turn_started)
 	SignalManager.turn_started.connect(pick_random_actions_tier)
+	SignalManager.all_balls_dropped.connect(enable_end_turn)
 	attack_button.text = "Attack 1 (%s)" % [ATTACK_AMOUNT]
 	attack_button.pressed.connect(on_attack_pressed)
 	shield_button.text = "Defense 1 (%s)" % [SHIELD_AMOUNT]
@@ -83,12 +86,23 @@ func _ready():
 	explode_icon.texture = BallsManager.BALLS[selected_ball].icon
 	SignalManager.mana_gained.connect(mana_gained)
 	actions_left_label.text = "Actions Left: %s" % actions_left
+	end_turn_button.pressed.connect(on_end_turn_press)
+
+func on_end_turn_press():
+	BallsManager.turn_finished.emit()
+	end_turn_button.disabled = true
+	my_turn = false
+
+func enable_end_turn():
+	end_turn_button.disabled = false
 
 func update_actions_left(value: int) -> void:
 	actions_left = value
 	actions_left_label.text = "Actions Left: %s" % actions_left
 
 func pick_random_actions_tier():
+	my_turn = true
+	end_turn_button.disabled = true
 	shield = 0
 	shield_label.text = str(shield)
 	update_actions_left(GameManager.max_actions)
@@ -117,7 +131,7 @@ func _process(_delta):
 
 func check_chaos_enabled():
 	#var first_tiers = [1, 2, 3]
-	if actions_left <= 0:
+	if actions_left <= 0 || !my_turn:
 		chaos_button.disabled = true
 		return
 	var first_tiers = [3]
@@ -147,7 +161,7 @@ func check_enabled(enabled):
 	return enabled
 
 func check_attack_enabled():
-	if actions_left <= 0:
+	if actions_left <= 0 || !my_turn:
 		attack_button.disabled = true
 		return
 	var first_tier = 1
@@ -162,7 +176,7 @@ func check_attack_enabled():
 		attack_button.disabled = !balls.size() > 0
 
 func check_defense_enabled():
-	if actions_left <= 0:
+	if actions_left <= 0 || !my_turn:
 		shield_button.disabled = true
 		return
 	var first_tier = 2

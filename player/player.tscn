@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bwrxmlqbt6fd"]
+[gd_scene load_steps=21 format=3 uid="uid://bwrxmlqbt6fd"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_i37r2"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_besmk"]
@@ -41,6 +41,9 @@ bg_color = Color(0.133333, 0.72549, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kejpo"]
 bg_color = Color(0.223529, 0.611765, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5iqdt"]
+bg_color = Color(0.45098, 0.45098, 0.447059, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nmdo"]
 bg_color = Color(0.752941, 0.301961, 0.866667, 1)
@@ -134,9 +137,9 @@ vertical_alignment = 1
 [node name="ChainExplosionTimer" type="Timer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_top = -293.0
+offset_top = -325.0
 offset_right = 348.0
-offset_bottom = -27.0
+offset_bottom = -59.0
 
 [node name="ActionsLeftLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -400,6 +403,15 @@ grow_vertical = 2
 pivot_offset = Vector2(80, 80)
 texture = ExtResource("5_hllbv")
 stretch_mode = 2
+
+[node name="EndTurnButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_besmk")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5iqdt")
+text = "End Turn"
+alignment = 0
 
 [node name="RainbowButton" type="Button" parent="VBoxContainer"]
 visible = false

@@ -34,6 +34,7 @@ func _ready():
 	SignalManager.on_game_over.connect(on_game_over)
 	SignalManager.explode_ball_tier.connect(explode_ball_tier)
 	SignalManager.enemy_moved.connect(on_enemy_moved)
+	BallsManager.turn_finished.connect(on_end_turn)
 	check_button.button_pressed = BallsManager.balls_effect
 	check_button.pressed.connect(toggle_ball_effect)
 	auto_check_button.button_pressed = BallsManager.auto_enemy
@@ -92,11 +93,13 @@ func ball_dropped():
 	moves_left -= 1
 	moves_left_label.text = "Balls Left: %s" % moves_left
 	if moves_left == 0:
-		BallsManager.turn_finished.emit()
-		await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
-		enemy.start_turn()
-		if BallsManager.auto_enemy:
-			enemy.move()
+		SignalManager.all_balls_dropped.emit()
+
+func on_end_turn():
+	#await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
+	enemy.start_turn()
+	if BallsManager.auto_enemy:
+		enemy.move()
 
 func on_enemy_moved():
 	SignalManager.turn_started.emit()
