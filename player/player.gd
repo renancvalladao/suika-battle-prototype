@@ -89,6 +89,8 @@ func update_actions_left(value: int) -> void:
 	actions_left_label.text = "Actions Left: %s" % actions_left
 
 func pick_random_actions_tier():
+	shield = 0
+	shield_label.text = str(shield)
 	update_actions_left(GameManager.max_actions)
 	if first_turn:
 		first_turn = false
