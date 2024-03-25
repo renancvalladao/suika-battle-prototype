@@ -1,6 +1,13 @@
 extends Node2D
 
-@export var max_moves: int = 3
+var character_images = {
+	GameManager.CHARACTER.QUANTITY: preload("res://assets/characters/quantity_scale.jpg"),
+	GameManager.CHARACTER.FUSION: preload("res://assets/characters/fusion_scale.jpg"),
+	GameManager.CHARACTER.AREA: preload("res://assets/characters/area_scale.png"),
+	GameManager.CHARACTER.ALL: preload("res://assets/characters/all_scale.jpg")
+}
+
+@export var max_moves: int = GameManager.max_balls
 
 @onready var moves_left_label = $MovesLeftLabel
 @onready var enemy: Enemy = $Enemy
@@ -9,23 +16,48 @@ extends Node2D
 @onready var game_over = $CanvasLayer/GameOver
 @onready var check_button = $CheckButton
 @onready var auto_check_button = $AutoCheckButton
+@onready var scale_tier_button = $ScaleTierButton
+@onready var pick_random_button = $PickRandomButton
+@onready var fusions_label = $FusionsLabel
+@onready var character = $Character
+@onready var turn_counter_label = $TurnCounterLabel
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
-var moves_left: int = 3
+var moves_left: int = max_moves
+var turn: int = 0
 
 func _ready():
-	BallsManager.ball_exploded.connect(spawn_ball)
+	BallsManager.ball_exploded.connect(on_ball_exploded)
 	BallsManager.ball_dropped.connect(ball_dropped)
 	SignalManager.turn_started.connect(turn_started)
 	SignalManager.spawn_random_ball.connect(spawn_random_ball)
 	SignalManager.on_game_over.connect(on_game_over)
 	SignalManager.explode_ball_tier.connect(explode_ball_tier)
 	SignalManager.enemy_moved.connect(on_enemy_moved)
+	BallsManager.turn_finished.connect(on_end_turn)
 	check_button.button_pressed = BallsManager.balls_effect
 	check_button.pressed.connect(toggle_ball_effect)
 	auto_check_button.button_pressed = BallsManager.auto_enemy
 	auto_check_button.pressed.connect(toggle_auto_enemy)
+	scale_tier_button.button_pressed = BallsManager.scale_with_tier
+	scale_tier_button.pressed.connect(toggle_scale_tier)
+	pick_random_button.button_pressed = BallsManager.pick_random
+	pick_random_button.pressed.connect(toggle_pick_random)
+	moves_left_label.text = "Balls Left: %s" % moves_left
+	fusions_label.text = "Fusions: 0"
+	character.texture = character_images[GameManager.character_chosen]
+	turn_counter_label.text = "Turn: 0"
+	
 	#spawn_random_balls(50)
+	SignalManager.turn_started.emit()
+
+func toggle_pick_random():
+	BallsManager.pick_random = !BallsManager.pick_random
+	pick_random_button.button_pressed = BallsManager.pick_random
+
+func toggle_scale_tier():
+	BallsManager.scale_with_tier = !BallsManager.scale_with_tier
+	scale_tier_button.button_pressed = BallsManager.scale_with_tier
 
 func toggle_ball_effect():
 	BallsManager.balls_effect = !BallsManager.balls_effect
@@ -41,7 +73,11 @@ func spawn_random_balls(amount: int) -> void:
 		SignalManager.spawn_random_ball.emit()
 		await get_tree().create_timer(.5).timeout
 	await get_tree().create_timer(2).timeout
-	SignalManager.turn_started.emit()
+
+func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int) -> void:
+	GameManager.fusions += 1
+	fusions_label.text = "Fusions: %s" % GameManager.fusions
+	spawn_ball(first_pos, second_pos, tier)
 
 func spawn_ball(first_pos: Vector2, second_pos: Vector2, tier: int):
 	if tier == BallsManager.BALLS.size():
@@ -55,20 +91,26 @@ func spawn_ball(first_pos: Vector2, second_pos: Vector2, tier: int):
 
 func ball_dropped():
 	moves_left -= 1
-	moves_left_label.text = "Moves Left: %s" % moves_left
+	moves_left_label.text = "Balls Left: %s" % moves_left
 	if moves_left == 0:
-		BallsManager.turn_finished.emit()
-		await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
-		enemy.start_turn()
-		if BallsManager.auto_enemy:
-			enemy.move()
+		SignalManager.all_balls_dropped.emit()
+
+func on_end_turn():
+	#await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
+	enemy.start_turn()
+	if BallsManager.auto_enemy:
+		enemy.move()
 
 func on_enemy_moved():
 	SignalManager.turn_started.emit()
 
 func turn_started() -> void:
+	turn += 1
+	turn_counter_label.text = "Turn: %s" % turn
 	moves_left = max_moves
-	moves_left_label.text = "Moves Left: %s" % moves_left
+	moves_left_label.text = "Balls Left: %s" % moves_left
+	GameManager.fusions = 0
+	fusions_label.text = "Fusions: %s" % GameManager.fusions
 
 func spawn_random_ball() -> void:
 	var x = randf_range(position_min.position.x, position_max.position.x)

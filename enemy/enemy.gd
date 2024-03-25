@@ -21,11 +21,14 @@ var max_hp: int = 100
 @onready var bomb_button = $Actions/BombButton
 @onready var color_damage_button = $Actions/ColorDamageButton
 @onready var finish_button = $Actions/FinishButton
+@onready var damage_label = $DamageLabel
+@onready var damage_icon = $TextureRect
 
+var enemy_damage: int = 40
 var should_color_damage: bool = false
-var color_damage: int = 0
+var color_damage: Array[int] = []
 var my_turn: bool = false
-var attacks: Array = ["damage", "chaos", "damage", "rock", "damage", "bomb", "damage", "color_damage"]
+var attacks: Array = ["damage", "rock", "damage", "bomb", "damage", "color_damage"]
 var rock_config: Dictionary = {
 		"tier": -2,
 		"sprite": preload("res://assets/balls/grey_body_circle.png"),
@@ -74,6 +77,7 @@ func _ready():
 	bomb_button.pressed.connect(on_bomb_button)
 	color_damage_button.pressed.connect(on_color_damage_button)
 	finish_button.pressed.connect(finish_enemy_turn)
+	damage_label.text = str(enemy_damage)
 	set_hp(hp)
 
 func on_attack_button():
@@ -95,12 +99,12 @@ func on_color_damage_button():
 	_color_damage()
 
 func turn_finished() -> void:
-	await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
+	#await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
 	should_color_damage = false
 	color_damage_ui.visible = false
 
-func ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int) -> void:
-	if should_color_damage && tier == color_damage:
+func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int) -> void:
+	if should_color_damage && !my_turn && color_damage.has(tier):
 		SignalManager.player_damaged.emit(10)
 
 func set_hp(amount: int) -> void:
@@ -109,6 +113,8 @@ func set_hp(amount: int) -> void:
 		max_hp *= 2
 		hp = max_hp
 		health_bar.max_value = max_hp
+		enemy_damage += 20
+		damage_label.text = str(enemy_damage)
 		#SignalManager.on_game_over.emit()
 		#hide()
 	elif hp > max_hp:
@@ -116,8 +122,8 @@ func set_hp(amount: int) -> void:
 	health_bar.value = hp
 	health_label.text = str("%s/%s" % [hp, max_hp])
 
-func enemy_damaged(damage: int) -> void:
-	var new_hp = hp - damage
+func enemy_damaged(damage_amount: int) -> void:
+	var new_hp = hp - damage_amount
 	set_hp(new_hp)
 
 func _process(_delta):
@@ -128,6 +134,8 @@ func _process(_delta):
 	sprite.texture = attack_config.sprite
 	icon.texture = attack_config.icon
 	actions.visible = !BallsManager.auto_enemy && my_turn
+	damage_label.visible = attack == "damage"
+	damage_icon.visible = damage_label.visible
 
 func start_turn() -> void:
 	my_turn = true
@@ -161,7 +169,7 @@ func finish_enemy_turn():
 	SignalManager.enemy_moved.emit()
 
 func damage():
-	SignalManager.player_damaged.emit(40)
+	SignalManager.player_damaged.emit(enemy_damage)
 
 func heal():
 	set_hp(hp + 15)
@@ -181,8 +189,10 @@ func bomb():
 
 func _color_damage():
 	should_color_damage = true
-	var ball = BallsManager.BALLS.pick_random()
-	color_damage_icon.texture = ball.icon
+	var possible_colors = [0, 1, 2]
+	var chosen_color = possible_colors.pick_random()
+	var ball = BallsManager.BALLS[chosen_color]
+	#color_damage_icon.texture = ball.icon
 	color_damage_sprite.texture = ball.sprite
-	color_damage = ball.tier
+	color_damage = [ball.tier, ball.tier + 3, ball.tier + 6]
 	color_damage_ui.visible = true

@@ -6,71 +6,73 @@ signal ball_dropped
 signal turn_finished
 signal current_ball_changed
 
+var character_selection: PackedScene = load("res://character_selection/character_selection.tscn")
+
 const BALLS = [
 	{
 		"tier": 1,
-		"sprite": preload("res://assets/balls/blue_body_circle.png"),
-		"icon": preload("res://assets/icons/sword.png"),
+		"sprite": preload("res://assets/balls/red_body_circle.png"),
+		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": 1
 	},
 	{
 		"tier": 2,
-		"sprite": preload("res://assets/balls/purple_body_circle.png"),
-		"icon": preload("res://assets/icons/shield.png"),
+		"sprite": preload("res://assets/balls/green_body_circle.png"),
+		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": 1.5
 	},
 	{
 		"tier": 3,
-		"sprite": preload("res://assets/balls/green_body_circle.png"),
-		"icon": preload("res://assets/icons/flask.png"),
+		"sprite": preload("res://assets/balls/blue_body_circle.png"),
+		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": 2.1
 	},
 	{
 		"tier": 4,
-		"sprite": preload("res://assets/balls/pink_body_circle.png"),
-		"icon": preload("res://assets/icons/heart.png"),
+		"sprite": preload("res://assets/balls/red_body_circle.png"),
+		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": 2.8
 	},
 	{
 		"tier": 5,
-		"sprite": preload("res://assets/balls/yellow_body_circle.png"),
-		"icon": preload("res://assets/icons/bow.png"),
+		"sprite": preload("res://assets/balls/green_body_circle.png"),
+		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": 3.6
 	},
 	{
 		"tier": 6,
-		"sprite": preload("res://assets/balls/red_body_circle.png"),
-		"icon": preload("res://assets/icons/fire.png"),
+		"sprite": preload("res://assets/balls/blue_body_circle.png"),
+		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": 4.5
 	},
 	{
 		"tier": 7,
-		"sprite": preload("res://assets/balls/blue_body_circle.png"),
-		"icon": preload("res://assets/icons/book.png"),
+		"sprite": preload("res://assets/balls/red_body_circle.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": 5.5
 	},
 	{
 		"tier": 8,
-		"sprite": preload("res://assets/balls/purple_body_circle.png"),
-		"icon": preload("res://assets/icons/skull.png"),
+		"sprite": preload("res://assets/balls/green_body_circle.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": 6.6
 	},
 	{
 		"tier": 9,
-		"sprite": preload("res://assets/balls/green_body_circle.png"),
-		"icon": preload("res://assets/icons/dollar.png"),
+		"sprite": preload("res://assets/balls/blue_body_circle.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": 7.8
 	},
 	{
 		"tier": 10,
-		"sprite": preload("res://assets/balls/pink_body_circle.png"),
-		"icon": preload("res://assets/icons/flag_square.png"),
+		"sprite": preload("res://assets/balls/yellow_body_circle.png"),
+		"icon": preload("res://assets/icons/skull.png"),
 		"size": 9.1
 	},
 	{
 		"tier": 10,
-		"sprite": preload("res://assets/balls/yellow_body_circle.png"),
-		"icon": preload("res://assets/icons/award.png"),
+		"sprite": preload("res://assets/balls/purple_body_circle.png"),
+		"icon": preload("res://assets/icons/crown.png"),
 		"size": 10.5
 	}
 ]
@@ -81,8 +83,11 @@ var rng = RandomNumberGenerator.new()
 var current_ball = get_random_ball()
 var next_ball = get_random_ball()
 var turn = 0
-var balls_effect: bool = true
+var balls_effect: bool = false
 var auto_enemy: bool = true
+var tier: int = 1
+var scale_with_tier: bool = true
+var pick_random: bool = true
 
 func _ready():
 	SignalManager.turn_started.connect(_turn_started)
@@ -126,6 +131,11 @@ func _unhandled_input(event):
 		set_next_ball(current_ball)
 		set_current_ball(next)
 	if event.is_action_pressed("restart"):
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_packed(character_selection)
+		#get_tree().reload_current_scene()
 		current_ball = get_random_ball()
 		next_ball = get_random_ball()
+	#if event.is_action_pressed("change_tier"):
+		#tier += 1
+		#if tier > 3:
+			#tier = 1

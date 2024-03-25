@@ -1,11 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwrxmlqbt6fd"]
+[gd_scene load_steps=21 format=3 uid="uid://bwrxmlqbt6fd"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_i37r2"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_besmk"]
 [ext_resource type="Texture2D" uid="uid://fawli37cxqk3" path="res://assets/icons/shield.png" id="2_qpor2"]
 [ext_resource type="LabelSettings" uid="uid://d171akdbrrrry" path="res://resources/font_white.tres" id="3_8b4r0"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="5_hllbv"]
+[ext_resource type="Texture2D" uid="uid://h8topllhst0a" path="res://assets/balls/red_body_circle.png" id="5_ochkj"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="6_o1r6n"]
+[ext_resource type="Texture2D" uid="uid://bynvuhvrwju5i" path="res://assets/balls/green_body_circle.png" id="6_uwl3p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rh65l"]
 
@@ -23,14 +25,25 @@ shadow_color = Color(0, 0, 0, 0.392157)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxx7v"]
 bg_color = Color(0.457506, 0.442319, 0.846299, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uvlm"]
-bg_color = Color(0.823529, 0.0862745, 0.196078, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_r5wuj"]
+font = ExtResource("2_besmk")
+font_size = 48
+outline_size = 2
+outline_color = Color(0.317647, 0.317647, 0.317647, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.392157)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jagp"]
-bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqr6v"]
+bg_color = Color(0.823529, 0.0509804, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40t4r"]
-bg_color = Color(0.835294, 0.329412, 0.552941, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxsrf"]
+bg_color = Color(0.133333, 0.72549, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kejpo"]
+bg_color = Color(0.223529, 0.611765, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5iqdt"]
+bg_color = Color(0.45098, 0.45098, 0.447059, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nmdo"]
 bg_color = Color(0.752941, 0.301961, 0.866667, 1)
@@ -69,6 +82,7 @@ text = "50/100"
 label_settings = SubResource("LabelSettings_q0x13")
 
 [node name="ManaBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = 98.0
 offset_top = -60.0
 offset_right = 350.0
@@ -123,38 +137,284 @@ vertical_alignment = 1
 [node name="ChainExplosionTimer" type="Timer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_top = -363.0
-offset_right = 346.0
-offset_bottom = -97.0
+offset_top = -325.0
+offset_right = 348.0
+offset_bottom = -59.0
+
+[node name="ActionsLeftLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Actions Left: 3"
+label_settings = SubResource("LabelSettings_r5wuj")
 
 [node name="AttackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_besmk")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_7uvlm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqr6v")
 text = "10 - Attack (10)"
 alignment = 0
+
+[node name="SelectedBall" type="Control" parent="VBoxContainer/AttackButton"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 16.0
+offset_right = 355.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/AttackButton/SelectedBall"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_ochkj")
+stretch_mode = 2
 
 [node name="ShieldButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_besmk")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jagp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uxsrf")
 text = "15 - Shield (15)"
 alignment = 0
 
+[node name="SelectedBall" type="Control" parent="VBoxContainer/ShieldButton"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 16.0
+offset_right = 355.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/ShieldButton/SelectedBall"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_uwl3p")
+stretch_mode = 2
+
 [node name="HealButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_besmk")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_40t4r")
 text = "20 - Heal (20)"
 alignment = 0
 
+[node name="SelectedBall" type="Control" parent="VBoxContainer/HealButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 16.0
+offset_right = 355.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/HealButton/SelectedBall"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_hllbv")
+stretch_mode = 2
+
+[node name="LifestealButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_besmk")
+theme_override_font_sizes/font_size = 40
+text = "10 - Lifesteal (10)"
+alignment = 0
+
+[node name="SelectedBall" type="Control" parent="VBoxContainer/LifestealButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 276.0
+offset_top = 16.0
+offset_right = 316.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/LifestealButton/SelectedBall"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_ochkj")
+stretch_mode = 2
+
+[node name="SelectedBall2" type="Control" parent="VBoxContainer/LifestealButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 16.0
+offset_right = 355.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/LifestealButton/SelectedBall2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_hllbv")
+stretch_mode = 2
+
+[node name="ChaosButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_besmk")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_kejpo")
+text = "Chaos (5)"
+alignment = 0
+
+[node name="SelectedBall" type="Control" parent="VBoxContainer/ChaosButton"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 240.0
+offset_top = 16.0
+offset_right = 280.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/ChaosButton/SelectedBall"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.6306
+offset_top = -80.0
+offset_right = 61.3694
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_ochkj")
+stretch_mode = 2
+
+[node name="SelectedBall2" type="Control" parent="VBoxContainer/ChaosButton"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 276.0
+offset_top = 16.0
+offset_right = 316.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/ChaosButton/SelectedBall2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_uwl3p")
+stretch_mode = 2
+
+[node name="SelectedBall3" type="Control" parent="VBoxContainer/ChaosButton"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 16.0
+offset_right = 355.0
+offset_bottom = 56.0
+scale = Vector2(0.228919, 0.228919)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer/ChaosButton/SelectedBall3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_hllbv")
+stretch_mode = 2
+
+[node name="EndTurnButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_besmk")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5iqdt")
+text = "End Turn"
+alignment = 0
+
 [node name="RainbowButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_besmk")
@@ -164,6 +424,7 @@ text = "50 - Rainbow"
 alignment = 0
 
 [node name="GhostBallButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_besmk")
@@ -219,6 +480,7 @@ texture = ExtResource("6_o1r6n")
 stretch_mode = 2
 
 [node name="ExplodeButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_besmk")

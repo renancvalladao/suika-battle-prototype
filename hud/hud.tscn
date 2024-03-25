@@ -32,9 +32,9 @@ script = ExtResource("1_5sxdd")
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = -256.0
-offset_top = 194.0
+offset_top = 232.0
 offset_right = -90.0
-offset_bottom = 267.0
+offset_bottom = 305.0
 text = "NEXT"
 label_settings = ExtResource("2_at335")
 
@@ -84,6 +84,7 @@ texture = ExtResource("2_j27b4")
 stretch_mode = 2
 
 [node name="AddManaButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -320.0
 offset_top = 818.0
@@ -92,6 +93,16 @@ offset_bottom = 871.0
 theme_override_fonts/font = ExtResource("17_7fs1n")
 theme_override_font_sizes/font_size = 24
 text = "+100 Mana"
+
+[node name="AddHealthButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -320.0
+offset_top = 818.0
+offset_right = -161.0
+offset_bottom = 871.0
+theme_override_fonts/font = ExtResource("17_7fs1n")
+theme_override_font_sizes/font_size = 24
+text = "+100 HP"
 
 [node name="BallsOptions" type="Control" parent="."]
 anchors_preset = 0
@@ -603,3 +614,81 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("19_bairk")
 stretch_mode = 2
+
+[node name="BallsCounter" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -1877.0
+offset_top = 433.0
+offset_right = -1837.0
+offset_bottom = 473.0
+
+[node name="RedBalls" type="Control" parent="BallsCounter"]
+anchors_preset = 0
+offset_top = 65.0
+offset_right = 40.0
+offset_bottom = 105.0
+
+[node name="TextureRect" type="TextureRect" parent="BallsCounter/RedBalls"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 160.0
+scale = Vector2(0.36, 0.36)
+texture = ExtResource("13_23xpg")
+
+[node name="Label" type="Label" parent="BallsCounter/RedBalls"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = -19.0
+offset_right = 114.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="GreenBalls" type="Control" parent="BallsCounter"]
+anchors_preset = 0
+offset_left = 155.0
+offset_top = 65.0
+offset_right = 195.0
+offset_bottom = 105.0
+
+[node name="TextureRect" type="TextureRect" parent="BallsCounter/GreenBalls"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 160.0
+scale = Vector2(0.36, 0.36)
+texture = ExtResource("7_7yh38")
+
+[node name="Label" type="Label" parent="BallsCounter/GreenBalls"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = -19.0
+offset_right = 114.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="BlueBalls" type="Control" parent="BallsCounter"]
+anchors_preset = 0
+offset_left = 300.0
+offset_top = 65.0
+offset_right = 340.0
+offset_bottom = 105.0
+
+[node name="TextureRect" type="TextureRect" parent="BallsCounter/BlueBalls"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 160.0
+scale = Vector2(0.36, 0.36)
+texture = ExtResource("1_m48a0")
+
+[node name="Label" type="Label" parent="BallsCounter/BlueBalls"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = -19.0
+offset_right = 114.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
