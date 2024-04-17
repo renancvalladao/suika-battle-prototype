@@ -1,7 +1,7 @@
 extends Node2D
 
-class_name Enemy
-#teste
+class_name Enemy_old
+
 var max_hp: int = 100
 @export var hp: int = 100
 
