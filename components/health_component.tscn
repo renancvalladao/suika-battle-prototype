@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3wiwmd7tu86w"]
+
+[ext_resource type="Script" path="res://components/health_component.gd" id="1_t6hiv"]
+[ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_4fym1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_213pi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkeh5"]
+bg_color = Color(0.933333, 0, 0.243137, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ihv50"]
+font = ExtResource("2_4fym1")
+font_size = 48
+outline_size = 2
+outline_color = Color(0.317647, 0.317647, 0.317647, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[node name="HealthComponent" type="Node2D"]
+script = ExtResource("1_t6hiv")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -175.0
+offset_right = 175.0
+offset_bottom = 86.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_213pi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xkeh5")
+value = 50.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="HealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -18.0
+offset_right = 78.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50/100"
+label_settings = SubResource("LabelSettings_ihv50")
