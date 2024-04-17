@@ -28,6 +28,9 @@ func gain_shield(shield_amount: int) -> void:
 	var new_shield: int = shield + shield_amount
 	new_shield = clampi(new_shield, 0, MAX_SHIELD)
 	set_shield(new_shield)
+	
+	if !visible:
+		visible = true
 		
 func _update_ui() -> void:
 	shield_label.text = str(shield)
