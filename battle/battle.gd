@@ -50,6 +50,11 @@ func _ready():
 	
 	#spawn_random_balls(50)
 	SignalManager.turn_started.emit()
+	SignalManager.balls_left_gained.connect(on_balls_left_gained)
+
+func on_balls_left_gained(amount: int):
+	moves_left += amount
+	moves_left_label.text = "Balls Left: %s" % moves_left
 
 func toggle_pick_random():
 	BallsManager.pick_random = !BallsManager.pick_random
