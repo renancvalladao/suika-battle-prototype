@@ -75,7 +75,7 @@ func _ready():
 	rainbow_button.pressed.connect(on_rainbow_press)
 	lifesteal_button.text = "Lifesteal 1"
 	lifesteal_button.pressed.connect(on_lifesteal_press)
-	chaos_button.text = "Chaos 1 (%s)" % CHAOS_AMOUNT
+	chaos_button.text = "+Balls 1 (%s)" % CHAOS_AMOUNT
 	chaos_button.pressed.connect(on_chaos_press)
 	update_health_ui(hp)
 	#update_mana_ui(mana)
@@ -137,7 +137,7 @@ func check_chaos_enabled():
 	var first_tiers = [3]
 	var tiers = [action_tiers.chaos]
 	for tier in tiers:
-		chaos_button.text = "Chaos %s (%s)" % [tier, CHAOS_AMOUNT * tier]
+		chaos_button.text = "+Balls %s (%s)" % [tier, CHAOS_AMOUNT * tier]
 		var enabled: Array = []
 		for first_tier in first_tiers:
 			var ball_tier = first_tier + ((tier - 1) * 3)
@@ -310,9 +310,10 @@ func on_chaos_press():
 			var effect_scale := make_scale("chaos", ball)
 			amount *= effect_scale
 			ball.queue_free()
-			for i in range(amount):
-				SignalManager.spawn_random_ball.emit()
-				await get_tree().create_timer(0.7).timeout
+			SignalManager.balls_left_gained.emit(amount)
+			#for i in range(amount):
+				#SignalManager.spawn_random_ball.emit()
+				#await get_tree().create_timer(0.7).timeout
 			return
 
 func on_lifesteal_press():
