@@ -19,6 +19,7 @@ func _ready():
 	SignalManager.turn_started.connect(turn_started)
 	BallsManager.current_ball_changed.connect(current_ball_changed)
 	SignalManager.on_game_over.connect(on_game_over)
+	SignalManager.balls_left_gained.connect(on_all_balls_dropped)
 
 func _process(_delta):
 	position.x = clampf(
@@ -63,6 +64,9 @@ func _on_drop_timer_timeout():
 func turn_finished() -> void:
 	can_drop = false
 	hide()
+
+func on_all_balls_dropped(_amount: int) -> void:
+	turn_started()
 
 func turn_started() -> void:
 	can_drop = true
