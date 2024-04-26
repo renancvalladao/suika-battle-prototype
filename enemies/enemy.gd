@@ -14,6 +14,7 @@ func _ready():
 
 func start_turn() -> void:
 	my_turn = true
+	shield_component.reset_shield()
 
 func finish_enemy_turn():
 	my_turn = false

@@ -32,6 +32,9 @@ func gain_shield(shield_amount: int) -> void:
 	if !visible:
 		visible = true
 		
+func reset_shield() -> void:
+	set_shield(0)
+		
 func _update_ui() -> void:
 	shield_label.text = str(shield)
 	if shield == 0:
