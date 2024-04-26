@@ -12,3 +12,5 @@ signal enemy_moved
 signal mana_gained(amount: int)
 signal all_balls_dropped()
 signal balls_left_gained(amount: int)
+
+signal can_change_next_ball(can_change: bool)

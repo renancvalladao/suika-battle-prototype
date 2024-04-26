@@ -7,6 +7,7 @@ signal turn_finished
 signal current_ball_changed
 
 var character_selection: PackedScene = load("res://character_selection/character_selection.tscn")
+var can_change_next_ball = true
 
 const BALLS = [
 	{
@@ -92,6 +93,7 @@ var pick_random: bool = true
 func _ready():
 	SignalManager.turn_started.connect(_turn_started)
 	BallsManager.turn_finished.connect(_turn_finished)
+	SignalManager.can_change_next_ball.connect(set_can_change_next_ball)
 
 func get_random_ball() -> Dictionary:
 	var random_ball_index = rng.randi_range(0, 4)
@@ -111,6 +113,9 @@ func set_next_ball(ball: Dictionary) -> void:
 	next_ball = ball
 	next_ball_changed.emit()
 
+func set_can_change_next_ball(can_change: bool) -> void:
+	can_change_next_ball = can_change
+
 func choose_next_ball() -> void:
 	current_ball = next_ball
 	next_ball = get_random_ball()
@@ -124,7 +129,7 @@ func _turn_finished() -> void:
 	turn = 1
 
 func _unhandled_input(event):
-	if event.is_action_pressed("change_next"):
+	if event.is_action_pressed("change_next") && can_change_next_ball:
 		if current_ball.has("type") && current_ball.type == "bomb":
 			return
 		var next = next_ball
