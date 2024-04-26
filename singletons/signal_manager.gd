@@ -11,3 +11,4 @@ signal explode_ball_tier(tier: int)
 signal enemy_moved
 signal mana_gained(amount: int)
 signal all_balls_dropped()
+signal balls_left_gained(amount: int)
