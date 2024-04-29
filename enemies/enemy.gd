@@ -15,12 +15,13 @@ func _ready():
 
 func start_turn() -> void:
 	my_turn = true
+	SignalManager.enemy_turn_started.emit()
 	#print(debuffs)
 	if debuffs.size() > 0:
 		do_debuffs()
 	shield_component.reset_shield()
 
-func finish_enemy_turn():
+func finish_enemy_turn() -> void:
 	my_turn = false
 	SignalManager.enemy_moved.emit()
 
