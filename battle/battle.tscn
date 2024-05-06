@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=12 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://2wy62osvnpgg" path="res://hud/hud.tscn" id="2_uwwfi"]
 [ext_resource type="PackedScene" uid="uid://b8yom6hr615ry" path="res://game_over/game_over.tscn" id="3_k3w44"]
 [ext_resource type="PackedScene" uid="uid://7i4sjogibg3k" path="res://tile/tile.tscn" id="4_8rafd"]
-[ext_resource type="PackedScene" uid="uid://beei3ex2riwi8" path="res://enemy/enemy.tscn" id="6_t4nb7"]
+[ext_resource type="PackedScene" uid="uid://beei3ex2riwi8" path="res://enemy_old/enemy_old.tscn" id="6_t4nb7"]
 [ext_resource type="LabelSettings" uid="uid://d171akdbrrrry" path="res://resources/font_white.tres" id="7_gne4q"]
 [ext_resource type="PackedScene" uid="uid://bwrxmlqbt6fd" path="res://player/player.tscn" id="8_6rvjb"]
 [ext_resource type="Texture2D" uid="uid://cqtexkon8cfub" path="res://assets/characters/all_scale.jpg" id="10_ten7u"]
+[ext_resource type="PackedScene" uid="uid://bfohtny1tt5p0" path="res://enemies/enemy1/enemy_1.tscn" id="11_vcbme"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_fl8ju")
@@ -55,6 +56,7 @@ position = Vector2(560, 80)
 position = Vector2(1360, 80)
 
 [node name="Enemy" parent="." instance=ExtResource("6_t4nb7")]
+visible = false
 position = Vector2(180, 138)
 
 [node name="FusionsLabel" type="Label" parent="."]
@@ -162,3 +164,12 @@ offset_right = 2758.0
 offset_bottom = 1453.0
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("10_ten7u")
+
+[node name="Enemy1" parent="." instance=ExtResource("11_vcbme")]
+position = Vector2(179, 139)
+enemy_damage = null
+enemy_heal_amount = null
+enemy_shield_amount = null
+block_ball_change_duration = null
+color_damage_duration = null
+color_damage_amount = null

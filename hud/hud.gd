@@ -1,5 +1,6 @@
 extends Control
 
+@onready var next_ball = $NextBall
 @onready var sprite = $NextBall/Sprite
 @onready var icon = $NextBall/Icon
 @onready var add_mana_button = $AddManaButton
@@ -11,6 +12,7 @@ extends Control
 
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
+	SignalManager.can_change_next_ball.connect(can_change_next_ball_ui)
 	add_mana_button.pressed.connect(on_add_mana)
 	add_health_button.pressed.connect(on_add_health)
 	var balls: Array = balls_options.get_children()
@@ -25,6 +27,11 @@ func _process(_delta):
 	green_label.text = "%s" % get_balls_by_color("green")
 	blue_label.text = "%s" % get_balls_by_color("blue")
 	
+func can_change_next_ball_ui(can_change: bool) -> void:
+	if !can_change:
+		next_ball.modulate.a = 0.5
+	else:
+		next_ball.modulate.a = 1.0
 
 func get_balls_by_color(color: String) -> int:
 	var tiers = []
