@@ -1,22 +1,28 @@
 extends Enemy
 class_name Enemy1
 
-var moves: Array[String] = ["damage", "heal", "shield", "block_ball_change", "color_damage"]
+#var moves: Array[String] = ["damage", "heal", "shield", "block_ball_change", "color_damage"]
 #var moves: Array[String] = ["color_damage", "shield"]
-var move_count := 0
 
 @export var enemy_damage:int = 40
 @export var enemy_heal_amount:int = 15
 @export var enemy_shield_amount:int = 10
-@export var block_ball_change_duration: int = 2
+@export var block_ball_change_duration: int = 2#
+
 
 @onready var color_damage_component: ColorDamageComponent = $ColorDamageComponent
 @export var color_damage_duration: int = 1
 @export var color_damage_amount: int = 10
 
+func _ready():
+	super._ready()
+	moves = ["damage", "heal", "shield", "block_ball_change", "color_damage"]
+	intended_move.text = moves[0]
+
 
 func move() -> void:
 	var action = moves[move_count]
+	
 	match action:
 		"damage":
 			damage()
@@ -36,6 +42,7 @@ func move() -> void:
 	if move_count == moves.size():
 		move_count = 0
 		
+	intended_move.text = moves[move_count]
 	finish_enemy_turn()
 
 func finish_enemy_turn() -> void:

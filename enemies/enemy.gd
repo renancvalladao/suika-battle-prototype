@@ -5,9 +5,13 @@ extends Node
 @onready var shield_component: ShieldComponent = $ShieldComponent
 @onready var timer = $Timer
 
+var moves: Array[String]
+var move_count := 0
+
 var my_turn := false
 
 var debuffs: Array[Debuff] = []
+@onready var intended_move = $IntendedMove
 
 
 func _ready():

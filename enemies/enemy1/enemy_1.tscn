@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfohtny1tt5p0"]
+[gd_scene load_steps=14 format=3 uid="uid://bfohtny1tt5p0"]
 
 [ext_resource type="Texture2D" uid="uid://d1xf3sthijh8h" path="res://assets/enemies/zombie/character_zombie_cheer0.png" id="1_hsv3h"]
 [ext_resource type="Script" path="res://enemies/enemy1/enemy_1.gd" id="1_p7rs8"]
@@ -30,8 +30,22 @@ outline_color = Color(0.317647, 0.317647, 0.317647, 1)
 shadow_size = 6
 shadow_color = Color(0, 0, 0, 0.392157)
 
+[sub_resource type="LabelSettings" id="LabelSettings_xlds7"]
+font = ExtResource("2_0a36v")
+font_size = 64
+outline_size = 2
+outline_color = Color(0.317647, 0.317647, 0.317647, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.392157)
+
 [node name="Enemy1" type="Node2D"]
 script = ExtResource("1_p7rs8")
+enemy_damage = null
+enemy_heal_amount = null
+enemy_shield_amount = null
+block_ball_change_duration = null
+color_damage_duration = null
+color_damage_amount = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_hsv3h")
@@ -68,7 +82,7 @@ position = Vector2(0, -112)
 scale = Vector2(0.462858, 0.359999)
 
 [node name="ShieldComponent" parent="." instance=ExtResource("4_he7me")]
-position = Vector2(91, 49)
+position = Vector2(-161, 84)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.7
@@ -131,6 +145,27 @@ texture = ExtResource("7_wfo43")
 stretch_mode = 2
 
 [node name="ColorDamageComponent" parent="." instance=ExtResource("8_acisk")]
-offset_top = 244.0
-offset_bottom = 244.0
+offset_left = 195.0
+offset_top = 53.0
+offset_right = 195.0
+offset_bottom = 53.0
 scale = Vector2(0.72, 0.72)
+
+[node name="IntendedMove" type="Label" parent="."]
+modulate = Color(1, 0, 0.435294, 1)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = 151.0
+offset_right = 156.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.735, 0.735)
+text = "Damage"
+label_settings = SubResource("LabelSettings_xlds7")
+horizontal_alignment = 1
+autowrap_mode = 2

@@ -167,3 +167,9 @@ texture = ExtResource("10_ten7u")
 
 [node name="Enemy1" parent="." instance=ExtResource("11_vcbme")]
 position = Vector2(179, 139)
+enemy_damage = null
+enemy_heal_amount = null
+enemy_shield_amount = null
+block_ball_change_duration = null
+color_damage_duration = null
+color_damage_amount = null
