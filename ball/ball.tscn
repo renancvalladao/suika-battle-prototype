@@ -62,6 +62,9 @@ label_settings = SubResource("LabelSettings_qs2mg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ChangeTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="mouse_entered" from="NearBallsArea" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="NearBallsArea" to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="ChangeTimer" to="." method="_on_change_timer_timeout"]

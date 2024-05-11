@@ -43,6 +43,6 @@ func turn_off_color_damage() -> void:
 	should_color_damage = false
 	
 func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int) -> void:
-	print("explodiu, should_color_damage=",should_color_damage,", enemy_turn = ", enemy_turn, "color_damage.has(",tier,") = ", color_damage.has(tier))
+	#print("explodiu, should_color_damage=",should_color_damage,", enemy_turn = ", enemy_turn, "color_damage.has(",tier,") = ", color_damage.has(tier))
 	if should_color_damage && !enemy_turn && color_damage.has(tier):
 		SignalManager.player_damaged.emit(damage_amount)

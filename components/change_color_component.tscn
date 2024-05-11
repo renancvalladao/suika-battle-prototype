@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdqq3ft8ionw5"]
+
+[ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_gi4xs"]
+[ext_resource type="Script" path="res://components/change_color_component.gd" id="1_h3j8k"]
+[ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="2_n41r0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3lfa3"]
+font = ExtResource("1_gi4xs")
+font_size = 64
+outline_size = 2
+outline_color = Color(0.317647, 0.317647, 0.317647, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[node name="ChangeColorComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_h3j8k")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -121.0
+offset_top = -141.0
+offset_right = 128.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Color change"
+label_settings = SubResource("LabelSettings_3lfa3")
+
+[node name="CurrentColor" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.0
+offset_top = -80.0
+offset_right = -57.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("2_n41r0")
+stretch_mode = 2
+
+[node name="FutureColor" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 58.0
+offset_top = -80.0
+offset_right = 218.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("2_n41r0")
+stretch_mode = 2

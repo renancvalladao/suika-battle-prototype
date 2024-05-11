@@ -3,6 +3,7 @@ class_name Enemy2
 
 #var moves: Array[String] = ["damage", "heal", "shield", "block_ball_change", "color_damage"]
 #var moves: Array[String] = ["color_damage", "shield"]
+@onready var change_color_component: ChangeColorComponent = $ChangeColorComponent
 
 @export var enemy_damage:int = 40
 @export var enemy_heal_amount:int = 15
@@ -26,8 +27,14 @@ var bomb_config: Dictionary = {
 
 func _ready():
 	super._ready()
-	moves = ["teste", "rock", "damage", "bomb", "heal", "shield"]
+	moves = ["change_color", "rock", "damage", "bomb", "heal", "shield"]
 	intended_move.text = moves[0]
+	if intended_move.text == "change_color":
+		change_color_component.choose_random_colors()
+		change_color_component.visible = true
+		intended_move.visible = false
+	else:
+		change_color_component.visible = false
 
 func move() -> void:
 	var action = moves[move_count]
@@ -43,8 +50,8 @@ func move() -> void:
 			rock()
 		"bomb":
 			bomb()
-		"teste":
-			teste()
+		"change_color":
+			change_color()
 
 
 	timer.start()
@@ -55,6 +62,15 @@ func move() -> void:
 		move_count = 0
 		
 	intended_move.text = moves[move_count]
+	
+	if intended_move.text == "change_color":
+		change_color_component.choose_random_colors()
+		intended_move.visible = false
+		change_color_component.visible = true
+	else:
+		intended_move.visible = true
+		change_color_component.visible = false
+		
 	finish_enemy_turn()
 
 func finish_enemy_turn() -> void:
@@ -80,5 +96,5 @@ func rock() -> void:
 func bomb() -> void:
 	BallsManager.set_current_ball(bomb_config)
 
-func teste() -> void:
-	get_tree().call_group("balls_1","teste")
+func change_color() -> void:
+	change_color_component.change_color()

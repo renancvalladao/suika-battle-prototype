@@ -172,7 +172,3 @@ position = Vector2(179, 139)
 
 [node name="Enemy2" parent="." instance=ExtResource("12_ortwh")]
 position = Vector2(180, 139)
-enemy_damage = 40
-enemy_heal_amount = 15
-enemy_shield_amount = 10
-block_ball_change_duration = 2
