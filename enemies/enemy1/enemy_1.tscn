@@ -40,12 +40,6 @@ shadow_color = Color(0, 0, 0, 0.392157)
 
 [node name="Enemy1" type="Node2D"]
 script = ExtResource("1_p7rs8")
-enemy_damage = null
-enemy_heal_amount = null
-enemy_shield_amount = null
-block_ball_change_duration = null
-color_damage_duration = null
-color_damage_amount = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_hsv3h")
@@ -150,6 +144,7 @@ offset_top = 53.0
 offset_right = 195.0
 offset_bottom = 53.0
 scale = Vector2(0.72, 0.72)
+metadata/_edit_use_anchors_ = true
 
 [node name="IntendedMove" type="Label" parent="."]
 modulate = Color(1, 0, 0.435294, 1)
@@ -169,3 +164,4 @@ text = "Damage"
 label_settings = SubResource("LabelSettings_xlds7")
 horizontal_alignment = 1
 autowrap_mode = 2
+metadata/_edit_use_anchors_ = true

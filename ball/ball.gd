@@ -8,12 +8,21 @@ class_name Ball
 @onready var near_balls_area = $NearBallsArea
 @onready var near_range = $NearBallsArea/Range
 @onready var near_balls_label = $NearBallsLabel
+@onready var change_timer = $ChangeTimer
 
 var config: Dictionary = BallsManager.BALLS[0]
 var exploded: bool = false
 var should_add_group: bool = true
+var can_change_color: bool = true
+
+var initial_icon_scale: Vector2
+var initial_sprite_scale: Vector2
+var initial_collision2d_scale: Vector2
+var initial_near_balls_scale: Vector2
+var initial_near_range_scale: Vector2
 
 func _ready():
+	set_initial_scales()
 	$Icon.texture = config.icon
 	$Icon.scale *= config.size 
 	$Sprite.texture = config.sprite
@@ -23,6 +32,20 @@ func _ready():
 	near_range.scale *= config.size
 	if should_add_group:
 		add_to_group("ball_%s" % config.tier)
+		
+func set_initial_scales() -> void:
+	initial_icon_scale = $Icon.scale
+	initial_sprite_scale = $Sprite.scale
+	initial_collision2d_scale = $CollisionShape2D.scale
+	initial_near_balls_scale = near_balls.scale
+	initial_near_range_scale = near_range.scale
+	
+func reset_scales() -> void:
+	$Icon.scale = initial_icon_scale
+	$Sprite.scale = initial_sprite_scale
+	$CollisionShape2D.scale = initial_collision2d_scale
+	near_balls.scale = initial_near_balls_scale
+	near_range.scale = initial_near_range_scale
 
 func set_should_add_group(should: bool):
 	should_add_group = should
@@ -81,3 +104,40 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	near_balls_label.visible = false
 	near_range.visible = false
+	
+func change_color(current_color_tiers, future_color_tiers):
+	if !can_change_color:
+		return
+		
+	can_change_color = false
+	change_timer.start()
+	
+	
+	var my_tier :int = config.tier
+	var my_tier_index :int = current_color_tiers.find(my_tier)
+	remove_group()
+	
+	var new_tier :int = future_color_tiers[my_tier_index]
+	var new_config: Dictionary = BallsManager.BALLS[new_tier - 1]
+	print("my_tier:", my_tier , "new_tier", new_tier)
+	config = new_config
+	update_config()
+	add_group()
+	
+func set_can_change_color_to_true() -> void :
+	can_change_color = true
+
+	
+func update_config() -> void:
+	reset_scales()
+	$Icon.texture = config.icon
+	$Icon.scale *= config.size 
+	$Sprite.texture = config.sprite
+	$Sprite.scale *= config.size
+	$CollisionShape2D.scale *= config.size
+	near_balls.scale *= config.size
+	near_range.scale *= config.size
+
+
+func _on_change_timer_timeout():
+	set_can_change_color_to_true()

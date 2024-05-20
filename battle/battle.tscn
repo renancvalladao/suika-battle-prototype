@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=13 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bwrxmlqbt6fd" path="res://player/player.tscn" id="8_6rvjb"]
 [ext_resource type="Texture2D" uid="uid://cqtexkon8cfub" path="res://assets/characters/all_scale.jpg" id="10_ten7u"]
 [ext_resource type="PackedScene" uid="uid://bfohtny1tt5p0" path="res://enemies/enemy1/enemy_1.tscn" id="11_vcbme"]
+[ext_resource type="PackedScene" uid="uid://bnjvqdfm86ucy" path="res://enemies/enemy2/enemy_2.tscn" id="12_ortwh"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_fl8ju")
@@ -166,10 +167,8 @@ scale = Vector2(0.16, 0.16)
 texture = ExtResource("10_ten7u")
 
 [node name="Enemy1" parent="." instance=ExtResource("11_vcbme")]
+visible = false
 position = Vector2(179, 139)
-enemy_damage = null
-enemy_heal_amount = null
-enemy_shield_amount = null
-block_ball_change_duration = null
-color_damage_duration = null
-color_damage_amount = null
+
+[node name="Enemy2" parent="." instance=ExtResource("12_ortwh")]
+position = Vector2(180, 139)
