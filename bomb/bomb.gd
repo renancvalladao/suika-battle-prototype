@@ -12,7 +12,7 @@ func _ready():
 
 func _on_body_entered(body):
 	super._on_body_entered(body)
-	if will_explode:
+	if will_explode || !(body is Ball):
 		return
 	will_explode = true
 	explosion_timer.start()
