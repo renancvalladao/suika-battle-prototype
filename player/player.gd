@@ -1,16 +1,22 @@
 extends Node2D
 
 const ATTACK_MANA = 20
-const ATTACK_AMOUNT = 10
 const SHIELD_MANA = 15
-const SHIELD_AMOUNT = 10
 const HEAL_MANA = 20
 const HEAL_AMOUNT = 10
 const GHOST_BALL_MANA = 50
 const EXPLODE_MANA = 50
 const RAINBOW_MANA = 50
-const CHAOS_AMOUNT = 2
 
+@export_group("Player Actions")
+@export var ATTACK_AMOUNT = 1
+@export var SHIELD_AMOUNT = 1
+@export var EXTRA_BALLS_AMOUNT = 1
+
+@export_group("Player Status")
+@export var max_hp = 100
+
+var CHAOS_AMOUNT = EXTRA_BALLS_AMOUNT
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
 @onready var mana_bar = $ManaBar
@@ -37,7 +43,7 @@ var action_tiers = {
 	"shield": 1,
 	"chaos": 1
 }
-var hp = 100
+var hp = 0
 var mana = 0
 var shield = 0
 var explosion_chain = false
@@ -53,6 +59,8 @@ var actions_left = GameManager.max_actions
 var my_turn = false
 
 func _ready():
+	hp = max_hp
+	health_bar.max_value = max_hp
 	SignalManager.player_damaged.connect(player_damaged)
 	SignalManager.health_gained.connect(health_gained)
 	SignalManager.shield_gained.connect(shield_gained)
@@ -111,10 +119,10 @@ func pick_random_actions_tier():
 		return
 	for key in action_tiers.keys():
 		var current_tier = action_tiers[key]
-		var possible_tiers = [1, 2, 3]
-		possible_tiers.erase(current_tier)
-		var next_tier = possible_tiers.pick_random()
-		action_tiers[key] = next_tier
+		#var possible_tiers = [1, 2, 3]
+		#possible_tiers.erase(current_tier)
+		#var next_tier = possible_tiers.pick_random()
+		action_tiers[key] = max(1, current_tier - 1)
 
 func mana_gained(amount: int):
 	mana += amount
@@ -170,7 +178,7 @@ func check_attack_enabled():
 		var amount: int = ATTACK_AMOUNT
 		var ball_tier = first_tier + ((tier - 1) * 3)
 		if (BallsManager.scale_with_tier):
-			amount *= ball_tier
+			amount *= tier
 		attack_button.text = "Attack %s (%s)" % [tier, amount]
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		attack_button.disabled = !balls.size() > 0
@@ -185,7 +193,7 @@ func check_defense_enabled():
 		var amount: int = SHIELD_AMOUNT
 		var ball_tier = first_tier + ((tier - 1) * 3)
 		if (BallsManager.scale_with_tier):
-			amount *= (ball_tier - 1)
+			amount *= tier
 		shield_button.text = "Defense %s (%s)" % [tier, amount]
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		shield_button.disabled = !balls.size() > 0
@@ -244,7 +252,7 @@ func shield_gained(amount: int) -> void:
 
 func update_health_ui(_new_hp: int) -> void:
 	health_bar.value = hp
-	health_label.text = str("%s/100" % hp)
+	health_label.text = str("%s/%s" % [hp, max_hp])
 
 func update_mana_ui(_new_mana: int) -> void:
 	attack_button.disabled = mana < ATTACK_MANA
@@ -352,7 +360,7 @@ func on_attack_pressed():
 		var amount: int = ATTACK_AMOUNT
 		var ball_tier = first_tier + ((tier - 1) * 3)
 		if BallsManager.scale_with_tier:
-			amount *= ball_tier
+			amount *= tier
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			increase_action_tier("attack")
@@ -378,7 +386,7 @@ func on_shield_pressed():
 		var amount: int = SHIELD_AMOUNT
 		var ball_tier = first_tier + ((tier - 1) * 3)
 		if BallsManager.scale_with_tier:
-			amount *= (ball_tier - 1)
+			amount *= tier
 		var balls = get_tree().get_nodes_in_group("ball_%s" % ball_tier)
 		if (balls.size() > 0):
 			increase_action_tier("shield")
@@ -468,7 +476,6 @@ func make_scale(type: String, chosen_ball: Ball) -> int:
 	if GameManager.character_chosen == GameManager.CHARACTER.QUANTITY:
 		for tier in tiers:
 			total += get_tree().get_nodes_in_group("ball_%s" % tier).size()
-		total -= 1
 	if GameManager.character_chosen == GameManager.CHARACTER.FUSION:
 		total = GameManager.fusions
 	if GameManager.character_chosen == GameManager.CHARACTER.AREA:

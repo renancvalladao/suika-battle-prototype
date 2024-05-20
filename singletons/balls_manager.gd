@@ -9,72 +9,74 @@ signal current_ball_changed
 var character_selection: PackedScene = load("res://character_selection/character_selection.tscn")
 var can_change_next_ball = true
 
+const PROPORTION = [1.2, 1.3]
+
 const BALLS = [
 	{
 		"tier": 1,
 		"sprite": preload("res://assets/balls/red_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
-		"size": 1
+		"size": PROPORTION[0] ** 0
 	},
 	{
 		"tier": 2,
 		"sprite": preload("res://assets/balls/green_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
-		"size": 1.5
+		"size": PROPORTION[0] ** 1
 	},
 	{
 		"tier": 3,
 		"sprite": preload("res://assets/balls/blue_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
-		"size": 2.1
+		"size": PROPORTION[0] ** 2
 	},
 	{
 		"tier": 4,
 		"sprite": preload("res://assets/balls/red_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
-		"size": 2.8
+		"size": (PROPORTION[0] ** 2) * (1.3 ** 1)
 	},
 	{
 		"tier": 5,
 		"sprite": preload("res://assets/balls/green_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
-		"size": 3.6
+		"size": (PROPORTION[0] ** 3) * (1.3 ** 1)
 	},
 	{
 		"tier": 6,
 		"sprite": preload("res://assets/balls/blue_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
-		"size": 4.5
+		"size": (PROPORTION[0] ** 4) * (1.3 ** 1)
 	},
 	{
 		"tier": 7,
 		"sprite": preload("res://assets/balls/red_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
-		"size": 5.5
+		"size": (PROPORTION[0] ** 4) * (1.3 ** 2)
 	},
 	{
 		"tier": 8,
 		"sprite": preload("res://assets/balls/green_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
-		"size": 6.6
+		"size": (PROPORTION[0] ** 5) * (1.3 ** 2)
 	},
 	{
 		"tier": 9,
 		"sprite": preload("res://assets/balls/blue_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
-		"size": 7.8
+		"size": (PROPORTION[0] ** 6) * (1.3 ** 2)
 	},
 	{
 		"tier": 10,
 		"sprite": preload("res://assets/balls/yellow_body_circle.png"),
 		"icon": preload("res://assets/icons/skull.png"),
-		"size": 9.1
+		"size": (PROPORTION[0] ** 6) * (1.3 ** 3)
 	},
 	{
-		"tier": 10,
+		"tier": 11,
 		"sprite": preload("res://assets/balls/purple_body_circle.png"),
 		"icon": preload("res://assets/icons/crown.png"),
-		"size": 10.5
+		"size": (PROPORTION[0] ** 7) * (1.3 ** 3)
 	}
 ]
 
@@ -96,7 +98,7 @@ func _ready():
 	SignalManager.can_change_next_ball.connect(set_can_change_next_ball)
 
 func get_random_ball() -> Dictionary:
-	var random_ball_index = rng.randi_range(0, 4)
+	var random_ball_index = rng.randi_range(0, 2)
 	return BALLS[random_ball_index]
 
 func get_current_ball() -> Dictionary:
