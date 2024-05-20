@@ -26,13 +26,11 @@ func choose_random_colors() -> void:
 	set_future_color(chosen_color)
 
 func change_color() -> void:
-	print("entrou")
 	var current_color_tiers = [current_color_number, current_color_number + 3, current_color_number + 6]
 	var future_color_tiers = [future_color_number, future_color_number + 3, future_color_number + 6]
 	
 	for color in current_color_tiers:
 		var color_string: String = "ball_" + str(color)
-		print(color_string)
 		get_tree().call_group(color_string,"change_color", current_color_tiers, future_color_tiers)
 		
 	for color in future_color_tiers:

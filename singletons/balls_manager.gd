@@ -71,7 +71,7 @@ const BALLS = [
 		"size": 9.1
 	},
 	{
-		"tier": 10,
+		"tier": 11,
 		"sprite": preload("res://assets/balls/purple_body_circle.png"),
 		"icon": preload("res://assets/icons/crown.png"),
 		"size": 10.5
