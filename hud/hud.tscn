@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://2wy62osvnpgg"]
+[gd_scene load_steps=22 format=3 uid="uid://2wy62osvnpgg"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_5sxdd"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_m48a0"]
 [ext_resource type="LabelSettings" uid="uid://d171akdbrrrry" path="res://resources/font_white.tres" id="2_at335"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="2_j27b4"]
 [ext_resource type="Texture2D" uid="uid://b7dpbitkqn0po" path="res://assets/balls/purple_body_circle.png" id="5_31c2e"]
+[ext_resource type="Texture2D" uid="uid://chieubiu3r8yx" path="res://assets/balls/blue_wisp.png" id="6_h62ys"]
 [ext_resource type="Texture2D" uid="uid://fawli37cxqk3" path="res://assets/icons/shield.png" id="6_rjmn6"]
 [ext_resource type="Texture2D" uid="uid://bynvuhvrwju5i" path="res://assets/balls/green_body_circle.png" id="7_7yh38"]
 [ext_resource type="Texture2D" uid="uid://coqb3i1h408qq" path="res://assets/icons/flask.png" id="8_1joxp"]
@@ -29,15 +30,6 @@ anchor_right = 1.0
 grow_horizontal = 0
 script = ExtResource("1_5sxdd")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = -256.0
-offset_top = 232.0
-offset_right = -90.0
-offset_bottom = 305.0
-text = "NEXT"
-label_settings = ExtResource("2_at335")
-
 [node name="NextBall" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 0
@@ -45,6 +37,25 @@ offset_left = -198.0
 offset_top = 370.0
 offset_right = -158.0
 offset_bottom = 410.0
+
+[node name="Sprite2" type="TextureRect" parent="NextBall"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = -262.0
+offset_right = 619.0
+offset_bottom = 721.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
 
 [node name="Sprite" type="TextureRect" parent="NextBall"]
 layout_mode = 1
@@ -83,6 +94,15 @@ size_flags_vertical = 4
 texture = ExtResource("2_j27b4")
 stretch_mode = 2
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -256.0
+offset_top = 232.0
+offset_right = -90.0
+offset_bottom = 305.0
+text = "NEXT"
+label_settings = ExtResource("2_at335")
+
 [node name="AddManaButton" type="Button" parent="."]
 visible = false
 layout_mode = 0
@@ -95,6 +115,7 @@ theme_override_font_sizes/font_size = 24
 text = "+100 Mana"
 
 [node name="AddHealthButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -320.0
 offset_top = 818.0
@@ -103,6 +124,529 @@ offset_bottom = 871.0
 theme_override_fonts/font = ExtResource("17_7fs1n")
 theme_override_font_sizes/font_size = 24
 text = "+100 HP"
+
+[node name="BallsOption2" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ball1" type="Control" parent="BallsOption2"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -260.0
+offset_top = 690.0
+offset_right = -220.0
+offset_bottom = 730.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -260.0
+offset_right = 616.0
+offset_bottom = 723.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="BallsOption2/Ball1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2
+
+[node name="Ball2" type="Control" parent="BallsOption2"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -177.0
+offset_top = 716.0
+offset_right = -137.0
+offset_bottom = 756.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -260.0
+offset_right = 616.0
+offset_bottom = 723.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="BallsOption2/Ball2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2
+
+[node name="Ball3" type="Control" parent="BallsOption2"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -102.0
+offset_top = 767.0
+offset_right = -62.0
+offset_bottom = 807.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -260.0
+offset_right = 616.0
+offset_bottom = 723.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="BallsOption2/Ball3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2
+
+[node name="Ball4" type="Control" parent="BallsOption2"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -88.0
+offset_top = 855.0
+offset_right = -48.0
+offset_bottom = 895.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -260.0
+offset_right = 616.0
+offset_bottom = 723.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="BallsOption2/Ball4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2
+
+[node name="Ball5" type="Control" parent="BallsOption2"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -138.0
+offset_top = 943.0
+offset_right = -98.0
+offset_bottom = 983.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -260.0
+offset_right = 616.0
+offset_bottom = 723.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="BallsOption2/Ball5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2
+
+[node name="Ball6" type="Control" parent="BallsOption2"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -221.0
+offset_top = 993.0
+offset_right = -181.0
+offset_bottom = 1033.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -260.0
+offset_right = 616.0
+offset_bottom = 723.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="BallsOption2/Ball6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2
+
+[node name="Ball7" type="Control" parent="BallsOption2"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -322.0
+offset_top = 989.0
+offset_right = -282.0
+offset_bottom = 1029.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball7"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -260.0
+offset_right = 616.0
+offset_bottom = 723.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="BallsOption2/Ball7"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2
+
+[node name="Ball8" type="Control" parent="BallsOption2"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -403.0
+offset_top = 937.0
+offset_right = -363.0
+offset_bottom = 977.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball8"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -260.0
+offset_right = 616.0
+offset_bottom = 723.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="BallsOption2/Ball8"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2
+
+[node name="Ball9" type="Control" parent="BallsOption2"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -436.0
+offset_top = 844.0
+offset_right = -396.0
+offset_bottom = 884.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball9"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -260.0
+offset_right = 616.0
+offset_bottom = 723.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="BallsOption2/Ball9"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2
+
+[node name="Ball10" type="Control" parent="BallsOption2"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -415.0
+offset_top = 762.0
+offset_right = -375.0
+offset_bottom = 802.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball10"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -260.0
+offset_right = 616.0
+offset_bottom = 723.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="BallsOption2/Ball10"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2
+
+[node name="Ball11" type="Control" parent="BallsOption2"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -344.0
+offset_top = 713.0
+offset_right = -304.0
+offset_bottom = 753.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball11"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -260.0
+offset_right = 616.0
+offset_bottom = 723.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("6_h62ys")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="BallsOption2/Ball11"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_j27b4")
+stretch_mode = 2
 
 [node name="BallsOptions" type="Control" parent="."]
 anchors_preset = 0
@@ -616,6 +1160,7 @@ texture = ExtResource("19_bairk")
 stretch_mode = 2
 
 [node name="BallsCounter" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_left = -1877.0
 offset_top = 433.0
