@@ -18,6 +18,8 @@ func _ready():
 	super._ready()
 	moves = ["damage", "heal", "shield", "block_ball_change", "color_damage"]
 	intended_move.text = moves[0]
+	if moves[move_count] == "damage":
+		intended_move.text += "_" + str(enemy_damage)
 
 
 func move() -> void:
@@ -43,6 +45,8 @@ func move() -> void:
 		move_count = 0
 		
 	intended_move.text = moves[move_count]
+	if moves[move_count] == "damage":
+		intended_move.text += "_" + str(enemy_damage)
 	finish_enemy_turn()
 
 func finish_enemy_turn() -> void:
