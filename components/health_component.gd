@@ -31,3 +31,4 @@ func heal(heal_amount) -> void:
 func _update_ui() -> void:
 	health_label.text = str("%s/%s" % [health, MAX_HEALTH])
 	health_bar.value = health
+	health_bar.max_value = MAX_HEALTH
