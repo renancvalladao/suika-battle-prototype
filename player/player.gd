@@ -132,10 +132,19 @@ func mana_gained(amount: int):
 
 func _process(_delta):
 	check_attack_enabled()
+	var red_balls = get_balls_by_color("red")
+	var current_attack_amount: int = ATTACK_AMOUNT * action_tiers.attack * red_balls
+	attack_button.text = "Attack %s (%s)" % [action_tiers.attack, current_attack_amount]
 	check_defense_enabled()
+	var green_balls = get_balls_by_color("green")
+	var current_defense_amount: int = SHIELD_AMOUNT * action_tiers.shield * green_balls
+	shield_button.text = "Defense %s (%s)" % [action_tiers.shield, current_defense_amount]
 	#check_buff_enabled()
 	#check_lifesteal_enabled()
 	check_chaos_enabled()
+	var blue_balls = get_balls_by_color("blue")
+	var current_extra_balls_amount: int = CHAOS_AMOUNT * action_tiers.chaos * blue_balls
+	chaos_button.text = "+Balls %s (%s)" % [action_tiers.chaos, current_extra_balls_amount]
 
 func check_chaos_enabled():
 	#var first_tiers = [1, 2, 3]
@@ -486,3 +495,16 @@ func increase_action_tier(action: String) -> void:
 	action_tiers[action] += 1
 	if action_tiers[action] > 3:
 		action_tiers[action] = 1
+
+func get_balls_by_color(color: String) -> int:
+	var tiers = []
+	if color == "red":
+		tiers = [1, 4, 7]
+	elif color == "green":
+		tiers = [2, 5, 8]
+	else:
+		tiers = [3, 6, 9]
+	var total = 0
+	for tier in tiers:
+		total += get_tree().get_nodes_in_group("ball_%s" % tier).size()
+	return total
