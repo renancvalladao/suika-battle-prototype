@@ -2,8 +2,8 @@ extends Node2D
 
 class_name Enemy_old
 
-var max_hp: int = 100
-@export var hp: int = 100
+var max_hp: int = 20
+@export var hp: int = max_hp
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
@@ -24,7 +24,7 @@ var max_hp: int = 100
 @onready var damage_label = $DamageLabel
 @onready var damage_icon = $TextureRect
 
-var enemy_damage: int = 40
+var enemy_damage: int = 4
 var should_color_damage: bool = false
 var color_damage: Array[int] = []
 var my_turn: bool = false
@@ -78,6 +78,7 @@ func _ready():
 	color_damage_button.pressed.connect(on_color_damage_button)
 	finish_button.pressed.connect(finish_enemy_turn)
 	damage_label.text = str(enemy_damage)
+	health_bar.max_value = max_hp
 	set_hp(hp)
 
 func on_attack_button():
@@ -105,7 +106,7 @@ func turn_finished() -> void:
 
 func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int) -> void:
 	if should_color_damage && !my_turn && color_damage.has(tier):
-		SignalManager.player_damaged.emit(10)
+		SignalManager.player_damaged.emit(2)
 
 func set_hp(amount: int) -> void:
 	hp = amount
@@ -113,7 +114,7 @@ func set_hp(amount: int) -> void:
 		max_hp *= 2
 		hp = max_hp
 		health_bar.max_value = max_hp
-		enemy_damage += 20
+		enemy_damage *= 2
 		damage_label.text = str(enemy_damage)
 		#SignalManager.on_game_over.emit()
 		#hide()
@@ -172,7 +173,7 @@ func damage():
 	SignalManager.player_damaged.emit(enemy_damage)
 
 func heal():
-	set_hp(hp + 15)
+	set_hp(hp + 4)
 
 func chaos():
 	for i in range(10):

@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfohtny1tt5p0"]
+[gd_scene load_steps=15 format=3 uid="uid://bfohtny1tt5p0"]
 
 [ext_resource type="Texture2D" uid="uid://d1xf3sthijh8h" path="res://assets/enemies/zombie/character_zombie_cheer0.png" id="1_hsv3h"]
 [ext_resource type="Script" path="res://enemies/enemy1/enemy_1.gd" id="1_p7rs8"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_0a36v"]
 [ext_resource type="PackedScene" uid="uid://c3wiwmd7tu86w" path="res://components/health_component.tscn" id="3_3mikw"]
+[ext_resource type="Texture2D" uid="uid://dneg7w40wkbt1" path="res://assets/enemies/kappa.png" id="3_dkb3t"]
 [ext_resource type="PackedScene" uid="uid://cyl0ljqm7dux5" path="res://components/shield_component.tscn" id="4_he7me"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="6_xaj4i"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="7_wfo43"]
@@ -40,15 +41,20 @@ shadow_color = Color(0, 0, 0, 0.392157)
 
 [node name="Enemy1" type="Node2D"]
 script = ExtResource("1_p7rs8")
-enemy_damage = null
-enemy_heal_amount = null
-enemy_shield_amount = null
-block_ball_change_duration = null
-color_damage_duration = null
-color_damage_amount = null
+enemy_damage = 4
+enemy_heal_amount = 4
+enemy_shield_amount = 4
+block_ball_change_duration = 1
+color_damage_amount = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_hsv3h")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(7, 40)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_dkb3t")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 visible = false
@@ -80,6 +86,7 @@ label_settings = SubResource("LabelSettings_jhc82")
 [node name="HealthComponent" parent="." instance=ExtResource("3_3mikw")]
 position = Vector2(0, -112)
 scale = Vector2(0.462858, 0.359999)
+MAX_HEALTH = 20
 
 [node name="ShieldComponent" parent="." instance=ExtResource("4_he7me")]
 position = Vector2(-161, 84)
