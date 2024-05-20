@@ -7,6 +7,7 @@ const HEAL_AMOUNT = 10
 const GHOST_BALL_MANA = 50
 const EXPLODE_MANA = 50
 const RAINBOW_MANA = 50
+const MAX_REFRESH = 1
 
 @export_group("Player Actions")
 @export var ATTACK_AMOUNT = 1
@@ -37,6 +38,9 @@ var CHAOS_AMOUNT = EXTRA_BALLS_AMOUNT
 @onready var chaos_button = $VBoxContainer/ChaosButton
 @onready var actions_left_label = $VBoxContainer/ActionsLeftLabel
 @onready var end_turn_button = $VBoxContainer/EndTurnButton
+@onready var attack_refresh = $AttackRefresh
+@onready var defense_refresh = $DefenseRefresh
+@onready var acceleration_refresh = $AccelerationRefresh
 
 var action_tiers = {
 	"attack": 1,
@@ -57,6 +61,7 @@ var rainbown_config: Dictionary = {
 var first_turn = true
 var actions_left = GameManager.max_actions
 var my_turn = false
+var current_refresh_count = MAX_REFRESH
 
 func _ready():
 	hp = max_hp
@@ -68,6 +73,7 @@ func _ready():
 	#BallsManager.turn_finished.connect(turn_finished)
 	#SignalManager.turn_started.connect(turn_started)
 	SignalManager.turn_started.connect(pick_random_actions_tier)
+	SignalManager.turn_started.connect(reset_refresh_count)
 	SignalManager.all_balls_dropped.connect(enable_end_turn)
 	attack_button.text = "Attack 1 (%s)" % [ATTACK_AMOUNT]
 	attack_button.pressed.connect(on_attack_pressed)
@@ -95,6 +101,20 @@ func _ready():
 	SignalManager.mana_gained.connect(mana_gained)
 	actions_left_label.text = "Actions Left: %s" % actions_left
 	end_turn_button.pressed.connect(on_end_turn_press)
+	attack_refresh.pressed.connect(func(): refresh_action("attack"))
+	defense_refresh.pressed.connect(func(): refresh_action("shield"))
+	acceleration_refresh.pressed.connect(func(): refresh_action("chaos"))
+
+func refresh_action(action: String):
+	var current_tier = action_tiers[action]
+	var possible_tiers = [1, 2, 3]
+	possible_tiers.erase(current_tier)
+	var next_tier = possible_tiers.pick_random()
+	action_tiers[action] = next_tier
+	current_refresh_count -= 1
+
+func reset_refresh_count():
+	current_refresh_count = MAX_REFRESH
 
 func on_end_turn_press():
 	BallsManager.turn_finished.emit()
@@ -131,6 +151,13 @@ func mana_gained(amount: int):
 	#update_mana_ui(mana)
 
 func _process(_delta):
+	var is_refresh_enabled = current_refresh_count > 0
+	attack_refresh.disabled = !is_refresh_enabled && !my_turn
+	attack_refresh.visible = is_refresh_enabled && my_turn
+	defense_refresh.disabled = !is_refresh_enabled && !my_turn
+	defense_refresh.visible = is_refresh_enabled && my_turn
+	acceleration_refresh.disabled = !is_refresh_enabled && !my_turn
+	acceleration_refresh.visible = is_refresh_enabled && my_turn
 	check_attack_enabled()
 	var red_balls = get_balls_by_color("red")
 	var current_attack_amount: int = ATTACK_AMOUNT * action_tiers.attack * red_balls
