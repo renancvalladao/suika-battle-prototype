@@ -9,6 +9,7 @@ class_name Ball
 @onready var near_range = $NearBallsArea/Range
 @onready var near_balls_label = $NearBallsLabel
 @onready var change_timer = $ChangeTimer
+@onready var ball_can_attack_component = $BallCanAttackComponent
 
 var config: Dictionary = BallsManager.BALLS[0]
 var exploded: bool = false
@@ -30,6 +31,7 @@ func _ready():
 	$CollisionShape2D.scale *= config.size
 	near_balls.scale *= config.size
 	near_range.scale *= config.size
+	ball_can_attack_component.visible = false
 	
 	if should_add_group:
 		add_to_group("ball_%s" % config.tier)
@@ -64,6 +66,8 @@ func set_configuration(new_config: Dictionary):
 
 func explode():
 	exploded = true
+	if ball_can_attack_component.visible:
+		ball_can_attack_component.do_move()
 	queue_free()
 
 func _on_body_entered(body):
