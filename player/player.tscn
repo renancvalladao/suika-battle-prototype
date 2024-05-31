@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bwrxmlqbt6fd"]
+[gd_scene load_steps=32 format=3 uid="uid://bwrxmlqbt6fd"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_i37r2"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_besmk"]
@@ -25,6 +25,115 @@ shadow_color = Color(0, 0, 0, 0.392157)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxx7v"]
 bg_color = Color(0.457506, 0.442319, 0.846299, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n434q"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.823529, 0.0509804, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77pjf"]
+bg_color = Color(0.819608, 0.054902, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Animation" id="Animation_yrtgq"]
+resource_name = "on_acceleration_increase"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/fill:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.223529, 0.611765, 1, 1), Color(0.819608, 0.819608, 0.819608, 1), Color(0.223529, 0.611765, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_27r67"]
+resource_name = "on_increase"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/fill:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.819608, 0.054902, 0, 1), Color(0.819608, 0.819608, 0.819608, 1), Color(0.819608, 0.054902, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n0f0w"]
+resource_name = "on_shield_increase"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/fill:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.72549, 0, 1), Color(0.819608, 0.819608, 0.819608, 1), Color(0.133333, 0.72549, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xc2of"]
+_data = {
+"on_acceleration_increase": SubResource("Animation_yrtgq"),
+"on_attack_increase": SubResource("Animation_27r67"),
+"on_shield_increase": SubResource("Animation_n0f0w")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rx4nc"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.133333, 0.72549, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oapbk"]
+bg_color = Color(0.133333, 0.72549, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7v25a"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.223529, 0.611765, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mscup"]
+bg_color = Color(0.223529, 0.611765, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="LabelSettings" id="LabelSettings_r5wuj"]
 font = ExtResource("2_besmk")
@@ -57,6 +166,8 @@ bg_color = Color(0.564706, 0.164706, 0.12549, 1)
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_i37r2")
+AUTO_SHIELD_AMOUNT = 5
+max_hp = 20
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_right = 350.0
@@ -137,17 +248,66 @@ vertical_alignment = 1
 
 [node name="ChainExplosionTimer" type="Timer" parent="."]
 
+[node name="AttackBar" type="ProgressBar" parent="."]
+offset_left = 370.0
+offset_top = 30.0
+offset_right = 710.0
+offset_bottom = 80.0
+theme_override_styles/background = SubResource("StyleBoxFlat_n434q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_77pjf")
+value = 50.0
+
+[node name="AttackBarPlayer" type="AnimationPlayer" parent="AttackBar"]
+libraries = {
+"": SubResource("AnimationLibrary_xc2of")
+}
+
+[node name="ShieldBar" type="ProgressBar" parent="."]
+offset_left = 740.0
+offset_top = 30.0
+offset_right = 1080.0
+offset_bottom = 80.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rx4nc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_oapbk")
+value = 50.0
+
+[node name="ShieldBarPlayer" type="AnimationPlayer" parent="ShieldBar"]
+libraries = {
+"": SubResource("AnimationLibrary_xc2of")
+}
+
+[node name="AccelerationBar" type="ProgressBar" parent="."]
+offset_left = 1110.0
+offset_top = 30.0
+offset_right = 1450.0
+offset_bottom = 80.0
+theme_override_styles/background = SubResource("StyleBoxFlat_7v25a")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mscup")
+value = 50.0
+
+[node name="AccelerationBarPlayer" type="AnimationPlayer" parent="AccelerationBar"]
+libraries = {
+"": SubResource("AnimationLibrary_xc2of")
+}
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 offset_top = -325.0
 offset_right = 348.0
 offset_bottom = -59.0
 
 [node name="ActionsLeftLabel" type="Label" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Actions Left: 3"
 label_settings = SubResource("LabelSettings_r5wuj")
 
+[node name="ActionsLeftLabel2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_r5wuj")
+
 [node name="AttackButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_besmk")
@@ -184,6 +344,7 @@ texture = ExtResource("5_ochkj")
 stretch_mode = 2
 
 [node name="ShieldButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_besmk")
@@ -316,6 +477,7 @@ texture = ExtResource("5_hllbv")
 stretch_mode = 2
 
 [node name="ChaosButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_besmk")
@@ -406,6 +568,7 @@ texture = ExtResource("5_hllbv")
 stretch_mode = 2
 
 [node name="EndTurnButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_besmk")
@@ -537,6 +700,7 @@ texture = ExtResource("6_o1r6n")
 stretch_mode = 2
 
 [node name="AttackRefresh" type="TextureButton" parent="."]
+visible = false
 modulate = Color(0.823529, 0.0509804, 0, 1)
 offset_left = 350.0
 offset_top = -270.0
@@ -550,6 +714,7 @@ texture_disabled = ExtResource("9_8f2lp")
 texture_focused = ExtResource("9_8f2lp")
 
 [node name="DefenseRefresh" type="TextureButton" parent="."]
+visible = false
 modulate = Color(0.133333, 0.72549, 0, 1)
 offset_left = 350.0
 offset_top = -224.0
@@ -563,6 +728,7 @@ texture_disabled = ExtResource("9_8f2lp")
 texture_focused = ExtResource("9_8f2lp")
 
 [node name="AccelerationRefresh" type="TextureButton" parent="."]
+visible = false
 modulate = Color(0.223529, 0.611765, 1, 1)
 offset_left = 350.0
 offset_top = -180.0

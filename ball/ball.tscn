@@ -1,11 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5d3utm7alcgv"]
+[gd_scene load_steps=11 format=3 uid="uid://c5d3utm7alcgv"]
 
 [ext_resource type="Script" path="res://ball/ball.gd" id="1_aaf3s"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_r3t8n"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="2_44oov"]
-[ext_resource type="Texture2D" path="res://assets/balls/blue_wisp.png" id="2_fwymb"]
+[ext_resource type="Texture2D" uid="uid://chieubiu3r8yx" path="res://assets/balls/blue_wisp.png" id="2_fwymb"]
 [ext_resource type="Texture2D" uid="uid://c1s8sy22qyutu" path="res://assets/balls/yellow_body_circle.png" id="4_1g7ns"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="5_qnh1d"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2wo2j"]
+friction = 0.5
+bounce = 0.05
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e2kl0"]
 radius = 80.0
@@ -22,6 +26,7 @@ shadow_size = 6
 shadow_color = Color(0, 0, 0, 0.392157)
 
 [node name="Ball" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_2wo2j")
 can_sleep = false
 max_contacts_reported = 8
 contact_monitor = true

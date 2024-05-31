@@ -22,10 +22,10 @@ func _ready():
 		ball.get_child(1).texture = BallsManager.BALLS[index].icon
 	set_next_ball()
 
-func _process(_delta):
-	red_label.text = "%s" % get_balls_by_color("red")
-	green_label.text = "%s" % get_balls_by_color("green")
-	blue_label.text = "%s" % get_balls_by_color("blue")
+#func _process(_delta):
+	#red_label.text = "%s" % get_balls_by_color("red")
+	#green_label.text = "%s" % get_balls_by_color("green")
+	#blue_label.text = "%s" % get_balls_by_color("blue")
 	
 func can_change_next_ball_ui(can_change: bool) -> void:
 	if !can_change:

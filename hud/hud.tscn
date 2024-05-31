@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://d171akdbrrrry" path="res://resources/font_white.tres" id="2_at335"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="2_j27b4"]
 [ext_resource type="Texture2D" uid="uid://b7dpbitkqn0po" path="res://assets/balls/purple_body_circle.png" id="5_31c2e"]
-[ext_resource type="Texture2D" path="res://assets/balls/blue_wisp.png" id="6_h62ys"]
+[ext_resource type="Texture2D" uid="uid://chieubiu3r8yx" path="res://assets/balls/blue_wisp.png" id="6_h62ys"]
 [ext_resource type="Texture2D" uid="uid://fawli37cxqk3" path="res://assets/icons/shield.png" id="6_rjmn6"]
 [ext_resource type="Texture2D" uid="uid://bynvuhvrwju5i" path="res://assets/balls/green_body_circle.png" id="7_7yh38"]
 [ext_resource type="Texture2D" uid="uid://coqb3i1h408qq" path="res://assets/icons/flask.png" id="8_1joxp"]
@@ -115,7 +115,6 @@ theme_override_font_sizes/font_size = 24
 text = "+100 Mana"
 
 [node name="AddHealthButton" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = -320.0
 offset_top = 818.0

@@ -95,7 +95,7 @@ func spawn_ball(first_pos: Vector2, second_pos: Vector2, tier: int):
 	call_deferred("add_child", ball)
 
 func ball_dropped():
-	moves_left -= 1
+	#moves_left -= 1
 	moves_left_label.text = "Balls Left: %s" % moves_left
 	if moves_left == 0:
 		SignalManager.all_balls_dropped.emit()

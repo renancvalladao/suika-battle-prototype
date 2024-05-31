@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://2wy62osvnpgg" path="res://hud/hud.tscn" id="2_uwwfi"]
 [ext_resource type="PackedScene" uid="uid://b8yom6hr615ry" path="res://game_over/game_over.tscn" id="3_k3w44"]
 [ext_resource type="PackedScene" uid="uid://7i4sjogibg3k" path="res://tile/tile.tscn" id="4_8rafd"]
-[ext_resource type="Texture2D" path="res://assets/background/japaneseForest.png" id="5_q7nbd"]
+[ext_resource type="Texture2D" uid="uid://cqxdyear64ni3" path="res://assets/background/japaneseForest.png" id="5_q7nbd"]
 [ext_resource type="PackedScene" uid="uid://beei3ex2riwi8" path="res://enemy_old/enemy_old.tscn" id="6_t4nb7"]
 [ext_resource type="LabelSettings" uid="uid://d171akdbrrrry" path="res://resources/font_white.tres" id="7_gne4q"]
 [ext_resource type="PackedScene" uid="uid://bwrxmlqbt6fd" path="res://player/player.tscn" id="8_6rvjb"]
 [ext_resource type="Texture2D" uid="uid://cqtexkon8cfub" path="res://assets/characters/all_scale.jpg" id="10_ten7u"]
 [ext_resource type="PackedScene" uid="uid://bfohtny1tt5p0" path="res://enemies/enemy1/enemy_1.tscn" id="11_vcbme"]
-[ext_resource type="Texture2D" path="res://assets/toriiGate.png" id="13_53k2p"]
+[ext_resource type="Texture2D" uid="uid://d24487vph7nuj" path="res://assets/toriiGate.png" id="13_53k2p"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_fl8ju")
@@ -50,23 +50,23 @@ scale = Vector2(0.92, 0.819999)
 texture = ExtResource("13_53k2p")
 
 [node name="Hand" parent="." node_paths=PackedStringArray("position_min", "position_max") instance=ExtResource("1_h2fse")]
-position = Vector2(950, 76)
+position = Vector2(950, 199)
 position_min = NodePath("../PositionMin")
 position_max = NodePath("../PositionMax")
 
 [node name="Tile" parent="." instance=ExtResource("4_8rafd")]
-position = Vector2(960, 1000)
+position = Vector2(960, 920)
 scale = Vector2(2, 1)
 
 [node name="Tile2" parent="." instance=ExtResource("4_8rafd")]
-position = Vector2(652, 560)
+position = Vector2(652, 600)
 rotation = 1.5708
-scale = Vector2(2.5, 1)
+scale = Vector2(1.5, 1)
 
 [node name="Tile3" parent="." instance=ExtResource("4_8rafd")]
-position = Vector2(1268, 560)
+position = Vector2(1268, 600)
 rotation = -1.5708
-scale = Vector2(2.5, 1)
+scale = Vector2(1.5, 1)
 
 [node name="PositionMin" type="Marker2D" parent="."]
 position = Vector2(642, 80)
@@ -88,6 +88,7 @@ text = "Fusions: 0"
 label_settings = ExtResource("7_gne4q")
 
 [node name="MovesLeftLabel" type="Label" parent="."]
+visible = false
 offset_left = 1448.0
 offset_top = 92.0
 offset_right = 1905.0
@@ -106,7 +107,6 @@ label_settings = ExtResource("7_gne4q")
 
 [node name="Player" parent="." instance=ExtResource("8_6rvjb")]
 position = Vector2(58, 948)
-max_hp = 10
 
 [node name="BallEffects" type="Label" parent="."]
 visible = false

@@ -13,6 +13,9 @@ const MAX_REFRESH = 1
 @export var ATTACK_AMOUNT = 1
 @export var SHIELD_AMOUNT = 1
 @export var EXTRA_BALLS_AMOUNT = 1
+@export var AUTO_ATTACK_AMOUNT = 10
+@export var AUTO_SHIELD_AMOUNT = 10
+@export var AUTO_ACCELERATION_AMOUNT = 5
 
 @export_group("Player Status")
 @export var max_hp = 100
@@ -41,6 +44,12 @@ var CHAOS_AMOUNT = EXTRA_BALLS_AMOUNT
 @onready var attack_refresh = $AttackRefresh
 @onready var defense_refresh = $DefenseRefresh
 @onready var acceleration_refresh = $AccelerationRefresh
+@onready var attack_bar = $AttackBar
+@onready var shield_bar = $ShieldBar
+@onready var acceleration_bar = $AccelerationBar
+@onready var attack_bar_player = $AttackBar/AttackBarPlayer
+@onready var shield_bar_player = $ShieldBar/ShieldBarPlayer
+@onready var acceleration_bar_player = $AccelerationBar/AccelerationBarPlayer
 
 var action_tiers = {
 	"attack": 1,
@@ -104,6 +113,10 @@ func _ready():
 	attack_refresh.pressed.connect(func(): refresh_action("attack"))
 	defense_refresh.pressed.connect(func(): refresh_action("shield"))
 	acceleration_refresh.pressed.connect(func(): refresh_action("chaos"))
+	attack_bar.value = 0
+	shield_bar.value = 0
+	acceleration_bar.value = 0
+	BallsManager.ball_exploded.connect(on_ball_exploded)
 
 func refresh_action(action: String):
 	var current_tier = action_tiers[action]
@@ -112,6 +125,37 @@ func refresh_action(action: String):
 	var next_tier = possible_tiers.pick_random()
 	action_tiers[action] = next_tier
 	current_refresh_count -= 1
+
+func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int):
+	var increment = 20
+	var scale_factor: int = ((tier - 1) / 3) + 1
+	var action = null
+	var bar = null
+	var bar_player = null
+	if (tier == 1 || tier == 4 || tier == 7):
+		bar = attack_bar
+		action = "attack"
+		bar_player = attack_bar_player
+	if (tier == 2 || tier == 5 || tier == 8):
+		bar = shield_bar
+		action = "shield"
+		bar_player = shield_bar_player
+	if (tier == 3 || tier == 6 || tier == 9):
+		bar = acceleration_bar
+		action = "acceleration"
+		bar_player = acceleration_bar_player
+	if (bar != null && action != null):
+		var new_value = bar.value + increment * scale_factor
+		bar.value = new_value
+		bar_player.play("on_" + action + "_increase")
+		if new_value >= bar.max_value:
+			bar.value = new_value - bar.max_value
+			if action == "attack":
+				SignalManager.enemy_damaged.emit(AUTO_ATTACK_AMOUNT)
+			if action == "shield":
+				SignalManager.shield_gained.emit(AUTO_SHIELD_AMOUNT)
+			if action == "acceleration":
+				SignalManager.enemy_move_delayed.emit(AUTO_ACCELERATION_AMOUNT)
 
 func reset_refresh_count():
 	current_refresh_count = MAX_REFRESH
@@ -150,28 +194,28 @@ func mana_gained(amount: int):
 		mana = 100
 	#update_mana_ui(mana)
 
-func _process(_delta):
-	var is_refresh_enabled = current_refresh_count > 0
-	attack_refresh.disabled = !is_refresh_enabled && !my_turn
-	attack_refresh.visible = is_refresh_enabled && my_turn
-	defense_refresh.disabled = !is_refresh_enabled && !my_turn
-	defense_refresh.visible = is_refresh_enabled && my_turn
-	acceleration_refresh.disabled = !is_refresh_enabled && !my_turn
-	acceleration_refresh.visible = is_refresh_enabled && my_turn
-	check_attack_enabled()
-	var red_balls = get_balls_by_color("red")
-	var current_attack_amount: int = ATTACK_AMOUNT * action_tiers.attack * red_balls
-	attack_button.text = "Attack %s (%s)" % [action_tiers.attack, current_attack_amount]
-	check_defense_enabled()
-	var green_balls = get_balls_by_color("green")
-	var current_defense_amount: int = SHIELD_AMOUNT * action_tiers.shield * green_balls
-	shield_button.text = "Defense %s (%s)" % [action_tiers.shield, current_defense_amount]
-	#check_buff_enabled()
-	#check_lifesteal_enabled()
-	check_chaos_enabled()
-	var blue_balls = get_balls_by_color("blue")
-	var current_extra_balls_amount: int = CHAOS_AMOUNT * action_tiers.chaos * blue_balls
-	chaos_button.text = "+Balls %s (%s)" % [action_tiers.chaos, current_extra_balls_amount]
+#func _process(_delta):
+	#var is_refresh_enabled = false
+	#attack_refresh.disabled = !is_refresh_enabled && !my_turn
+	#attack_refresh.visible = is_refresh_enabled && my_turn
+	#defense_refresh.disabled = !is_refresh_enabled && !my_turn
+	#defense_refresh.visible = is_refresh_enabled && my_turn
+	#acceleration_refresh.disabled = !is_refresh_enabled && !my_turn
+	#acceleration_refresh.visible = is_refresh_enabled && my_turn
+	#check_attack_enabled()
+	#var red_balls = get_balls_by_color("red")
+	#var current_attack_amount: int = ATTACK_AMOUNT * action_tiers.attack * red_balls
+	#attack_button.text = "Attack %s (%s)" % [action_tiers.attack, current_attack_amount]
+	#check_defense_enabled()
+	#var green_balls = get_balls_by_color("green")
+	#var current_defense_amount: int = SHIELD_AMOUNT * action_tiers.shield * green_balls
+	#shield_button.text = "Defense %s (%s)" % [action_tiers.shield, current_defense_amount]
+	##check_buff_enabled()
+	##check_lifesteal_enabled()
+	#check_chaos_enabled()
+	#var blue_balls = get_balls_by_color("blue")
+	#var current_extra_balls_amount: int = CHAOS_AMOUNT * action_tiers.chaos * blue_balls
+	#chaos_button.text = "+Balls %s (%s)" % [action_tiers.chaos, current_extra_balls_amount]
 
 func check_chaos_enabled():
 	#var first_tiers = [1, 2, 3]
@@ -353,7 +397,7 @@ func on_chaos_press():
 			var ball: Ball = balls.pick_random()
 			var effect_scale := make_scale("chaos", ball)
 			amount *= effect_scale
-			ball.queue_free()
+			#ball.queue_free()
 			SignalManager.balls_left_gained.emit(amount)
 			#for i in range(amount):
 				#SignalManager.spawn_random_ball.emit()
@@ -404,7 +448,7 @@ func on_attack_pressed():
 			var ball = balls.pick_random()
 			var effect_scale := make_scale("attack", ball)
 			amount *= effect_scale
-			ball.queue_free()
+			#ball.queue_free()
 			SignalManager.enemy_damaged.emit(amount)
 			return
 
@@ -430,7 +474,7 @@ func on_shield_pressed():
 			var ball = balls.pick_random()
 			var effect_scale := make_scale("shield", ball)
 			amount *= effect_scale
-			ball.queue_free()
+			#ball.queue_free()
 			SignalManager.shield_gained.emit(amount)
 			return
 
