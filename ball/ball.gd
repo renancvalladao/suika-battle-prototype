@@ -9,6 +9,7 @@ class_name Ball
 @onready var near_range = $NearBallsArea/Range
 @onready var near_balls_label = $NearBallsLabel
 @onready var change_timer = $ChangeTimer
+@onready var ball_can_attack_component = $BallCanAttackComponent
 
 var config: Dictionary = BallsManager.BALLS[0]
 var exploded: bool = false
@@ -30,8 +31,11 @@ func _ready():
 	$CollisionShape2D.scale *= config.size
 	near_balls.scale *= config.size
 	near_range.scale *= config.size
+	ball_can_attack_component.visible = false
+	
 	if should_add_group:
 		add_to_group("ball_%s" % config.tier)
+		add_to_group("balls")
 		
 func set_initial_scales() -> void:
 	initial_icon_scale = $Icon.scale
@@ -51,6 +55,7 @@ func set_should_add_group(should: bool):
 	should_add_group = should
 
 func add_group():
+	add_to_group("balls")
 	add_to_group("ball_%s" % config.tier)
 
 func remove_group():
@@ -61,6 +66,8 @@ func set_configuration(new_config: Dictionary):
 
 func explode():
 	exploded = true
+	if ball_can_attack_component.visible:
+		ball_can_attack_component.do_move()
 	queue_free()
 
 func _on_body_entered(body):
@@ -112,14 +119,13 @@ func change_color(current_color_tiers, future_color_tiers):
 	can_change_color = false
 	change_timer.start()
 	
-	
 	var my_tier :int = config.tier
 	var my_tier_index :int = current_color_tiers.find(my_tier)
 	remove_group()
 	
 	var new_tier :int = future_color_tiers[my_tier_index]
 	var new_config: Dictionary = BallsManager.BALLS[new_tier - 1]
-	print("my_tier:", my_tier , "new_tier", new_tier)
+	#print("my_tier:", my_tier , "new_tier", new_tier)
 	config = new_config
 	update_config()
 	add_group()
@@ -138,6 +144,14 @@ func update_config() -> void:
 	near_balls.scale *= config.size
 	near_range.scale *= config.size
 
+func change_tier(new_tier: int) -> void:
+	#var my_tier :int = config.tier
+	remove_group()
+	var new_config: Dictionary = BallsManager.BALLS[new_tier - 1]
+	config = new_config
+	update_config()
+	add_group()
+	
 
 func _on_change_timer_timeout():
 	set_can_change_color_to_true()

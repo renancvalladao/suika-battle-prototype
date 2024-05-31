@@ -43,3 +43,11 @@ func do_debuffs() -> void:
 		if debuff.duration <= 0:
 			debuffs.erase(debuff)
 	
+func damage() -> void:
+	pass
+
+func heal() -> void:
+	pass
+	
+func shield() -> void:
+	pass
