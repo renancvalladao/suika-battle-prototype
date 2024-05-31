@@ -54,6 +54,7 @@ func _unhandled_input(event):
 		ball_holder.remove_child(ball)
 		add_sibling(ball)
 		drop_timer.start()
+		
 
 func _on_drop_timer_timeout():
 	can_drop = true

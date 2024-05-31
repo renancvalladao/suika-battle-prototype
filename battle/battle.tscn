@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=16 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bwrxmlqbt6fd" path="res://player/player.tscn" id="8_6rvjb"]
 [ext_resource type="Texture2D" uid="uid://cqtexkon8cfub" path="res://assets/characters/all_scale.jpg" id="10_ten7u"]
 [ext_resource type="PackedScene" uid="uid://bfohtny1tt5p0" path="res://enemies/enemy1/enemy_1.tscn" id="11_vcbme"]
+[ext_resource type="PackedScene" uid="uid://bnjvqdfm86ucy" path="res://enemies/enemy2/enemy_2.tscn" id="12_ortwh"]
+[ext_resource type="PackedScene" uid="uid://86kg6adqg6xe" path="res://enemies/enemy3/enemy_3.tscn" id="13_24gnp"]
 [ext_resource type="Texture2D" uid="uid://d24487vph7nuj" path="res://assets/toriiGate.png" id="13_53k2p"]
 
 [node name="Battle" type="Node2D"]
@@ -191,4 +193,12 @@ scale = Vector2(0.16, 0.16)
 texture = ExtResource("10_ten7u")
 
 [node name="Enemy1" parent="." instance=ExtResource("11_vcbme")]
-position = Vector2(179, 139)
+position = Vector2(180, 139)
+
+[node name="Enemy2" parent="." instance=ExtResource("12_ortwh")]
+visible = false
+position = Vector2(180, 139)
+
+[node name="Enemy3" parent="." instance=ExtResource("13_24gnp")]
+visible = false
+position = Vector2(180, 139)

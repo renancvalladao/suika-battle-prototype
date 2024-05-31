@@ -157,6 +157,7 @@ offset_top = 53.0
 offset_right = 195.0
 offset_bottom = 53.0
 scale = Vector2(0.72, 0.72)
+metadata/_edit_use_anchors_ = true
 
 [node name="IntendedMove" type="Label" parent="."]
 modulate = Color(1, 0, 0.435294, 1)

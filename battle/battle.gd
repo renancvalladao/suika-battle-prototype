@@ -10,7 +10,7 @@ var character_images = {
 @export var max_moves: int = GameManager.max_balls
 
 @onready var moves_left_label = $MovesLeftLabel
-@onready var enemy: Enemy = $Enemy1
+@onready var enemy: Enemy = $Enemy3
 @onready var position_min = $PositionMin
 @onready var position_max = $PositionMax
 @onready var game_over = $CanvasLayer/GameOver

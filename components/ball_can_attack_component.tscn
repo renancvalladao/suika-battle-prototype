@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd7cx16nt66kr"]
+
+[ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="1_efxr0"]
+[ext_resource type="Script" path="res://components/ball_can_attack_component.gd" id="2_au2d3"]
+
+[node name="BallCanAttackComponent" type="Sprite2D"]
+position = Vector2(1, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_efxr0")
+script = ExtResource("2_au2d3")
