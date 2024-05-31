@@ -31,7 +31,7 @@ var bomb_config: Dictionary = {
 
 func _ready():
 	super._ready()
-	moves = ["ball_can_attack"]
+	moves = ["to_tier10", "ball_can_attack", "ball_can_attack", "ball_can_attack", "ball_can_attack", "ball_can_attack"]
 	intended_move.text = moves[0]
 	icons = [attack_icon, heal_icon, shield_icon]
 
@@ -40,8 +40,8 @@ func move() -> void:
 	var action = moves[move_count]
 	
 	match action:
-		#"to_tier10":
-			#to_tier10()
+		"to_tier10":
+			to_tier10()
 		"ball_can_attack":
 			ball_can_attack()
 
