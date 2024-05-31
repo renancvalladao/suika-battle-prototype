@@ -16,7 +16,6 @@ const MOVE_COOLDOWN = 30
 @export var color_damage_duration: int = 1
 @export var color_damage_amount: int = 10
 @onready var move_bar = $MoveBar
-@onready var move_timer = $MoveTimer
 
 func _ready():
 	super._ready()
@@ -25,7 +24,6 @@ func _ready():
 	build_intention_string()
 	move_bar.value = 0
 	move_bar.max_value = MOVE_COOLDOWN
-	move_timer.wait_time = MOVE_COOLDOWN
 	SignalManager.enemy_move_delayed.connect(on_delay)
 	#move_timer.start()
 
@@ -101,9 +99,3 @@ func _process(delta):
 		SignalManager.can_change_next_ball.emit(true)
 		move_bar.value = 0
 		move()
-
-func _on_move_timer_timeout():
-	pass
-	#SignalManager.turn_off_color_damage.emit()
-	#move_bar.value = 0
-	#move()
