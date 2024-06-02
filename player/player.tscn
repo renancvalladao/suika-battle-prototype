@@ -221,6 +221,7 @@ text = "50/100"
 label_settings = SubResource("LabelSettings_q0x13")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 self_modulate = Color(0.631373, 0.631373, 0.631373, 1)
 offset_top = -92.0
 offset_right = 128.0

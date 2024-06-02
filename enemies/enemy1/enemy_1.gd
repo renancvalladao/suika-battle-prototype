@@ -16,6 +16,7 @@ const MOVE_COOLDOWN = 30
 @export var color_damage_duration: int = 1
 @export var color_damage_amount: int = 10
 @onready var move_bar = $MoveBar
+@onready var damage_numbers_origin = $DamageNumbersOrigin
 
 func _ready():
 	super._ready()
@@ -36,6 +37,9 @@ func build_intention_string():
 		intended_move.text += "_" + str(color_damage_amount) + "\nblock_ball_change"
 	if moves[move_count] == "damage":
 		intended_move.text += "_" + str(enemy_damage)
+
+func display_damage_number(damage_taken: int) -> void:
+	DamageNumbers.display_number(damage_taken, damage_numbers_origin.global_position)
 
 func move() -> void:
 	var action = moves[move_count]
