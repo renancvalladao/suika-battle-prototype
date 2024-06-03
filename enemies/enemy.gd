@@ -37,6 +37,8 @@ func enemy_damaged(amount: int) -> void:
 	if damage_taken > 0:
 		health_component.take_damage(damage_taken)
 		display_damage_number(damage_taken)
+	else:
+		health_component.take_damage(0)
 
 func display_damage_number(damage_taken: int) -> void:
 	pass
