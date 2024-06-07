@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfohtny1tt5p0"]
+[gd_scene load_steps=18 format=3 uid="uid://bfohtny1tt5p0"]
 
 [ext_resource type="Texture2D" uid="uid://d1xf3sthijh8h" path="res://assets/enemies/zombie/character_zombie_cheer0.png" id="1_hsv3h"]
 [ext_resource type="Script" path="res://enemies/enemy1/enemy_1.gd" id="1_p7rs8"]
@@ -39,13 +39,52 @@ outline_color = Color(0.317647, 0.317647, 0.317647, 1)
 shadow_size = 6
 shadow_color = Color(0, 0, 0, 0.392157)
 
-[node name="Enemy1" type="Node2D"]
+[sub_resource type="Animation" id="Animation_rc1kp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tvsq8"]
+resource_name = "hit_effect"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xhn8l"]
+_data = {
+"RESET": SubResource("Animation_rc1kp"),
+"hit_effect": SubResource("Animation_tvsq8")
+}
+
+[node name="Enemy1" type="Node2D" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_p7rs8")
 enemy_damage = 10
 enemy_heal_amount = 5
 enemy_shield_amount = 5
 block_ball_change_duration = 1
 color_damage_amount = 3
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -188,3 +227,11 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_nqvjx")
 max_value = 10.0
 value = 2.0
 show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xhn8l")
+}
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="."]
+position = Vector2(0, -76)
