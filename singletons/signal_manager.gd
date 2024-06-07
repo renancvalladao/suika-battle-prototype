@@ -20,6 +20,7 @@ signal enemy_damaged(damage: int)
 signal enemy_moved
 signal enemy_turn_started
 signal enemy_move_delayed(amount: int)
+signal enemy_died
 
 #===========Debuffs===========
 signal turn_on_color_damage

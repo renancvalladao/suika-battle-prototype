@@ -6,7 +6,7 @@ var health: int
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
-signal health_is_0
+#signal health_is_0
 
 func _ready():
 	set_health(MAX_HEALTH)
@@ -19,7 +19,9 @@ func take_damage(damage_amount: int) -> void:
 	var new_health = health - damage_amount
 	new_health = clampi(new_health, 0, MAX_HEALTH)
 	if new_health == 0:
-		health_is_0.emit()
+		SignalManager.enemy_died.emit()
+		get_parent().queue_free()
+		
 		
 	set_health(new_health)
 

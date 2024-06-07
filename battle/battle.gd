@@ -45,6 +45,7 @@ func _ready():
 	SignalManager.on_game_over.connect(on_game_over)
 	SignalManager.explode_ball_tier.connect(explode_ball_tier)
 	SignalManager.enemy_moved.connect(on_enemy_moved)
+	SignalManager.enemy_died.connect(_on_enemy_death)
 	BallsManager.turn_finished.connect(on_end_turn)
 	check_button.button_pressed = BallsManager.balls_effect
 	check_button.pressed.connect(toggle_ball_effect)
@@ -145,6 +146,8 @@ func explode_ball_tier(tier: int) -> void:
 	for ball in balls:
 		ball.queue_free()
 
+func _on_enemy_death():
+	spawn_timer.start()
 
 func _on_spawn_timer_timeout():
 	if spawn_point_1.get_child_count() == 0:
