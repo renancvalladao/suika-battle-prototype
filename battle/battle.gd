@@ -7,10 +7,15 @@ var character_images = {
 	GameManager.CHARACTER.ALL: preload("res://assets/characters/all_scale.jpg")
 }
 
+var enemy_1_scene: PackedScene = preload("res://enemies/enemy1/enemy_1.tscn")
+
 @export var max_moves: int = GameManager.max_balls
 
 @onready var moves_left_label = $MovesLeftLabel
 @onready var enemy: Enemy = $Enemy3
+@onready var enemies: Array[PackedScene]
+@onready var spawn_timer = $SpawnTimer
+
 @onready var position_min = $PositionMin
 @onready var position_max = $PositionMax
 @onready var game_over = $CanvasLayer/GameOver
@@ -21,6 +26,12 @@ var character_images = {
 @onready var fusions_label = $FusionsLabel
 @onready var character = $Character
 @onready var turn_counter_label = $TurnCounterLabel
+
+@onready var spawn_point_1 = $SpawnPoint1
+@onready var spawn_point_2 = $SpawnPoint2
+@onready var spawn_point_3 = $SpawnPoint3
+@onready var spawn_point_4 = $SpawnPoint4
+
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
 var moves_left: int = max_moves
@@ -47,6 +58,9 @@ func _ready():
 	fusions_label.text = "Fusions: 0"
 	character.texture = character_images[GameManager.character_chosen]
 	turn_counter_label.text = "Turn: 0"
+	
+	enemies = [enemy_1_scene] #No futuro terá mais inimigos
+	spawn_enemy(spawn_point_1)
 	
 	#spawn_random_balls(50)
 	SignalManager.turn_started.emit()
@@ -130,3 +144,22 @@ func explode_ball_tier(tier: int) -> void:
 	var balls = get_tree().get_nodes_in_group("ball_%s" % tier)
 	for ball in balls:
 		ball.queue_free()
+
+
+func _on_spawn_timer_timeout():
+	if spawn_point_1.get_child_count() == 0:
+		spawn_enemy(spawn_point_1)
+	elif spawn_point_2.get_child_count() == 0:
+		spawn_enemy(spawn_point_2)
+	elif spawn_point_3.get_child_count() == 0:
+		spawn_enemy(spawn_point_3)
+	elif spawn_point_4.get_child_count() == 0:
+		spawn_enemy(spawn_point_4)
+	else:
+		spawn_timer.stop()
+	
+func spawn_enemy(spawn_point: Marker2D):
+	var chosen_enemy_scene :PackedScene = enemies.pick_random()
+	var chosen_enemy: Enemy = chosen_enemy_scene.instantiate()
+	#chosen_enemy.position = spawn_point.position
+	spawn_point.add_child(chosen_enemy)
