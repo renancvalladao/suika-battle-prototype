@@ -150,12 +150,7 @@ func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int):
 		bar_player.play("on_" + action + "_increase")
 		if new_value >= bar.max_value:
 			bar.value = new_value - bar.max_value
-			if action == "attack":
-				SignalManager.enemy_damaged.emit(AUTO_ATTACK_AMOUNT)
-			if action == "shield":
-				SignalManager.shield_gained.emit(AUTO_SHIELD_AMOUNT)
-			if action == "acceleration":
-				SignalManager.enemy_move_delayed.emit(AUTO_ACCELERATION_AMOUNT)
+			SignalManager.enemy_damaged.emit(AUTO_ATTACK_AMOUNT)
 
 func reset_refresh_count():
 	current_refresh_count = MAX_REFRESH

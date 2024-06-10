@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="3_v0cgg"]
 [ext_resource type="PackedScene" uid="uid://c3wiwmd7tu86w" path="res://components/health_component.tscn" id="4_d083q"]
 [ext_resource type="PackedScene" uid="uid://cyl0ljqm7dux5" path="res://components/shield_component.tscn" id="5_ngit1"]
-[ext_resource type="PackedScene" uid="uid://cdqq3ft8ionw5" path="res://components/change_color_component.tscn" id="6_hhvnr"]
+[ext_resource type="PackedScene" path="res://components/change_color_component.tscn" id="6_hhvnr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ktli"]
 
