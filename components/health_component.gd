@@ -17,7 +17,8 @@ const bg_colors = {
 
 func _ready():
 	set_health(MAX_HEALTH)
-	health_bar.get("theme_override_styles/fill").bg_color = bg_colors[COLOR]
+	print(bg_colors[COLOR])
+	#update_color()
 
 func set_health(value: int) -> void:
 	health = value
@@ -42,3 +43,6 @@ func _update_ui() -> void:
 	health_label.text = str("%s/%s" % [health, MAX_HEALTH])
 	health_bar.value = health
 	health_bar.max_value = MAX_HEALTH
+	
+func update_color() -> void:
+	health_bar.get("theme_override_styles/fill").bg_color = bg_colors[COLOR]

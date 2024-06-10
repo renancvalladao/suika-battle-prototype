@@ -15,7 +15,6 @@ const MOVE_COOLDOWN = 30
 @onready var color_damage_component: ColorDamageComponent = $ColorDamageComponent
 @export var color_damage_duration: int = 1
 @export var color_damage_amount: int = 10
-@onready var move_bar = $MoveBar
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 
 func _ready():
@@ -26,7 +25,17 @@ func _ready():
 	move_bar.value = 0
 	move_bar.max_value = MOVE_COOLDOWN
 	SignalManager.enemy_move_delayed.connect(on_delay)
+	damage_number_position = damage_numbers_origin.global_position
 	#move_timer.start()
+
+func _process(delta):
+	move_bar.value += delta
+	if move_bar.value >= move_bar.max_value:
+		SignalManager.turn_off_color_damage.emit()
+		SignalManager.can_change_next_ball.emit(true)
+		move_bar.value = 0
+		move()
+
 
 func on_delay(amount: int):
 	move_bar.value -= amount
@@ -38,8 +47,8 @@ func build_intention_string():
 	if moves[move_count] == "damage":
 		intended_move.text += "_" + str(enemy_damage)
 
-func display_damage_number(damage_taken: int) -> void:
-	DamageNumbers.display_number(damage_taken, damage_numbers_origin.global_position)
+#func display_damage_number(damage_taken: int) -> void:
+#	DamageNumbers.display_number(damage_taken, damage_numbers_origin.global_position)
 
 func move() -> void:
 	var action = moves[move_count]
@@ -96,10 +105,3 @@ func color_damage():
 	debuff.start_debuff()
 	debuffs.append(debuff)
 
-func _process(delta):
-	move_bar.value += delta
-	if move_bar.value >= move_bar.max_value:
-		SignalManager.turn_off_color_damage.emit()
-		SignalManager.can_change_next_ball.emit(true)
-		move_bar.value = 0
-		move()
