@@ -132,25 +132,29 @@ func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int):
 	var action = null
 	var bar = null
 	var bar_player = null
+	var color:Utils.AttackColors
 	if (tier == 1 || tier == 4 || tier == 7):
 		bar = attack_bar
 		action = "attack"
 		bar_player = attack_bar_player
+		color = Utils.AttackColors.RED
 	if (tier == 2 || tier == 5 || tier == 8):
 		bar = shield_bar
 		action = "shield"
 		bar_player = shield_bar_player
+		color = Utils.AttackColors.GREEN
 	if (tier == 3 || tier == 6 || tier == 9):
 		bar = acceleration_bar
 		action = "acceleration"
 		bar_player = acceleration_bar_player
+		color = Utils.AttackColors.BLUE
 	if (bar != null && action != null):
 		var new_value = bar.value + increment * scale_factor
 		bar.value = new_value
 		bar_player.play("on_" + action + "_increase")
 		if new_value >= bar.max_value:
 			bar.value = new_value - bar.max_value
-			SignalManager.enemy_damaged.emit(AUTO_ATTACK_AMOUNT)
+			SignalManager.enemy_damaged.emit(AUTO_ATTACK_AMOUNT, color)
 
 func reset_refresh_count():
 	current_refresh_count = MAX_REFRESH

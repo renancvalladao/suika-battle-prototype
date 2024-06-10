@@ -7,7 +7,7 @@ var health: int
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
-signal health_is_0
+#signal health_is_0
 
 const bg_colors = {
 	Utils.AttackColors.RED: "#d10e00",
@@ -17,7 +17,8 @@ const bg_colors = {
 
 func _ready():
 	set_health(MAX_HEALTH)
-	health_bar.get("theme_override_styles/fill").bg_color = bg_colors[COLOR]
+	print(bg_colors[COLOR])
+	#update_color()
 
 func set_health(value: int) -> void:
 	health = value
@@ -27,7 +28,9 @@ func take_damage(damage_amount: int) -> void:
 	var new_health = health - damage_amount
 	new_health = clampi(new_health, 0, MAX_HEALTH)
 	if new_health == 0:
-		health_is_0.emit()
+		SignalManager.enemy_died.emit()
+		get_parent().queue_free()
+		
 		
 	set_health(new_health)
 
@@ -40,3 +43,6 @@ func _update_ui() -> void:
 	health_label.text = str("%s/%s" % [health, MAX_HEALTH])
 	health_bar.value = health
 	health_bar.max_value = MAX_HEALTH
+	
+func update_color() -> void:
+	health_bar.get("theme_override_styles/fill").bg_color = bg_colors[COLOR]

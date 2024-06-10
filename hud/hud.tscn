@@ -115,12 +115,11 @@ theme_override_font_sizes/font_size = 24
 text = "+100 Mana"
 
 [node name="AddHealthButton" type="Button" parent="."]
-visible = false
 layout_mode = 0
-offset_left = -320.0
-offset_top = 818.0
-offset_right = -161.0
-offset_bottom = 871.0
+offset_left = -272.0
+offset_top = 882.0
+offset_right = -113.0
+offset_bottom = 935.0
 theme_override_fonts/font = ExtResource("17_7fs1n")
 theme_override_font_sizes/font_size = 24
 text = "+100 HP"
