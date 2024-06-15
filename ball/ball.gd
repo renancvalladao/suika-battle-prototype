@@ -74,9 +74,13 @@ func _on_body_entered(body):
 	if config.tier == BallsManager.BALLS.size() || config.tier == -2:
 		return
 	if body is Ball && (body.config.tier == config.tier || body.config.tier == -1) && !exploded && !body.exploded:
+		if config.owner != body.config.owner:
+			return
+		if config.owner == "enemy":
+			return
 		explode()
 		body.explode()
-		BallsManager.ball_exploded.emit(position, body.position, config.tier)
+		BallsManager.ball_exploded.emit(position, body.position, config.tier, config.owner)
 		if BallsManager.turn == 1:
 			return
 		if BallsManager.balls_effect:

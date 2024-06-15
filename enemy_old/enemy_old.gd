@@ -104,7 +104,7 @@ func turn_finished() -> void:
 	should_color_damage = false
 	color_damage_ui.visible = false
 
-func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int) -> void:
+func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int, owner: String) -> void:
 	if should_color_damage && !my_turn && color_damage.has(tier):
 		SignalManager.player_damaged.emit(2)
 

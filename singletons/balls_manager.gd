@@ -1,6 +1,6 @@
 extends Node
 
-signal ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int)
+signal ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int, owner: String)
 signal next_ball_changed
 signal ball_dropped
 signal turn_finished
@@ -11,72 +11,93 @@ var can_change_next_ball = true
 
 const PROPORTION = [1.2, 1.3]
 
+const ENEMIES = [
+	{
+		"tier": 1,
+		"sprite": preload("res://assets/enemies/monster_ball.png"),
+		"icon": preload("res://assets/icons/tag_1.png"),
+		"size": PROPORTION[0] ** 0,
+		"owner": "enemy"
+	}
+]
+
 const BALLS = [
 	{
 		"tier": 1,
 		"sprite": preload("res://assets/balls/red_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
-		"size": PROPORTION[0] ** 0
+		"size": PROPORTION[0] ** 0,
+		"owner": "player"
 	},
 	{
 		"tier": 2,
 		"sprite": preload("res://assets/balls/green_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
-		"size": PROPORTION[0] ** 1
+		"size": PROPORTION[0] ** 1,
+		"owner": "player"
 	},
 	{
 		"tier": 3,
 		"sprite": preload("res://assets/balls/blue_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
-		"size": PROPORTION[0] ** 2
+		"size": PROPORTION[0] ** 2,
+		"owner": "player"
 	},
 	{
 		"tier": 4,
 		"sprite": preload("res://assets/balls/red_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
-		"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1)
+		"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1),
+		"owner": "player"
 	},
 	{
 		"tier": 5,
 		"sprite": preload("res://assets/balls/green_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
-		"size": (PROPORTION[0] ** 3) * (PROPORTION[1] ** 1)
+		"size": (PROPORTION[0] ** 3) * (PROPORTION[1] ** 1),
+		"owner": "player"
 	},
 	{
 		"tier": 6,
 		"sprite": preload("res://assets/balls/blue_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
-		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 1)
+		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 1),
+		"owner": "player"
 	},
 	{
 		"tier": 7,
 		"sprite": preload("res://assets/balls/red_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
-		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 2)
+		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 2),
+		"owner": "player"
 	},
 	{
 		"tier": 8,
 		"sprite": preload("res://assets/balls/green_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
-		"size": (PROPORTION[0] ** 5) * (PROPORTION[1] ** 2)
+		"size": (PROPORTION[0] ** 5) * (PROPORTION[1] ** 2),
+		"owner": "player"
 	},
 	{
 		"tier": 9,
 		"sprite": preload("res://assets/balls/blue_body_circle.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
-		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 2)
+		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 2),
+		"owner": "player"
 	},
 	{
 		"tier": 10,
 		"sprite": preload("res://assets/balls/yellow_body_circle.png"),
 		"icon": preload("res://assets/icons/skull.png"),
-		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 3)
+		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 3),
+		"owner": "player"
 	},
 	{
 		"tier": 11,
 		"sprite": preload("res://assets/balls/purple_body_circle.png"),
 		"icon": preload("res://assets/icons/crown.png"),
-		"size": (PROPORTION[0] ** 7) * (PROPORTION[1] ** 3)
+		"size": (PROPORTION[0] ** 7) * (PROPORTION[1] ** 3),
+		"owner": "player"
 	}
 ]
 
@@ -94,6 +115,7 @@ var pick_random: bool = true
 var is_dropping: bool = false
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	SignalManager.turn_started.connect(_turn_started)
 	BallsManager.turn_finished.connect(_turn_finished)
 	SignalManager.can_change_next_ball.connect(set_can_change_next_ball)
@@ -109,6 +131,10 @@ func set_is_dropping_false():
 func get_random_ball() -> Dictionary:
 	var random_ball_index = rng.randi_range(0, 4)
 	return BALLS[random_ball_index]
+
+func get_random_enemy_ball() -> Dictionary:
+	var random_ball_index = rng.randi_range(0, 0)
+	return ENEMIES[random_ball_index]
 
 func get_current_ball() -> Dictionary:
 	return current_ball
@@ -152,6 +178,8 @@ func _unhandled_input(event):
 		current_ball = get_random_ball()
 		next_ball = get_random_ball()
 		can_change_next_ball = true
+	if event.is_action_pressed("pause"):
+		get_tree().paused = !get_tree().paused
 	#if event.is_action_pressed("change_tier"):
 		#tier += 1
 		#if tier > 3:

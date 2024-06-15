@@ -126,13 +126,18 @@ func refresh_action(action: String):
 	action_tiers[action] = next_tier
 	current_refresh_count -= 1
 
-func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int):
+func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int, owner: String):
+	if owner == "enemy":
+		return
 	var increment = 20
 	var scale_factor: int = ((tier - 1) / 3) + 1
+	var color := Utils.AttackColors.RED
+	SignalManager.enemy_damaged.emit(AUTO_ATTACK_AMOUNT * scale_factor, color)
+	return
 	var action = null
 	var bar = null
 	var bar_player = null
-	var color:Utils.AttackColors
+	#var color:Utils.AttackColors
 	if (tier == 1 || tier == 4 || tier == 7):
 		bar = attack_bar
 		action = "attack"
@@ -343,7 +348,7 @@ func update_mana_ui(_new_mana: int) -> void:
 	mana_bar.value = mana
 	mana_label.text = str("%s/100" % mana)
 
-func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int):
+func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int, owner: String):
 	if BallsManager.turn == 1:
 			return
 	mana += tier * 5

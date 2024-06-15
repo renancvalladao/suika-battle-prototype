@@ -36,6 +36,7 @@ var enemy_rock: PackedScene = preload("res://enemies/rock/rock.tscn")
 
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
+var enemy_ball_scene: PackedScene = preload("res://enemy_ball/enemy_ball.tscn")
 var moves_left: int = max_moves
 var turn: int = 0
 
@@ -63,7 +64,7 @@ func _ready():
 	turn_counter_label.text = "Turn: 0"
 	
 	enemies = [enemy_damage]
-	spawn_enemy(spawn_point_1)
+	#spawn_enemy(spawn_point_1)
 	
 	#spawn_random_balls(50)
 	SignalManager.turn_started.emit()
@@ -96,17 +97,25 @@ func spawn_random_balls(amount: int) -> void:
 		await get_tree().create_timer(.5).timeout
 	await get_tree().create_timer(2).timeout
 
-func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int) -> void:
+func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int, owner: String) -> void:
 	GameManager.fusions += 1
 	fusions_label.text = "Fusions: %s" % GameManager.fusions
-	spawn_ball(first_pos, second_pos, tier)
+	spawn_ball(first_pos, second_pos, tier, owner)
 
-func spawn_ball(first_pos: Vector2, second_pos: Vector2, tier: int):
-	if tier == BallsManager.BALLS.size():
+func spawn_ball(first_pos: Vector2, second_pos: Vector2, tier: int, owner: String = "player"):
+	if owner == "player" && tier == BallsManager.BALLS.size():
+		return
+	if owner == "enemy" && tier == BallsManager.ENEMIES.size():
 		return
 	var ball_position = (first_pos + second_pos) / 2
-	var ball_config = BallsManager.BALLS[tier]
-	var ball = ball_scene.instantiate()
+	var ball_config
+	var ball
+	if owner == "player":
+		ball_config = BallsManager.BALLS[tier]
+		ball = ball_scene.instantiate()
+	else:
+		ball_config = BallsManager.ENEMIES[tier]
+		ball = enemy_ball_scene.instantiate()
 	ball.position = ball_position
 	ball.set_configuration(ball_config)
 	call_deferred("add_child", ball)
@@ -151,7 +160,15 @@ func explode_ball_tier(tier: int) -> void:
 func _on_enemy_death():
 	spawn_timer.start()
 
+func spawn_random_enemy_ball() -> void:
+	var x = randf_range(position_min.position.x, position_max.position.x)
+	var y = randf_range(position_min.position.y, position_max.position.y)
+	var ball_tier = BallsManager.get_random_enemy_ball().tier
+	spawn_ball(Vector2(x, y), Vector2(x, y), ball_tier - 1, "enemy")
+
 func _on_spawn_timer_timeout():
+	spawn_random_enemy_ball()
+	return
 	if spawn_point_1.get_child_count() == 0:
 		spawn_enemy(spawn_point_1)
 	elif spawn_point_2.get_child_count() == 0:

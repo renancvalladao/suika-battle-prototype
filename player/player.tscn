@@ -171,10 +171,10 @@ AUTO_SHIELD_AMOUNT = 5
 max_hp = 50
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = 370.0
-offset_top = 89.0
-offset_right = 1451.0
-offset_bottom = 113.0
+offset_left = 632.0
+offset_top = 37.0
+offset_right = 1139.0
+offset_bottom = 87.0
 theme_override_styles/background = SubResource("StyleBoxFlat_rh65l")
 theme_override_styles/fill = SubResource("StyleBoxFlat_er547")
 value = 50.0
@@ -254,6 +254,7 @@ vertical_alignment = 1
 [node name="ChainExplosionTimer" type="Timer" parent="."]
 
 [node name="AttackBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = 370.0
 offset_top = 30.0
 offset_right = 710.0
@@ -269,6 +270,7 @@ libraries = {
 }
 
 [node name="ShieldBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = 740.0
 offset_top = 30.0
 offset_right = 1080.0
@@ -284,6 +286,7 @@ libraries = {
 }
 
 [node name="AccelerationBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = 1110.0
 offset_top = 30.0
 offset_right = 1450.0

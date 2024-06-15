@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://cd2b6hq1uqqum"]
+
+[ext_resource type="PackedScene" uid="uid://c5d3utm7alcgv" path="res://ball/ball.tscn" id="1_j05h0"]
+[ext_resource type="Script" path="res://enemy_ball/enemy_ball.gd" id="2_eg2bd"]
+[ext_resource type="Texture2D" uid="uid://goacql8ug3ou" path="res://assets/enemies/monster_ball.png" id="2_leyd7"]
+[ext_resource type="Shader" path="res://enemy_ball/enemy_ball.gdshader" id="3_4n5l3"]
+[ext_resource type="PackedScene" uid="uid://c3wiwmd7tu86w" path="res://components/health_component.tscn" id="5_7idqd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8mjs"]
+resource_local_to_scene = true
+shader = ExtResource("3_4n5l3")
+shader_parameter/fill_percentage = 0.5
+
+[sub_resource type="Animation" id="Animation_entxc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fhjx2"]
+resource_name = "hit_effect"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_do8vc"]
+_data = {
+"RESET": SubResource("Animation_entxc"),
+"hit_effect": SubResource("Animation_fhjx2")
+}
+
+[node name="EnemyBall" instance=ExtResource("1_j05h0")]
+script = ExtResource("2_eg2bd")
+move_cooldown = 10
+enemy_damage = 8
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="." index="0"]
+position = Vector2(0, -9.652)
+scale = Vector2(0.127, 0.127)
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource("ShaderMaterial_t8mjs")
+scale = Vector2(0.127, 0.127)
+texture = ExtResource("2_leyd7")
+
+[node name="Icon" parent="." index="3"]
+visible = false
+
+[node name="CollisionShape2D" parent="." index="4"]
+visible = false
+
+[node name="BallCanAttackComponent" parent="." index="8"]
+visible = false
+
+[node name="HealthComponent" parent="." index="9" instance=ExtResource("5_7idqd")]
+visible = false
+MAX_HEALTH = 15
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+libraries = {
+"": SubResource("AnimationLibrary_do8vc")
+}
