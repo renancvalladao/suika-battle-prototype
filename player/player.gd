@@ -321,8 +321,8 @@ func player_damaged(damage: int) -> void:
 
 func health_gained(health: int) -> void:
 	hp += health
-	if hp > 100:
-		hp = 100
+	if hp > max_hp:
+		hp = max_hp
 	update_health_ui(hp)
 
 func shield_gained(amount: int) -> void:

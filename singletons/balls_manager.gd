@@ -91,11 +91,20 @@ var auto_enemy: bool = true
 var tier: int = 1
 var scale_with_tier: bool = true
 var pick_random: bool = true
+var is_dropping: bool = false
 
 func _ready():
 	SignalManager.turn_started.connect(_turn_started)
 	BallsManager.turn_finished.connect(_turn_finished)
 	SignalManager.can_change_next_ball.connect(set_can_change_next_ball)
+	SignalManager.is_dropping.connect(set_is_dropping)
+	BallsManager.ball_dropped.connect(set_is_dropping_false)
+
+func set_is_dropping():
+	is_dropping = true
+
+func set_is_dropping_false():
+	is_dropping = false
 
 func get_random_ball() -> Dictionary:
 	var random_ball_index = rng.randi_range(0, 4)
@@ -131,7 +140,7 @@ func _turn_finished() -> void:
 	turn = 1
 
 func _unhandled_input(event):
-	if event.is_action_pressed("change_next") && can_change_next_ball:
+	if event.is_action_pressed("change_next") && can_change_next_ball && !is_dropping:
 		if current_ball.has("type") && current_ball.type == "bomb":
 			return
 		var next = next_ball

@@ -53,6 +53,7 @@ func _unhandled_input(event):
 		ball.process_mode = Node.PROCESS_MODE_INHERIT
 		ball_holder.remove_child(ball)
 		add_sibling(ball)
+		SignalManager.is_dropping.emit()
 		drop_timer.start()
 		
 

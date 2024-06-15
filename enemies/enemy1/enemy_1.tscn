@@ -79,7 +79,7 @@ _data = {
 
 [node name="Enemy1" type="Node2D" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_p7rs8")
-enemy_damage = 10
+enemy_damage = 5
 enemy_heal_amount = 5
 enemy_shield_amount = 5
 block_ball_change_duration = 1

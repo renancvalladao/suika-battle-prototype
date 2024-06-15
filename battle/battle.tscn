@@ -190,19 +190,19 @@ scale = Vector2(0.16, 0.16)
 texture = ExtResource("10_ten7u")
 
 [node name="SpawnPoint1" type="Marker2D" parent="."]
-position = Vector2(180, 140)
+position = Vector2(200, 290)
 
 [node name="SpawnPoint2" type="Marker2D" parent="."]
-position = Vector2(261, 570)
+position = Vector2(360, 650)
 
 [node name="SpawnPoint3" type="Marker2D" parent="."]
-position = Vector2(1765, 157)
+position = Vector2(1700, 290)
 
 [node name="SpawnPoint4" type="Marker2D" parent="."]
-position = Vector2(1594, 503)
+position = Vector2(1540, 650)
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
 autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

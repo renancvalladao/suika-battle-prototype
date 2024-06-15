@@ -14,6 +14,7 @@ signal all_balls_dropped()
 signal balls_left_gained(amount: int)
 
 signal can_change_next_ball(can_change: bool)
+signal is_dropping()
 
 #===========Enemy===========
 signal enemy_damaged(damage: int, damage_color: int)

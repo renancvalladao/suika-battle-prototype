@@ -123,7 +123,7 @@ func set_hp(amount: int) -> void:
 	health_bar.value = hp
 	health_label.text = str("%s/%s" % [hp, max_hp])
 
-func enemy_damaged(damage_amount: int) -> void:
+func enemy_damaged(damage_amount: int, color) -> void:
 	var new_hp = hp - damage_amount
 	set_hp(new_hp)
 

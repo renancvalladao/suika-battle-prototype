@@ -26,9 +26,6 @@ func _ready():
 	health_component.COLOR = bar_color
 	health_component.update_color()
 
-	
-	
-
 func start_turn() -> void:
 	my_turn = true
 	SignalManager.enemy_turn_started.emit()

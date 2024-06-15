@@ -8,11 +8,13 @@ var character_images = {
 }
 
 var enemy_1_scene: PackedScene = preload("res://enemies/enemy1/enemy_1.tscn")
+var enemy_damage: PackedScene = preload("res://enemies/damage/damage.tscn")
+var enemy_rock: PackedScene = preload("res://enemies/rock/rock.tscn")
 
 @export var max_moves: int = GameManager.max_balls
 
 @onready var moves_left_label = $MovesLeftLabel
-@onready var enemy: Enemy = $Enemy3
+@onready var enemy: Enemy = null
 @onready var enemies: Array[PackedScene]
 @onready var spawn_timer = $SpawnTimer
 
@@ -60,7 +62,7 @@ func _ready():
 	character.texture = character_images[GameManager.character_chosen]
 	turn_counter_label.text = "Turn: 0"
 	
-	enemies = [enemy_1_scene] #No futuro terá mais inimigos
+	enemies = [enemy_damage]
 	spawn_enemy(spawn_point_1)
 	
 	#spawn_random_balls(50)
