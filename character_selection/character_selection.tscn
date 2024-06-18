@@ -54,6 +54,7 @@ texture_normal = ExtResource("4_pviqj")
 character = 3
 
 [node name="MinusButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1490.0
 offset_top = 835.0
@@ -63,6 +64,7 @@ theme_override_font_sizes/font_size = 60
 text = "-"
 
 [node name="PlusButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1776.0
 offset_top = 835.0
@@ -72,6 +74,7 @@ theme_override_font_sizes/font_size = 60
 text = "+"
 
 [node name="BallsQuantity" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1579.0
 offset_top = 829.0
@@ -83,6 +86,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1454.0
 offset_top = 710.0
@@ -127,7 +131,7 @@ offset_top = 710.0
 offset_right = 574.0
 offset_bottom = 820.0
 theme_override_font_sizes/font_size = 80
-text = "Actions / turn"
+text = "Balls / enemy"
 
 [connection signal="pressed" from="MinusButton" to="." method="_on_minus_button_pressed"]
 [connection signal="pressed" from="PlusButton" to="." method="_on_plus_button_pressed"]

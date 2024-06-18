@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t8mjs"]
 resource_local_to_scene = true
 shader = ExtResource("3_4n5l3")
-shader_parameter/fill_percentage = 0.5
+shader_parameter/fill_percentage = 1.0
 
 [sub_resource type="Animation" id="Animation_entxc"]
 length = 0.001

@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float fill_percentage = 0.5;
+uniform float fill_percentage = 1.0;
 
 void fragment() {
 	if (UV.y < (1.0 - fill_percentage) && COLOR.a > 0.0) {

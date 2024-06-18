@@ -1,7 +1,7 @@
 extends Control
 
 @onready var next_ball = $NextBall
-@onready var sprite = $NextBall/Sprite
+@onready var sprite: TextureRect = $NextBall/Sprite
 @onready var icon = $NextBall/Icon
 @onready var add_mana_button = $AddManaButton
 @onready var balls_options = $BallsOptions
@@ -9,6 +9,7 @@ extends Control
 @onready var red_label = $BallsCounter/RedBalls/Label
 @onready var green_label = $BallsCounter/GreenBalls/Label
 @onready var blue_label = $BallsCounter/BlueBalls/Label
+@onready var enemy_sprite = $NextBall/EnemySprite
 
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
@@ -48,8 +49,17 @@ func get_balls_by_color(color: String) -> int:
 
 func set_next_ball() -> void:
 	var next_ball = BallsManager.get_next_ball()
-	sprite.texture = next_ball.sprite
-	icon.texture = next_ball.icon
+	if (next_ball.owner == "enemy"):
+		icon.visible = false
+		sprite.visible = false
+		sprite.texture = next_ball.sprite
+		enemy_sprite.visible = true
+	else:
+		enemy_sprite.visible = false
+		sprite.texture = next_ball.sprite
+		icon.texture = next_ball.icon
+		icon.visible = true
+		sprite.visible = true
 
 func next_ball_changed() -> void:
 	set_next_ball()

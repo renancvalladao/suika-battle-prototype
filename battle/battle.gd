@@ -167,7 +167,7 @@ func spawn_random_enemy_ball() -> void:
 	spawn_ball(Vector2(x, y), Vector2(x, y), ball_tier - 1, "enemy")
 
 func _on_spawn_timer_timeout():
-	spawn_random_enemy_ball()
+	#spawn_random_enemy_ball()
 	return
 	if spawn_point_1.get_child_count() == 0:
 		spawn_enemy(spawn_point_1)

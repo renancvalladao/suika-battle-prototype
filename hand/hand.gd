@@ -7,6 +7,7 @@ extends Node2D
 @onready var drop_timer = $DropTimer
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
+var enemy_ball_scene: PackedScene = preload("res://enemy_ball/enemy_ball.tscn")
 var ghost_ball_scene: PackedScene = preload("res://ghost_ball/ghost_ball.tscn")
 var bomb_scene: PackedScene = preload("res://bomb/bomb.tscn")
 var position_offset: float = 0.0
@@ -37,6 +38,12 @@ func add_ball_to_holder() -> void:
 				ball = ghost_ball_scene.instantiate()
 			"bomb":
 				ball = bomb_scene.instantiate()
+	elif ball_config.has("owner"):
+		match ball_config.owner:
+			"enemy":
+				ball = enemy_ball_scene.instantiate()
+			"player":
+				ball = ball_scene.instantiate()
 	else:
 		ball = ball_scene.instantiate()
 	ball.process_mode = Node.PROCESS_MODE_DISABLED

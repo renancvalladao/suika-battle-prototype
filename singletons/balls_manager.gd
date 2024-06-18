@@ -104,7 +104,7 @@ const BALLS = [
 const FINISH_TURN_DELAY: float = 2
 
 var rng = RandomNumberGenerator.new()
-var current_ball = get_random_ball()
+var current_ball = get_random_enemy_ball()
 var next_ball = get_random_ball()
 var turn = 0
 var balls_effect: bool = false
@@ -113,6 +113,7 @@ var tier: int = 1
 var scale_with_tier: bool = true
 var pick_random: bool = true
 var is_dropping: bool = false
+var count := -1
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -124,6 +125,7 @@ func _ready():
 
 func set_is_dropping():
 	is_dropping = true
+	count += 1
 
 func set_is_dropping_false():
 	is_dropping = false
@@ -155,7 +157,12 @@ func set_can_change_next_ball(can_change: bool) -> void:
 
 func choose_next_ball() -> void:
 	current_ball = next_ball
-	next_ball = get_random_ball()
+	print(count)
+	if (count == GameManager.balls_per_enemy - 1):
+		next_ball = get_random_enemy_ball()
+		count = -2
+	else:
+		next_ball = get_random_ball()
 	next_ball_changed.emit()
 
 func _turn_started() -> void:
@@ -169,15 +176,21 @@ func _unhandled_input(event):
 	if event.is_action_pressed("change_next") && can_change_next_ball && !is_dropping:
 		if current_ball.has("type") && current_ball.type == "bomb":
 			return
+		if current_ball.has("owner") && current_ball.owner == "enemy":
+			return
+		if next_ball.has("owner") && next_ball.owner == "enemy":
+			return
 		var next = next_ball
 		set_next_ball(current_ball)
 		set_current_ball(next)
 	if event.is_action_pressed("restart"):
 		get_tree().change_scene_to_packed(character_selection)
 		#get_tree().reload_current_scene()
-		current_ball = get_random_ball()
+		current_ball = get_random_enemy_ball()
 		next_ball = get_random_ball()
 		can_change_next_ball = true
+		count = -1
+
 	if event.is_action_pressed("pause"):
 		get_tree().paused = !get_tree().paused
 	#if event.is_action_pressed("change_tier"):
