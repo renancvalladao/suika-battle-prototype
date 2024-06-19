@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=14 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://bwrxmlqbt6fd" path="res://player/player.tscn" id="8_6rvjb"]
 [ext_resource type="Texture2D" uid="uid://cqtexkon8cfub" path="res://assets/characters/all_scale.jpg" id="10_ten7u"]
 [ext_resource type="Texture2D" uid="uid://d24487vph7nuj" path="res://assets/toriiGate.png" id="13_53k2p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u53dv"]
+size = Vector2(795, 35)
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_fl8ju")
@@ -205,4 +208,13 @@ position = Vector2(1594, 503)
 wait_time = 5.0
 autostart = true
 
+[node name="GameOverArea" type="Area2D" parent="."]
+position = Vector2(646, 178)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea"]
+modulate = Color(0.780392, 0, 0.87451, 1)
+position = Vector2(298, -5)
+shape = SubResource("RectangleShape2D_u53dv")
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="body_entered" from="GameOverArea" to="." method="_on_game_over_area_body_entered"]

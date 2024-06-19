@@ -166,3 +166,8 @@ func spawn_enemy(spawn_point: Marker2D):
 	var chosen_enemy: Enemy = chosen_enemy_scene.instantiate()
 	#chosen_enemy.position = spawn_point.position
 	spawn_point.add_child(chosen_enemy)
+
+
+func _on_game_over_area_body_entered(body):
+	if body.is_in_group("balls"):
+		SignalManager.on_game_over.emit()

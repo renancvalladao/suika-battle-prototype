@@ -14,6 +14,7 @@ class_name Ball
 var config: Dictionary = BallsManager.BALLS[0]
 var exploded: bool = false
 var should_add_group: bool = true
+var added_to_balls_group: bool = false
 var can_change_color: bool = true
 
 var initial_icon_scale: Vector2
@@ -35,7 +36,6 @@ func _ready():
 	
 	if should_add_group:
 		add_to_group("ball_%s" % config.tier)
-		add_to_group("balls")
 		
 func set_initial_scales() -> void:
 	initial_icon_scale = $Icon.scale
@@ -55,7 +55,7 @@ func set_should_add_group(should: bool):
 	should_add_group = should
 
 func add_group():
-	add_to_group("balls")
+	#add_to_group("balls")
 	add_to_group("ball_%s" % config.tier)
 
 func remove_group():
@@ -71,6 +71,9 @@ func explode():
 	queue_free()
 
 func _on_body_entered(body):
+	if !added_to_balls_group:
+		add_to_group("balls")
+	#print("colidiu")
 	if config.tier == BallsManager.BALLS.size() || config.tier == -2:
 		return
 	if body is Ball && (body.config.tier == config.tier || body.config.tier == -1) && !exploded && !body.exploded:
