@@ -71,8 +71,6 @@ func explode():
 	queue_free()
 
 func _on_body_entered(body):
-	if !added_to_balls_group:
-		add_to_group("balls")
 	#print("colidiu")
 	if config.tier == BallsManager.BALLS.size() || config.tier == -2:
 		return
@@ -157,4 +155,7 @@ func change_tier(new_tier: int) -> void:
 	
 
 func _on_change_timer_timeout():
+	if !added_to_balls_group:
+		add_to_group("balls")
+		added_to_balls_group = true
 	set_can_change_color_to_true()

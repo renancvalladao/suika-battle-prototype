@@ -27,6 +27,8 @@ shadow_size = 6
 shadow_color = Color(0, 0, 0, 0.392157)
 
 [node name="Ball" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_2wo2j")
 can_sleep = false
 max_contacts_reported = 8
@@ -78,6 +80,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ChangeTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="BallCanAttackComponent" parent="." instance=ExtResource("6_ngn8s")]
 

@@ -12,7 +12,6 @@ var enemy_1_scene: PackedScene = preload("res://enemies/enemy1/enemy_1.tscn")
 @export var max_moves: int = GameManager.max_balls
 
 @onready var moves_left_label = $MovesLeftLabel
-@onready var enemy: Enemy = $Enemy3
 @onready var enemies: Array[PackedScene]
 @onready var spawn_timer = $SpawnTimer
 
@@ -46,7 +45,7 @@ func _ready():
 	SignalManager.explode_ball_tier.connect(explode_ball_tier)
 	SignalManager.enemy_moved.connect(on_enemy_moved)
 	SignalManager.enemy_died.connect(_on_enemy_death)
-	BallsManager.turn_finished.connect(on_end_turn)
+	#BallsManager.turn_finished.connect(on_end_turn)
 	check_button.button_pressed = BallsManager.balls_effect
 	check_button.pressed.connect(toggle_ball_effect)
 	auto_check_button.button_pressed = BallsManager.auto_enemy
@@ -115,11 +114,11 @@ func ball_dropped():
 	if moves_left == 0:
 		SignalManager.all_balls_dropped.emit()
 
-func on_end_turn():
-	#await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
-	enemy.start_turn()
-	if BallsManager.auto_enemy:
-		enemy.move()
+#func on_end_turn():
+	##await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
+	#enemy.start_turn()
+	#if BallsManager.auto_enemy:
+		#enemy.move()
 
 func on_enemy_moved():
 	SignalManager.turn_started.emit()
