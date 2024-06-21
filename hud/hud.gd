@@ -15,6 +15,7 @@ extends Control
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
 	SignalManager.can_change_next_ball.connect(can_change_next_ball_ui)
+	SignalManager.enemy_spawned.connect(enemy_spawned)
 	add_mana_button.pressed.connect(on_add_mana)
 	add_health_button.pressed.connect(on_add_health)
 	var balls: Array = balls_options.get_children()
@@ -26,7 +27,17 @@ func _ready():
 	for index in enemies_balls.size():
 		var ball = enemies_balls[index]
 		ball.get_child(0).texture = BallsManager.ENEMIES[index].sprite
+		ball.get_child(0).modulate.r = 0
+		ball.get_child(0).modulate.g = 0
+		ball.get_child(0).modulate.b = 0
 	set_next_ball()
+
+func enemy_spawned(tier: int):
+	var enemies_balls: Array = enemies.get_children()
+	var ball = enemies_balls[tier - 1]
+	ball.get_child(0).modulate.r = 1
+	ball.get_child(0).modulate.g = 1
+	ball.get_child(0).modulate.b = 1
 
 #func _process(_delta):
 	#red_label.text = "%s" % get_balls_by_color("red")

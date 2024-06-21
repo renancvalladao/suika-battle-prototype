@@ -22,6 +22,7 @@ signal enemy_moved
 signal enemy_turn_started
 signal enemy_move_delayed(amount: int)
 signal enemy_died
+signal enemy_spawned(tier: int)
 
 #===========Debuffs===========
 signal turn_on_color_damage
