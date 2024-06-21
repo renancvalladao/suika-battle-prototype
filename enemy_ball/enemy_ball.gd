@@ -2,6 +2,7 @@ extends Ball
 
 @export var move_cooldown = 10
 @export var enemy_damage: int = 40
+@export var hp: int = 40
 
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 @onready var health_component = $HealthComponent
@@ -14,6 +15,8 @@ func _ready():
 	super._ready()
 	SignalManager.enemy_damaged.connect(enemy_damaged)
 	Utils.AttackColors.values()
+	enemy_damage += config.tier * 2
+	health_component.set_max_health(hp + config.tier * 5)
 
 func _process(delta):
 	cooldown += delta
@@ -22,6 +25,7 @@ func _process(delta):
 		SignalManager.can_change_next_ball.emit(true)
 		cooldown = 0
 		SignalManager.player_damaged.emit(enemy_damage)
+		print(enemy_damage)
 	enemy_sprite.material.set_shader_parameter("fill_percentage", cooldown / move_cooldown)
 
 func enemy_damaged(amount: int, color: int) -> void:

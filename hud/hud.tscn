@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://2wy62osvnpgg"]
+[gd_scene load_steps=25 format=3 uid="uid://2wy62osvnpgg"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_5sxdd"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_m48a0"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://2l6mi187cdgk" path="res://assets/icons/dollar.png" id="17_m1ji4"]
 [ext_resource type="Texture2D" uid="uid://cop73adlf6jmk" path="res://assets/icons/flag_square.png" id="18_j3fwu"]
 [ext_resource type="Texture2D" uid="uid://bl4h5urleyt50" path="res://assets/icons/award.png" id="19_bairk"]
+[ext_resource type="Texture2D" uid="uid://clpfd52tl6srk" path="res://assets/enemies/monster_ball_2.png" id="23_7gc33"]
+[ext_resource type="Texture2D" uid="uid://ecyh48bo7bw8" path="res://assets/enemies/monster_ball_3.png" id="24_bggqo"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -1178,6 +1180,311 @@ pivot_offset = Vector2(64, 64)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("19_bairk")
+stretch_mode = 2
+
+[node name="Enemies" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -1503.0
+offset_top = 272.0
+offset_right = -1463.0
+offset_bottom = 312.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Ball1" type="Control" parent="Enemies"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -260.0
+offset_top = 690.0
+offset_right = -220.0
+offset_bottom = 730.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Enemies/Ball1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -112.0
+offset_right = 196.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_npqhn")
+stretch_mode = 2
+
+[node name="Ball2" type="Control" parent="Enemies"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -178.0
+offset_top = 720.0
+offset_right = -138.0
+offset_bottom = 760.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Enemies/Ball2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.333
+offset_top = -113.333
+offset_right = 186.667
+offset_bottom = 198.667
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("23_7gc33")
+stretch_mode = 2
+
+[node name="Ball3" type="Control" parent="Enemies"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -104.0
+offset_top = 770.0
+offset_right = -64.0
+offset_bottom = 810.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Enemies/Ball3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.333
+offset_top = -101.333
+offset_right = 166.667
+offset_bottom = 210.667
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("24_bggqo")
+stretch_mode = 2
+
+[node name="Ball4" type="Control" parent="Enemies"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -92.0
+offset_top = 860.0
+offset_right = -52.0
+offset_bottom = 900.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Enemies/Ball4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -110.667
+offset_right = 196.0
+offset_bottom = 201.333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_npqhn")
+stretch_mode = 2
+
+[node name="Ball5" type="Control" parent="Enemies"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -142.0
+offset_top = 944.0
+offset_right = -102.0
+offset_bottom = 984.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Enemies/Ball5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.333
+offset_top = -118.667
+offset_right = 194.667
+offset_bottom = 193.333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("23_7gc33")
+stretch_mode = 2
+
+[node name="Ball6" type="Control" parent="Enemies"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -224.0
+offset_top = 998.0
+offset_right = -184.0
+offset_bottom = 1038.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Enemies/Ball6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.667
+offset_top = -117.333
+offset_right = 201.333
+offset_bottom = 194.667
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("24_bggqo")
+stretch_mode = 2
+
+[node name="Ball7" type="Control" parent="Enemies"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -326.0
+offset_top = 994.0
+offset_right = -286.0
+offset_bottom = 1034.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Enemies/Ball7"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.667
+offset_top = -125.333
+offset_right = 205.333
+offset_bottom = 186.667
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_npqhn")
+stretch_mode = 2
+
+[node name="Ball8" type="Control" parent="Enemies"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -404.0
+offset_top = 936.0
+offset_right = -364.0
+offset_bottom = 976.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Enemies/Ball8"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.667
+offset_top = -110.667
+offset_right = 201.333
+offset_bottom = 201.333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("23_7gc33")
+stretch_mode = 2
+
+[node name="Ball9" type="Control" parent="Enemies"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -440.0
+offset_top = 848.0
+offset_right = -400.0
+offset_bottom = 888.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Enemies/Ball9"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.333
+offset_top = -97.3333
+offset_right = 182.667
+offset_bottom = 214.667
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("24_bggqo")
+stretch_mode = 2
+
+[node name="Ball10" type="Control" parent="Enemies"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -416.0
+offset_top = 760.0
+offset_right = -376.0
+offset_bottom = 800.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Enemies/Ball10"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.333
+offset_top = -86.6667
+offset_right = 182.667
+offset_bottom = 225.333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("5_npqhn")
+stretch_mode = 2
+
+[node name="Ball11" type="Control" parent="Enemies"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -344.0
+offset_top = 714.0
+offset_right = -304.0
+offset_bottom = 754.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="TextureRect" parent="Enemies/Ball11"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -122.667
+offset_right = 188.0
+offset_bottom = 189.333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("23_7gc33")
 stretch_mode = 2
 
 [node name="BallsCounter" type="Control" parent="."]

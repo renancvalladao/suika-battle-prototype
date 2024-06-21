@@ -10,6 +10,7 @@ extends Control
 @onready var green_label = $BallsCounter/GreenBalls/Label
 @onready var blue_label = $BallsCounter/BlueBalls/Label
 @onready var enemy_sprite = $NextBall/EnemySprite
+@onready var enemies = $Enemies
 
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
@@ -21,6 +22,10 @@ func _ready():
 		var ball = balls[index]
 		ball.get_child(0).texture = BallsManager.BALLS[index].sprite
 		ball.get_child(1).texture = BallsManager.BALLS[index].icon
+	var enemies_balls: Array = enemies.get_children()
+	for index in enemies_balls.size():
+		var ball = enemies_balls[index]
+		ball.get_child(0).texture = BallsManager.ENEMIES[index].sprite
 	set_next_ball()
 
 #func _process(_delta):
@@ -52,8 +57,8 @@ func set_next_ball() -> void:
 	if (next_ball.owner == "enemy"):
 		icon.visible = false
 		sprite.visible = false
-		sprite.texture = next_ball.sprite
 		enemy_sprite.visible = true
+		enemy_sprite.texture = next_ball.sprite
 	else:
 		enemy_sprite.visible = false
 		sprite.texture = next_ball.sprite

@@ -24,6 +24,11 @@ func set_health(value: int) -> void:
 	health = value
 	_update_ui()
 
+func set_max_health(value: int) -> void:
+	MAX_HEALTH = value
+	health = value
+	_update_ui()
+
 func take_damage(damage_amount: int) -> void:
 	var new_health = health - damage_amount
 	new_health = clampi(new_health, 0, MAX_HEALTH)

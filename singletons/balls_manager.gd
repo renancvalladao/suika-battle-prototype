@@ -18,7 +18,77 @@ const ENEMIES = [
 		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": PROPORTION[0] ** 0,
 		"owner": "enemy"
-	}
+	},
+	{
+		"tier": 2,
+		"sprite": preload("res://assets/enemies/monster_ball_2.png"),
+		"icon": preload("res://assets/icons/tag_2.png"),
+		"size": PROPORTION[0] ** 1,
+		"owner": "enemy"
+	},
+	{
+		"tier": 3,
+		"sprite": preload("res://assets/enemies/monster_ball_3.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
+		"size": PROPORTION[0] ** 2,
+		"owner": "enemy"
+	},
+	{
+		"tier": 4,
+		"sprite": preload("res://assets/enemies/monster_ball_4.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
+		"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1),
+		"owner": "enemy"
+	},
+	{
+		"tier": 5,
+		"sprite": preload("res://assets/enemies/monster_ball_5.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
+		"size": (PROPORTION[0] ** 3) * (PROPORTION[1] ** 1),
+		"owner": "enemy"
+	},
+	{
+		"tier": 6,
+		"sprite": preload("res://assets/enemies/monster_ball_6.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
+		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 1),
+		"owner": "enemy"
+	},
+	{
+		"tier": 7,
+		"sprite": preload("res://assets/enemies/monster_ball_7.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
+		"size":(PROPORTION[0] ** 4) * (PROPORTION[1] ** 2),
+		"owner": "enemy"
+	},
+	{
+		"tier": 8,
+		"sprite": preload("res://assets/enemies/monster_ball_8.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
+		"size": (PROPORTION[0] ** 5) * (PROPORTION[1] ** 2),
+		"owner": "enemy"
+	},
+	{
+		"tier": 9,
+		"sprite": preload("res://assets/enemies/monster_ball_9.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
+		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 2),
+		"owner": "enemy"
+	},
+	{
+		"tier": 10,
+		"sprite": preload("res://assets/enemies/monster_ball_10.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
+		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 3),
+		"owner": "enemy"
+	},
+	{
+		"tier": 11,
+		"sprite": preload("res://assets/enemies/monster_ball_11.png"),
+		"icon": preload("res://assets/icons/tag_3.png"),
+		"size": (PROPORTION[0] ** 7) * (PROPORTION[1] ** 3),
+		"owner": "enemy"
+	},
 ]
 
 const BALLS = [
@@ -135,7 +205,7 @@ func get_random_ball() -> Dictionary:
 	return BALLS[random_ball_index]
 
 func get_random_enemy_ball() -> Dictionary:
-	var random_ball_index = rng.randi_range(0, 0)
+	var random_ball_index = rng.randi_range(0, 4)
 	return ENEMIES[random_ball_index]
 
 func get_current_ball() -> Dictionary:
@@ -157,7 +227,6 @@ func set_can_change_next_ball(can_change: bool) -> void:
 
 func choose_next_ball() -> void:
 	current_ball = next_ball
-	print(count)
 	if (count == GameManager.balls_per_enemy - 1):
 		next_ball = get_random_enemy_ball()
 		count = -2
