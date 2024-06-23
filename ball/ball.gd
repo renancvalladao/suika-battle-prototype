@@ -85,6 +85,15 @@ func _on_body_entered(body):
 			return
 		if BallsManager.balls_effect:
 			make_effect()
+		if body is EnemyBall:
+			return
+		if !GameManager.range_damage:
+			return
+		var scale_factor: int = ((config.tier - 1) / 3) + 1
+		var color := Utils.AttackColors.RED
+		for near_ball in near_balls_area.get_overlapping_bodies():
+			if near_ball is EnemyBall:
+				near_ball.enemy_damaged(5 * scale_factor, color)
 
 func make_effect():
 	if config.tier == 2:

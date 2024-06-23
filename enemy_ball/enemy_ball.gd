@@ -1,6 +1,8 @@
 extends Ball
 
-@export var move_cooldown = 10
+class_name EnemyBall
+
+@export var move_cooldown = 15
 @export var enemy_damage: int = 40
 @export var hp: int = 40
 
@@ -8,15 +10,19 @@ extends Ball
 @onready var health_component = $HealthComponent
 @onready var animation_player = $AnimationPlayer
 @onready var enemy_sprite = $Sprite
+@onready var sprite_3 = $Sprite3
 
 var cooldown = 0
 
 func _ready():
 	super._ready()
+	sprite_3.texture = config.sprite
+	sprite_3.scale *= config.size
 	SignalManager.enemy_damaged.connect(enemy_damaged)
 	Utils.AttackColors.values()
-	enemy_damage += config.tier * 2
-	health_component.set_max_health(hp + config.tier * 5)
+	enemy_damage += config.tier * 1
+	health_component.set_max_health(GameManager.enemy_health + config.tier * 5)
+	move_cooldown += config.tier * 2
 	SignalManager.enemy_spawned.emit(config.tier)
 
 func _process(delta):
@@ -25,8 +31,9 @@ func _process(delta):
 		SignalManager.turn_off_color_damage.emit()
 		SignalManager.can_change_next_ball.emit(true)
 		cooldown = 0
-		SignalManager.player_damaged.emit(enemy_damage)
-		print(enemy_damage)
+		#SignalManager.player_damaged.emit(enemy_damage)
+		BallsManager.ball_exploded.emit(position, position, config.tier, config.owner)
+		queue_free()
 	enemy_sprite.material.set_shader_parameter("fill_percentage", cooldown / move_cooldown)
 
 func enemy_damaged(amount: int, color: int) -> void:

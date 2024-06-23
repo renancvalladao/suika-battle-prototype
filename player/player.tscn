@@ -168,7 +168,7 @@ bg_color = Color(0.564706, 0.164706, 0.12549, 1)
 script = ExtResource("1_i37r2")
 AUTO_ATTACK_AMOUNT = 5
 AUTO_SHIELD_AMOUNT = 5
-max_hp = 50
+max_hp = 70
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = 632.0

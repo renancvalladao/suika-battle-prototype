@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t8mjs"]
 resource_local_to_scene = true
 shader = ExtResource("3_4n5l3")
-shader_parameter/fill_percentage = 1.0
+shader_parameter/fill_percentage = 0.0
 
 [sub_resource type="Animation" id="Animation_entxc"]
 length = 0.001
@@ -50,33 +50,37 @@ _data = {
 
 [node name="EnemyBall" instance=ExtResource("1_j05h0")]
 script = ExtResource("2_eg2bd")
-move_cooldown = 10
-enemy_damage = 4
-hp = 10
+move_cooldown = 15
+enemy_damage = 2
+hp = 30
 
 [node name="DamageNumbersOrigin" type="Node2D" parent="." index="0"]
 position = Vector2(0, -9.652)
 scale = Vector2(0.127, 0.127)
 
-[node name="Sprite" parent="." index="2"]
+[node name="Sprite3" type="Sprite2D" parent="." index="1"]
+scale = Vector2(0.127, 0.127)
+texture = ExtResource("2_leyd7")
+
+[node name="Sprite" parent="." index="3"]
 material = SubResource("ShaderMaterial_t8mjs")
 scale = Vector2(0.127, 0.127)
 texture = ExtResource("2_leyd7")
 
-[node name="Icon" parent="." index="3"]
+[node name="Icon" parent="." index="4"]
 visible = false
 
-[node name="CollisionShape2D" parent="." index="4"]
+[node name="CollisionShape2D" parent="." index="5"]
 visible = false
 
-[node name="BallCanAttackComponent" parent="." index="8"]
+[node name="BallCanAttackComponent" parent="." index="9"]
 visible = false
 
-[node name="HealthComponent" parent="." index="9" instance=ExtResource("5_7idqd")]
+[node name="HealthComponent" parent="." index="10" instance=ExtResource("5_7idqd")]
 visible = false
 MAX_HEALTH = 20
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
 libraries = {
 "": SubResource("AnimationLibrary_do8vc")
 }

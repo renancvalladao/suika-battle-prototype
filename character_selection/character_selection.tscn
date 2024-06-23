@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://catuffa8vr7of"]
+[gd_scene load_steps=7 format=3 uid="uid://catuffa8vr7of"]
 
 [ext_resource type="PackedScene" uid="uid://bd24fgyw20u7x" path="res://character_selector/character_selector.tscn" id="1_3dcl8"]
 [ext_resource type="Script" path="res://character_selection/character_selection.gd" id="1_ispp7"]
 [ext_resource type="Texture2D" uid="uid://co8ovvo42ycwi" path="res://assets/characters/fusion_scale.jpg" id="2_yxa6t"]
 [ext_resource type="Texture2D" uid="uid://dxuu75x3x5mx3" path="res://assets/characters/area_scale.png" id="3_bj7qn"]
 [ext_resource type="Texture2D" uid="uid://cqtexkon8cfub" path="res://assets/characters/all_scale.jpg" id="4_pviqj"]
+[ext_resource type="LabelSettings" uid="uid://d171akdbrrrry" path="res://resources/font_white.tres" id="6_4j3sk"]
 
 [node name="CharacterSelection" type="Control"]
 layout_mode = 3
@@ -54,7 +55,6 @@ texture_normal = ExtResource("4_pviqj")
 character = 3
 
 [node name="MinusButton" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 1490.0
 offset_top = 835.0
@@ -64,7 +64,6 @@ theme_override_font_sizes/font_size = 60
 text = "-"
 
 [node name="PlusButton" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 1776.0
 offset_top = 835.0
@@ -74,7 +73,6 @@ theme_override_font_sizes/font_size = 60
 text = "+"
 
 [node name="BallsQuantity" type="Label" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 1579.0
 offset_top = 829.0
@@ -86,14 +84,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 1454.0
-offset_top = 710.0
-offset_right = 1894.0
-offset_bottom = 820.0
+offset_left = 1383.0
+offset_top = 699.0
+offset_right = 1912.0
+offset_bottom = 809.0
 theme_override_font_sizes/font_size = 80
-text = "Balls / turn"
+text = "Enemy health"
 
 [node name="ActionMinus" type="Button" parent="."]
 layout_mode = 0
@@ -132,6 +129,38 @@ offset_right = 574.0
 offset_bottom = 820.0
 theme_override_font_sizes/font_size = 80
 text = "Balls / enemy"
+
+[node name="RangeDamage" type="Label" parent="."]
+offset_left = 1282.0
+offset_top = 586.0
+offset_right = 1742.0
+offset_bottom = 659.0
+text = "Range Damage"
+label_settings = ExtResource("6_4j3sk")
+
+[node name="RangeDamageButton" type="CheckButton" parent="."]
+offset_left = 1756.0
+offset_top = 578.0
+offset_right = 1800.0
+offset_bottom = 602.0
+scale = Vector2(2.32, 2.32)
+focus_mode = 0
+
+[node name="AutoEnemy" type="Label" parent="."]
+offset_left = 58.0
+offset_top = 591.0
+offset_right = 518.0
+offset_bottom = 664.0
+text = "Auto enemy"
+label_settings = ExtResource("6_4j3sk")
+
+[node name="AutoEnemyButton" type="CheckButton" parent="."]
+offset_left = 532.0
+offset_top = 583.0
+offset_right = 576.0
+offset_bottom = 607.0
+scale = Vector2(2.32, 2.32)
+focus_mode = 0
 
 [connection signal="pressed" from="MinusButton" to="." method="_on_minus_button_pressed"]
 [connection signal="pressed" from="PlusButton" to="." method="_on_plus_button_pressed"]

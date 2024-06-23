@@ -25,6 +25,7 @@ func set_health(value: int) -> void:
 	_update_ui()
 
 func set_max_health(value: int) -> void:
+	print(value)
 	MAX_HEALTH = value
 	health = value
 	_update_ui()
@@ -35,7 +36,7 @@ func take_damage(damage_amount: int) -> void:
 	if new_health == 0:
 		SignalManager.enemy_died.emit()
 		get_parent().queue_free()
-		SignalManager.health_gained.emit(4)
+		SignalManager.health_gained.emit(5)
 		
 		
 	set_health(new_health)

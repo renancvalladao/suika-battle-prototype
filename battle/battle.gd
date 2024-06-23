@@ -69,6 +69,7 @@ func _ready():
 	#spawn_random_balls(50)
 	SignalManager.turn_started.emit()
 	SignalManager.balls_left_gained.connect(on_balls_left_gained)
+	#spawn_multiple_random_enemy_ball()
 
 func on_balls_left_gained(amount: int):
 	moves_left += amount
@@ -166,8 +167,14 @@ func spawn_random_enemy_ball() -> void:
 	var ball_tier = BallsManager.get_random_enemy_ball().tier
 	spawn_ball(Vector2(x, y), Vector2(x, y), ball_tier - 1, "enemy")
 
+func spawn_multiple_random_enemy_ball() -> void:
+	for i in range(5):
+		spawn_random_enemy_ball()
+		await get_tree().create_timer(3.0).timeout
+
 func _on_spawn_timer_timeout():
-	#spawn_random_enemy_ball()
+	if GameManager.auto_enemy:
+		spawn_random_enemy_ball()
 	return
 	if spawn_point_1.get_child_count() == 0:
 		spawn_enemy(spawn_point_1)

@@ -54,16 +54,16 @@ scale = Vector2(0.25, 0.25)
 shape = SubResource("CircleShape2D_e2kl0")
 
 [node name="NearBallsArea" type="Area2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
 
 [node name="Range" type="Sprite2D" parent="NearBallsArea"]
-visible = false
 modulate = Color(1, 1, 1, 0.482353)
 z_index = 10
 scale = Vector2(0.335, 0.335)
 texture = ExtResource("4_1g7ns")
 
 [node name="NearBalls" type="CollisionShape2D" parent="NearBallsArea"]
-visible = false
 shape = SubResource("CircleShape2D_cb3tl")
 
 [node name="NearBallsLabel" type="Label" parent="."]

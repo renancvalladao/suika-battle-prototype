@@ -132,6 +132,8 @@ func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int, owner:
 	var increment = 20
 	var scale_factor: int = ((tier - 1) / 3) + 1
 	var color := Utils.AttackColors.RED
+	if GameManager.range_damage:
+			return
 	SignalManager.enemy_damaged.emit(AUTO_ATTACK_AMOUNT * scale_factor, color)
 	return
 	var action = null
