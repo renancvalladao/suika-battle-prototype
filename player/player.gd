@@ -134,7 +134,7 @@ func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int, owner:
 	var color := Utils.AttackColors.RED
 	if GameManager.range_damage:
 			return
-	SignalManager.enemy_damaged.emit(AUTO_ATTACK_AMOUNT * scale_factor, color)
+	SignalManager.enemy_damaged.emit(AUTO_ATTACK_AMOUNT * tier, color)
 	return
 	var action = null
 	var bar = null

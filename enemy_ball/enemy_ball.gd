@@ -21,8 +21,8 @@ func _ready():
 	SignalManager.enemy_damaged.connect(enemy_damaged)
 	Utils.AttackColors.values()
 	enemy_damage += config.tier * 1
-	health_component.set_max_health(GameManager.enemy_health + config.tier * 5)
-	move_cooldown += config.tier * 2
+	health_component.set_max_health(GameManager.enemy_health + config.tier * 35)
+	move_cooldown += config.tier * 5
 	SignalManager.enemy_spawned.emit(config.tier)
 
 func _process(delta):

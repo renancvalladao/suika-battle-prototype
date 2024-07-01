@@ -50,9 +50,9 @@ _data = {
 
 [node name="EnemyBall" instance=ExtResource("1_j05h0")]
 script = ExtResource("2_eg2bd")
-move_cooldown = 15
-enemy_damage = 2
-hp = 30
+move_cooldown = 10
+enemy_damage = 1
+hp = 45
 
 [node name="DamageNumbersOrigin" type="Node2D" parent="." index="0"]
 position = Vector2(0, -9.652)
