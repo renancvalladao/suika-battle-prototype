@@ -67,9 +67,6 @@ material = SubResource("ShaderMaterial_t8mjs")
 scale = Vector2(0.127, 0.127)
 texture = ExtResource("2_leyd7")
 
-[node name="Icon" parent="." index="4"]
-visible = false
-
 [node name="CollisionShape2D" parent="." index="5"]
 visible = false
 

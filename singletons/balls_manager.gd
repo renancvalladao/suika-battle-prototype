@@ -94,77 +94,77 @@ const ENEMIES = [
 const BALLS = [
 	{
 		"tier": 1,
-		"sprite": preload("res://assets/balls/red_body_circle.png"),
+		"sprite": preload("res://assets/new_balls/maroon.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": PROPORTION[0] ** 0,
 		"owner": "player"
 	},
 	{
 		"tier": 2,
-		"sprite": preload("res://assets/balls/green_body_circle.png"),
+		"sprite": preload("res://assets/new_balls/red.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": PROPORTION[0] ** 1,
 		"owner": "player"
 	},
 	{
 		"tier": 3,
-		"sprite": preload("res://assets/balls/blue_body_circle.png"),
+		"sprite": preload("res://assets/new_balls/brown.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": PROPORTION[0] ** 2,
 		"owner": "player"
 	},
 	{
 		"tier": 4,
-		"sprite": preload("res://assets/balls/red_body_circle.png"),
+		"sprite": preload("res://assets/new_balls/orange.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1),
 		"owner": "player"
 	},
 	{
 		"tier": 5,
-		"sprite": preload("res://assets/balls/green_body_circle.png"),
+		"sprite": preload("res://assets/new_balls/yellow.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": (PROPORTION[0] ** 3) * (PROPORTION[1] ** 1),
 		"owner": "player"
 	},
 	{
 		"tier": 6,
-		"sprite": preload("res://assets/balls/blue_body_circle.png"),
+		"sprite": preload("res://assets/new_balls/green.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 1),
 		"owner": "player"
 	},
 	{
 		"tier": 7,
-		"sprite": preload("res://assets/balls/red_body_circle.png"),
+		"sprite": preload("res://assets/new_balls/teal.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 2),
 		"owner": "player"
 	},
 	{
 		"tier": 8,
-		"sprite": preload("res://assets/balls/green_body_circle.png"),
+		"sprite": preload("res://assets/new_balls/cyan.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 5) * (PROPORTION[1] ** 2),
 		"owner": "player"
 	},
 	{
 		"tier": 9,
-		"sprite": preload("res://assets/balls/blue_body_circle.png"),
+		"sprite": preload("res://assets/new_balls/blue.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 2),
 		"owner": "player"
 	},
 	{
 		"tier": 10,
-		"sprite": preload("res://assets/balls/yellow_body_circle.png"),
+		"sprite": preload("res://assets/new_balls/purple.png"),
 		"icon": preload("res://assets/icons/skull.png"),
 		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 3),
 		"owner": "player"
 	},
 	{
 		"tier": 11,
-		"sprite": preload("res://assets/balls/purple_body_circle.png"),
+		"sprite": preload("res://assets/new_balls/pink.png"),
 		"icon": preload("res://assets/icons/crown.png"),
 		"size": (PROPORTION[0] ** 7) * (PROPORTION[1] ** 3),
 		"owner": "player"

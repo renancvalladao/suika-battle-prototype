@@ -33,7 +33,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 2048, 1024)
 
 [node name="BackgroundJapaneseForest" type="Sprite2D" parent="."]
-modulate = Color(0.607843, 0.556863, 0.607843, 1)
+modulate = Color(0.529412, 0.478431, 0.529412, 1)
 texture_repeat = 2
 position = Vector2(961, 542.5)
 scale = Vector2(1.01146, 1.14063)

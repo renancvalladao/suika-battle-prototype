@@ -11,6 +11,8 @@ extends Control
 @onready var blue_label = $BallsCounter/BlueBalls/Label
 @onready var enemy_sprite = $NextBall/EnemySprite
 @onready var enemies = $Enemies
+var sprite_scale: Vector2
+var enemy_scale: Vector2
 
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
@@ -23,6 +25,7 @@ func _ready():
 		var ball = balls[index]
 		ball.get_child(0).texture = BallsManager.BALLS[index].sprite
 		ball.get_child(1).texture = BallsManager.BALLS[index].icon
+		ball.get_child(1).visible = false
 	var enemies_balls: Array = enemies.get_children()
 	for index in enemies_balls.size():
 		var ball = enemies_balls[index]
@@ -30,6 +33,8 @@ func _ready():
 		ball.get_child(0).modulate.r = 0
 		ball.get_child(0).modulate.g = 0
 		ball.get_child(0).modulate.b = 0
+	sprite_scale = sprite.scale
+	enemy_scale = enemy_sprite.scale
 	set_next_ball()
 
 func enemy_spawned(tier: int):
@@ -66,16 +71,18 @@ func get_balls_by_color(color: String) -> int:
 func set_next_ball() -> void:
 	var next_ball = BallsManager.get_next_ball()
 	if (next_ball.owner == "enemy"):
-		icon.visible = false
+		#icon.visible = false
 		sprite.visible = false
 		enemy_sprite.visible = true
 		enemy_sprite.texture = next_ball.sprite
+		enemy_sprite.scale = enemy_scale * next_ball.size
 	else:
 		enemy_sprite.visible = false
 		sprite.texture = next_ball.sprite
 		icon.texture = next_ball.icon
-		icon.visible = true
+		#icon.visible = true
 		sprite.visible = true
+		sprite.scale = sprite_scale * next_ball.size
 
 func next_ball_changed() -> void:
 	set_next_ball()

@@ -171,6 +171,7 @@ AUTO_SHIELD_AMOUNT = 5
 max_hp = 70
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = 632.0
 offset_top = 37.0
 offset_right = 1139.0
