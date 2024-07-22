@@ -35,6 +35,7 @@ func take_damage(damage_amount: int) -> void:
 	new_health = clampi(new_health, 0, MAX_HEALTH)
 	if new_health == 0:
 		SignalManager.enemy_died.emit()
+		SignalManager.create_explosion.emit(global_position)
 		get_parent().queue_free()
 		SignalManager.health_gained.emit(5)
 		
