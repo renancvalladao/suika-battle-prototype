@@ -33,6 +33,7 @@ func _process(delta):
 		cooldown = 0
 		#SignalManager.player_damaged.emit(enemy_damage)
 		BallsManager.ball_exploded.emit(position, position, config.tier, config.owner)
+		EnemyVisualEffects.display_evolution(damage_numbers_origin.global_position, config.size)
 		queue_free()
 	enemy_sprite.material.set_shader_parameter("fill_percentage", cooldown / move_cooldown)
 
