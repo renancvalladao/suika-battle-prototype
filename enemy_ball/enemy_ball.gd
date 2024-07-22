@@ -13,6 +13,7 @@ class_name EnemyBall
 @onready var sprite_3 = $Sprite3
 
 var cooldown = 0
+var can_take_damage = true
 
 func _ready():
 	super._ready()
@@ -38,6 +39,8 @@ func _process(delta):
 	enemy_sprite.material.set_shader_parameter("fill_percentage", cooldown / move_cooldown)
 
 func enemy_damaged(amount: int, color: int) -> void:
+	if !can_take_damage:
+		return
 	var is_critical := false
 	if animation_player != null:
 		animation_player.play("hit_effect")
@@ -49,3 +52,11 @@ func enemy_damaged(amount: int, color: int) -> void:
 
 func display_damage_number(amount: int, is_critical: bool) -> void:
 	DamageNumbers.display_number(amount, damage_numbers_origin.global_position, is_critical)
+
+func set_should_add_group(should: bool):
+	super.set_should_add_group(should)
+	can_take_damage = false
+
+func add_group():
+	super.add_group()
+	can_take_damage = true
