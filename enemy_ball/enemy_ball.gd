@@ -18,6 +18,7 @@ var tween
 var initial_shake_cooldown = 2
 var shake_cooldown = initial_shake_cooldown
 var shake_intensity = 3
+var min_shake_cooldown = 0.05
 
 func _ready():
 	super._ready()
@@ -35,7 +36,8 @@ func _process(delta):
 	shake_cooldown -= delta
 
 	if shake_cooldown <= 0:
-		shake_cooldown = (1 - (cooldown / move_cooldown)) * initial_shake_cooldown
+		var new_shake_cooldown = (1 - (cooldown / move_cooldown)) * initial_shake_cooldown
+		shake_cooldown = max(min_shake_cooldown, new_shake_cooldown)
 		if tween:
 			tween.kill()
 		tween = get_tree().create_tween()
@@ -43,7 +45,6 @@ func _process(delta):
 		tween.tween_property(sprite_3, "position:x", sprite_3.position.x - shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT)
 		tween.tween_property(sprite_3, "position:x", sprite_3.position.x + shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
 		tween.tween_property(sprite_3, "position:x", sprite_3.position.x, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
-		#await tween.finished
 
 	if cooldown >= move_cooldown:
 		SignalManager.turn_off_color_damage.emit()
