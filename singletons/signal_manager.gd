@@ -27,3 +27,12 @@ signal enemy_spawned(tier: int)
 #===========Debuffs===========
 signal turn_on_color_damage
 signal turn_off_color_damage
+
+
+#===========Exp and Upgrades=============
+signal gain_exp(exp: int)
+signal set_hud_exp_value(exp: int)
+signal level_up(new_level: int)
+signal new_max_exp(max_exp: int)
+signal new_min_exp(min_exp: int)
+signal selected_upgrade(upgrade)

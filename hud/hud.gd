@@ -14,12 +14,21 @@ extends Control
 var sprite_scale: Vector2
 var enemy_scale: Vector2
 
+@onready var experience_bar = $ExperienceBar
+@onready var level = $ExperienceBar/Level
+
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
 	SignalManager.can_change_next_ball.connect(can_change_next_ball_ui)
 	SignalManager.enemy_spawned.connect(enemy_spawned)
+	SignalManager.set_hud_exp_value.connect(on_set_hud_exp_value)
+	SignalManager.level_up.connect(on_level_up)
+	SignalManager.new_min_exp.connect(on_new_min_exp)
+	SignalManager.new_max_exp.connect(on_new_max_exp)
 	add_mana_button.pressed.connect(on_add_mana)
 	add_health_button.pressed.connect(on_add_health)
+	
+	experience_bar.value = 0
 	var balls: Array = balls_options.get_children()
 	for index in balls.size():
 		var ball = balls[index]
@@ -92,3 +101,21 @@ func on_add_mana():
 
 func on_add_health():
 	SignalManager.health_gained.emit(100)
+	
+#func on_gain_exp(exp: int):
+	#experience_bar.value += exp
+	#print("exp_value: ", experience_bar.value)
+	
+func on_set_hud_exp_value(exp: int):
+	experience_bar.value = exp
+
+func on_level_up(new_level: int):
+	level.text = "Lvl. " + str(new_level)
+
+func on_new_min_exp(new_min_exp: int):
+	experience_bar.min_value = new_min_exp
+	print("exp_minvalue: ", experience_bar.min_value)
+
+func on_new_max_exp(new_max_exp: int):
+	experience_bar.max_value = new_max_exp
+	print("exp_maxvalue: ", experience_bar.max_value)

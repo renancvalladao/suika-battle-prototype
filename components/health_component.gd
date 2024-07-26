@@ -4,6 +4,7 @@ extends Node2D
 @export var MAX_HEALTH := 100
 @export var COLOR: Utils.AttackColors
 var health: int
+var kill_exp: int
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
@@ -35,6 +36,7 @@ func take_damage(damage_amount: int) -> void:
 	new_health = clampi(new_health, 0, MAX_HEALTH)
 	if new_health == 0:
 		SignalManager.enemy_died.emit()
+		SignalManager.gain_exp.emit(kill_exp)
 		get_parent().queue_free()
 		SignalManager.health_gained.emit(5)
 		

@@ -72,6 +72,10 @@ var actions_left = GameManager.max_actions
 var my_turn = false
 var current_refresh_count = MAX_REFRESH
 
+var level: int = 1
+var exp: int = 0
+var exp_needed_to_lvlup: int = 10
+
 func _ready():
 	hp = max_hp
 	health_bar.max_value = max_hp
@@ -117,6 +121,9 @@ func _ready():
 	shield_bar.value = 0
 	acceleration_bar.value = 0
 	BallsManager.ball_exploded.connect(on_ball_exploded)
+	SignalManager.gain_exp.connect(on_gain_exp)
+	SignalManager.new_min_exp.emit(exp)
+	SignalManager.new_max_exp.emit(exp_needed_to_lvlup)
 
 func refresh_action(action: String):
 	var current_tier = action_tiers[action]
@@ -125,6 +132,21 @@ func refresh_action(action: String):
 	var next_tier = possible_tiers.pick_random()
 	action_tiers[action] = next_tier
 	current_refresh_count -= 1
+
+func on_gain_exp(exp_gained: int):
+	print("gained_exp: ", exp_gained)
+	exp += exp_gained
+	SignalManager.set_hud_exp_value.emit(exp)
+#	if exp >= exp_needed_to_lvlup:
+	while exp_needed_to_lvlup <= exp:
+		level_up()
+
+func level_up():
+	level += 1
+	SignalManager.new_min_exp.emit(exp_needed_to_lvlup)
+	exp_needed_to_lvlup *= 1.5
+	SignalManager.level_up.emit(level)
+	SignalManager.new_max_exp.emit(exp_needed_to_lvlup)
 
 func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int, owner: String):
 	if owner == "enemy":

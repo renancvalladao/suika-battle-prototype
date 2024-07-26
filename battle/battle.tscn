@@ -103,7 +103,7 @@ offset_bottom = 226.0
 text = "Turn: 0"
 label_settings = ExtResource("7_gne4q")
 
-[node name="Player" parent="." instance=ExtResource("8_6rvjb")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("8_6rvjb")]
 position = Vector2(58, 948)
 
 [node name="BallEffects" type="Label" parent="."]
