@@ -16,6 +16,7 @@ func create_explosion(enemy_position: Vector2):
 	explosion.queue_free()
 
 func display_evolution(position: Vector2, size: float):
+	return
 	var evolution = Sprite2D.new()
 	evolution.global_position = position
 	evolution.texture = evolution_sprite

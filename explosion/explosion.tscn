@@ -18,6 +18,7 @@ scale_max = 5.0
 scale_curve = SubResource("CurveTexture_4a7td")
 
 [node name="Explosion" type="GPUParticles2D"]
+z_index = 20
 emitting = false
 amount = 60
 process_material = SubResource("ParticleProcessMaterial_qx4tv")

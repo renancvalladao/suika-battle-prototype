@@ -10,7 +10,6 @@ class_name EnemyBall
 @onready var health_component = $HealthComponent
 @onready var animation_player = $AnimationPlayer
 @onready var enemy_sprite = $Sprite
-@onready var sprite_3 = $Sprite3
 
 var cooldown = 0
 var can_take_damage = true
@@ -22,8 +21,6 @@ var min_shake_cooldown = 0.05
 
 func _ready():
 	super._ready()
-	sprite_3.texture = config.sprite
-	sprite_3.scale *= config.size
 	SignalManager.enemy_damaged.connect(enemy_damaged)
 	Utils.AttackColors.values()
 	enemy_damage += config.tier * 1
@@ -42,9 +39,9 @@ func _process(delta):
 			tween.kill()
 		tween = get_tree().create_tween()
 		tween.set_parallel(true)
-		tween.tween_property(sprite_3, "position:x", sprite_3.position.x - shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT)
-		tween.tween_property(sprite_3, "position:x", sprite_3.position.x + shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
-		tween.tween_property(sprite_3, "position:x", sprite_3.position.x, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
+		tween.tween_property(enemy_sprite, "position:x", enemy_sprite.position.x - shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT)
+		tween.tween_property(enemy_sprite, "position:x", enemy_sprite.position.x + shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
+		tween.tween_property(enemy_sprite, "position:x", enemy_sprite.position.x, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
 
 	if cooldown >= move_cooldown:
 		SignalManager.turn_off_color_damage.emit()
@@ -56,7 +53,7 @@ func _process(delta):
 		if tween:
 			tween.kill()
 		queue_free()
-	enemy_sprite.material.set_shader_parameter("fill_percentage", cooldown / move_cooldown)
+	#enemy_sprite.material.set_shader_parameter("fill_percentage", cooldown / move_cooldown)
 
 func enemy_damaged(amount: int, color: int) -> void:
 	if !can_take_damage:
