@@ -63,6 +63,7 @@ scale = Vector2(0.127, 0.127)
 texture = ExtResource("2_leyd7")
 
 [node name="Sprite" parent="." index="3"]
+visible = false
 material = SubResource("ShaderMaterial_t8mjs")
 scale = Vector2(0.127, 0.127)
 texture = ExtResource("2_leyd7")

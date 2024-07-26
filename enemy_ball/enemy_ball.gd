@@ -14,6 +14,10 @@ class_name EnemyBall
 
 var cooldown = 0
 var can_take_damage = true
+var tween
+var initial_shake_cooldown = 2
+var shake_cooldown = initial_shake_cooldown
+var shake_intensity = 3
 
 func _ready():
 	super._ready()
@@ -28,6 +32,19 @@ func _ready():
 
 func _process(delta):
 	cooldown += delta
+	shake_cooldown -= delta
+
+	if shake_cooldown <= 0:
+		shake_cooldown = (1 - (cooldown / move_cooldown)) * initial_shake_cooldown
+		if tween:
+			tween.kill()
+		tween = get_tree().create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(sprite_3, "position:x", sprite_3.position.x - shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT)
+		tween.tween_property(sprite_3, "position:x", sprite_3.position.x + shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
+		tween.tween_property(sprite_3, "position:x", sprite_3.position.x, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
+		#await tween.finished
+
 	if cooldown >= move_cooldown:
 		SignalManager.turn_off_color_damage.emit()
 		SignalManager.can_change_next_ball.emit(true)
@@ -35,6 +52,8 @@ func _process(delta):
 		#SignalManager.player_damaged.emit(enemy_damage)
 		BallsManager.ball_exploded.emit(position, position, config.tier, config.owner)
 		EnemyVisualEffects.display_evolution(damage_numbers_origin.global_position, config.size)
+		if tween:
+			tween.kill()
 		queue_free()
 	enemy_sprite.material.set_shader_parameter("fill_percentage", cooldown / move_cooldown)
 
