@@ -57,7 +57,7 @@ position_min = NodePath("../PositionMin")
 position_max = NodePath("../PositionMax")
 
 [node name="Tile" parent="." instance=ExtResource("4_8rafd")]
-position = Vector2(960, 920)
+position = Vector2(960, 949)
 scale = Vector2(2, 1)
 
 [node name="Tile2" parent="." instance=ExtResource("4_8rafd")]

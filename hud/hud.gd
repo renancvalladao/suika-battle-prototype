@@ -156,14 +156,15 @@ func on_selected_upgrade(upgrade) -> void:
 
 func on_gain_exp(exp_gained: int) -> void:
 	#print("gained_exp: ", exp_gained)
-	calculate_experience(exp_gained)
+	#calculate_experience(exp_gained)
+	collected_experience += exp_gained
 	#exp_pool.append(exp_gained)
 	
 
 func calculate_experience(exp_gained: int):
 	exp_needed_to_lvlup = calculate_experiencecap()
 	#print("exp needed: ", exp_needed_to_lvlup)
-	collected_experience += exp_gained
+	#collected_experience += exp_gained
 	if current_exp + collected_experience >= exp_needed_to_lvlup: #levelup
 		#print("before collected_experience: ", collected_experience)
 		collected_experience -= exp_needed_to_lvlup - current_exp
