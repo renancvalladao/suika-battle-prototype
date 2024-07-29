@@ -753,4 +753,9 @@ texture_hover = ExtResource("9_8f2lp")
 texture_disabled = ExtResource("9_8f2lp")
 texture_focused = ExtResource("9_8f2lp")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="timeout" from="ChainExplosionTimer" to="." method="_on_chain_explosion_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

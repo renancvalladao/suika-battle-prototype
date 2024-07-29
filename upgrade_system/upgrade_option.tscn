@@ -4,14 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="1_yx0xe"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_aix1i"]
 
-[node name="UpgradeOption" type="ColorRect"]
-anchors_preset = -1
-anchor_right = 0.26
-anchor_bottom = 0.163
-offset_right = 0.799957
-offset_bottom = -0.0400085
-color = Color(0.54902, 0.54902, 0.54902, 1)
+[node name="TextureButton" type="TextureButton"]
+offset_right = 499.0
+offset_bottom = 174.0
+size_flags_horizontal = 2
+size_flags_vertical = 6
 script = ExtResource("1_8e653")
+
+[node name="UpgradeOption" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 500.0
+offset_bottom = 176.0
+mouse_filter = 1
+color = Color(0.54902, 0.54902, 0.54902, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -19,6 +25,7 @@ offset_left = 11.0
 offset_top = 12.0
 offset_right = 97.0
 offset_bottom = 98.0
+mouse_filter = 1
 color = Color(0, 0, 0, 1)
 
 [node name="UpgradeIcon" type="TextureRect" parent="ColorRect"]
@@ -42,11 +49,12 @@ text = "Name"
 layout_mode = 0
 offset_left = 11.0
 offset_top = 109.0
-offset_right = 358.0
-offset_bottom = 140.0
+offset_right = 484.0
+offset_bottom = 167.0
 theme_override_fonts/font = ExtResource("2_aix1i")
 theme_override_font_sizes/font_size = 30
-text = "Description of upgrade"
+text = "Description of upgrade "
+autowrap_mode = 3
 
 [node name="Level" type="Label" parent="."]
 layout_mode = 0
@@ -57,3 +65,5 @@ offset_bottom = 31.0
 theme_override_fonts/font = ExtResource("2_aix1i")
 theme_override_font_sizes/font_size = 25
 text = "Level: 1"
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

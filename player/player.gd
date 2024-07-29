@@ -73,8 +73,11 @@ var my_turn = false
 var current_refresh_count = MAX_REFRESH
 
 var level: int = 1
-var exp: int = 0
+var current_exp: int = 0
 var exp_needed_to_lvlup: int = 10
+var leveling_up: bool = false
+#@onready var upgrade_options: PackedScene = preload("res://upgrade_system/upgrade_option.tscn")
+
 
 func _ready():
 	hp = max_hp
@@ -121,9 +124,10 @@ func _ready():
 	shield_bar.value = 0
 	acceleration_bar.value = 0
 	BallsManager.ball_exploded.connect(on_ball_exploded)
-	SignalManager.gain_exp.connect(on_gain_exp)
-	SignalManager.new_min_exp.emit(exp)
-	SignalManager.new_max_exp.emit(exp_needed_to_lvlup)
+	#SignalManager.gain_exp.connect(on_gain_exp)
+	#SignalManager.new_min_exp.emit(current_exp)
+	#SignalManager.new_max_exp.emit(exp_needed_to_lvlup)
+	SignalManager.selected_upgrade.connect(upgrade_character)
 
 func refresh_action(action: String):
 	var current_tier = action_tiers[action]
@@ -133,20 +137,24 @@ func refresh_action(action: String):
 	action_tiers[action] = next_tier
 	current_refresh_count -= 1
 
-func on_gain_exp(exp_gained: int):
+func on_gain_exp(exp_gained: int) -> void:
 	print("gained_exp: ", exp_gained)
-	exp += exp_gained
-	SignalManager.set_hud_exp_value.emit(exp)
+	current_exp += exp_gained
+	SignalManager.set_hud_exp_value.emit(current_exp)
 #	if exp >= exp_needed_to_lvlup:
-	while exp_needed_to_lvlup <= exp:
+	while exp_needed_to_lvlup <= current_exp:
 		level_up()
 
-func level_up():
+func level_up() -> void:
 	level += 1
 	SignalManager.new_min_exp.emit(exp_needed_to_lvlup)
 	exp_needed_to_lvlup *= 1.5
 	SignalManager.level_up.emit(level)
 	SignalManager.new_max_exp.emit(exp_needed_to_lvlup)
+
+func upgrade_character(upgrade) -> void:
+	pass
+
 
 func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int, owner: String):
 	if owner == "enemy":
@@ -607,3 +615,8 @@ func get_balls_by_color(color: String) -> int:
 	for tier in tiers:
 		total += get_tree().get_nodes_in_group("ball_%s" % tier).size()
 	return total
+
+
+func _on_timer_timeout():
+	#SignalManager.gain_exp.emit(10)
+	pass
