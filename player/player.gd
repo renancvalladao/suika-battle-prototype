@@ -137,20 +137,6 @@ func refresh_action(action: String):
 	action_tiers[action] = next_tier
 	current_refresh_count -= 1
 
-func on_gain_exp(exp_gained: int) -> void:
-	print("gained_exp: ", exp_gained)
-	current_exp += exp_gained
-	SignalManager.set_hud_exp_value.emit(current_exp)
-#	if exp >= exp_needed_to_lvlup:
-	while exp_needed_to_lvlup <= current_exp:
-		level_up()
-
-func level_up() -> void:
-	level += 1
-	SignalManager.new_min_exp.emit(exp_needed_to_lvlup)
-	exp_needed_to_lvlup *= 1.5
-	SignalManager.level_up.emit(level)
-	SignalManager.new_max_exp.emit(exp_needed_to_lvlup)
 
 func upgrade_character(upgrade) -> void:
 	pass
