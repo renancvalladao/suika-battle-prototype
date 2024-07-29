@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=15 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
@@ -11,7 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bwrxmlqbt6fd" path="res://player/player.tscn" id="8_6rvjb"]
 [ext_resource type="Texture2D" uid="uid://cqtexkon8cfub" path="res://assets/characters/all_scale.jpg" id="10_ten7u"]
 [ext_resource type="PackedScene" uid="uid://dcq3spj02m0gc" path="res://components/game_timer.tscn" id="12_sxbf5"]
-[ext_resource type="Texture2D" uid="uid://d24487vph7nuj" path="res://assets/toriiGate.png" id="13_53k2p"]
+[ext_resource type="Texture2D" uid="uid://c7pb6eerpe3tc" path="res://assets/toriiGate_edited.png" id="13_ac18o"]
+[ext_resource type="Texture2D" uid="uid://btfd643ys1ett" path="res://assets/toriiGate.png" id="14_hlihy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u53dv"]
 size = Vector2(795, 35)
@@ -22,6 +23,7 @@ script = ExtResource("1_fl8ju")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="CanvasLayer" instance=ExtResource("2_uwwfi")]
+metadata/_edit_use_anchors_ = true
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("3_k3w44")]
 visible = false
@@ -44,31 +46,92 @@ texture = ExtResource("5_q7nbd")
 region_enabled = true
 region_rect = Rect2(0, 0, 1920, 960)
 
-[node name="ToriiGate" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(0.713726, 0.678431, 0.768627, 1)
-position = Vector2(961, 548)
-scale = Vector2(0.92, 0.819999)
-texture = ExtResource("13_53k2p")
-
-[node name="Hand" parent="." node_paths=PackedStringArray("position_min", "position_max") instance=ExtResource("1_h2fse")]
-position = Vector2(950, 199)
-position_min = NodePath("../PositionMin")
-position_max = NodePath("../PositionMax")
-
 [node name="Tile" parent="." instance=ExtResource("4_8rafd")]
-position = Vector2(960, 920)
+visible = false
+position = Vector2(965, 1008)
 scale = Vector2(2, 1)
 
 [node name="Tile2" parent="." instance=ExtResource("4_8rafd")]
-position = Vector2(652, 600)
+visible = false
+position = Vector2(657, 688)
 rotation = 1.5708
 scale = Vector2(1.5, 1)
 
 [node name="Tile3" parent="." instance=ExtResource("4_8rafd")]
-position = Vector2(1268, 600)
+visible = false
+position = Vector2(1273, 688)
 rotation = -1.5708
 scale = Vector2(1.5, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 667.0
+offset_top = 282.0
+offset_right = 741.0
+offset_bottom = 333.0
+scale = Vector2(8.04, 13.48)
+mouse_filter = 2
+color = Color(0.694118, 0.329412, 0.968627, 0.392157)
+metadata/_edit_use_anchors_ = true
+
+[node name="ToriiGate" type="Sprite2D" parent="."]
+position = Vector2(952.5, 553.5)
+scale = Vector2(1.03908, 0.846557)
+texture = ExtResource("14_hlihy")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 244.0
+offset_right = 785.0
+offset_bottom = 1024.0
+mouse_filter = 2
+
+[node name="ToriiGateEdited" type="Sprite2D" parent="Control"]
+position = Vector2(954, 257)
+rotation = -0.058557
+scale = Vector2(0.97306, 0.845679)
+texture = ExtResource("13_ac18o")
+
+[node name="Control2" type="Control" parent="."]
+visible = false
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 958.0
+offset_top = 271.0
+offset_right = 1636.0
+offset_bottom = 1041.0
+mouse_filter = 2
+
+[node name="ToriiGateEdited" type="Sprite2D" parent="Control2"]
+position = Vector2(12, 229)
+rotation = 0.0588268
+scale = Vector2(0.97306, 0.845679)
+texture = ExtResource("13_ac18o")
+
+[node name="Control3" type="Control" parent="."]
+visible = false
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 130.0
+offset_top = -28.0
+offset_right = 1759.0
+offset_bottom = 306.0
+mouse_filter = 2
+
+[node name="ToriiGateEdited" type="Sprite2D" parent="Control3"]
+position = Vector2(835.5, 545)
+scale = Vector2(1.03207, 0.845679)
+texture = ExtResource("13_ac18o")
+
+[node name="Hand" parent="." node_paths=PackedStringArray("position_min", "position_max") instance=ExtResource("1_h2fse")]
+position = Vector2(955, 240)
+position_min = NodePath("../PositionMin")
+position_max = NodePath("../PositionMax")
 
 [node name="PositionMin" type="Marker2D" parent="."]
 position = Vector2(642, 80)
@@ -205,7 +268,7 @@ wait_time = 8.0
 autostart = true
 
 [node name="GameOverArea" type="Area2D" parent="."]
-position = Vector2(646, 186)
+position = Vector2(651, 274)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea"]
@@ -218,6 +281,7 @@ offset_left = 773.0
 offset_top = 11.0
 offset_right = 773.0
 offset_bottom = 11.0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="body_entered" from="GameOverArea" to="." method="_on_game_over_area_body_entered"]
