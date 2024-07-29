@@ -617,6 +617,6 @@ func get_balls_by_color(color: String) -> int:
 	return total
 
 
-func _on_timer_timeout():
-	#SignalManager.gain_exp.emit(10)
+func _on_timer_timeout(): # Timer de teste de xp só
+	#SignalManager.gain_exp.emit(20)
 	pass

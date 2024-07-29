@@ -25,7 +25,9 @@ var enemy_scale: Vector2
 
 var current_level: int = 1
 var current_exp: int = 0
+var collected_experience: int = 0
 var exp_needed_to_lvlup: int = 10
+var exp_pool:Array[int] = []
 
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
@@ -40,7 +42,8 @@ func _ready():
 	add_mana_button.pressed.connect(on_add_mana)
 	add_health_button.pressed.connect(on_add_health)
 	
-	experience_bar.value = 0
+	set_exp_bar(0, calculate_experiencecap())
+	
 	var balls: Array = balls_options.get_children()
 	for index in balls.size():
 		var ball = balls[index]
@@ -57,6 +60,14 @@ func _ready():
 	sprite_scale = sprite.scale
 	enemy_scale = enemy_sprite.scale
 	set_next_ball()
+
+func _process(delta):
+	#if exp_pool != []:
+		#print("exp_pool: ", exp_pool)
+		#var gained_exp = exp_pool.pop_front()
+		#calculate_experience(gained_exp)
+	if collected_experience > 0:
+		calculate_experience(0)
 
 func enemy_spawned(tier: int):
 	var enemies_balls: Array = enemies.get_children()
@@ -118,9 +129,9 @@ func on_add_health():
 #func on_set_hud_exp_value(exp_value: int):
 #	experience_bar.value = exp_value
 
-func on_level_up(new_level: int):
+func level_up():
 	sound_level_up.play()
-	level.text = "Lvl. " + str(new_level)
+	level.text = "Lvl. " + str(current_level)
 	level_up_panel.visible = true
 	var tween = level_up_panel.create_tween()
 	tween.tween_property(level_up_panel, "position", Vector2(-1250,103), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
@@ -144,18 +155,48 @@ func on_selected_upgrade(upgrade) -> void:
 	get_tree().paused = false
 
 func on_gain_exp(exp_gained: int) -> void:
-	print("gained_exp: ", exp_gained)
-	current_exp += exp_gained
-#	if exp >= exp_needed_to_lvlup:
-	while exp_needed_to_lvlup <= current_exp:
-		level_up()
+	#print("gained_exp: ", exp_gained)
+	calculate_experience(exp_gained)
+	#exp_pool.append(exp_gained)
+	
 
-func level_up() -> void:
-	current_level += 1
-	experience_bar.min_value = exp_needed_to_lvlup
-	exp_needed_to_lvlup *= 1.5
+func calculate_experience(exp_gained: int):
+	exp_needed_to_lvlup = calculate_experiencecap()
+	#print("exp needed: ", exp_needed_to_lvlup)
+	collected_experience += exp_gained
+	if current_exp + collected_experience >= exp_needed_to_lvlup: #levelup
+		#print("before collected_experience: ", collected_experience)
+		collected_experience -= exp_needed_to_lvlup - current_exp
+		#print("after collected_experience: ", collected_experience, "\n")
+		
+		current_level+= 1
+		current_exp = 0
+		exp_needed_to_lvlup = calculate_experiencecap()
+		if collected_experience >= exp_needed_to_lvlup:
+			exp_pool.append(collected_experience)
+		level_up()
+		#calculate_experience(0)
+	else:
+		current_exp += collected_experience
+		collected_experience = 0
+		
+	set_exp_bar(current_exp, exp_needed_to_lvlup)
+	
+
+func calculate_experiencecap() -> int:
+	var exp_cap = current_level
+	if current_level < 20:
+		exp_cap = current_level * 5
+	elif current_level < 40:
+		exp_cap = 95 + (current_level - 19) * 8
+	else:
+		exp_cap = 255 + (current_level - 39) * 12
+	
+	return exp_cap
+
+func set_exp_bar(exp:int, max_exp:int):
 	experience_bar.max_value = exp_needed_to_lvlup
-	on_level_up(current_level)
+	experience_bar.value = exp
 	
 	
 #func on_new_min_exp(new_min_exp: int):
