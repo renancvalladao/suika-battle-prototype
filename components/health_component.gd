@@ -37,6 +37,7 @@ func take_damage(damage_amount: int) -> void:
 	if new_health == 0:
 		SignalManager.enemy_died.emit()
 		SignalManager.gain_exp.emit(kill_exp)
+		SignalManager.create_explosion.emit(global_position)
 		get_parent().queue_free()
 		SignalManager.health_gained.emit(5)
 		

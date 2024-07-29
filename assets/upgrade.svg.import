@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btfd643ys1ett"
-path="res://.godot/imported/toriiGate.png-3f4942c435f3bef0559b31f08ff05d4d.ctex"
+uid="uid://dxlspwj0ptmgh"
+path="res://.godot/imported/upgrade.svg-f3c4e460506a7c0e59f441cbbea90897.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/toriiGate.png"
-dest_files=["res://.godot/imported/toriiGate.png-3f4942c435f3bef0559b31f08ff05d4d.ctex"]
+source_file="res://assets/upgrade.svg"
+dest_files=["res://.godot/imported/upgrade.svg-f3c4e460506a7c0e59f441cbbea90897.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

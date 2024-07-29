@@ -36,6 +36,9 @@ func _ready():
 	
 	if should_add_group:
 		add_to_group("ball_%s" % config.tier)
+		var tween = get_tree().create_tween()
+		scale = Vector2.ZERO
+		tween.tween_property(self, "scale", Vector2(1, 1), 0.1).set_ease(Tween.EASE_IN)
 		
 func set_initial_scales() -> void:
 	initial_icon_scale = $Icon.scale

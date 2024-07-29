@@ -7,6 +7,7 @@ signal turn_finished
 signal current_ball_changed
 
 var character_selection: PackedScene = load("res://character_selection/character_selection.tscn")
+var battle: PackedScene = load("res://battle/battle.tscn")
 var can_change_next_ball = true
 
 const PROPORTION = [1.2, 1.3]
@@ -253,7 +254,7 @@ func _unhandled_input(event):
 		set_next_ball(current_ball)
 		set_current_ball(next)
 	if event.is_action_pressed("restart"):
-		get_tree().change_scene_to_packed(character_selection)
+		get_tree().change_scene_to_packed(battle)
 		#get_tree().reload_current_scene()
 		current_ball = get_random_enemy_ball()
 		next_ball = get_random_ball()
