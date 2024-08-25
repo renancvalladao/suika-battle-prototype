@@ -64,6 +64,7 @@ func enemy_damaged(amount: int, color: int) -> void:
 	if animation_player != null:
 		animation_player.play("hit_effect")
 	if amount > 0:
+		amount *= GameManager.damage_buff_multiplier # Aplica buff de dano caso tenha
 		health_component.take_damage(amount)
 		display_damage_number(amount, is_critical)
 	else:

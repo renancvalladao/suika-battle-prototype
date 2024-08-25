@@ -139,7 +139,14 @@ func refresh_action(action: String):
 
 
 func upgrade_character(upgrade) -> void:
-	pass
+	match upgrade:
+		"damage_buff1","damage_buff2","damage_buff3","damage_buff4","damage_buff5":
+			GameManager.damage_buff_multiplier += 0.1
+		"exp_bonus1","exp_bonus2","exp_bonus3","exp_bonus4","exp_bonus5":
+			GameManager.exp_bonus_multiplier += 0.1
+		"bow":
+			print(GameManager.damage_buff_multiplier)
+			SignalManager.enemy_damaged.emit(50, 0)
 
 
 func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int, owner: String):
@@ -604,6 +611,6 @@ func get_balls_by_color(color: String) -> int:
 
 
 func _on_timer_timeout(): # Timer de teste de xp só
-	#SignalManager.gain_exp.emit(10)
-	#SignalManager.gain_exp.emit(10)
-	pass
+	SignalManager.gain_exp.emit(10)
+	SignalManager.gain_exp.emit(10)
+	#pass

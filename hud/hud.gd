@@ -29,6 +29,11 @@ var collected_experience: int = 0
 var exp_needed_to_lvlup: int = 10
 var exp_pool:Array[int] = []
 
+#UPGRADES
+var collected_upgrades = []
+var upgrade_options = []
+
+
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
 	SignalManager.can_change_next_ball.connect(can_change_next_ball_ui)
@@ -141,15 +146,48 @@ func level_up():
 	var options_max: int = 3
 	for i in range(options_max):
 		var option_choice = upgrade_option.instantiate()
+		option_choice.upgrade = get_random_upgrade()
 		upgrade_options_container.add_child(option_choice)
 	
 	get_tree().paused = true
 
+func get_random_upgrade():
+	var db_list = []
+	for i in UpgradeDb.UPGRADES:
+		if i in collected_upgrades:
+			pass
+		elif i in upgrade_options:
+			pass
+		elif UpgradeDb.UPGRADES[i]["type"] == "item": #Don't pick up item
+			pass
+		elif UpgradeDb.UPGRADES[i]["prerequisite"].size() > 0:
+			var has_all_prerequisites = true
+			for prerequisite in UpgradeDb.UPGRADES[i]["prerequisite"]:
+				if not prerequisite in collected_upgrades:
+					has_all_prerequisites = false
+			if has_all_prerequisites:
+				db_list.append(i)
+			else:
+				pass
+		else:
+			db_list.append(i)
+			
+	if db_list.size() > 0 :
+		var random_upgrade = db_list.pick_random()
+		upgrade_options.append(random_upgrade)
+		return random_upgrade
+	else: 
+		return null
+		
+		
+		
 
 func on_selected_upgrade(upgrade) -> void:
 	var option_children = upgrade_options_container.get_children()
 	for child in option_children:
 		child.queue_free()
+	upgrade_options.clear()
+	collected_upgrades.append(upgrade)
 	level_up_panel.visible = false
 	level_up_panel.position = Vector2(500,103)
 	get_tree().paused = false
@@ -157,6 +195,8 @@ func on_selected_upgrade(upgrade) -> void:
 func on_gain_exp(exp_gained: int) -> void:
 	#print("gained_exp: ", exp_gained)
 	#calculate_experience(exp_gained)
+	exp_gained *= GameManager.exp_bonus_multiplier #Aplica buff de exp caso tenha
+	print(exp_gained)
 	collected_experience += exp_gained
 	#exp_pool.append(exp_gained)
 	
