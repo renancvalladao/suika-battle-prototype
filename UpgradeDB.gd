@@ -82,6 +82,46 @@ const UPGRADES = {
 		"prerequisite": ["exp_bonus4"],
 		"type": "buff"
 	},
+	"slow_enemy_evolution1":{
+		"icon": ICON_PATH + "card_flipdouble.png",
+		"displayname": "Slow Enemy Evolution",
+		"details": "Reduces enemies' evolution progress when they take damage.",
+		"level": "Level 1",
+		"prerequisite": [],
+		"type": "buff"
+	},
+	"slow_enemy_evolution2":{
+		"icon": ICON_PATH + "card_flipdouble.png",
+		"displayname": "Slow Enemy Evolution",
+		"details": "Reduces enemies' evolution progress when they take damage.",
+		"level": "Level 2",
+		"prerequisite": ["slow_enemy_evolution1"],
+		"type": "buff"
+	},
+	"slow_enemy_evolution3":{
+		"icon": ICON_PATH + "card_flipdouble.png",
+		"displayname": "Slow Enemy Evolution",
+		"details": "Reduces enemies' evolution progress when they take damage.",
+		"level": "Level 3",
+		"prerequisite": ["slow_enemy_evolution2"],
+		"type": "buff"
+	},
+	"slow_enemy_evolution4":{
+		"icon": ICON_PATH + "card_flipdouble.png",
+		"displayname": "Slow Enemy Evolution",
+		"details": "Reduces enemies' evolution progress when they take damage.",
+		"level": "Level 4",
+		"prerequisite": ["slow_enemy_evolution3"],
+		"type": "buff"
+	},
+	"slow_enemy_evolution5":{
+		"icon": ICON_PATH + "card_flipdouble.png",
+		"displayname": "Slow Enemy Evolution",
+		"details": "Reduces enemies' evolution progress when they take damage.",
+		"level": "Level 5",
+		"prerequisite": ["slow_enemy_evolution4"],
+		"type": "buff"
+	},
 	"bow":{
 		"icon": ICON_PATH + "bow.png",
 		"displayname": "Bow",

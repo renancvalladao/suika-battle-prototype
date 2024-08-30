@@ -17,7 +17,7 @@ signal can_change_next_ball(can_change: bool)
 signal is_dropping()
 
 #===========Enemy===========
-signal enemy_damaged(damage: int, damage_color: int)
+signal enemy_damaged(damage: int, damage_color: int, should_multiplier_apply:bool)
 signal enemy_moved
 signal enemy_turn_started
 signal enemy_move_delayed(amount: int)

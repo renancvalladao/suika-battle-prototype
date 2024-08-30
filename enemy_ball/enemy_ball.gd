@@ -32,6 +32,7 @@ func _ready():
 
 func _process(delta):
 	cooldown += delta
+	print(cooldown,":",move_cooldown)
 	shake_cooldown -= delta
 
 	if shake_cooldown <= 0:
@@ -57,16 +58,19 @@ func _process(delta):
 		queue_free()
 	#enemy_sprite.material.set_shader_parameter("fill_percentage", cooldown / move_cooldown)
 
-func enemy_damaged(amount: int, color: int) -> void:
+func enemy_damaged(amount: int, color: int, should_multiplier_apply:bool) -> void:
 	if !can_take_damage:
 		return
 	var is_critical := false
 	if animation_player != null:
 		animation_player.play("hit_effect")
 	if amount > 0:
-		amount *= GameManager.damage_buff_multiplier # Aplica buff de dano caso tenha
+		if should_multiplier_apply:
+			amount *= GameManager.damage_buff_multiplier # Aplica buff de dano caso tenha
 		health_component.take_damage(amount)
 		display_damage_number(amount, is_critical)
+		if GameManager.reduce_enemyprogress_on_damage > 0:
+			cooldown -= GameManager.reduce_enemyprogress_on_damage
 	else:
 		health_component.take_damage(0)
 

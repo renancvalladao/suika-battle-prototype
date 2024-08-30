@@ -196,7 +196,7 @@ func on_gain_exp(exp_gained: int) -> void:
 	#print("gained_exp: ", exp_gained)
 	#calculate_experience(exp_gained)
 	exp_gained *= GameManager.exp_bonus_multiplier #Aplica buff de exp caso tenha
-	print(exp_gained)
+	#print(exp_gained)
 	collected_experience += exp_gained
 	#exp_pool.append(exp_gained)
 	
