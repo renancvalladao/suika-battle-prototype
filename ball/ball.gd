@@ -79,6 +79,10 @@ func _on_body_entered(body):
 		return
 	if config.has("owner") && config.owner == "enemy" && config.tier == BallsManager.ENEMIES.size():
 		return
+	if config.has("type") && body is Ball:
+		if config.type == "ghost" && config.tier != body.config.tier:
+			#print("entrou")
+			return
 	if body is Ball && (body.config.tier == config.tier || body.config.tier == -1) && !exploded && !body.exploded:
 		if config.owner != body.config.owner:
 			return

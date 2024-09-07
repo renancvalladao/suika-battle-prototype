@@ -32,7 +32,6 @@ func _ready():
 
 func _process(delta):
 	cooldown += delta
-	print(cooldown,":",move_cooldown)
 	shake_cooldown -= delta
 
 	if shake_cooldown <= 0:

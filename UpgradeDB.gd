@@ -122,6 +122,46 @@ const UPGRADES = {
 		"prerequisite": ["slow_enemy_evolution4"],
 		"type": "buff"
 	},
+	"ghost_ball1":{
+		"icon": ICON_PATH + "skull.png",
+		"displayname": "Ghost Ball.",
+		"details": "Ghost balls now have a chance to spawn.",
+		"level": "Level 1",
+		"prerequisite": [],
+		"type": "ball"
+	},
+	"ghost_ball2":{
+		"icon": ICON_PATH + "skull.png",
+		"displayname": "Ghost Ball.",
+		"details": "Increases chance to spawn a ghost ball.",
+		"level": "Level 2",
+		"prerequisite": ["ghost_ball1"],
+		"type": "ball"
+	},
+	"ghost_ball3":{
+		"icon": ICON_PATH + "skull.png",
+		"displayname": "Ghost Ball.",
+		"details": "Increases chance to spawn a ghost ball.",
+		"level": "Level 3",
+		"prerequisite": ["ghost_ball2"],
+		"type": "ball"
+	},
+	"ghost_ball4":{
+		"icon": ICON_PATH + "skull.png",
+		"displayname": "Ghost Ball.",
+		"details": "Increases chance to spawn a ghost ball.",
+		"level": "Level 4",
+		"prerequisite": ["ghost_ball3"],
+		"type": "ball"
+	},
+	"ghost_ball5":{
+		"icon": ICON_PATH + "skull.png",
+		"displayname": "Ghost Ball.",
+		"details": "Increases chance to spawn a ghost ball.",
+		"level": "Level 5",
+		"prerequisite": ["ghost_ball4"],
+		"type": "ball"
+	},
 	"bow":{
 		"icon": ICON_PATH + "bow.png",
 		"displayname": "Bow",

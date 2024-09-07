@@ -175,8 +175,8 @@ const BALLS = [
 const FINISH_TURN_DELAY: float = 2
 
 var rng = RandomNumberGenerator.new()
-var current_ball = get_random_enemy_ball()
-var next_ball = get_random_ball()
+var current_ball
+var next_ball
 var turn = 0
 var balls_effect: bool = false
 var auto_enemy: bool = true
@@ -193,6 +193,9 @@ func _ready():
 	SignalManager.can_change_next_ball.connect(set_can_change_next_ball)
 	SignalManager.is_dropping.connect(set_is_dropping)
 	BallsManager.ball_dropped.connect(set_is_dropping_false)
+	
+	current_ball = get_random_enemy_ball()
+	next_ball = get_random_ball()
 
 func set_is_dropping():
 	is_dropping = true
@@ -203,7 +206,17 @@ func set_is_dropping_false():
 
 func get_random_ball() -> Dictionary:
 	var random_ball_index = rng.randi_range(0, 4)
-	return BALLS[random_ball_index]
+	var random_ball_config = BALLS[random_ball_index]
+	
+	#CHANCE TO SPAWN BALL TYPES
+	var i: float = randf_range(0,1)
+	var type_ball_config: Dictionary
+	if i <= GameManager.spawn_chance_ghost_ball:
+		type_ball_config = random_ball_config.duplicate()
+		type_ball_config["type"] = "ghost"
+		random_ball_config = type_ball_config
+	
+	return random_ball_config
 
 func get_random_enemy_ball() -> Dictionary:
 	var random_ball_index = rng.randi_range(0, 4)

@@ -82,6 +82,7 @@ var leveling_up: bool = false
 @export var damage_buff_multiplier_increase_per_level = 0.1
 @export var exp_bonus_multiplier_increase_per_level = 0.1
 @export var reduce_enemyprogress_on_damage_per_level = 0.5
+@export var ghost_ball_spawn_chance_per_level = 0.05
 @export var bow_damage = 50
 
 func _ready():
@@ -151,6 +152,8 @@ func upgrade_character(upgrade) -> void:
 			GameManager.exp_bonus_multiplier += exp_bonus_multiplier_increase_per_level
 		"slow_enemy_evolution1","slow_enemy_evolution2","slow_enemy_evolution3","slow_enemy_evolution4","slow_enemy_evolution5":
 			GameManager.reduce_enemyprogress_on_damage += reduce_enemyprogress_on_damage_per_level
+		"ghost_ball1","ghost_ball2","ghost_ball3","ghost_ball4","ghost_ball5":
+			GameManager.spawn_chance_ghost_ball += ghost_ball_spawn_chance_per_level
 		"bow":
 			SignalManager.enemy_damaged.emit(bow_damage, 0, false)
 
@@ -617,6 +620,6 @@ func get_balls_by_color(color: String) -> int:
 
 
 func _on_timer_timeout(): # Timer de teste de xp só
-	#SignalManager.gain_exp.emit(10)
+	#SignalManager.gain_exp.emit(100)
 	#SignalManager.gain_exp.emit(10)
 	pass
