@@ -162,6 +162,46 @@ const UPGRADES = {
 		"prerequisite": ["ghost_ball4"],
 		"type": "ball"
 	},
+	"rainbow_ball1":{
+		"icon": ICON_PATH + "crown.png",
+		"displayname": "Rainbow Ball.",
+		"details": "Rainbow balls now have a chance to spawn.",
+		"level": "Level 1",
+		"prerequisite": [],
+		"type": "ball"
+	},
+	"rainbow_ball2":{
+		"icon": ICON_PATH + "crown.png",
+		"displayname": "Rainbow Ball.",
+		"details": "Increases chance to spawn a rainbow ball.",
+		"level": "Level 2",
+		"prerequisite": ["rainbow_ball1"],
+		"type": "ball"
+	},
+	"rainbow_ball3":{
+		"icon": ICON_PATH + "crown.png",
+		"displayname": "Rainbow Ball.",
+		"details": "Increases chance to spawn a rainbow ball.",
+		"level": "Level 3",
+		"prerequisite": ["rainbow_ball2"],
+		"type": "ball"
+	},
+	"rainbow_ball4":{
+		"icon": ICON_PATH + "crown.png",
+		"displayname": "Rainbow Ball.",
+		"details": "Increases chance to spawn a rainbow ball.",
+		"level": "Level 4",
+		"prerequisite": ["rainbow_ball3"],
+		"type": "ball"
+	},
+	"rainbow_ball5":{
+		"icon": ICON_PATH + "crown.png",
+		"displayname": "Rainbow Ball.",
+		"details": "Increases chance to spawn a rainbow ball.",
+		"level": "Level 5",
+		"prerequisite": ["rainbow_ball4"],
+		"type": "ball"
+	},
 	"bow":{
 		"icon": ICON_PATH + "bow.png",
 		"displayname": "Bow",

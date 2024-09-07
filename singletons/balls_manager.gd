@@ -12,6 +12,14 @@ var can_change_next_ball = true
 
 const PROPORTION = [1.2, 1.3]
 
+const RAINBOW_CONFIG: Dictionary = {
+	"tier": -1,
+	"sprite": preload("res://assets/balls/black_body_circle.png"),
+	"icon": preload("res://assets/icons/crown.png"),
+	"size": 1,
+	"owner": "player"
+}
+
 const ENEMIES = [
 	{
 		"tier": 1,
@@ -211,10 +219,21 @@ func get_random_ball() -> Dictionary:
 	#CHANCE TO SPAWN BALL TYPES
 	var i: float = randf_range(0,1)
 	var type_ball_config: Dictionary
+	var all_type_ball_configs: Array[Dictionary]
+	
+	print("i:", i," || ", GameManager.spawn_chance_ghost_ball,": ghost ball")
+	print("i:", i," || ", GameManager.spawn_chance_rainbow_ball,": rainbow ball\n")
 	if i <= GameManager.spawn_chance_ghost_ball:
 		type_ball_config = random_ball_config.duplicate()
 		type_ball_config["type"] = "ghost"
-		random_ball_config = type_ball_config
+		#random_ball_config = type_ball_config
+		all_type_ball_configs.append(type_ball_config)
+		
+	if i <= GameManager.spawn_chance_rainbow_ball:
+		all_type_ball_configs.append(RAINBOW_CONFIG)
+		
+	if all_type_ball_configs.size() > 0:
+		random_ball_config = all_type_ball_configs.pick_random()
 	
 	return random_ball_config
 
