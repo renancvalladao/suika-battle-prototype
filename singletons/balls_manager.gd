@@ -20,6 +20,15 @@ const RAINBOW_CONFIG: Dictionary = {
 	"owner": "player"
 }
 
+const BOMB_CONFIG: Dictionary = {
+	"tier": -2,
+	"sprite": preload("res://assets/balls/black_body_circle.png"),
+	"icon": preload("res://assets/icons/exploding.png"),
+	"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1),
+	"owner": "player",
+	"type": "bomb"
+	}
+
 const ENEMIES = [
 	{
 		"tier": 1,
@@ -221,16 +230,16 @@ func get_random_ball() -> Dictionary:
 	var type_ball_config: Dictionary
 	var all_type_ball_configs: Array[Dictionary]
 	
-	print("i:", i," || ", GameManager.spawn_chance_ghost_ball,": ghost ball")
-	print("i:", i," || ", GameManager.spawn_chance_rainbow_ball,": rainbow ball\n")
 	if i <= GameManager.spawn_chance_ghost_ball:
 		type_ball_config = random_ball_config.duplicate()
 		type_ball_config["type"] = "ghost"
-		#random_ball_config = type_ball_config
 		all_type_ball_configs.append(type_ball_config)
 		
 	if i <= GameManager.spawn_chance_rainbow_ball:
 		all_type_ball_configs.append(RAINBOW_CONFIG)
+		
+	if i <= GameManager.spawn_chance_bomb_ball:
+		all_type_ball_configs.append(BOMB_CONFIG)
 		
 	if all_type_ball_configs.size() > 0:
 		random_ball_config = all_type_ball_configs.pick_random()

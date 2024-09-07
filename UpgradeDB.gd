@@ -202,6 +202,46 @@ const UPGRADES = {
 		"prerequisite": ["rainbow_ball4"],
 		"type": "ball"
 	},
+	"bomb_ball1":{
+		"icon": ICON_PATH + "exploding.png",
+		"displayname": "Bomb Ball.",
+		"details": "Bomb balls now have a chance to spawn.",
+		"level": "Level 1",
+		"prerequisite": [],
+		"type": "ball"
+	},
+	"bomb_ball2":{
+		"icon": ICON_PATH + "exploding.png",
+		"displayname": "Bomb Ball.",
+		"details": "Increases chance to spawn a bomb ball.",
+		"level": "Level 2",
+		"prerequisite": ["bomb_ball1"],
+		"type": "ball"
+	},
+	"bomb_ball3":{
+		"icon": ICON_PATH + "exploding.png",
+		"displayname": "Bomb Ball.",
+		"details": "Increases chance to spawn a bomb ball.",
+		"level": "Level 3",
+		"prerequisite": ["bomb_ball2"],
+		"type": "ball"
+	},
+	"bomb_ball4":{
+		"icon": ICON_PATH + "exploding.png",
+		"displayname": "Bomb Ball.",
+		"details": "Increases chance to spawn a bomb ball.",
+		"level": "Level 4",
+		"prerequisite": ["bomb_ball3"],
+		"type": "ball"
+	},
+	"bomb_ball5":{
+		"icon": ICON_PATH + "exploding.png",
+		"displayname": "Bomb Ball.",
+		"details": "Increases chance to spawn a bomb ball.",
+		"level": "Level 5",
+		"prerequisite": ["bomb_ball4"],
+		"type": "ball"
+	},
 	"bow":{
 		"icon": ICON_PATH + "bow.png",
 		"displayname": "Bow",

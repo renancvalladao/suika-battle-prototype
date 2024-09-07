@@ -19,3 +19,4 @@ var exp_bonus_multiplier: float = 1.0
 var reduce_enemyprogress_on_damage:float = 0.0
 var spawn_chance_ghost_ball: float = 0.0
 var spawn_chance_rainbow_ball: float = 0.0
+var spawn_chance_bomb_ball: float = 0.0

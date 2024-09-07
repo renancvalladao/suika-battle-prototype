@@ -84,6 +84,7 @@ var leveling_up: bool = false
 @export var reduce_enemyprogress_on_damage_per_level = 0.5
 @export var ghost_ball_spawn_chance_per_level = 0.05
 @export var rainbow_ball_spawn_chance_per_level = 0.05
+@export var bomb_ball_spawn_chance_per_level = 0.05
 @export var bow_damage = 50
 
 func _ready():
@@ -157,6 +158,8 @@ func upgrade_character(upgrade) -> void:
 			GameManager.spawn_chance_ghost_ball += ghost_ball_spawn_chance_per_level
 		"rainbow_ball1","rainbow_ball2","rainbow_ball3","rainbow_ball4","rainbow_ball5":
 			GameManager.spawn_chance_rainbow_ball += rainbow_ball_spawn_chance_per_level
+		"bomb_ball1","bomb_ball2","bomb_ball3","bomb_ball4","bomb_ball5":
+			GameManager.spawn_chance_bomb_ball += bomb_ball_spawn_chance_per_level
 		"bow":
 			SignalManager.enemy_damaged.emit(bow_damage, 0, false)
 

@@ -18,7 +18,10 @@ func _on_body_entered(body):
 	explosion_timer.start()
 
 func _on_explosion_timer_timeout():
+	print("entrou")
 	for body in explosion_area.get_overlapping_bodies():
+		if body is EnemyBall:
+			return
 		if body is Ball:
 			body.queue_free()
 	queue_free()
