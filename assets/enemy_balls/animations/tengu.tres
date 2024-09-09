@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://bjyf51nhixjpk"]
+
+[ext_resource type="Texture2D" uid="uid://bm7ia8vyao08h" path="res://assets/enemy_balls/Tengu.png" id="1_pyf5f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsj06"]
+atlas = ExtResource("1_pyf5f")
+region = Rect2(0, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs0fb"]
+atlas = ExtResource("1_pyf5f")
+region = Rect2(30, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45w48"]
+atlas = ExtResource("1_pyf5f")
+region = Rect2(60, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g378k"]
+atlas = ExtResource("1_pyf5f")
+region = Rect2(90, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1s8c"]
+atlas = ExtResource("1_pyf5f")
+region = Rect2(120, 0, 30, 30)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 16.0,
+"texture": SubResource("AtlasTexture_qsj06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs0fb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45w48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g378k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1s8c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

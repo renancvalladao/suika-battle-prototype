@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://c18bjff83qft0"]
+
+[ext_resource type="Texture2D" uid="uid://qmq78l8vy746" path="res://assets/enemy_balls/YukiOnna.png" id="1_qv1ke"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdvt5"]
+atlas = ExtResource("1_qv1ke")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmf1h"]
+atlas = ExtResource("1_qv1ke")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raknu"]
+atlas = ExtResource("1_qv1ke")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4143d"]
+atlas = ExtResource("1_qv1ke")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lioxm"]
+atlas = ExtResource("1_qv1ke")
+region = Rect2(192, 0, 48, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 16.0,
+"texture": SubResource("AtlasTexture_cdvt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmf1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_raknu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4143d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lioxm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

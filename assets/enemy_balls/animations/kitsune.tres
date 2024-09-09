@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://dqscb7j6d6wwb"]
+
+[ext_resource type="Texture2D" uid="uid://bdcvh0e6d7fls" path="res://assets/enemy_balls/Kitsune.png" id="1_l5k4e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn1di"]
+atlas = ExtResource("1_l5k4e")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sei51"]
+atlas = ExtResource("1_l5k4e")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l01j8"]
+atlas = ExtResource("1_l5k4e")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uxpr"]
+atlas = ExtResource("1_l5k4e")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od42t"]
+atlas = ExtResource("1_l5k4e")
+region = Rect2(200, 0, 50, 50)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 16.0,
+"texture": SubResource("AtlasTexture_qn1di")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sei51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l01j8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uxpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od42t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

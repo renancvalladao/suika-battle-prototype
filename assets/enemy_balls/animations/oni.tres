@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://x3muhi35pf0p"]
+
+[ext_resource type="Texture2D" uid="uid://d3hr5uhwi75x5" path="res://assets/enemy_balls/Oni.png" id="1_u526k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktcn8"]
+atlas = ExtResource("1_u526k")
+region = Rect2(0, 0, 34, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp8mk"]
+atlas = ExtResource("1_u526k")
+region = Rect2(34, 0, 34, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p52wu"]
+atlas = ExtResource("1_u526k")
+region = Rect2(68, 0, 34, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b86t"]
+atlas = ExtResource("1_u526k")
+region = Rect2(102, 0, 34, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmipp"]
+atlas = ExtResource("1_u526k")
+region = Rect2(136, 0, 34, 33)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 16.0,
+"texture": SubResource("AtlasTexture_ktcn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp8mk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p52wu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b86t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmipp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

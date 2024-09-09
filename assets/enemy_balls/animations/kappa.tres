@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://uhje2evcutjg"]
+
+[ext_resource type="Texture2D" uid="uid://cbskjm3qextfr" path="res://assets/enemy_balls/Kappa.png" id="1_dj3n6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abenq"]
+atlas = ExtResource("1_dj3n6")
+region = Rect2(0, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avljy"]
+atlas = ExtResource("1_dj3n6")
+region = Rect2(30, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_803pc"]
+atlas = ExtResource("1_dj3n6")
+region = Rect2(60, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nfdh"]
+atlas = ExtResource("1_dj3n6")
+region = Rect2(90, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhviq"]
+atlas = ExtResource("1_dj3n6")
+region = Rect2(120, 0, 30, 30)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 16.0,
+"texture": SubResource("AtlasTexture_abenq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avljy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_803pc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nfdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhviq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
