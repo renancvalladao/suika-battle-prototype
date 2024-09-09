@@ -309,7 +309,6 @@ offset_right = 348.0
 offset_bottom = -59.0
 
 [node name="ActionsLeftLabel" type="Label" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "Actions Left: 3"
 label_settings = SubResource("LabelSettings_r5wuj")
@@ -600,7 +599,6 @@ text = "50 - Rainbow"
 alignment = 0
 
 [node name="GhostBallButton" type="Button" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_besmk")
@@ -753,4 +751,9 @@ texture_hover = ExtResource("9_8f2lp")
 texture_disabled = ExtResource("9_8f2lp")
 texture_focused = ExtResource("9_8f2lp")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="timeout" from="ChainExplosionTimer" to="." method="_on_chain_explosion_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

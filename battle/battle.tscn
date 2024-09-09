@@ -166,7 +166,7 @@ offset_bottom = 226.0
 text = "Turn: 0"
 label_settings = ExtResource("7_gne4q")
 
-[node name="Player" parent="." instance=ExtResource("8_6rvjb")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("8_6rvjb")]
 position = Vector2(58, 948)
 
 [node name="BallEffects" type="Label" parent="."]
@@ -284,4 +284,3 @@ offset_bottom = 11.0
 metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="body_entered" from="GameOverArea" to="." method="_on_game_over_area_body_entered"]

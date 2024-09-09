@@ -22,6 +22,7 @@ BallsManager="*res://singletons/balls_manager.gd"
 GameManager="*res://singletons/game_manager.gd"
 DamageNumbers="*res://singletons/damage_numbers.gd"
 EnemyVisualEffects="*res://singletons/enemy_visual_effects.gd"
+UpgradeDb="*res://upgrade_system/upgrade_db.tscn"
 
 [display]
 

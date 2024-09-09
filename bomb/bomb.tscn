@@ -11,6 +11,7 @@ radius = 90.0
 script = ExtResource("2_q15pa")
 
 [node name="ExplosionArea" type="Area2D" parent="." index="0"]
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="ExplosionArea" index="0"]
 modulate = Color(1, 1, 1, 0.356863)
@@ -20,6 +21,9 @@ texture = ExtResource("3_p7kle")
 [node name="ExplosionShape" type="CollisionShape2D" parent="ExplosionArea" index="1"]
 scale = Vector2(0.25, 0.25)
 shape = SubResource("CircleShape2D_7ektv")
+
+[node name="Icon" parent="." index="3"]
+visible = true
 
 [node name="ExplosionTimer" type="Timer" parent="." index="4"]
 one_shot = true

@@ -27,6 +27,7 @@ var enemy_rock: PackedScene = preload("res://enemies/rock/rock.tscn")
 @onready var fusions_label = $FusionsLabel
 @onready var character = $Character
 @onready var turn_counter_label = $TurnCounterLabel
+@onready var game_over_area = $GameOverArea
 
 @onready var spawn_point_1 = $SpawnPoint1
 @onready var spawn_point_2 = $SpawnPoint2
@@ -69,6 +70,12 @@ func _ready():
 	SignalManager.turn_started.emit()
 	SignalManager.balls_left_gained.connect(on_balls_left_gained)
 	#spawn_multiple_random_enemy_ball()
+
+func _process(delta):
+	if game_over_area.get_overlapping_bodies().size() > 0:
+		for body in game_over_area.get_overlapping_bodies():
+			if body.is_in_group("balls"):
+				SignalManager.on_game_over.emit()
 
 func on_balls_left_gained(amount: int):
 	moves_left += amount
@@ -191,8 +198,3 @@ func spawn_enemy(spawn_point: Marker2D):
 	var chosen_enemy: Enemy = chosen_enemy_scene.instantiate()
 	#chosen_enemy.position = spawn_point.position
 	spawn_point.add_child(chosen_enemy)
-
-
-func _on_game_over_area_body_entered(body):
-	if body.is_in_group("balls"):
-		SignalManager.on_game_over.emit()

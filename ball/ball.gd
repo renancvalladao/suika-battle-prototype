@@ -77,8 +77,15 @@ func _on_body_entered(body):
 	#print("colidiu")
 	if config.tier == BallsManager.BALLS.size() || config.tier == -2:
 		return
+	if config.tier == -1 && not (body is Ball):
+		queue_free()
 	if config.has("owner") && config.owner == "enemy" && config.tier == BallsManager.ENEMIES.size():
 		return
+	if config.has("type") && body is Ball:
+		if config.type == "ghost" && config.tier != body.config.tier:
+			#print("entrou")
+			return
+		
 	if body is Ball && (body.config.tier == config.tier || body.config.tier == -1) && !exploded && !body.exploded:
 		if config.owner != body.config.owner:
 			return

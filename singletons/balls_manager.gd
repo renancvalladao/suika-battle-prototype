@@ -12,6 +12,23 @@ var can_change_next_ball = true
 
 const PROPORTION = [1.2, 1.3]
 
+const RAINBOW_CONFIG: Dictionary = {
+	"tier": -1,
+	"sprite": preload("res://assets/balls/black_body_circle.png"),
+	"icon": preload("res://assets/icons/crown.png"),
+	"size": 1,
+	"owner": "player"
+}
+
+const BOMB_CONFIG: Dictionary = {
+	"tier": -2,
+	"sprite": preload("res://assets/balls/black_body_circle.png"),
+	"icon": preload("res://assets/icons/exploding.png"),
+	"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1),
+	"owner": "player",
+	"type": "bomb"
+	}
+
 const ENEMIES = [
 	{
 		"tier": 1,
@@ -175,8 +192,8 @@ const BALLS = [
 const FINISH_TURN_DELAY: float = 2
 
 var rng = RandomNumberGenerator.new()
-var current_ball = get_random_enemy_ball()
-var next_ball = get_random_ball()
+var current_ball
+var next_ball
 var turn = 0
 var balls_effect: bool = false
 var auto_enemy: bool = true
@@ -193,6 +210,9 @@ func _ready():
 	SignalManager.can_change_next_ball.connect(set_can_change_next_ball)
 	SignalManager.is_dropping.connect(set_is_dropping)
 	BallsManager.ball_dropped.connect(set_is_dropping_false)
+	
+	current_ball = get_random_enemy_ball()
+	next_ball = get_random_ball()
 
 func set_is_dropping():
 	is_dropping = true
@@ -203,7 +223,28 @@ func set_is_dropping_false():
 
 func get_random_ball() -> Dictionary:
 	var random_ball_index = rng.randi_range(0, 4)
-	return BALLS[random_ball_index]
+	var random_ball_config = BALLS[random_ball_index]
+	
+	#CHANCE TO SPAWN BALL TYPES
+	var i: float = randf_range(0,1)
+	var type_ball_config: Dictionary
+	var all_type_ball_configs: Array[Dictionary]
+	
+	if i <= GameManager.spawn_chance_ghost_ball:
+		type_ball_config = random_ball_config.duplicate()
+		type_ball_config["type"] = "ghost"
+		all_type_ball_configs.append(type_ball_config)
+		
+	if i <= GameManager.spawn_chance_rainbow_ball:
+		all_type_ball_configs.append(RAINBOW_CONFIG)
+		
+	if i <= GameManager.spawn_chance_bomb_ball:
+		all_type_ball_configs.append(BOMB_CONFIG)
+		
+	if all_type_ball_configs.size() > 0:
+		random_ball_config = all_type_ball_configs.pick_random()
+	
+	return random_ball_config
 
 func get_random_enemy_ball() -> Dictionary:
 	var random_ball_index = rng.randi_range(0, 4)

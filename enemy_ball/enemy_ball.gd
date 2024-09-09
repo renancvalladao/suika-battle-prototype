@@ -5,6 +5,7 @@ class_name EnemyBall
 @export var move_cooldown = 15
 @export var enemy_damage: int = 40
 @export var hp: int = 40
+@export var kill_exp:int = 5
 
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 @onready var health_component = $HealthComponent
@@ -26,6 +27,7 @@ func _ready():
 	enemy_damage += config.tier * 1
 	health_component.set_max_health(GameManager.enemy_health + config.tier * 25)
 	move_cooldown += config.tier * 5
+	health_component.kill_exp = abs(kill_exp * config.tier)
 	SignalManager.enemy_spawned.emit(config.tier)
 
 func _process(delta):
@@ -55,15 +57,19 @@ func _process(delta):
 		queue_free()
 	#enemy_sprite.material.set_shader_parameter("fill_percentage", cooldown / move_cooldown)
 
-func enemy_damaged(amount: int, color: int) -> void:
+func enemy_damaged(amount: int, color: int, should_multiplier_apply:bool) -> void:
 	if !can_take_damage:
 		return
 	var is_critical := false
 	if animation_player != null:
 		animation_player.play("hit_effect")
 	if amount > 0:
+		if should_multiplier_apply:
+			amount *= GameManager.damage_buff_multiplier # Aplica buff de dano caso tenha
 		health_component.take_damage(amount)
 		display_damage_number(amount, is_critical)
+		if GameManager.reduce_enemyprogress_on_damage > 0:
+			cooldown -= GameManager.reduce_enemyprogress_on_damage
 	else:
 		health_component.take_damage(0)
 
