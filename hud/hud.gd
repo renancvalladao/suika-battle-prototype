@@ -58,7 +58,9 @@ func _ready():
 	var enemies_balls: Array = enemies.get_children()
 	for index in enemies_balls.size():
 		var ball = enemies_balls[index]
-		ball.get_child(0).texture = BallsManager.ENEMIES[index].sprite
+		#ball.get_child(0).texture = BallsManager.ENEMIES[index].sprite
+		#if BallsManager.ENEMIES[index].has("preview"):
+			#ball.get_child(0).texture = BallsManager.ENEMIES[index].preview
 		ball.get_child(0).modulate.r = 0
 		ball.get_child(0).modulate.g = 0
 		ball.get_child(0).modulate.b = 0
@@ -111,7 +113,7 @@ func set_next_ball() -> void:
 		#icon.visible = false
 		sprite.visible = false
 		enemy_sprite.visible = true
-		enemy_sprite.texture = next_ball.sprite
+		enemy_sprite.texture = next_ball.preview
 		enemy_sprite.scale = enemy_scale * next_ball.size
 	else:
 		enemy_sprite.visible = false

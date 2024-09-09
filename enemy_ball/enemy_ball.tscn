@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cd2b6hq1uqqum"]
+[gd_scene load_steps=11 format=3 uid="uid://cd2b6hq1uqqum"]
 
 [ext_resource type="PackedScene" uid="uid://c5d3utm7alcgv" path="res://ball/ball.tscn" id="1_j05h0"]
 [ext_resource type="Script" path="res://enemy_ball/enemy_ball.gd" id="2_eg2bd"]
 [ext_resource type="Texture2D" uid="uid://goacql8ug3ou" path="res://assets/enemies/monster_ball.png" id="2_leyd7"]
 [ext_resource type="Shader" path="res://enemy_ball/enemy_ball.gdshader" id="3_4n5l3"]
 [ext_resource type="PackedScene" uid="uid://c3wiwmd7tu86w" path="res://components/health_component.tscn" id="5_7idqd"]
+[ext_resource type="SpriteFrames" uid="uid://dqscb7j6d6wwb" path="res://assets/enemy_balls/animations/kitsune.tres" id="5_cg1eb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t8mjs"]
 resource_local_to_scene = true
@@ -69,17 +70,20 @@ material = SubResource("ShaderMaterial_t8mjs")
 scale = Vector2(0.127, 0.127)
 texture = ExtResource("2_leyd7")
 
-[node name="CollisionShape2D" parent="." index="5"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
+visible = false
+texture_filter = 1
+scale = Vector2(1.3, 1.3)
+sprite_frames = ExtResource("5_cg1eb")
+
+[node name="BallCanAttackComponent" parent="." index="10"]
 visible = false
 
-[node name="BallCanAttackComponent" parent="." index="9"]
-visible = false
-
-[node name="HealthComponent" parent="." index="10" instance=ExtResource("5_7idqd")]
+[node name="HealthComponent" parent="." index="11" instance=ExtResource("5_7idqd")]
 visible = false
 MAX_HEALTH = 20
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
 libraries = {
 "": SubResource("AnimationLibrary_do8vc")
 }

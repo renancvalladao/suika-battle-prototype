@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://crs4agait0lj8"]
+
+[ext_resource type="Texture2D" uid="uid://0nhyppo8e7g5" path="res://assets/enemy_balls/Wanyuudo.png" id="1_66y1j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv1qt"]
+atlas = ExtResource("1_66y1j")
+region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlknq"]
+atlas = ExtResource("1_66y1j")
+region = Rect2(45, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i03ib"]
+atlas = ExtResource("1_66y1j")
+region = Rect2(90, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gka6l"]
+atlas = ExtResource("1_66y1j")
+region = Rect2(135, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3a0jx"]
+atlas = ExtResource("1_66y1j")
+region = Rect2(180, 0, 45, 45)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 16.0,
+"texture": SubResource("AtlasTexture_pv1qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlknq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i03ib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gka6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a0jx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

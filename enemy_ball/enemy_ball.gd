@@ -11,6 +11,7 @@ class_name EnemyBall
 @onready var health_component = $HealthComponent
 @onready var animation_player = $AnimationPlayer
 @onready var enemy_sprite = $Sprite
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 var cooldown = 0
 var can_take_damage = true
@@ -29,6 +30,14 @@ func _ready():
 	move_cooldown += config.tier * 5
 	health_component.kill_exp = abs(kill_exp * config.tier)
 	SignalManager.enemy_spawned.emit(config.tier)
+	if config.has("animation"):
+		animated_sprite_2d.sprite_frames = config.animation
+		if config.has("sprite_scale"):
+			animated_sprite_2d.scale = Vector2(config.sprite_scale, config.sprite_scale)
+		animated_sprite_2d.scale *= config.size
+		animated_sprite_2d.play("default")
+		animated_sprite_2d.show()
+		enemy_sprite.hide()
 
 func _process(delta):
 	cooldown += delta

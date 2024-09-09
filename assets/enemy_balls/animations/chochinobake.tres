@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://bteb3g6mqcmyd"]
+
+[ext_resource type="Texture2D" uid="uid://dqoh7ydk21ugi" path="res://assets/enemy_balls/Chochinobake.png" id="1_wtq1n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8ku1"]
+atlas = ExtResource("1_wtq1n")
+region = Rect2(0, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnugq"]
+atlas = ExtResource("1_wtq1n")
+region = Rect2(30, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elgbu"]
+atlas = ExtResource("1_wtq1n")
+region = Rect2(60, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbe08"]
+atlas = ExtResource("1_wtq1n")
+region = Rect2(90, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v0w8"]
+atlas = ExtResource("1_wtq1n")
+region = Rect2(120, 0, 30, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 16.0,
+"texture": SubResource("AtlasTexture_g8ku1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnugq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elgbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbe08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v0w8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

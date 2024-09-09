@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://efe277gxf2iv"]
+
+[ext_resource type="Texture2D" uid="uid://cki4orsuqvafi" path="res://assets/enemy_balls/Baku.png" id="1_e4w74"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww4u1"]
+atlas = ExtResource("1_e4w74")
+region = Rect2(0, 0, 34, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywcov"]
+atlas = ExtResource("1_e4w74")
+region = Rect2(34, 0, 34, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2fh1"]
+atlas = ExtResource("1_e4w74")
+region = Rect2(68, 0, 34, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0p2a"]
+atlas = ExtResource("1_e4w74")
+region = Rect2(102, 0, 34, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76ojc"]
+atlas = ExtResource("1_e4w74")
+region = Rect2(136, 0, 34, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 16.0,
+"texture": SubResource("AtlasTexture_ww4u1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywcov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2fh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0p2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76ojc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
