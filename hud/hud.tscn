@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://2wy62osvnpgg"]
+[gd_scene load_steps=36 format=3 uid="uid://2wy62osvnpgg"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_5sxdd"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_m48a0"]
@@ -23,8 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://cop73adlf6jmk" path="res://assets/icons/flag_square.png" id="18_j3fwu"]
 [ext_resource type="Texture2D" uid="uid://bl4h5urleyt50" path="res://assets/icons/award.png" id="19_bairk"]
 [ext_resource type="Texture2D" uid="uid://o4saaywuag05" path="res://assets/enemy_balls/Yurei.png" id="23_4qqiq"]
-[ext_resource type="Texture2D" uid="uid://clpfd52tl6srk" path="res://assets/enemies/monster_ball_2.png" id="23_7gc33"]
-[ext_resource type="Texture2D" uid="uid://ecyh48bo7bw8" path="res://assets/enemies/monster_ball_3.png" id="24_bggqo"]
 [ext_resource type="Texture2D" uid="uid://dqoh7ydk21ugi" path="res://assets/enemy_balls/Chochinobake.png" id="25_teubl"]
 [ext_resource type="Texture2D" uid="uid://n6a7e02kmq1j" path="res://assets/bars/CircularProgressBar.png" id="25_wmx0u"]
 [ext_resource type="AudioStream" uid="uid://431vwor1wwa6" path="res://assets/audio/levelup.ogg" id="26_ur7nk"]
@@ -148,566 +146,19 @@ offset_bottom = 183.0
 text = "NEXT"
 label_settings = ExtResource("2_at335")
 
-[node name="AddManaButton" type="Button" parent="."]
-visible = false
-layout_mode = 0
-offset_left = -320.0
-offset_top = 818.0
-offset_right = -161.0
-offset_bottom = 871.0
-theme_override_fonts/font = ExtResource("17_7fs1n")
-theme_override_font_sizes/font_size = 24
-text = "+100 Mana"
-
-[node name="AddHealthButton" type="Button" parent="."]
-visible = false
-layout_mode = 0
-offset_left = -272.0
-offset_top = 882.0
-offset_right = -113.0
-offset_bottom = 935.0
-theme_override_fonts/font = ExtResource("17_7fs1n")
-theme_override_font_sizes/font_size = 24
-text = "+100 HP"
-
-[node name="BallsOption2" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Ball1" type="Control" parent="BallsOption2"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = -260.0
-offset_top = 690.0
-offset_right = -220.0
-offset_bottom = 730.0
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball1"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -260.0
-offset_right = 616.0
-offset_bottom = 723.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOption2/Ball1"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
-
-[node name="Ball2" type="Control" parent="BallsOption2"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = -177.0
-offset_top = 716.0
-offset_right = -137.0
-offset_bottom = 756.0
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -260.0
-offset_right = 616.0
-offset_bottom = 723.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOption2/Ball2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
-
-[node name="Ball3" type="Control" parent="BallsOption2"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = -102.0
-offset_top = 767.0
-offset_right = -62.0
-offset_bottom = 807.0
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -260.0
-offset_right = 616.0
-offset_bottom = 723.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOption2/Ball3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
-
-[node name="Ball4" type="Control" parent="BallsOption2"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = -88.0
-offset_top = 855.0
-offset_right = -48.0
-offset_bottom = 895.0
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -260.0
-offset_right = 616.0
-offset_bottom = 723.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOption2/Ball4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
-
-[node name="Ball5" type="Control" parent="BallsOption2"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = -138.0
-offset_top = 943.0
-offset_right = -98.0
-offset_bottom = 983.0
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball5"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -260.0
-offset_right = 616.0
-offset_bottom = 723.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOption2/Ball5"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
-
-[node name="Ball6" type="Control" parent="BallsOption2"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = -221.0
-offset_top = 993.0
-offset_right = -181.0
-offset_bottom = 1033.0
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball6"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -260.0
-offset_right = 616.0
-offset_bottom = 723.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOption2/Ball6"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
-
-[node name="Ball7" type="Control" parent="BallsOption2"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = -322.0
-offset_top = 989.0
-offset_right = -282.0
-offset_bottom = 1029.0
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball7"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -260.0
-offset_right = 616.0
-offset_bottom = 723.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOption2/Ball7"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
-
-[node name="Ball8" type="Control" parent="BallsOption2"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = -403.0
-offset_top = 937.0
-offset_right = -363.0
-offset_bottom = 977.0
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball8"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -260.0
-offset_right = 616.0
-offset_bottom = 723.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOption2/Ball8"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
-
-[node name="Ball9" type="Control" parent="BallsOption2"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = -436.0
-offset_top = 844.0
-offset_right = -396.0
-offset_bottom = 884.0
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball9"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -260.0
-offset_right = 616.0
-offset_bottom = 723.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOption2/Ball9"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
-
-[node name="Ball10" type="Control" parent="BallsOption2"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = -415.0
-offset_top = 762.0
-offset_right = -375.0
-offset_bottom = 802.0
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball10"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -260.0
-offset_right = 616.0
-offset_bottom = 723.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOption2/Ball10"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
-
-[node name="Ball11" type="Control" parent="BallsOption2"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = -344.0
-offset_top = 713.0
-offset_right = -304.0
-offset_bottom = 753.0
-scale = Vector2(0.5, 0.5)
-
-[node name="Sprite" type="TextureRect" parent="BallsOption2/Ball11"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -260.0
-offset_right = 616.0
-offset_bottom = 723.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOption2/Ball11"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
-
 [node name="BallsOptions" type="Control" parent="."]
 anchors_preset = 0
-offset_left = -4.0
-offset_top = 272.0
-offset_right = 36.0
-offset_bottom = 312.0
+offset_left = -195.0
+offset_top = 919.0
+offset_right = -195.0
+offset_bottom = 919.0
 scale = Vector2(0.75, 0.75)
 
 [node name="Ball1" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -260.0
-offset_top = 690.0
-offset_right = -220.0
-offset_bottom = 730.0
+offset_top = -160.0
+offset_bottom = -160.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball1"]
@@ -750,10 +201,10 @@ stretch_mode = 2
 [node name="Ball2" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -178.0
-offset_top = 720.0
-offset_right = -138.0
-offset_bottom = 760.0
+offset_left = 86.503
+offset_top = -134.601
+offset_right = 86.503
+offset_bottom = -134.601
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball2"]
@@ -796,10 +247,10 @@ stretch_mode = 2
 [node name="Ball3" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -104.0
-offset_top = 770.0
-offset_right = -64.0
-offset_bottom = 810.0
+offset_left = 145.541
+offset_top = -66.466
+offset_right = 145.541
+offset_bottom = -66.466
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball3"]
@@ -842,10 +293,10 @@ stretch_mode = 2
 [node name="Ball4" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -92.0
-offset_top = 860.0
-offset_right = -52.0
-offset_bottom = 900.0
+offset_left = 158.371
+offset_top = 22.77
+offset_right = 158.371
+offset_bottom = 22.77
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball4"]
@@ -888,10 +339,10 @@ stretch_mode = 2
 [node name="Ball5" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -142.0
-offset_top = 944.0
-offset_right = -102.0
-offset_bottom = 984.0
+offset_left = 120.92
+offset_top = 104.778
+offset_right = 120.92
+offset_bottom = 104.778
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball5"]
@@ -934,10 +385,10 @@ stretch_mode = 2
 [node name="Ball6" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -224.0
-offset_top = 998.0
-offset_right = -184.0
-offset_bottom = 1038.0
+offset_left = 45.077
+offset_top = 153.519
+offset_right = 45.077
+offset_bottom = 153.519
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball6"]
@@ -980,10 +431,10 @@ stretch_mode = 2
 [node name="Ball7" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -326.0
-offset_top = 994.0
-offset_right = -286.0
-offset_bottom = 1034.0
+offset_left = -45.077
+offset_top = 153.519
+offset_right = -45.077
+offset_bottom = 153.519
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball7"]
@@ -1026,10 +477,10 @@ stretch_mode = 2
 [node name="Ball8" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -404.0
-offset_top = 936.0
-offset_right = -364.0
-offset_bottom = 976.0
+offset_left = -120.92
+offset_top = 104.778
+offset_right = -120.92
+offset_bottom = 104.778
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball8"]
@@ -1072,10 +523,10 @@ stretch_mode = 2
 [node name="Ball9" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -440.0
-offset_top = 848.0
-offset_right = -400.0
-offset_bottom = 888.0
+offset_left = -158.371
+offset_top = 22.77
+offset_right = -158.371
+offset_bottom = 22.77
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball9"]
@@ -1118,10 +569,10 @@ stretch_mode = 2
 [node name="Ball10" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -416.0
-offset_top = 760.0
-offset_right = -376.0
-offset_bottom = 800.0
+offset_left = -145.541
+offset_top = -66.466
+offset_right = -145.541
+offset_bottom = -66.466
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball10"]
@@ -1164,10 +615,10 @@ stretch_mode = 2
 [node name="Ball11" type="Control" parent="BallsOptions"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -344.0
-offset_top = 714.0
-offset_right = -304.0
-offset_bottom = 754.0
+offset_left = -86.503
+offset_top = -134.601
+offset_right = -86.503
+offset_bottom = -134.601
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball11"]
@@ -1209,475 +660,174 @@ stretch_mode = 2
 
 [node name="Enemies" type="Control" parent="."]
 anchors_preset = 0
-offset_left = -1503.0
-offset_top = 272.0
-offset_right = -1463.0
-offset_bottom = 312.0
+offset_left = -1738.0
+offset_top = 919.0
+offset_right = -1738.0
+offset_bottom = 919.0
 scale = Vector2(0.75, 0.75)
 
 [node name="Ball1" type="Control" parent="Enemies"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -260.0
-offset_top = 690.0
-offset_right = -220.0
-offset_bottom = 730.0
+offset_top = -160.0
+offset_bottom = -160.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Enemies/Ball1"]
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/Ball1"]
 texture_filter = 1
-position = Vector2(24, 28.0002)
 scale = Vector2(5, 5)
 texture = ExtResource("23_4qqiq")
 hframes = 5
 
-[node name="Sprite" type="TextureRect" parent="Enemies/Ball1"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -116.0
-offset_top = -112.0
-offset_right = 196.0
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("5_npqhn")
-stretch_mode = 2
-
 [node name="Ball2" type="Control" parent="Enemies"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -178.0
-offset_top = 720.0
-offset_right = -138.0
-offset_bottom = 760.0
+offset_left = 86.503
+offset_top = -134.601
+offset_right = 86.503
+offset_bottom = -134.601
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/Ball2"]
 texture_filter = 1
-position = Vector2(12, 26.6665)
 scale = Vector2(5, 5)
 texture = ExtResource("25_teubl")
 hframes = 5
 
-[node name="Sprite" type="TextureRect" parent="Enemies/Ball2"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -125.333
-offset_top = -113.333
-offset_right = 186.667
-offset_bottom = 198.667
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("23_7gc33")
-stretch_mode = 2
-
 [node name="Ball3" type="Control" parent="Enemies"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -104.0
-offset_top = 770.0
-offset_right = -64.0
-offset_bottom = 810.0
+offset_left = 145.541
+offset_top = -66.466
+offset_right = 145.541
+offset_bottom = -66.466
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/Ball3"]
 texture_filter = 1
-position = Vector2(-8, 38.6665)
 scale = Vector2(5, 5)
 texture = ExtResource("27_334y8")
 hframes = 5
 
-[node name="Sprite" type="TextureRect" parent="Enemies/Ball3"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -145.333
-offset_top = -101.333
-offset_right = 166.667
-offset_bottom = 210.667
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("24_bggqo")
-stretch_mode = 2
-
 [node name="Ball4" type="Control" parent="Enemies"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -92.0
-offset_top = 860.0
-offset_right = -52.0
-offset_bottom = 900.0
+offset_left = 158.371
+offset_top = 22.77
+offset_right = 158.371
+offset_bottom = 22.77
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/Ball4"]
 texture_filter = 1
-position = Vector2(4.00543e-05, 18.6666)
 scale = Vector2(5, 5)
 texture = ExtResource("28_vipxq")
 hframes = 5
 
-[node name="Sprite" type="TextureRect" parent="Enemies/Ball4"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -116.0
-offset_top = -110.667
-offset_right = 196.0
-offset_bottom = 201.333
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("5_npqhn")
-stretch_mode = 2
-
 [node name="Ball5" type="Control" parent="Enemies"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -142.0
-offset_top = 944.0
-offset_right = -102.0
-offset_bottom = 984.0
+offset_left = 120.92
+offset_top = 104.778
+offset_right = 120.92
+offset_bottom = 104.778
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/Ball5"]
 texture_filter = 1
-position = Vector2(12, 5.33333)
 scale = Vector2(5, 5)
 texture = ExtResource("29_dmhss")
 hframes = 5
 
-[node name="Sprite" type="TextureRect" parent="Enemies/Ball5"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -77.333
-offset_top = -78.667
-offset_right = 234.667
-offset_bottom = 233.333
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("23_7gc33")
-stretch_mode = 2
-
 [node name="Ball6" type="Control" parent="Enemies"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -224.0
-offset_top = 998.0
-offset_right = -184.0
-offset_bottom = 1038.0
+offset_left = 45.077
+offset_top = 153.519
+offset_right = 45.077
+offset_bottom = 153.519
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/Ball6"]
 texture_filter = 1
-position = Vector2(21.3333, -9.33334)
 scale = Vector2(5, 5)
 texture = ExtResource("30_fhn3x")
 hframes = 5
 
-[node name="Sprite" type="TextureRect" parent="Enemies/Ball6"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.667
-offset_top = -77.333
-offset_right = 241.333
-offset_bottom = 234.667
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("24_bggqo")
-stretch_mode = 2
-
 [node name="Ball7" type="Control" parent="Enemies"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -326.0
-offset_top = 994.0
-offset_right = -286.0
-offset_bottom = 1034.0
+offset_left = -45.077
+offset_top = 153.519
+offset_right = -45.077
+offset_bottom = 153.519
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/Ball7"]
 texture_filter = 1
-position = Vector2(49.3333, 4.00008)
 scale = Vector2(5, 5)
 texture = ExtResource("31_evx4f")
 hframes = 5
 
-[node name="Sprite" type="TextureRect" parent="Enemies/Ball7"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -106.667
-offset_top = -125.333
-offset_right = 205.333
-offset_bottom = 186.667
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("5_npqhn")
-stretch_mode = 2
-
 [node name="Ball8" type="Control" parent="Enemies"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -404.0
-offset_top = 936.0
-offset_right = -364.0
-offset_bottom = 976.0
+offset_left = -120.92
+offset_top = 104.778
+offset_right = -120.92
+offset_bottom = 104.778
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/Ball8"]
 texture_filter = 1
-position = Vector2(26.6667, 24)
 scale = Vector2(5, 5)
 texture = ExtResource("32_mhkmh")
 hframes = 5
 
-[node name="Sprite" type="TextureRect" parent="Enemies/Ball8"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -110.667
-offset_top = -110.667
-offset_right = 201.333
-offset_bottom = 201.333
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("23_7gc33")
-stretch_mode = 2
-
 [node name="Ball9" type="Control" parent="Enemies"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -440.0
-offset_top = 848.0
-offset_right = -400.0
-offset_bottom = 888.0
+offset_left = -158.371
+offset_top = 22.77
+offset_right = -158.371
+offset_bottom = 22.77
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/Ball9"]
 texture_filter = 1
-position = Vector2(8.00001, 53.3333)
 scale = Vector2(3.65, 3.65)
 texture = ExtResource("33_twv05")
 hframes = 5
 
-[node name="Sprite" type="TextureRect" parent="Enemies/Ball9"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -129.333
-offset_top = -97.3333
-offset_right = 182.667
-offset_bottom = 214.667
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("24_bggqo")
-stretch_mode = 2
-
 [node name="Ball10" type="Control" parent="Enemies"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -416.0
-offset_top = 760.0
-offset_right = -376.0
-offset_bottom = 800.0
+offset_left = -145.541
+offset_top = -66.466
+offset_right = -145.541
+offset_bottom = -66.466
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/Ball10"]
 texture_filter = 1
-position = Vector2(10.6667, 50.6669)
 scale = Vector2(3.4, 3.4)
 texture = ExtResource("34_uooey")
 hframes = 5
 
-[node name="Sprite" type="TextureRect" parent="Enemies/Ball10"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -129.333
-offset_top = -86.6667
-offset_right = 182.667
-offset_bottom = 225.333
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("5_npqhn")
-stretch_mode = 2
-
 [node name="Ball11" type="Control" parent="Enemies"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -344.0
-offset_top = 714.0
-offset_right = -304.0
-offset_bottom = 754.0
+offset_left = -86.503
+offset_top = -134.601
+offset_right = -86.503
+offset_bottom = -134.601
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/Ball11"]
 texture_filter = 1
-position = Vector2(13.3333, 9.33325)
 scale = Vector2(3.4, 3.4)
 texture = ExtResource("35_0yxkj")
 hframes = 5
-
-[node name="Sprite" type="TextureRect" parent="Enemies/Ball11"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -124.0
-offset_top = -122.667
-offset_right = 188.0
-offset_bottom = 189.333
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("23_7gc33")
-stretch_mode = 2
-
-[node name="BallsCounter" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_left = -1877.0
-offset_top = 433.0
-offset_right = -1837.0
-offset_bottom = 473.0
-
-[node name="RedBalls" type="Control" parent="BallsCounter"]
-anchors_preset = 0
-offset_top = 65.0
-offset_right = 40.0
-offset_bottom = 105.0
-
-[node name="TextureRect" type="TextureRect" parent="BallsCounter/RedBalls"]
-layout_mode = 0
-offset_right = 160.0
-offset_bottom = 160.0
-scale = Vector2(0.36, 0.36)
-texture = ExtResource("13_23xpg")
-
-[node name="Label" type="Label" parent="BallsCounter/RedBalls"]
-layout_mode = 0
-offset_left = 74.0
-offset_top = -19.0
-offset_right = 114.0
-offset_bottom = 69.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-
-[node name="GreenBalls" type="Control" parent="BallsCounter"]
-anchors_preset = 0
-offset_left = 155.0
-offset_top = 65.0
-offset_right = 195.0
-offset_bottom = 105.0
-
-[node name="TextureRect" type="TextureRect" parent="BallsCounter/GreenBalls"]
-layout_mode = 0
-offset_right = 160.0
-offset_bottom = 160.0
-scale = Vector2(0.36, 0.36)
-texture = ExtResource("7_7yh38")
-
-[node name="Label" type="Label" parent="BallsCounter/GreenBalls"]
-layout_mode = 0
-offset_left = 74.0
-offset_top = -19.0
-offset_right = 114.0
-offset_bottom = 69.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-
-[node name="BlueBalls" type="Control" parent="BallsCounter"]
-anchors_preset = 0
-offset_left = 300.0
-offset_top = 65.0
-offset_right = 340.0
-offset_bottom = 105.0
-
-[node name="TextureRect" type="TextureRect" parent="BallsCounter/BlueBalls"]
-layout_mode = 0
-offset_right = 160.0
-offset_bottom = 160.0
-scale = Vector2(0.36, 0.36)
-texture = ExtResource("1_m48a0")
-
-[node name="Label" type="Label" parent="BallsCounter/BlueBalls"]
-layout_mode = 0
-offset_left = 74.0
-offset_top = -19.0
-offset_right = 114.0
-offset_bottom = 69.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
 
 [node name="ExperienceBar" type="TextureProgressBar" parent="."]
 layout_mode = 0

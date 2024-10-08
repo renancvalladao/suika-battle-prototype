@@ -3,12 +3,7 @@ extends Control
 @onready var next_ball = $NextBall
 @onready var sprite: TextureRect = $NextBall/Sprite
 @onready var icon = $NextBall/Icon
-@onready var add_mana_button = $AddManaButton
 @onready var balls_options = $BallsOptions
-@onready var add_health_button = $AddHealthButton
-@onready var red_label = $BallsCounter/RedBalls/Label
-@onready var green_label = $BallsCounter/GreenBalls/Label
-@onready var blue_label = $BallsCounter/BlueBalls/Label
 @onready var enemy_sprite = $NextBall/EnemySprite
 @onready var enemies = $Enemies
 var sprite_scale: Vector2
@@ -33,6 +28,7 @@ var exp_pool:Array[int] = []
 var collected_upgrades = []
 var upgrade_options = []
 
+var balls_circle_radius: float = 160.0
 
 func _ready():
 	BallsManager.next_ball_changed.connect(next_ball_changed)
@@ -44,8 +40,6 @@ func _ready():
 	#SignalManager.new_max_exp.connect(on_new_max_exp)
 	SignalManager.selected_upgrade.connect(on_selected_upgrade)
 	SignalManager.gain_exp.connect(on_gain_exp)
-	add_mana_button.pressed.connect(on_add_mana)
-	add_health_button.pressed.connect(on_add_health)
 	
 	set_exp_bar(0, calculate_experiencecap())
 	
@@ -55,6 +49,12 @@ func _ready():
 		ball.get_child(0).texture = BallsManager.BALLS[index].sprite
 		ball.get_child(1).texture = BallsManager.BALLS[index].icon
 		ball.get_child(1).visible = false
+		var angle = (2 * PI * index / balls.size()) - PI / 2
+		var x_pos = balls_circle_radius * cos(angle)
+		var y_pos = balls_circle_radius * sin(angle)
+		if index < balls.size():
+			ball.position = Vector2(x_pos, y_pos)
+
 	var enemies_balls: Array = enemies.get_children()
 	for index in enemies_balls.size():
 		var ball = enemies_balls[index]
@@ -64,6 +64,12 @@ func _ready():
 		ball.get_child(0).modulate.r = 0
 		ball.get_child(0).modulate.g = 0
 		ball.get_child(0).modulate.b = 0
+		var angle = (2 * PI * index / enemies_balls.size()) - PI / 2
+		var x_pos = balls_circle_radius * cos(angle)
+		var y_pos = balls_circle_radius * sin(angle)
+		if index < enemies_balls.size():
+			ball.position = Vector2(x_pos, y_pos)
+
 	sprite_scale = sprite.scale
 	enemy_scale = enemy_sprite.scale
 	set_next_ball()
@@ -83,29 +89,11 @@ func enemy_spawned(tier: int):
 	ball.get_child(0).modulate.g = 1
 	ball.get_child(0).modulate.b = 1
 
-#func _process(_delta):
-	#red_label.text = "%s" % get_balls_by_color("red")
-	#green_label.text = "%s" % get_balls_by_color("green")
-	#blue_label.text = "%s" % get_balls_by_color("blue")
-	
 func can_change_next_ball_ui(can_change: bool) -> void:
 	if !can_change:
 		next_ball.modulate.a = 0.5
 	else:
 		next_ball.modulate.a = 1.0
-
-func get_balls_by_color(color: String) -> int:
-	var tiers = []
-	if color == "red":
-		tiers = [1, 4, 7]
-	elif color == "green":
-		tiers = [2, 5, 8]
-	else:
-		tiers = [3, 6, 9]
-	var total = 0
-	for tier in tiers:
-		total += get_tree().get_nodes_in_group("ball_%s" % tier).size()
-	return total
 
 func set_next_ball() -> void:
 	var next_ball = BallsManager.get_next_ball()
@@ -126,13 +114,6 @@ func set_next_ball() -> void:
 func next_ball_changed() -> void:
 	set_next_ball()
 
-func on_add_mana():
-	SignalManager.mana_gained.emit(100)
-
-func on_add_health():
-	SignalManager.health_gained.emit(100)
-
-	
 #func on_set_hud_exp_value(exp_value: int):
 #	experience_bar.value = exp_value
 
