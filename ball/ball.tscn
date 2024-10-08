@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://chieubiu3r8yx" path="res://assets/balls/blue_wisp.png" id="2_fwymb"]
 [ext_resource type="Texture2D" uid="uid://c1s8sy22qyutu" path="res://assets/balls/yellow_body_circle.png" id="4_1g7ns"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="5_qnh1d"]
-[ext_resource type="PackedScene" uid="uid://dd7cx16nt66kr" path="res://components/ball_can_attack_component.tscn" id="6_ngn8s"]
+[ext_resource type="PackedScene" path="res://components/ball_can_attack_component.tscn" id="6_ngn8s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2wo2j"]
 friction = 0.5
