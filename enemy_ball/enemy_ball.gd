@@ -50,9 +50,9 @@ func _process(delta):
 			tween.kill()
 		tween = get_tree().create_tween()
 		tween.set_parallel(true)
-		tween.tween_property(enemy_sprite, "position:x", enemy_sprite.position.x - shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT)
-		tween.tween_property(enemy_sprite, "position:x", enemy_sprite.position.x + shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
-		tween.tween_property(enemy_sprite, "position:x", enemy_sprite.position.x, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
+		tween.tween_property(animated_sprite_2d, "position:x", animated_sprite_2d.position.x - shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT)
+		tween.tween_property(animated_sprite_2d, "position:x", animated_sprite_2d.position.x + shake_intensity, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
+		tween.tween_property(animated_sprite_2d, "position:x", animated_sprite_2d.position.x, shake_cooldown / 3).set_ease(Tween.EASE_OUT).set_delay(shake_cooldown / 3)
 
 	if cooldown >= move_cooldown:
 		SignalManager.turn_off_color_damage.emit()
