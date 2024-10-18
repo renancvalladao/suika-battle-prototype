@@ -66,7 +66,7 @@ func _process(delta):
 		queue_free()
 	#enemy_sprite.material.set_shader_parameter("fill_percentage", cooldown / move_cooldown)
 
-func enemy_damaged(amount: int, color: int, should_multiplier_apply:bool) -> void:
+func enemy_damaged(amount: int, _should_multiplier_apply: bool) -> void:
 	if !can_take_damage:
 		return
 	var is_critical := false

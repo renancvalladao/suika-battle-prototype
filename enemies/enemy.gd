@@ -38,15 +38,14 @@ func finish_enemy_turn() -> void:
 	my_turn = false
 	SignalManager.enemy_moved.emit()
 
-func enemy_damaged(amount: int, color: int) -> void:
+func enemy_damaged(amount: int, _should_multiplier_apply: bool) -> void:
 	var is_critical := false
 	if animation_player != null:
 		animation_player.play("hit_effect")
 	var damage_taken: int = shield_component.take_shield_damage(amount)
 	if damage_taken > 0:
-		if color == bar_color:
-			damage_taken *= GameManager.bar_color_damage_multiplier
-			is_critical = true
+		damage_taken *= GameManager.bar_color_damage_multiplier
+		is_critical = true
 		health_component.take_damage(damage_taken)
 		display_damage_number(damage_taken, is_critical)
 	else:

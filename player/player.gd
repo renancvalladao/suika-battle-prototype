@@ -31,15 +31,14 @@ func upgrade_character(upgrade) -> void:
 		"bomb_ball1","bomb_ball2","bomb_ball3","bomb_ball4","bomb_ball5":
 			GameManager.spawn_chance_bomb_ball += bomb_ball_spawn_chance_per_level
 		"bow":
-			SignalManager.enemy_damaged.emit(bow_damage, 0, false)
+			SignalManager.enemy_damaged.emit(bow_damage, false)
 
 func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int, owner: String):
 	if owner == "enemy":
 		return
-	var color := Utils.AttackColors.RED
 	if GameManager.range_damage:
 			return
-	SignalManager.enemy_damaged.emit(ATTACK_DAMAGE * tier, color, true)
+	SignalManager.enemy_damaged.emit(ATTACK_DAMAGE * tier, true)
 
 func _on_timer_timeout(): # Timer de teste de xp só
 	#SignalManager.gain_exp.emit(5)

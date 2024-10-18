@@ -21,7 +21,7 @@ func _on_body_entered(body):
 func _on_explosion_timer_timeout():
 	for body in explosion_area.get_overlapping_bodies():
 		if body is EnemyBall:
-			SignalManager.enemy_damaged.emit(bomb_damage, Utils.AttackColors.RED, false)
+			SignalManager.enemy_damaged.emit(bomb_damage, false)
 			return
 		if body is Ball:
 			body.queue_free()
