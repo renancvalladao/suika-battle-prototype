@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=17 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
-[ext_resource type="Texture2D" uid="uid://b8osu1ay3k4dl" path="res://assets/background/backgroundColorForest.png" id="1_vd50v"]
 [ext_resource type="PackedScene" uid="uid://2wy62osvnpgg" path="res://hud/hud.tscn" id="2_uwwfi"]
 [ext_resource type="PackedScene" uid="uid://b8yom6hr615ry" path="res://game_over/game_over.tscn" id="3_k3w44"]
 [ext_resource type="PackedScene" uid="uid://7i4sjogibg3k" path="res://tile/tile.tscn" id="4_8rafd"]
@@ -30,15 +29,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("3_k3w44")]
 visible = false
-
-[node name="BackgroundColorForest" type="Sprite2D" parent="."]
-visible = false
-texture_repeat = 2
-position = Vector2(929, 547)
-scale = Vector2(1, 1.0918)
-texture = ExtResource("1_vd50v")
-region_enabled = true
-region_rect = Rect2(0, 0, 2048, 1024)
 
 [node name="BackgroundJapaneseForest" type="Sprite2D" parent="."]
 modulate = Color(0.529412, 0.478431, 0.529412, 1)
