@@ -6,7 +6,6 @@ signal spawn_random_ball
 signal on_game_over
 signal explode_ball_tier(tier: int)
 
-signal mana_gained(amount: int)
 signal all_balls_dropped()
 signal balls_left_gained(amount: int)
 
