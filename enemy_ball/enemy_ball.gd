@@ -24,7 +24,6 @@ var min_shake_cooldown = 0.05
 func _ready():
 	super._ready()
 	SignalManager.enemy_damaged.connect(enemy_damaged)
-	Utils.AttackColors.values()
 	enemy_damage += config.tier * 1
 	health_component.set_max_health(GameManager.enemy_health + config.tier * 25)
 	move_cooldown += config.tier * 5

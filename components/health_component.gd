@@ -2,19 +2,12 @@ class_name HealthComponent
 extends Node2D
 
 @export var MAX_HEALTH := 100
-@export var COLOR: Utils.AttackColors
 var health: int
 var kill_exp: int
 
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
 #signal health_is_0
-
-const bg_colors = {
-	Utils.AttackColors.RED: "#d10e00",
-	Utils.AttackColors.GREEN: "#22b900",
-	Utils.AttackColors.BLUE: "#399cff",
-}
 
 func _ready():
 	set_health(MAX_HEALTH)
@@ -50,4 +43,4 @@ func _update_ui() -> void:
 	health_bar.max_value = MAX_HEALTH
 	
 func update_color() -> void:
-	health_bar.get("theme_override_styles/fill").bg_color = bg_colors[COLOR]
+	health_bar.get("theme_override_styles/fill").bg_color = "#d10e00"

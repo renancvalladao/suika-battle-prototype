@@ -15,15 +15,10 @@ var debuffs: Array[Debuff] = []
 
 @onready var move_bar = $MoveBar
 @onready var intended_move = $IntendedMove
-var bar_color: Utils.AttackColors
 
 
 func _ready():
 	SignalManager.enemy_damaged.connect(enemy_damaged)
-	Utils.AttackColors.values()
-	bar_color = Utils.AttackColors.values().pick_random()
-	print(bar_color)
-	health_component.COLOR = bar_color
 	health_component.update_color()
 
 func start_turn() -> void:
