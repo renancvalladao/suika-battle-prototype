@@ -16,7 +16,6 @@ var can_drop: bool = true
 func _ready():
 	position_offset = $Sprite.texture.get_size().x / 2
 	add_ball_to_holder()
-	SignalManager.all_balls_dropped.connect(turn_finished)
 	SignalManager.turn_started.connect(turn_started)
 	BallsManager.current_ball_changed.connect(current_ball_changed)
 	SignalManager.on_game_over.connect(on_game_over)
@@ -68,10 +67,6 @@ func _on_drop_timer_timeout():
 	BallsManager.choose_next_ball()
 	add_ball_to_holder()
 	BallsManager.ball_dropped.emit()
-
-func turn_finished() -> void:
-	can_drop = false
-	hide()
 
 func turn_started() -> void:
 	can_drop = true

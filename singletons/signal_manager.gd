@@ -5,9 +5,6 @@ signal spawn_random_ball
 
 signal on_game_over
 signal explode_ball_tier(tier: int)
-
-signal all_balls_dropped()
-
 signal can_change_next_ball(can_change: bool)
 signal is_dropping()
 
