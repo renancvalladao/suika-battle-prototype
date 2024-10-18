@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=18 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
@@ -12,7 +12,6 @@
 [ext_resource type="LabelSettings" uid="uid://d171akdbrrrry" path="res://resources/font_white.tres" id="7_gne4q"]
 [ext_resource type="PackedScene" uid="uid://bwrxmlqbt6fd" path="res://player/player.tscn" id="8_6rvjb"]
 [ext_resource type="Texture2D" uid="uid://cpk0pgwnkgnot" path="res://assets/environment/Torigate.png" id="8_kj6nj"]
-[ext_resource type="Texture2D" uid="uid://cqtexkon8cfub" path="res://assets/characters/all_scale.jpg" id="10_ten7u"]
 [ext_resource type="Texture2D" uid="uid://dg5i8ui0uy8wk" path="res://assets/torii_v2.png" id="11_lyj48"]
 [ext_resource type="PackedScene" uid="uid://dcq3spj02m0gc" path="res://components/game_timer.tscn" id="12_sxbf5"]
 [ext_resource type="Texture2D" uid="uid://c7pb6eerpe3tc" path="res://assets/toriiGate_edited.png" id="13_ac18o"]
@@ -190,124 +189,8 @@ offset_bottom = 91.0
 text = "Fusions: 0"
 label_settings = ExtResource("7_gne4q")
 
-[node name="MovesLeftLabel" type="Label" parent="."]
-visible = false
-offset_left = 1448.0
-offset_top = 92.0
-offset_right = 1905.0
-offset_bottom = 165.0
-text = "Moves Left: 3"
-label_settings = ExtResource("7_gne4q")
-
-[node name="TurnCounterLabel" type="Label" parent="."]
-visible = false
-offset_left = 1448.0
-offset_top = 153.0
-offset_right = 1905.0
-offset_bottom = 226.0
-text = "Turn: 0"
-label_settings = ExtResource("7_gne4q")
-
 [node name="Player" parent="." groups=["player"] instance=ExtResource("8_6rvjb")]
 position = Vector2(58, 948)
-
-[node name="BallEffects" type="Label" parent="."]
-visible = false
-offset_left = 1390.0
-offset_top = 12.0
-offset_right = 1815.0
-offset_bottom = 85.0
-text = "Ball Effects"
-label_settings = ExtResource("7_gne4q")
-
-[node name="CheckButton" type="CheckButton" parent="."]
-visible = false
-offset_left = 1810.0
-offset_top = 18.0
-offset_right = 1854.0
-offset_bottom = 42.0
-scale = Vector2(2.32, 2.32)
-focus_mode = 0
-
-[node name="ScaleTier" type="Label" parent="."]
-visible = false
-offset_left = 1390.0
-offset_top = 12.0
-offset_right = 1815.0
-offset_bottom = 85.0
-text = "Scale tier"
-label_settings = ExtResource("7_gne4q")
-
-[node name="ScaleTierButton" type="CheckButton" parent="."]
-visible = false
-offset_left = 1810.0
-offset_top = 18.0
-offset_right = 1854.0
-offset_bottom = 42.0
-scale = Vector2(2.32, 2.32)
-focus_mode = 0
-
-[node name="PickRandom" type="Label" parent="."]
-visible = false
-offset_left = 1466.0
-offset_top = 566.0
-offset_right = 1912.0
-offset_bottom = 639.0
-text = "Random"
-label_settings = ExtResource("7_gne4q")
-
-[node name="PickRandomButton" type="CheckButton" parent="."]
-visible = false
-offset_left = 1782.0
-offset_top = 572.0
-offset_right = 1826.0
-offset_bottom = 596.0
-scale = Vector2(2.32, 2.32)
-focus_mode = 0
-
-[node name="Auto" type="Label" parent="."]
-visible = false
-offset_left = 268.0
-offset_top = 6.0
-offset_right = 693.0
-offset_bottom = 79.0
-text = "Auto
-"
-label_settings = ExtResource("7_gne4q")
-
-[node name="AutoCheckButton" type="CheckButton" parent="."]
-visible = false
-offset_left = 448.0
-offset_top = 12.0
-offset_right = 492.0
-offset_bottom = 36.0
-scale = Vector2(2.32, 2.32)
-focus_mode = 0
-
-[node name="Character" type="TextureRect" parent="."]
-visible = false
-offset_left = 1582.0
-offset_top = 496.0
-offset_right = 2758.0
-offset_bottom = 1453.0
-scale = Vector2(0.16, 0.16)
-texture = ExtResource("10_ten7u")
-
-[node name="SpawnPoint1" type="Marker2D" parent="."]
-position = Vector2(200, 290)
-
-[node name="SpawnPoint2" type="Marker2D" parent="."]
-position = Vector2(360, 650)
-
-[node name="SpawnPoint3" type="Marker2D" parent="."]
-position = Vector2(1700, 290)
-
-[node name="SpawnPoint4" type="Marker2D" parent="."]
-position = Vector2(1540, 650)
-
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 8.0
-autostart = true
 
 [node name="GameTimer" parent="." instance=ExtResource("12_sxbf5")]
 offset_left = 50.0
@@ -315,5 +198,3 @@ offset_top = 89.0
 offset_right = 50.0
 offset_bottom = 89.0
 metadata/_edit_use_anchors_ = true
-
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
