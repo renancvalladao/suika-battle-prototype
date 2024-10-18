@@ -1,11 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5d3utm7alcgv"]
+[gd_scene load_steps=7 format=3 uid="uid://c5d3utm7alcgv"]
 
 [ext_resource type="Script" path="res://ball/ball.gd" id="1_aaf3s"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_r3t8n"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="2_44oov"]
-[ext_resource type="Texture2D" uid="uid://chieubiu3r8yx" path="res://assets/balls/blue_wisp.png" id="2_fwymb"]
-[ext_resource type="Texture2D" uid="uid://c1s8sy22qyutu" path="res://assets/balls/yellow_body_circle.png" id="4_1g7ns"]
-[ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="5_qnh1d"]
 [ext_resource type="PackedScene" path="res://components/ball_can_attack_component.tscn" id="6_ngn8s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2wo2j"]
@@ -15,17 +12,6 @@ bounce = 0.05
 [sub_resource type="CircleShape2D" id="CircleShape2D_e2kl0"]
 radius = 80.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cb3tl"]
-radius = 27.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_qs2mg"]
-font = ExtResource("5_qnh1d")
-font_size = 48
-outline_size = 2
-outline_color = Color(0.317647, 0.317647, 0.317647, 1)
-shadow_size = 6
-shadow_color = Color(0, 0, 0, 0.392157)
-
 [node name="Ball" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 3
@@ -34,13 +20,6 @@ can_sleep = false
 max_contacts_reported = 8
 contact_monitor = true
 script = ExtResource("1_aaf3s")
-
-[node name="Sprite2" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.08, 0.08)
-texture = ExtResource("2_fwymb")
-offset = Vector2(0, -200)
-region_rect = Rect2(0, 0, 800, 983)
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
@@ -56,36 +35,10 @@ texture = ExtResource("2_44oov")
 scale = Vector2(0.25, 0.25)
 shape = SubResource("CircleShape2D_e2kl0")
 
-[node name="NearBallsArea" type="Area2D" parent="."]
-visible = false
-scale = Vector2(2, 2)
-
-[node name="Range" type="Sprite2D" parent="NearBallsArea"]
-modulate = Color(1, 1, 1, 0.482353)
-z_index = 10
-scale = Vector2(0.335, 0.335)
-texture = ExtResource("4_1g7ns")
-
-[node name="NearBalls" type="CollisionShape2D" parent="NearBallsArea"]
-shape = SubResource("CircleShape2D_cb3tl")
-
-[node name="NearBallsLabel" type="Label" parent="."]
-visible = false
-offset_left = -26.0
-offset_top = -17.0
-offset_right = 25.0
-offset_bottom = 32.0
-text = "0"
-label_settings = SubResource("LabelSettings_qs2mg")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ChangeTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="BallCanAttackComponent" parent="." instance=ExtResource("6_ngn8s")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="mouse_entered" from="NearBallsArea" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="NearBallsArea" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="ChangeTimer" to="." method="_on_change_timer_timeout"]

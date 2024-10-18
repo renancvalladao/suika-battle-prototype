@@ -4,10 +4,6 @@ class_name Ball
 
 @onready var sprite = $Sprite
 @onready var icon = $Icon
-@onready var near_balls = $NearBallsArea/NearBalls
-@onready var near_balls_area = $NearBallsArea
-@onready var near_range = $NearBallsArea/Range
-@onready var near_balls_label = $NearBallsLabel
 @onready var change_timer = $ChangeTimer
 @onready var ball_can_attack_component = $BallCanAttackComponent
 
@@ -20,8 +16,6 @@ var can_change_color: bool = true
 var initial_icon_scale: Vector2
 var initial_sprite_scale: Vector2
 var initial_collision2d_scale: Vector2
-var initial_near_balls_scale: Vector2
-var initial_near_range_scale: Vector2
 
 func _ready():
 	set_initial_scales()
@@ -30,8 +24,6 @@ func _ready():
 	$Sprite.texture = config.sprite
 	$Sprite.scale *= config.size
 	$CollisionShape2D.scale *= config.size
-	near_balls.scale *= config.size
-	near_range.scale *= config.size
 	ball_can_attack_component.visible = false
 	
 	if should_add_group:
@@ -39,20 +31,16 @@ func _ready():
 		var tween = get_tree().create_tween()
 		scale = Vector2.ZERO
 		tween.tween_property(self, "scale", Vector2(1, 1), 0.1).set_ease(Tween.EASE_IN)
-		
+
 func set_initial_scales() -> void:
 	initial_icon_scale = $Icon.scale
 	initial_sprite_scale = $Sprite.scale
 	initial_collision2d_scale = $CollisionShape2D.scale
-	initial_near_balls_scale = near_balls.scale
-	initial_near_range_scale = near_range.scale
-	
+
 func reset_scales() -> void:
 	$Icon.scale = initial_icon_scale
 	$Sprite.scale = initial_sprite_scale
 	$CollisionShape2D.scale = initial_collision2d_scale
-	near_balls.scale = initial_near_balls_scale
-	near_range.scale = initial_near_range_scale
 
 func set_should_add_group(should: bool):
 	should_add_group = should
@@ -74,14 +62,12 @@ func explode():
 	queue_free()
 
 func _on_body_entered(body):
-	#print("colidiu")
 	if config.tier == -2:
 		return
 	if config.tier == -1 && not (body is Ball):
 		queue_free()
 	if config.has("type") && body is Ball:
 		if config.type == "ghost" && config.tier != body.config.tier:
-			#print("entrou")
 			return
 		
 	if body is Ball && (body.config.tier == config.tier || body.config.tier == -1) && !exploded && !body.exploded:
@@ -90,38 +76,7 @@ func _on_body_entered(body):
 		explode()
 		body.explode()
 		BallsManager.ball_exploded.emit(position, body.position, config.tier, config.owner)
-		if BallsManager.turn == 1:
-			return
-		if body is EnemyBall:
-			return
-		if !GameManager.range_damage:
-			return
-		var scale_factor: int = ((config.tier - 1) / 3) + 1
-		var color := Utils.AttackColors.RED
-		for near_ball in near_balls_area.get_overlapping_bodies():
-			if near_ball is EnemyBall:
-				near_ball.enemy_damaged(5 * scale_factor, color)
 
-func get_nearby_balls() -> int:
-	var total = 0
-	for body in near_balls_area.get_overlapping_bodies():
-		if body is Ball && body != self && body.config.tier != -2:
-			total += 1
-	return total
-
-func _process(_delta):
-	if near_balls_label.visible:
-		near_balls_label.text = str(get_nearby_balls())
-
-func _on_mouse_entered():
-	if GameManager.character_chosen == GameManager.CHARACTER.AREA:
-		near_balls_label.visible = true
-		near_range.visible = true
-
-func _on_mouse_exited():
-	near_balls_label.visible = false
-	near_range.visible = false
-	
 func change_color(current_color_tiers, future_color_tiers):
 	if !can_change_color:
 		return
@@ -135,15 +90,13 @@ func change_color(current_color_tiers, future_color_tiers):
 	
 	var new_tier :int = future_color_tiers[my_tier_index]
 	var new_config: Dictionary = BallsManager.BALLS[new_tier - 1]
-	#print("my_tier:", my_tier , "new_tier", new_tier)
 	config = new_config
 	update_config()
 	add_group()
-	
+
 func set_can_change_color_to_true() -> void :
 	can_change_color = true
 
-	
 func update_config() -> void:
 	reset_scales()
 	$Icon.texture = config.icon
@@ -151,8 +104,6 @@ func update_config() -> void:
 	$Sprite.texture = config.sprite
 	$Sprite.scale *= config.size
 	$CollisionShape2D.scale *= config.size
-	near_balls.scale *= config.size
-	near_range.scale *= config.size
 
 func change_tier(new_tier: int) -> void:
 	#var my_tier :int = config.tier
@@ -161,7 +112,6 @@ func change_tier(new_tier: int) -> void:
 	config = new_config
 	update_config()
 	add_group()
-	
 
 func _on_change_timer_timeout():
 	if !added_to_balls_group:
