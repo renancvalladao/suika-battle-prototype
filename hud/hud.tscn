@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://2wy62osvnpgg"]
+[gd_scene load_steps=35 format=3 uid="uid://2wy62osvnpgg"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_5sxdd"]
 [ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_m48a0"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="2_j27b4"]
 [ext_resource type="Texture2D" uid="uid://b7dpbitkqn0po" path="res://assets/balls/purple_body_circle.png" id="5_31c2e"]
 [ext_resource type="Texture2D" uid="uid://goacql8ug3ou" path="res://assets/enemies/monster_ball.png" id="5_npqhn"]
-[ext_resource type="Texture2D" uid="uid://chieubiu3r8yx" path="res://assets/balls/blue_wisp.png" id="6_h62ys"]
 [ext_resource type="Texture2D" uid="uid://fawli37cxqk3" path="res://assets/icons/shield.png" id="6_rjmn6"]
 [ext_resource type="Texture2D" uid="uid://bynvuhvrwju5i" path="res://assets/balls/green_body_circle.png" id="7_7yh38"]
 [ext_resource type="Texture2D" uid="uid://coqb3i1h408qq" path="res://assets/icons/flask.png" id="8_1joxp"]
@@ -51,25 +50,6 @@ offset_left = -235.0
 offset_top = 248.0
 offset_right = -195.0
 offset_bottom = 288.0
-
-[node name="Sprite2" type="TextureRect" parent="NextBall"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -181.0
-offset_top = -262.0
-offset_right = 619.0
-offset_bottom = 721.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-pivot_offset = Vector2(80, 80)
-texture = ExtResource("6_h62ys")
-stretch_mode = 2
 
 [node name="Icon" type="TextureRect" parent="NextBall"]
 visible = false
