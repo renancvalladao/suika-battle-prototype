@@ -247,7 +247,7 @@ func get_random_ball() -> Dictionary:
 	#CHANCE TO SPAWN BALL TYPES
 	var i: float = randf_range(0,1)
 	var type_ball_config: Dictionary
-	var all_type_ball_configs: Array[Dictionary]
+	var all_type_ball_configs: Array[Dictionary] = []
 	
 	if i <= GameManager.spawn_chance_ghost_ball:
 		type_ball_config = random_ball_config.duplicate()
@@ -323,7 +323,3 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("pause"):
 		get_tree().paused = !get_tree().paused
-	#if event.is_action_pressed("change_tier"):
-		#tier += 1
-		#if tier > 3:
-			#tier = 1
