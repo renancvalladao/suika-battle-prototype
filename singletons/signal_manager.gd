@@ -3,7 +3,6 @@ extends Node
 signal turn_started
 signal spawn_random_ball
 
-signal shield_gained(amount: int)
 signal on_game_over
 signal explode_ball_tier(tier: int)
 
