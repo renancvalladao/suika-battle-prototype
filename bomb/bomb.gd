@@ -4,6 +4,7 @@ extends Ball
 @onready var explosion_area = $ExplosionArea
 
 var will_explode = false
+var bomb_damage = 20
 
 func _ready():
 	super._ready()
@@ -18,9 +19,9 @@ func _on_body_entered(body):
 	explosion_timer.start()
 
 func _on_explosion_timer_timeout():
-	print("entrou")
 	for body in explosion_area.get_overlapping_bodies():
 		if body is EnemyBall:
+			SignalManager.enemy_damaged.emit(bomb_damage, Utils.AttackColors.RED, false)
 			return
 		if body is Ball:
 			body.queue_free()
