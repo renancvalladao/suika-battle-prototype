@@ -15,7 +15,6 @@ func _ready():
 	SignalManager.enemy_moved.connect(enemy_turn_finished)
 	SignalManager.turn_on_color_damage.connect(turn_on_color_damage)
 	SignalManager.turn_off_color_damage.connect(turn_off_color_damage)
-	BallsManager.ball_exploded.connect(ball_exploded)
 	visible = false
 	
 func enemy_turn_started() -> void:
@@ -41,8 +40,3 @@ func turn_on_color_damage() -> void:
 func turn_off_color_damage() -> void:
 	visible = false
 	should_color_damage = false
-	
-func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int) -> void:
-	#print("explodiu, should_color_damage=",should_color_damage,", enemy_turn = ", enemy_turn, "color_damage.has(",tier,") = ", color_damage.has(tier))
-	if should_color_damage && !enemy_turn && color_damage.has(tier):
-		SignalManager.player_damaged.emit(damage_amount)

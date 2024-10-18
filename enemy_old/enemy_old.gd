@@ -69,7 +69,6 @@ var attacks_config: Dictionary = {
 func _ready():
 	SignalManager.enemy_damaged.connect(enemy_damaged)
 	BallsManager.turn_finished.connect(turn_finished)
-	BallsManager.ball_exploded.connect(ball_exploded)
 	attack_button.pressed.connect(on_attack_button)
 	heal_button.pressed.connect(on_heal_button)
 	chaos_button.pressed.connect(on_chaos_button)
@@ -103,10 +102,6 @@ func turn_finished() -> void:
 	#await get_tree().create_timer(BallsManager.FINISH_TURN_DELAY).timeout
 	should_color_damage = false
 	color_damage_ui.visible = false
-
-func ball_exploded(_first_pos: Vector2, _second_pos: Vector2, tier: int, owner: String) -> void:
-	if should_color_damage && !my_turn && color_damage.has(tier):
-		SignalManager.player_damaged.emit(2)
 
 func set_hp(amount: int) -> void:
 	hp = amount
@@ -170,7 +165,7 @@ func finish_enemy_turn():
 	SignalManager.enemy_moved.emit()
 
 func damage():
-	SignalManager.player_damaged.emit(enemy_damage)
+	pass
 
 func heal():
 	set_hp(hp + 4)

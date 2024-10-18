@@ -65,7 +65,7 @@ visible = false
 scale = Vector2(0.127, 0.127)
 texture = ExtResource("2_leyd7")
 
-[node name="Sprite" parent="." index="3"]
+[node name="Sprite" parent="." index="2"]
 material = SubResource("ShaderMaterial_t8mjs")
 scale = Vector2(0.127, 0.127)
 texture = ExtResource("2_leyd7")
@@ -76,14 +76,14 @@ texture_filter = 1
 scale = Vector2(1.3, 1.3)
 sprite_frames = ExtResource("5_cg1eb")
 
-[node name="BallCanAttackComponent" parent="." index="10"]
+[node name="BallCanAttackComponent" parent="." index="7"]
 visible = false
 
-[node name="HealthComponent" parent="." index="11" instance=ExtResource("5_7idqd")]
+[node name="HealthComponent" parent="." index="8" instance=ExtResource("5_7idqd")]
 visible = false
 MAX_HEALTH = 20
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
 libraries = {
 "": SubResource("AnimationLibrary_do8vc")
 }

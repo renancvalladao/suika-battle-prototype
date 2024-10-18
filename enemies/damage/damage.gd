@@ -28,4 +28,4 @@ func move() -> void:
 	damage()
 
 func damage() -> void:
-	SignalManager.player_damaged.emit(enemy_damage)
+	pass

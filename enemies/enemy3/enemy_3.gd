@@ -101,7 +101,6 @@ func ball_can_attack():
 	#chosen_ball.add_child(component)
 
 func damage() -> void:
-	SignalManager.player_damaged.emit(enemy_damage)
 	print("damage")
 
 func heal() -> void:

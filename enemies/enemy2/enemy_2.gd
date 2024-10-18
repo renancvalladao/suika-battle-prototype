@@ -78,7 +78,6 @@ func finish_enemy_turn() -> void:
 	SignalManager.enemy_moved.emit()
 
 func damage() -> void:
-	SignalManager.player_damaged.emit(enemy_damage)
 	print("damage")
 
 func heal() -> void:
