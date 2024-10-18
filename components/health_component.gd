@@ -18,7 +18,6 @@ const bg_colors = {
 
 func _ready():
 	set_health(MAX_HEALTH)
-	print(bg_colors[COLOR])
 	#update_color()
 
 func set_health(value: int) -> void:
@@ -26,7 +25,6 @@ func set_health(value: int) -> void:
 	_update_ui()
 
 func set_max_health(value: int) -> void:
-	print(value)
 	MAX_HEALTH = value
 	health = value
 	_update_ui()

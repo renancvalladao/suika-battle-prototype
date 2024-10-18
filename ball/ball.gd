@@ -92,8 +92,6 @@ func _on_body_entered(body):
 		BallsManager.ball_exploded.emit(position, body.position, config.tier, config.owner)
 		if BallsManager.turn == 1:
 			return
-		if BallsManager.balls_effect:
-			make_effect()
 		if body is EnemyBall:
 			return
 		if !GameManager.range_damage:
@@ -103,16 +101,6 @@ func _on_body_entered(body):
 		for near_ball in near_balls_area.get_overlapping_bodies():
 			if near_ball is EnemyBall:
 				near_ball.enemy_damaged(5 * scale_factor, color)
-
-func make_effect():
-	if config.tier == 2:
-			SignalManager.shield_gained.emit(10)
-	elif config.tier == 4:
-		SignalManager.health_gained.emit(15)
-	elif config.tier >= 6:
-		SignalManager.enemy_damaged.emit(15)
-	else:
-		SignalManager.enemy_damaged.emit(10)
 
 func get_nearby_balls() -> int:
 	var total = 0
