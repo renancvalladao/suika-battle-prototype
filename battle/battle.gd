@@ -1,10 +1,5 @@
 extends Node2D
 
-var enemy_damage: PackedScene = preload("res://enemies/damage/damage.tscn")
-var enemy_rock: PackedScene = preload("res://enemies/rock/rock.tscn")
-
-@export var max_moves: int = GameManager.max_balls
-@onready var enemies: Array[PackedScene]
 @onready var position_min = $PositionMin
 @onready var position_max = $PositionMax
 @onready var game_over = $CanvasLayer/GameOver
@@ -13,19 +8,13 @@ var enemy_rock: PackedScene = preload("res://enemies/rock/rock.tscn")
 
 var ball_scene: PackedScene = preload("res://ball/ball.tscn")
 var enemy_ball_scene: PackedScene = preload("res://enemy_ball/enemy_ball.tscn")
-var moves_left: int = max_moves
-var turn: int = 0
 
 func _ready():
 	BallsManager.ball_exploded.connect(on_ball_exploded)
-	BallsManager.ball_dropped.connect(ball_dropped)
-	SignalManager.turn_started.connect(turn_started)
 	SignalManager.spawn_random_ball.connect(spawn_random_ball)
 	SignalManager.on_game_over.connect(on_game_over)
 	SignalManager.explode_ball_tier.connect(explode_ball_tier)
 	fusions_label.text = "Fusions: 0"
-	
-	enemies = [enemy_damage]
 	
 	#spawn_random_balls(50)
 	SignalManager.turn_started.emit()
@@ -66,16 +55,6 @@ func spawn_ball(first_pos: Vector2, second_pos: Vector2, tier: int, owner: Strin
 	ball.position = ball_position
 	ball.set_configuration(ball_config)
 	call_deferred("add_child", ball)
-
-func ball_dropped():
-	if moves_left == 0:
-		SignalManager.all_balls_dropped.emit()
-
-func turn_started() -> void:
-	turn += 1
-	moves_left = max_moves
-	GameManager.fusions = 0
-	fusions_label.text = "Fusions: %s" % GameManager.fusions
 
 func spawn_random_ball() -> void:
 	var x = randf_range(position_min.position.x, position_max.position.x)
