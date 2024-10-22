@@ -59,7 +59,6 @@ func _process(delta):
 		SignalManager.can_change_next_ball.emit(true)
 		cooldown = 0
 		BallsManager.ball_exploded.emit(position, position, config.tier, config.owner)
-		EnemyVisualEffects.display_evolution(damage_numbers_origin.global_position, config.size)
 		if tween:
 			tween.kill()
 		queue_free()
