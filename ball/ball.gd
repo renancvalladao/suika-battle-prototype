@@ -25,6 +25,8 @@ func _ready():
 	$Sprite.scale *= config.size
 	$CollisionShape2D.scale *= config.size
 	ball_can_attack_component.visible = false
+	if config.has("sprite_scale"):
+			$Sprite.scale *= Vector2(config.sprite_scale, config.sprite_scale)
 	
 	if should_add_group:
 		add_to_group("ball_%s" % config.tier)

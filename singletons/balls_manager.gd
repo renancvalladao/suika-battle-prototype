@@ -131,84 +131,86 @@ const ENEMIES = [
 const BALLS = [
 	{
 		"tier": 1,
-		"sprite": preload("res://assets/new_balls/maroon.png"),
+		"sprite": preload("res://assets/hitodama/Hitodama_1.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": PROPORTION[0] ** 0,
 		"owner": "player"
 	},
 	{
 		"tier": 2,
-		"sprite": preload("res://assets/new_balls/red.png"),
+		"sprite": preload("res://assets/hitodama/Hitodama_2.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": PROPORTION[0] ** 1,
 		"owner": "player"
 	},
 	{
 		"tier": 3,
-		"sprite": preload("res://assets/new_balls/brown.png"),
+		"sprite": preload("res://assets/hitodama/Hitodama_3.png"),
 		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": PROPORTION[0] ** 2,
 		"owner": "player"
 	},
 	{
 		"tier": 4,
-		"sprite": preload("res://assets/new_balls/orange.png"),
+		"sprite": preload("res://assets/hitodama/Hitodama_4.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1),
 		"owner": "player"
 	},
 	{
 		"tier": 5,
-		"sprite": preload("res://assets/new_balls/yellow.png"),
+		"sprite": preload("res://assets/hitodama/Hitodama_5.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": (PROPORTION[0] ** 3) * (PROPORTION[1] ** 1),
 		"owner": "player"
 	},
 	{
 		"tier": 6,
-		"sprite": preload("res://assets/new_balls/green.png"),
+		"sprite": preload("res://assets/hitodama/Hitodama_6.png"),
 		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 1),
 		"owner": "player"
 	},
 	{
 		"tier": 7,
-		"sprite": preload("res://assets/new_balls/teal.png"),
+		"sprite": preload("res://assets/hitodama/Hitodama_7.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 2),
 		"owner": "player"
 	},
 	{
 		"tier": 8,
-		"sprite": preload("res://assets/new_balls/cyan.png"),
+		"sprite": preload("res://assets/hitodama/Hitodama_8.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 5) * (PROPORTION[1] ** 2),
-		"owner": "player"
+		"owner": "player",
+		"sprite_scale": 0.88
 	},
 	{
 		"tier": 9,
-		"sprite": preload("res://assets/new_balls/blue.png"),
+		"sprite": preload("res://assets/hitodama/Hitodama_9.png"),
 		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 2),
-		"owner": "player"
+		"owner": "player",
+		"sprite_scale": 0.75
 	},
 	{
 		"tier": 10,
-		"sprite": preload("res://assets/new_balls/purple.png"),
+		"sprite": preload("res://assets/hitodama/Hitodama_10.png"),
 		"icon": preload("res://assets/icons/skull.png"),
 		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 3),
-		"owner": "player"
+		"owner": "player",
+		"sprite_scale": 0.65
 	},
 	{
 		"tier": 11,
-		"sprite": preload("res://assets/new_balls/pink.png"),
+		"sprite": preload("res://assets/hitodama/Hitodama_11.png"),
 		"icon": preload("res://assets/icons/crown.png"),
 		"size": (PROPORTION[0] ** 7) * (PROPORTION[1] ** 3),
-		"owner": "player"
+		"owner": "player",
+		"sprite_scale": 0.6
 	}
 ]
-
-const FINISH_TURN_DELAY: float = 2
 
 var rng = RandomNumberGenerator.new()
 var current_ball
@@ -225,7 +227,6 @@ var count := -1
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	SignalManager.turn_started.connect(_turn_started)
-	BallsManager.turn_finished.connect(_turn_finished)
 	SignalManager.can_change_next_ball.connect(set_can_change_next_ball)
 	SignalManager.is_dropping.connect(set_is_dropping)
 	BallsManager.ball_dropped.connect(set_is_dropping_false)
@@ -297,10 +298,6 @@ func choose_next_ball() -> void:
 
 func _turn_started() -> void:
 	turn = 0
-
-func _turn_finished() -> void:
-	await get_tree().create_timer(FINISH_TURN_DELAY).timeout
-	turn = 1
 
 func _unhandled_input(event):
 	if event.is_action_pressed("change_next") && can_change_next_ball && !is_dropping:

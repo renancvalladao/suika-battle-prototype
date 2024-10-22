@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c5d3utm7alcgv"]
 
 [ext_resource type="Script" path="res://ball/ball.gd" id="1_aaf3s"]
-[ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_r3t8n"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="2_44oov"]
+[ext_resource type="Texture2D" uid="uid://safdk58rbd3t" path="res://assets/hitodama/Hitodama_1.png" id="2_ou1w2"]
 [ext_resource type="PackedScene" path="res://components/ball_can_attack_component.tscn" id="6_ngn8s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2wo2j"]
@@ -22,8 +22,9 @@ contact_monitor = true
 script = ExtResource("1_aaf3s")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_r3t8n")
+texture_filter = 1
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_ou1w2")
 
 [node name="Icon" type="Sprite2D" parent="."]
 visible = false

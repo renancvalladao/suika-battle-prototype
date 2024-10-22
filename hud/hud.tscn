@@ -1,26 +1,21 @@
-[gd_scene load_steps=35 format=3 uid="uid://2wy62osvnpgg"]
+[gd_scene load_steps=30 format=3 uid="uid://2wy62osvnpgg"]
 
 [ext_resource type="Script" path="res://hud/hud.gd" id="1_5sxdd"]
-[ext_resource type="Texture2D" uid="uid://dpi2akdr51awd" path="res://assets/balls/blue_body_circle.png" id="1_m48a0"]
 [ext_resource type="LabelSettings" uid="uid://d171akdbrrrry" path="res://resources/font_white.tres" id="2_at335"]
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="2_j27b4"]
-[ext_resource type="Texture2D" uid="uid://b7dpbitkqn0po" path="res://assets/balls/purple_body_circle.png" id="5_31c2e"]
+[ext_resource type="Texture2D" uid="uid://safdk58rbd3t" path="res://assets/hitodama/Hitodama_1.png" id="3_ij0ng"]
 [ext_resource type="Texture2D" uid="uid://goacql8ug3ou" path="res://assets/enemies/monster_ball.png" id="5_npqhn"]
-[ext_resource type="Texture2D" uid="uid://fawli37cxqk3" path="res://assets/icons/shield.png" id="6_rjmn6"]
-[ext_resource type="Texture2D" uid="uid://bynvuhvrwju5i" path="res://assets/balls/green_body_circle.png" id="7_7yh38"]
-[ext_resource type="Texture2D" uid="uid://coqb3i1h408qq" path="res://assets/icons/flask.png" id="8_1joxp"]
-[ext_resource type="Texture2D" uid="uid://l82b1i3ipjsq" path="res://assets/balls/pink_body_circle.png" id="9_x7aen"]
-[ext_resource type="Texture2D" uid="uid://b20sbp2n2vx55" path="res://assets/icons/heart.png" id="10_h7fe7"]
-[ext_resource type="Texture2D" uid="uid://c1s8sy22qyutu" path="res://assets/balls/yellow_body_circle.png" id="11_4u0ec"]
-[ext_resource type="Texture2D" uid="uid://bbhwqbncwvsx" path="res://assets/icons/bow.png" id="12_stnqt"]
-[ext_resource type="Texture2D" uid="uid://h8topllhst0a" path="res://assets/balls/red_body_circle.png" id="13_23xpg"]
-[ext_resource type="Texture2D" uid="uid://bfq1hl73tl6qo" path="res://assets/icons/fire.png" id="14_rrowf"]
-[ext_resource type="Texture2D" uid="uid://s7faelxx710m" path="res://assets/icons/book.png" id="15_5xah1"]
-[ext_resource type="Texture2D" uid="uid://72n88tcrrjlv" path="res://assets/icons/skull.png" id="16_nyypn"]
+[ext_resource type="Texture2D" uid="uid://ehqbq724c8rw" path="res://assets/hitodama/Hitodama_2.png" id="7_svuuj"]
+[ext_resource type="Texture2D" uid="uid://bvg1vgbpyje41" path="res://assets/hitodama/Hitodama_3.png" id="8_pyavh"]
+[ext_resource type="Texture2D" uid="uid://c8yi415jqqd86" path="res://assets/hitodama/Hitodama_4.png" id="9_uaihb"]
+[ext_resource type="Texture2D" uid="uid://bbmkodi5iy1g1" path="res://assets/hitodama/Hitodama_5.png" id="10_dkyt7"]
+[ext_resource type="Texture2D" uid="uid://dvoaabkgfbud3" path="res://assets/hitodama/Hitodama_6.png" id="11_bjkwi"]
+[ext_resource type="Texture2D" uid="uid://c62pm4ykmcl0i" path="res://assets/hitodama/Hitodama_7.png" id="12_ikvxf"]
+[ext_resource type="Texture2D" uid="uid://dtajuu5t4g4g1" path="res://assets/hitodama/Hitodama_8.png" id="13_0fidn"]
+[ext_resource type="Texture2D" uid="uid://bq8osf8acf3nq" path="res://assets/hitodama/Hitodama_9.png" id="14_xi1fm"]
+[ext_resource type="Texture2D" uid="uid://no6o4uf4m0b6" path="res://assets/hitodama/Hitodama_10.png" id="15_q70dg"]
+[ext_resource type="Texture2D" uid="uid://dfetpg8e10m08" path="res://assets/hitodama/Hitodama_11.png" id="16_5d3ub"]
 [ext_resource type="FontFile" uid="uid://dhanfglc1vi1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="17_7fs1n"]
-[ext_resource type="Texture2D" uid="uid://2l6mi187cdgk" path="res://assets/icons/dollar.png" id="17_m1ji4"]
-[ext_resource type="Texture2D" uid="uid://cop73adlf6jmk" path="res://assets/icons/flag_square.png" id="18_j3fwu"]
-[ext_resource type="Texture2D" uid="uid://bl4h5urleyt50" path="res://assets/icons/award.png" id="19_bairk"]
 [ext_resource type="Texture2D" uid="uid://o4saaywuag05" path="res://assets/enemy_balls/Yurei.png" id="23_4qqiq"]
 [ext_resource type="Texture2D" uid="uid://dqoh7ydk21ugi" path="res://assets/enemy_balls/Chochinobake.png" id="25_teubl"]
 [ext_resource type="Texture2D" uid="uid://n6a7e02kmq1j" path="res://assets/bars/CircularProgressBar.png" id="25_wmx0u"]
@@ -73,6 +68,7 @@ texture = ExtResource("2_j27b4")
 stretch_mode = 2
 
 [node name="Sprite" type="TextureRect" parent="NextBall"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -87,8 +83,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("1_m48a0")
-stretch_mode = 2
+texture = ExtResource("3_ij0ng")
 
 [node name="EnemySprite2" type="TextureRect" parent="NextBall"]
 visible = false
@@ -142,6 +137,7 @@ offset_bottom = -160.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball1"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -155,28 +151,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("1_m48a0")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOptions/Ball1"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_j27b4")
-stretch_mode = 2
+texture = ExtResource("3_ij0ng")
 
 [node name="Ball2" type="Control" parent="BallsOptions"]
 layout_mode = 1
@@ -188,6 +163,7 @@ offset_bottom = -134.601
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball2"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -201,28 +177,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("5_31c2e")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOptions/Ball2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("6_rjmn6")
-stretch_mode = 2
+texture = ExtResource("7_svuuj")
 
 [node name="Ball3" type="Control" parent="BallsOptions"]
 layout_mode = 1
@@ -234,6 +189,7 @@ offset_bottom = -66.466
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball3"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -247,28 +203,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("7_7yh38")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOptions/Ball3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("8_1joxp")
-stretch_mode = 2
+texture = ExtResource("8_pyavh")
 
 [node name="Ball4" type="Control" parent="BallsOptions"]
 layout_mode = 1
@@ -280,6 +215,7 @@ offset_bottom = 22.77
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball4"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -293,28 +229,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("9_x7aen")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOptions/Ball4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("10_h7fe7")
-stretch_mode = 2
+texture = ExtResource("9_uaihb")
 
 [node name="Ball5" type="Control" parent="BallsOptions"]
 layout_mode = 1
@@ -326,6 +241,7 @@ offset_bottom = 104.778
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball5"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -339,28 +255,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("11_4u0ec")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOptions/Ball5"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("12_stnqt")
-stretch_mode = 2
+texture = ExtResource("10_dkyt7")
 
 [node name="Ball6" type="Control" parent="BallsOptions"]
 layout_mode = 1
@@ -372,6 +267,7 @@ offset_bottom = 153.519
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball6"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -385,28 +281,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("13_23xpg")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOptions/Ball6"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("14_rrowf")
-stretch_mode = 2
+texture = ExtResource("11_bjkwi")
 
 [node name="Ball7" type="Control" parent="BallsOptions"]
 layout_mode = 1
@@ -418,6 +293,7 @@ offset_bottom = 153.519
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball7"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -431,28 +307,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("1_m48a0")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOptions/Ball7"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("15_5xah1")
-stretch_mode = 2
+texture = ExtResource("12_ikvxf")
 
 [node name="Ball8" type="Control" parent="BallsOptions"]
 layout_mode = 1
@@ -464,6 +319,7 @@ offset_bottom = 104.778
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball8"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -477,28 +333,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("5_31c2e")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOptions/Ball8"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("16_nyypn")
-stretch_mode = 2
+texture = ExtResource("13_0fidn")
 
 [node name="Ball9" type="Control" parent="BallsOptions"]
 layout_mode = 1
@@ -510,6 +345,7 @@ offset_bottom = 22.77
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball9"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -523,28 +359,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("7_7yh38")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOptions/Ball9"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("17_m1ji4")
-stretch_mode = 2
+texture = ExtResource("14_xi1fm")
 
 [node name="Ball10" type="Control" parent="BallsOptions"]
 layout_mode = 1
@@ -556,6 +371,7 @@ offset_bottom = -66.466
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball10"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -569,28 +385,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("9_x7aen")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOptions/Ball10"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("18_j3fwu")
-stretch_mode = 2
+texture = ExtResource("15_q70dg")
 
 [node name="Ball11" type="Control" parent="BallsOptions"]
 layout_mode = 1
@@ -602,6 +397,7 @@ offset_bottom = -134.601
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite" type="TextureRect" parent="BallsOptions/Ball11"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -615,28 +411,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(80, 80)
-texture = ExtResource("11_4u0ec")
-stretch_mode = 2
-
-[node name="Icon" type="TextureRect" parent="BallsOptions/Ball11"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(64, 64)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("19_bairk")
-stretch_mode = 2
+texture = ExtResource("16_5d3ub")
 
 [node name="Enemies" type="Control" parent="."]
 anchors_preset = 0

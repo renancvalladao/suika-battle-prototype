@@ -47,8 +47,6 @@ func _ready():
 	for index in balls.size():
 		var ball = balls[index]
 		ball.get_child(0).texture = BallsManager.BALLS[index].sprite
-		ball.get_child(1).texture = BallsManager.BALLS[index].icon
-		ball.get_child(1).visible = false
 		var angle = (2 * PI * index / balls.size()) - PI / 2
 		var x_pos = balls_circle_radius * cos(angle)
 		var y_pos = balls_circle_radius * sin(angle)
@@ -106,7 +104,6 @@ func set_next_ball() -> void:
 	else:
 		enemy_sprite.visible = false
 		sprite.texture = next_ball.sprite
-		icon.texture = next_ball.icon
 		#icon.visible = true
 		sprite.visible = true
 		sprite.scale = sprite_scale * next_ball.size
