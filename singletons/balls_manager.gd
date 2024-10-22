@@ -246,7 +246,7 @@ func get_random_ball() -> Dictionary:
 
 func get_random_enemy_ball() -> Dictionary:
 	var random_ball_index = rng.randi_range(0, 4)
-	return ENEMIES[0]
+	return ENEMIES[random_ball_index]
 
 func get_current_ball() -> Dictionary:
 	return current_ball
