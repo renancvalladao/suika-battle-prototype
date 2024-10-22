@@ -36,8 +36,6 @@ func upgrade_character(upgrade) -> void:
 func on_ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int, owner: String):
 	if owner == "enemy":
 		return
-	if GameManager.range_damage:
-			return
 	SignalManager.enemy_damaged.emit(ATTACK_DAMAGE * tier, true)
 
 func _on_timer_timeout(): # Timer de teste de xp só

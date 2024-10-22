@@ -192,11 +192,7 @@ var rng = RandomNumberGenerator.new()
 var current_ball
 var next_ball
 var turn = 0
-var balls_effect: bool = false
-var auto_enemy: bool = true
 var tier: int = 1
-var scale_with_tier: bool = true
-var pick_random: bool = true
 var is_dropping: bool = false
 var count := -1
 
