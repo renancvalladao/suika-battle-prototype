@@ -31,7 +31,7 @@ const BOMB_CONFIG: Dictionary = {
 const ENEMIES = [
 	{
 		"tier": 1,
-		"sprite": preload("res://assets/enemies/monster_ball.png"),
+		"sprite": preload("res://assets/enemy_balls/Yurei.png"),
 		"size": PROPORTION[0] ** 0,
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/yurei.tres"),
@@ -39,7 +39,7 @@ const ENEMIES = [
 	},
 	{
 		"tier": 2,
-		"sprite": preload("res://assets/enemies/monster_ball_2.png"),
+		"sprite": preload("res://assets/enemy_balls/Chochinobake.png"),
 		"size": PROPORTION[0] ** 1,
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/chochinobake.tres"),
@@ -47,7 +47,7 @@ const ENEMIES = [
 	},
 	{
 		"tier": 3,
-		"sprite": preload("res://assets/enemies/monster_ball_3.png"),
+		"sprite": preload("res://assets/enemy_balls/Kappa.png"),
 		"size": PROPORTION[0] ** 2,
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/kappa.tres"),
@@ -55,7 +55,7 @@ const ENEMIES = [
 	},
 	{
 		"tier": 4,
-		"sprite": preload("res://assets/enemies/monster_ball_4.png"),
+		"sprite": preload("res://assets/enemy_balls/Tanuki.png"),
 		"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/tanuki.tres"),
@@ -63,7 +63,7 @@ const ENEMIES = [
 	},
 	{
 		"tier": 5,
-		"sprite": preload("res://assets/enemies/monster_ball_5.png"),
+		"sprite": preload("res://assets/enemy_balls/Baku.png"),
 		"size": (PROPORTION[0] ** 3) * (PROPORTION[1] ** 1),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/baku.tres"),
@@ -71,28 +71,28 @@ const ENEMIES = [
 	},
 	{
 		"tier": 6,
-		"sprite": preload("res://assets/enemies/monster_ball_6.png"),
+		"sprite": preload("res://assets/enemy_balls/Jorogumo.png"),
 		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 1),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/jogorumo.tres")
 	},
 	{
 		"tier": 7,
-		"sprite": preload("res://assets/enemies/monster_ball_7.png"),
+		"sprite": preload("res://assets/enemy_balls/Oni.png"),
 		"size":(PROPORTION[0] ** 4) * (PROPORTION[1] ** 2),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/oni.tres")
 	},
 	{
 		"tier": 8,
-		"sprite": preload("res://assets/enemies/monster_ball_8.png"),
+		"sprite": preload("res://assets/enemy_balls/Tengu.png"),
 		"size": (PROPORTION[0] ** 5) * (PROPORTION[1] ** 2),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/tengu.tres")
 	},
 	{
 		"tier": 9,
-		"sprite": preload("res://assets/enemies/monster_ball_9.png"),
+		"sprite": preload("res://assets/enemy_balls/Wanyuudo.png"),
 		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 2),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/wanyudo.tres"),
@@ -100,7 +100,7 @@ const ENEMIES = [
 	},
 	{
 		"tier": 10,
-		"sprite": preload("res://assets/enemies/monster_ball_10.png"),
+		"sprite": preload("res://assets/enemy_balls/YukiOnna.png"),
 		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 3),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/yuki_onna.tres"),
@@ -108,7 +108,7 @@ const ENEMIES = [
 	},
 	{
 		"tier": 11,
-		"sprite": preload("res://assets/enemies/monster_ball_11.png"),
+		"sprite": preload("res://assets/enemy_balls/Kitsune.png"),
 		"size": (PROPORTION[0] ** 7) * (PROPORTION[1] ** 3),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/kitsune.tres"),
