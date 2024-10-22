@@ -2,7 +2,6 @@ extends Control
 
 @onready var next_ball = $NextBall
 @onready var sprite: TextureRect = $NextBall/Sprite
-@onready var icon = $NextBall/Icon
 @onready var balls_options = $BallsOptions
 @onready var enemy_sprite = $NextBall/EnemySprite
 @onready var enemies = $Enemies
@@ -96,7 +95,6 @@ func can_change_next_ball_ui(can_change: bool) -> void:
 func set_next_ball() -> void:
 	var next_ball = BallsManager.get_next_ball()
 	if (next_ball.owner == "enemy"):
-		#icon.visible = false
 		sprite.visible = false
 		enemy_sprite.visible = true
 		enemy_sprite.texture = next_ball.preview
@@ -104,7 +102,6 @@ func set_next_ball() -> void:
 	else:
 		enemy_sprite.visible = false
 		sprite.texture = next_ball.sprite
-		#icon.visible = true
 		sprite.visible = true
 		sprite.scale = sprite_scale * next_ball.size
 

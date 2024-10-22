@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd7cx16nt66kr"]
+[gd_scene load_steps=3 format=3 uid="uid://jjcq30ehsgc5"]
 
 [ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="1_efxr0"]
 [ext_resource type="Script" path="res://components/ball_can_attack_component.gd" id="2_au2d3"]

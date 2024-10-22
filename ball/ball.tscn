@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5d3utm7alcgv"]
+[gd_scene load_steps=6 format=3 uid="uid://c5d3utm7alcgv"]
 
 [ext_resource type="Script" path="res://ball/ball.gd" id="1_aaf3s"]
-[ext_resource type="Texture2D" uid="uid://cv67kpqydunam" path="res://assets/icons/sword.png" id="2_44oov"]
 [ext_resource type="Texture2D" uid="uid://safdk58rbd3t" path="res://assets/hitodama/Hitodama_1.png" id="2_ou1w2"]
-[ext_resource type="PackedScene" path="res://components/ball_can_attack_component.tscn" id="6_ngn8s"]
+[ext_resource type="PackedScene" uid="uid://jjcq30ehsgc5" path="res://components/ball_can_attack_component.tscn" id="6_ngn8s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2wo2j"]
 friction = 0.5
@@ -25,12 +24,6 @@ script = ExtResource("1_aaf3s")
 texture_filter = 1
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("2_ou1w2")
-
-[node name="Icon" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(1, 0)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_44oov")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.25, 0.25)

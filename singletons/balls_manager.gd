@@ -15,7 +15,6 @@ const PROPORTION = [1.2, 1.3]
 const RAINBOW_CONFIG: Dictionary = {
 	"tier": -1,
 	"sprite": preload("res://assets/balls/black_body_circle.png"),
-	"icon": preload("res://assets/icons/crown.png"),
 	"size": 1,
 	"owner": "player",
 	"sprite_scale": 0.1875
@@ -24,7 +23,6 @@ const RAINBOW_CONFIG: Dictionary = {
 const BOMB_CONFIG: Dictionary = {
 	"tier": -2,
 	"sprite": preload("res://assets/balls/black_body_circle.png"),
-	"icon": preload("res://assets/icons/exploding.png"),
 	"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1),
 	"owner": "player",
 	"type": "bomb",
@@ -35,7 +33,6 @@ const ENEMIES = [
 	{
 		"tier": 1,
 		"sprite": preload("res://assets/enemies/monster_ball.png"),
-		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": PROPORTION[0] ** 0,
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/yurei.tres"),
@@ -44,7 +41,6 @@ const ENEMIES = [
 	{
 		"tier": 2,
 		"sprite": preload("res://assets/enemies/monster_ball_2.png"),
-		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": PROPORTION[0] ** 1,
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/chochinobake.tres"),
@@ -53,7 +49,6 @@ const ENEMIES = [
 	{
 		"tier": 3,
 		"sprite": preload("res://assets/enemies/monster_ball_3.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": PROPORTION[0] ** 2,
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/kappa.tres"),
@@ -62,7 +57,6 @@ const ENEMIES = [
 	{
 		"tier": 4,
 		"sprite": preload("res://assets/enemies/monster_ball_4.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/tanuki.tres"),
@@ -71,7 +65,6 @@ const ENEMIES = [
 	{
 		"tier": 5,
 		"sprite": preload("res://assets/enemies/monster_ball_5.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 3) * (PROPORTION[1] ** 1),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/baku.tres"),
@@ -80,7 +73,6 @@ const ENEMIES = [
 	{
 		"tier": 6,
 		"sprite": preload("res://assets/enemies/monster_ball_6.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 1),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/jogorumo.tres")
@@ -88,7 +80,6 @@ const ENEMIES = [
 	{
 		"tier": 7,
 		"sprite": preload("res://assets/enemies/monster_ball_7.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size":(PROPORTION[0] ** 4) * (PROPORTION[1] ** 2),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/oni.tres")
@@ -96,7 +87,6 @@ const ENEMIES = [
 	{
 		"tier": 8,
 		"sprite": preload("res://assets/enemies/monster_ball_8.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 5) * (PROPORTION[1] ** 2),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/tengu.tres")
@@ -104,7 +94,6 @@ const ENEMIES = [
 	{
 		"tier": 9,
 		"sprite": preload("res://assets/enemies/monster_ball_9.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 2),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/wanyudo.tres"),
@@ -113,7 +102,6 @@ const ENEMIES = [
 	{
 		"tier": 10,
 		"sprite": preload("res://assets/enemies/monster_ball_10.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 3),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/yuki_onna.tres"),
@@ -122,7 +110,6 @@ const ENEMIES = [
 	{
 		"tier": 11,
 		"sprite": preload("res://assets/enemies/monster_ball_11.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 7) * (PROPORTION[1] ** 3),
 		"owner": "enemy",
 		"animation": preload("res://assets/enemy_balls/animations/kitsune.tres"),
@@ -134,56 +121,48 @@ const BALLS = [
 	{
 		"tier": 1,
 		"sprite": preload("res://assets/hitodama/Hitodama_1.png"),
-		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": PROPORTION[0] ** 0,
 		"owner": "player"
 	},
 	{
 		"tier": 2,
 		"sprite": preload("res://assets/hitodama/Hitodama_2.png"),
-		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": PROPORTION[0] ** 1,
 		"owner": "player"
 	},
 	{
 		"tier": 3,
 		"sprite": preload("res://assets/hitodama/Hitodama_3.png"),
-		"icon": preload("res://assets/icons/tag_1.png"),
 		"size": PROPORTION[0] ** 2,
 		"owner": "player"
 	},
 	{
 		"tier": 4,
 		"sprite": preload("res://assets/hitodama/Hitodama_4.png"),
-		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1),
 		"owner": "player"
 	},
 	{
 		"tier": 5,
 		"sprite": preload("res://assets/hitodama/Hitodama_5.png"),
-		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": (PROPORTION[0] ** 3) * (PROPORTION[1] ** 1),
 		"owner": "player"
 	},
 	{
 		"tier": 6,
 		"sprite": preload("res://assets/hitodama/Hitodama_6.png"),
-		"icon": preload("res://assets/icons/tag_2.png"),
 		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 1),
 		"owner": "player"
 	},
 	{
 		"tier": 7,
 		"sprite": preload("res://assets/hitodama/Hitodama_7.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 4) * (PROPORTION[1] ** 2),
 		"owner": "player"
 	},
 	{
 		"tier": 8,
 		"sprite": preload("res://assets/hitodama/Hitodama_8.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 5) * (PROPORTION[1] ** 2),
 		"owner": "player",
 		"sprite_scale": 0.88
@@ -191,7 +170,6 @@ const BALLS = [
 	{
 		"tier": 9,
 		"sprite": preload("res://assets/hitodama/Hitodama_9.png"),
-		"icon": preload("res://assets/icons/tag_3.png"),
 		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 2),
 		"owner": "player",
 		"sprite_scale": 0.75
@@ -199,7 +177,6 @@ const BALLS = [
 	{
 		"tier": 10,
 		"sprite": preload("res://assets/hitodama/Hitodama_10.png"),
-		"icon": preload("res://assets/icons/skull.png"),
 		"size": (PROPORTION[0] ** 6) * (PROPORTION[1] ** 3),
 		"owner": "player",
 		"sprite_scale": 0.65
@@ -207,7 +184,6 @@ const BALLS = [
 	{
 		"tier": 11,
 		"sprite": preload("res://assets/hitodama/Hitodama_11.png"),
-		"icon": preload("res://assets/icons/crown.png"),
 		"size": (PROPORTION[0] ** 7) * (PROPORTION[1] ** 3),
 		"owner": "player",
 		"sprite_scale": 0.6
