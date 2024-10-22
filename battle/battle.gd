@@ -27,7 +27,6 @@ func _process(_delta):
 				SignalManager.on_game_over.emit()
 
 func spawn_random_balls(amount: int) -> void:
-	BallsManager.turn_finished.emit()
 	for i in range(amount):
 		SignalManager.spawn_random_ball.emit()
 		await get_tree().create_timer(.5).timeout

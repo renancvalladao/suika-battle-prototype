@@ -3,7 +3,6 @@ extends Node
 signal ball_exploded(first_pos: Vector2, second_pos: Vector2, tier: int, owner: String)
 signal next_ball_changed
 signal ball_dropped
-signal turn_finished
 signal current_ball_changed
 
 var battle: PackedScene = load("res://battle/battle.tscn")
