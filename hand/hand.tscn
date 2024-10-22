@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkad54i0bl7bp"]
 
-[ext_resource type="Texture2D" uid="uid://d3prjjgiujl5u" path="res://assets/icons/hand.png" id="1_8elw8"]
 [ext_resource type="Script" path="res://hand/hand.gd" id="1_hmqhe"]
+[ext_resource type="Texture2D" uid="uid://bb2ju0driiykn" path="res://assets/Lantern.png" id="3_fyefa"]
 
 [node name="Hand" type="Node2D"]
 z_index = 1
@@ -9,13 +9,15 @@ script = ExtResource("1_hmqhe")
 
 [node name="BallHolder" type="Marker2D" parent="."]
 
-[node name="Sprite" type="Sprite2D" parent="."]
-modulate = Color(0.764706, 0.764706, 0.764706, 1)
-texture = ExtResource("1_8elw8")
-flip_v = true
-
 [node name="DropTimer" type="Timer" parent="."]
 wait_time = 1.2
 one_shot = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(0, -60)
+scale = Vector2(2, 2)
+texture = ExtResource("3_fyefa")
 
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]

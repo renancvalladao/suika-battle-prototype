@@ -14,7 +14,7 @@ var position_offset: float = 0.0
 var can_drop: bool = true
 
 func _ready():
-	position_offset = $Sprite.texture.get_size().x / 2
+	position_offset = $Sprite.texture.get_size().x * 2
 	add_ball_to_holder()
 	SignalManager.turn_started.connect(turn_started)
 	BallsManager.current_ball_changed.connect(current_ball_changed)

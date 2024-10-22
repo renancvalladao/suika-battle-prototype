@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3prjjgiujl5u"
-path="res://.godot/imported/hand.png-fbb79aee455302b474edd3d76d8c1b78.ctex"
+uid="uid://bb2ju0driiykn"
+path="res://.godot/imported/Lantern.png-3d3f50c94daefe42e1e0143564088f5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/hand.png"
-dest_files=["res://.godot/imported/hand.png-fbb79aee455302b474edd3d76d8c1b78.ctex"]
+source_file="res://assets/Lantern.png"
+dest_files=["res://.godot/imported/Lantern.png-3d3f50c94daefe42e1e0143564088f5c.ctex"]
 
 [params]
 
