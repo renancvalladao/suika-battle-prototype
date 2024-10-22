@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://npeinq6eg2k5"]
+[gd_scene load_steps=15 format=3 uid="uid://npeinq6eg2k5"]
 
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_fl8ju"]
 [ext_resource type="PackedScene" uid="uid://bkad54i0bl7bp" path="res://hand/hand.tscn" id="1_h2fse"]
@@ -13,8 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://cpk0pgwnkgnot" path="res://assets/environment/Torigate.png" id="8_kj6nj"]
 [ext_resource type="Texture2D" uid="uid://dg5i8ui0uy8wk" path="res://assets/torii_v2.png" id="11_lyj48"]
 [ext_resource type="PackedScene" uid="uid://dcq3spj02m0gc" path="res://components/game_timer.tscn" id="12_sxbf5"]
-[ext_resource type="Texture2D" uid="uid://c7pb6eerpe3tc" path="res://assets/toriiGate_edited.png" id="13_ac18o"]
-[ext_resource type="Texture2D" uid="uid://btfd643ys1ett" path="res://assets/toriiGate.png" id="14_hlihy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u53dv"]
 size = Vector2(795, 35)
@@ -81,12 +79,6 @@ position = Vector2(965, 491)
 scale = Vector2(5.7, 5.7)
 texture = ExtResource("7_gan6p")
 
-[node name="ToriiGate" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(952.5, 553.5)
-scale = Vector2(1.03908, 0.846557)
-texture = ExtResource("14_hlihy")
-
 [node name="Torigate" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
@@ -99,56 +91,6 @@ texture_filter = 1
 position = Vector2(965, 491)
 scale = Vector2(3.8, 3.8)
 texture = ExtResource("11_lyj48")
-
-[node name="Control" type="Control" parent="."]
-visible = false
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 5.0
-offset_top = 244.0
-offset_right = 785.0
-offset_bottom = 1024.0
-mouse_filter = 2
-
-[node name="ToriiGateEdited" type="Sprite2D" parent="Control"]
-position = Vector2(954, 257)
-rotation = -0.058557
-scale = Vector2(0.97306, 0.845679)
-texture = ExtResource("13_ac18o")
-
-[node name="Control2" type="Control" parent="."]
-visible = false
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 958.0
-offset_top = 271.0
-offset_right = 1636.0
-offset_bottom = 1041.0
-mouse_filter = 2
-
-[node name="ToriiGateEdited" type="Sprite2D" parent="Control2"]
-position = Vector2(12, 229)
-rotation = 0.0588268
-scale = Vector2(0.97306, 0.845679)
-texture = ExtResource("13_ac18o")
-
-[node name="Control3" type="Control" parent="."]
-visible = false
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 130.0
-offset_top = -28.0
-offset_right = 1759.0
-offset_bottom = 306.0
-mouse_filter = 2
-
-[node name="ToriiGateEdited" type="Sprite2D" parent="Control3"]
-position = Vector2(835.5, 545)
-scale = Vector2(1.03207, 0.845679)
-texture = ExtResource("13_ac18o")
 
 [node name="Hand" parent="." node_paths=PackedStringArray("position_min", "position_max") instance=ExtResource("1_h2fse")]
 position = Vector2(955, 277)
