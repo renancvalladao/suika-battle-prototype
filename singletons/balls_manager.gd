@@ -17,7 +17,8 @@ const RAINBOW_CONFIG: Dictionary = {
 	"sprite": preload("res://assets/balls/black_body_circle.png"),
 	"icon": preload("res://assets/icons/crown.png"),
 	"size": 1,
-	"owner": "player"
+	"owner": "player",
+	"sprite_scale": 0.1875
 }
 
 const BOMB_CONFIG: Dictionary = {
@@ -26,7 +27,8 @@ const BOMB_CONFIG: Dictionary = {
 	"icon": preload("res://assets/icons/exploding.png"),
 	"size": (PROPORTION[0] ** 2) * (PROPORTION[1] ** 1),
 	"owner": "player",
-	"type": "bomb"
+	"type": "bomb",
+	"sprite_scale": 0.1875
 	}
 
 const ENEMIES = [

@@ -3,7 +3,6 @@ extends RigidBody2D
 class_name Ball
 
 @onready var sprite = $Sprite
-@onready var icon = $Icon
 @onready var change_timer = $ChangeTimer
 @onready var ball_can_attack_component = $BallCanAttackComponent
 
@@ -13,14 +12,11 @@ var should_add_group: bool = true
 var added_to_balls_group: bool = false
 var can_change_color: bool = true
 
-var initial_icon_scale: Vector2
 var initial_sprite_scale: Vector2
 var initial_collision2d_scale: Vector2
 
 func _ready():
 	set_initial_scales()
-	$Icon.texture = config.icon
-	$Icon.scale *= config.size 
 	$Sprite.texture = config.sprite
 	$Sprite.scale *= config.size
 	$CollisionShape2D.scale *= config.size
@@ -35,12 +31,10 @@ func _ready():
 		tween.tween_property(self, "scale", Vector2(1, 1), 0.1).set_ease(Tween.EASE_IN)
 
 func set_initial_scales() -> void:
-	initial_icon_scale = $Icon.scale
 	initial_sprite_scale = $Sprite.scale
 	initial_collision2d_scale = $CollisionShape2D.scale
 
 func reset_scales() -> void:
-	$Icon.scale = initial_icon_scale
 	$Sprite.scale = initial_sprite_scale
 	$CollisionShape2D.scale = initial_collision2d_scale
 
@@ -66,7 +60,7 @@ func explode():
 func _on_body_entered(body):
 	if config.tier == -2:
 		return
-	if config.tier == -1 && not (body is Ball):
+	if config.tier == -1 && not (body is Ball) && body.is_in_group("floor"):
 		queue_free()
 	if config.has("type") && body is Ball:
 		if config.type == "ghost" && config.tier != body.config.tier:
@@ -101,8 +95,6 @@ func set_can_change_color_to_true() -> void :
 
 func update_config() -> void:
 	reset_scales()
-	$Icon.texture = config.icon
-	$Icon.scale *= config.size 
 	$Sprite.texture = config.sprite
 	$Sprite.scale *= config.size
 	$CollisionShape2D.scale *= config.size
