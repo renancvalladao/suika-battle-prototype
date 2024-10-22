@@ -76,14 +76,14 @@ texture_filter = 1
 scale = Vector2(1.3, 1.3)
 sprite_frames = ExtResource("5_cg1eb")
 
-[node name="BallCanAttackComponent" parent="." index="7"]
+[node name="BallCanAttackComponent" parent="." index="6"]
 visible = false
 
-[node name="HealthComponent" parent="." index="8" instance=ExtResource("5_7idqd")]
+[node name="HealthComponent" parent="." index="7" instance=ExtResource("5_7idqd")]
 visible = false
 MAX_HEALTH = 20
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
 libraries = {
 "": SubResource("AnimationLibrary_do8vc")
 }

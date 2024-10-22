@@ -5,7 +5,7 @@ var is_damage: bool = false
 var is_heal: bool = false
 var is_shield: bool = false
 
-var enemy_owner: Enemy
+var enemy_owner
 
 func do_move():
 	if is_damage:
