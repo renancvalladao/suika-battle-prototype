@@ -6,7 +6,6 @@ signal ball_dropped
 signal turn_finished
 signal current_ball_changed
 
-var character_selection: PackedScene = load("res://character_selection/character_selection.tscn")
 var battle: PackedScene = load("res://battle/battle.tscn")
 var can_change_next_ball = true
 
