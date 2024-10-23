@@ -13,7 +13,6 @@ func _ready():
 	BallsManager.ball_exploded.connect(on_ball_exploded)
 	SignalManager.spawn_random_ball.connect(spawn_random_ball)
 	SignalManager.on_game_over.connect(on_game_over)
-	SignalManager.explode_ball_tier.connect(explode_ball_tier)
 	fusions_label.text = "Fusions: 0"
 	
 	#spawn_random_balls(50)
@@ -63,11 +62,6 @@ func spawn_random_ball() -> void:
 
 func on_game_over() -> void:
 	game_over.show()
-
-func explode_ball_tier(tier: int) -> void:
-	var balls = get_tree().get_nodes_in_group("ball_%s" % tier)
-	for ball in balls:
-		ball.queue_free()
 
 func spawn_random_enemy_ball() -> void:
 	var x = randf_range(position_min.position.x, position_max.position.x)
